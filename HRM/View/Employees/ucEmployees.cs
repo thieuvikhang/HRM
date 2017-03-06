@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace HRM
 {
-    public partial class ucEmployees : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucEmployees : XtraUserControl
     {
         public ucEmployees()
         {
@@ -34,6 +27,11 @@ namespace HRM
         }
 
         private void textEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
         {
 
         }
