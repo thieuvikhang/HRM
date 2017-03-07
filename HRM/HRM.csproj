@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AddTab">
-      <HintPath>..\..\DEMO\DATT\HRM\bin\Debug\AddTab.dll</HintPath>
+    <Reference Include="AddTab, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AddTab.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v16.1" />
     <Reference Include="DevExpress.Data.v16.1" />
@@ -48,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,46 +60,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\frmMain.cs">
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Employees\ucEmployees.cs">
+    <Compile Include="ucContracts.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Employees\ucEmployees.Designer.cs">
+    <Compile Include="ucContracts.designer.cs">
+      <DependentUpon>ucContracts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucEmployees.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucEmployees.Designer.cs">
       <DependentUpon>ucEmployees.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Salary\ucSalary.cs">
+    <Compile Include="ucSalary.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Salary\ucSalary.Designer.cs">
+    <Compile Include="ucSalary.Designer.cs">
       <DependentUpon>ucSalary.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Section\ucSection.cs">
+    <Compile Include="ucSection.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Section\ucSection.Designer.cs">
+    <Compile Include="ucSection.Designer.cs">
       <DependentUpon>ucSection.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SplashScreen\SplashScreenStarting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SplashScreen\SplashScreenStarting.Designer.cs">
-      <DependentUpon>SplashScreenStarting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\SplashScreen\WaitFormLoading.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SplashScreen\WaitFormLoading.Designer.cs">
-      <DependentUpon>WaitFormLoading.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="View\frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -109,20 +105,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Employees\ucEmployees.resx">
+    <EmbeddedResource Include="ucContracts.resx">
+      <DependentUpon>ucContracts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucEmployees.resx">
       <DependentUpon>ucEmployees.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Salary\ucSalary.resx">
+    <EmbeddedResource Include="ucSalary.resx">
       <DependentUpon>ucSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Section\ucSection.resx">
+    <EmbeddedResource Include="ucSection.resx">
       <DependentUpon>ucSection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SplashScreen\SplashScreenStarting.resx">
-      <DependentUpon>SplashScreenStarting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SplashScreen\WaitFormLoading.resx">
-      <DependentUpon>WaitFormLoading.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -135,8 +128,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Control\" />
-    <Folder Include="Model\" />
+    <ProjectReference Include="..\BUS\BUS.csproj">
+      <Project>{7c0db9f5-e565-488c-8ae4-83c358bd13a2}</Project>
+      <Name>BUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{a86e0ddf-efd5-4825-a40c-510aec666037}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HRM" Class="HRMModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-CPSQQQU\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Absent" Member="Absents">
+    <Type Name="Absent">
+      <Column Name="AbsentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AmountDay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FromDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ToDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AbsentType" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Absent_DetailAbsent" Member="DetailAbsents" ThisKey="AbsentID" OtherKey="AbsentID" Type="DetailAbsent" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BirthDay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Education" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ManagerID" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="DaysRemain" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PostID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="SectionID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_Account" Member="Accounts" ThisKey="StaffID" OtherKey="StaffID" Type="Account" />
+      <Association Name="Staff_Contract" Member="Contracts" ThisKey="StaffID" OtherKey="StaffID" Type="Contract" />
+      <Association Name="Staff_DetailAbsent" Member="DetailAbsents" ThisKey="StaffID" OtherKey="StaffID" Type="DetailAbsent" />
+      <Association Name="Staff_Salary" Member="Salaries" ThisKey="StaffID" OtherKey="StaffID" Type="Salary" />
+      <Association Name="Staff_SocialInsurance" Member="SocialInsurances" ThisKey="StaffID" OtherKey="StaffID" Type="SocialInsurance" />
+      <Association Name="Position_Staff" Member="Position" ThisKey="PostID" OtherKey="PostID" Type="Position" IsForeignKey="true" />
+      <Association Name="Section_Staff" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Access" Member="Accesses">
+    <Type Name="Access">
+      <Column Name="AccessID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Form" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Edit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="GroupAccess_Access" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="AccID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_Account" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
+      <Association Name="GroupAccess_Account" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contract" Member="Contracts">
+    <Type Name="Contract">
+      <Column Name="ContractID" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Currency" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BasicPay" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Payment" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="ContractTypeID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_Contract" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
+      <Association Name="ContractType_Contract" Member="ContractType" ThisKey="ContractTypeID" OtherKey="ContractTypeID" Type="ContractType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ContractType" Member="ContractTypes">
+    <Type Name="ContractType">
+      <Column Name="ContractTypeID" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="ContractType_Contract" Member="Contracts" ThisKey="ContractTypeID" OtherKey="ContractTypeID" Type="Contract" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetailAbsent" Member="DetailAbsents">
+    <Type Name="DetailAbsent">
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AbsentID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AbsentMonth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AbsentDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Absent_DetailAbsent" Member="Absent" ThisKey="AbsentID" OtherKey="AbsentID" Type="Absent" IsForeignKey="true" />
+      <Association Name="Staff_DetailAbsent" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupAccess" Member="GroupAccesses">
+    <Type Name="GroupAccess">
+      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="GroupAccess_Access" Member="Accesses" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="Access" />
+      <Association Name="GroupAccess_Account" Member="Accounts" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="Account" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Position" Member="Positions">
+    <Type Name="Position">
+      <Column Name="PostID" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Position_Staff" Member="Staffs" ThisKey="PostID" OtherKey="PostID" Type="Staff" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Rule]" Member="Rules">
+    <Type Name="Rule">
+      <Column Name="RuleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SIPayRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LeaveAYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Salary" Member="Salaries">
+    <Type Name="Salary">
+      <Column Name="SalaryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BasicPay" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="SalaryMonth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Workdays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Allowance" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="AllowanceDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StandardWorkdays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RealPay" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_Salary" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Section" Member="Sections">
+    <Type Name="Section">
+      <Column Name="SectionID" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StandardWorkdays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Association Name="Section_Staff" Member="Staffs" ThisKey="SectionID" OtherKey="SectionID" Type="Staff" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SocialInsurance" Member="SocialInsurances">
+    <Type Name="SocialInsurance">
+      <Column Name="InsuranceID" Type="System.String" DbType="VarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SIMonth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PayRate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Payment" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_SocialInsurance" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

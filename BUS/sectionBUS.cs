@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAO;
+using DAL;
 
 namespace BUS
 {
@@ -25,7 +25,7 @@ namespace BUS
                                 where (st.Name == stringInput) || (st.Phone == stringInput) || (st.SectionID == stringInput)
                                 select st).Count();
 
-            if(countSection == 0)
+            if (countSection == 0)
             {
                 //Khong co record trung 
                 return true;
@@ -72,7 +72,8 @@ namespace BUS
                 //Tim redocrd cua section co ID
                 Section aSection = aHRM.Sections.SingleOrDefault(st => st.SectionID == newSTID);
                 //Kiem tra record co ton tai
-                if(aSection != null){
+                if (aSection != null)
+                {
                     aSection.SectionID = newSTID;
                     aSection.Name = newName;
                     aSection.Description = newDescription;
@@ -80,12 +81,14 @@ namespace BUS
                     aSection.Phone = newPhone;
                     aHRM.SubmitChanges();
                     return true;
-                }else
+                }
+                else
                 {
                     return false;
                 }
-                    
-            }catch(Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 return false;
             }
@@ -99,7 +102,8 @@ namespace BUS
                 aHRM.Sections.DeleteOnSubmit(aSection);
                 aHRM.SubmitChanges();
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }

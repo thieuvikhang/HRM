@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAO;
+using DAL;
 
 
 namespace BUS
@@ -32,9 +32,9 @@ namespace BUS
         public bool checkInputDuplicate(string stringInput)
         {
             int countDataDuplicate = (from si in aHRM.SocialInsurances
-                            where si.InsuranceID == stringInput
-                            select si).Count();
-            if(countDataDuplicate == 0)
+                                      where si.InsuranceID == stringInput
+                                      select si).Count();
+            if (countDataDuplicate == 0)
             {
                 //khong co record trung ten nhap vao
                 return true;
@@ -70,7 +70,8 @@ namespace BUS
                 {
                     return false;
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }
@@ -82,9 +83,9 @@ namespace BUS
             try
             {
                 //tim kiem record cua SocialInsurance theo ID
-                SocialInsurance aSI = aHRM.SocialInsurances.SingleOrDefault(si=>si.InsuranceID == siID);
+                SocialInsurance aSI = aHRM.SocialInsurances.SingleOrDefault(si => si.InsuranceID == siID);
                 //Kiem tra record co ton tai
-                if(aSI != null)
+                if (aSI != null)
                 {
                     aSI.InsuranceID = siID;
                     aSI.InsuranceID = newPayment;

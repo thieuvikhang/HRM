@@ -1,6 +1,6 @@
 ﻿namespace HRM
 {
-    partial class frmMain
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::HRM.VIEW.Splash_Screen.SplashScreenStarting), true, true);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -52,10 +51,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // splashScreenManager1
-            // 
-            splashScreenManager1.ClosingDelay = 500;
             // 
             // ribbonControl1
             // 
@@ -112,6 +107,7 @@
             this.barButtonItem4.Id = 4;
             this.barButtonItem4.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.LargeGlyph")));
             this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
             // barButtonItem5
             // 
@@ -140,7 +136,7 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Hệ Thống";
+            this.ribbonPage1.Text = "Hệ thống";
             // 
             // ribbonPageGroup1
             // 
@@ -155,7 +151,7 @@
             this.ribbonPageGroup3,
             this.ribbonPageGroup4});
             this.ribbonPage2.Name = "ribbonPage2";
-            this.ribbonPage2.Text = "Nhân Sự";
+            this.ribbonPage2.Text = "Nhân sự";
             // 
             // ribbonPageGroup2
             // 
@@ -178,16 +174,16 @@
             // ribbonPage3
             // 
             this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "Thống Kê";
+            this.ribbonPage3.Text = "Thống kê";
             // 
             // ribbonPage4
             // 
             this.ribbonPage4.Name = "ribbonPage4";
-            this.ribbonPage4.Text = "Báo Cáo";
+            this.ribbonPage4.Text = "Báo cáo";
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 475);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 313);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(758, 31);
@@ -199,26 +195,24 @@
             this.xtraTabControl1.HeaderButtons = DevExpress.XtraTab.TabButtons.Close;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 143);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(758, 332);
+            this.xtraTabControl1.Size = new System.Drawing.Size(758, 170);
             this.xtraTabControl1.TabIndex = 18;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl1_ControlAdded);
             // 
-            // frmMain
+            // Form1
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 506);
+            this.ClientSize = new System.Drawing.Size(758, 344);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
-            this.Name = "frmMain";
+            this.Name = "Form1";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar1;
             this.Text = "Phần mềm quản lý nhân sự";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.ResumeLayout(false);
