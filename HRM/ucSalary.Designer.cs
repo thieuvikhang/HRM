@@ -49,12 +49,12 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.gcSalary = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.gcSalary = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.cbbStaffID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRealPay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numStandardWorkdays)).BeginInit();
@@ -65,10 +65,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBasicPay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSalary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcSalary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonPageGroup2
@@ -248,23 +248,7 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(800, 250);
             this.panelControl1.TabIndex = 43;
-            // 
-            // gcSalary
-            // 
-            this.gcSalary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSalary.Location = new System.Drawing.Point(0, 250);
-            this.gcSalary.MainView = this.gridView1;
-            this.gcSalary.Name = "gcSalary";
-            this.gcSalary.Size = new System.Drawing.Size(800, 350);
-            this.gcSalary.TabIndex = 44;
-            this.gcSalary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gcSalary;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
             // groupControl2
             // 
@@ -309,6 +293,23 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
             // 
+            // gcSalary
+            // 
+            this.gcSalary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcSalary.Location = new System.Drawing.Point(0, 250);
+            this.gcSalary.MainView = this.gridView1;
+            this.gcSalary.Name = "gcSalary";
+            this.gcSalary.Size = new System.Drawing.Size(800, 350);
+            this.gcSalary.TabIndex = 44;
+            this.gcSalary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gcSalary;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            // 
             // ucSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,10 +329,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSalary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcSalary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }

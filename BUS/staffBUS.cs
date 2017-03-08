@@ -1,9 +1,6 @@
 ﻿using DAL;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BUS
 {
@@ -32,6 +29,11 @@ namespace BUS
                           });
             return loadStaff;
         }
-        
+        //Lấy số ID phòng ban dựa vào Mã nhân viên
+        public string GetSectionIDByStaffID(string staffID)
+        {
+            var sectionID = (from s in aHRM.Staffs where s.StaffID == staffID select s.SectionID).FirstOrDefault();
+            return Convert.ToString(sectionID);
+        }
     }
 }

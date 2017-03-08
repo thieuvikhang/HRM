@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 
 namespace BUS
@@ -128,6 +125,12 @@ namespace BUS
             catch (Exception ex) {
                 return false;
             }
+        }
+        //Lấy Lương cơ bản trong bảng hợp đồng dựa vào Mã nhân viên
+        public decimal GetBasicPayByStaffID(string StaffID)
+        {
+            var basicPay = (from cc in aHRM.Contracts where cc.StaffID == StaffID select cc.BasicPay).FirstOrDefault();
+            return Convert.ToDecimal(basicPay);
         }
     }
 }

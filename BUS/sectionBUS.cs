@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 
 namespace BUS
@@ -134,6 +131,12 @@ namespace BUS
             catch (Exception ex) {
                 return false;
             }
+        }
+        //Lấy só ngày công quy định dựa vào Mã phòng ban
+        public int GetStandardWorkdaysBySectionID(string sectionID)
+        {
+            var standardWorkday = (from s in aHRM.Sections where s.SectionID == sectionID select s.StandardWorkdays).FirstOrDefault();
+            return Convert.ToInt16(standardWorkday);
         }
     }
 }
