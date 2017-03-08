@@ -40,12 +40,17 @@
             this.txtSectionID = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.gcSection = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.gcSection = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gCoSectionID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gCoSectionName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gCoDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gCoStandardWorkdays = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gCoPhone = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numStandardWorkdays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mmDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
@@ -53,10 +58,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSectionID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcSection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // numStandardWorkdays
@@ -159,23 +164,6 @@
             this.panelControl1.Size = new System.Drawing.Size(647, 250);
             this.panelControl1.TabIndex = 49;
             // 
-            // gcSection
-            // 
-            this.gcSection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSection.Location = new System.Drawing.Point(0, 250);
-            this.gcSection.MainView = this.gridView1;
-            this.gcSection.Name = "gcSection";
-            this.gcSection.Size = new System.Drawing.Size(647, 118);
-            this.gcSection.TabIndex = 50;
-            this.gcSection.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gcSection;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
-            // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.btnEdit);
@@ -207,6 +195,7 @@
             this.btnDelete.Size = new System.Drawing.Size(85, 34);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Xóa";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
@@ -218,6 +207,75 @@
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
+            // 
+            // gcSection
+            // 
+            this.gcSection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcSection.Location = new System.Drawing.Point(0, 250);
+            this.gcSection.MainView = this.gridView1;
+            this.gcSection.Name = "gcSection";
+            this.gcSection.Size = new System.Drawing.Size(647, 118);
+            this.gcSection.TabIndex = 50;
+            this.gcSection.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            this.gcSection.Click += new System.EventHandler(this.gcSection_Click);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gCoSectionID,
+            this.gCoSectionName,
+            this.gCoDescription,
+            this.gCoStandardWorkdays,
+            this.gCoPhone});
+            this.gridView1.GridControl = this.gcSection;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.gridView1.OptionsFind.AlwaysVisible = true;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            // 
+            // gCoSectionID
+            // 
+            this.gCoSectionID.Caption = "Mã phòng ban";
+            this.gCoSectionID.FieldName = "SectionID";
+            this.gCoSectionID.Name = "gCoSectionID";
+            this.gCoSectionID.Visible = true;
+            this.gCoSectionID.VisibleIndex = 0;
+            // 
+            // gCoSectionName
+            // 
+            this.gCoSectionName.Caption = "Tên phòng ban";
+            this.gCoSectionName.FieldName = "Name";
+            this.gCoSectionName.Name = "gCoSectionName";
+            this.gCoSectionName.Visible = true;
+            this.gCoSectionName.VisibleIndex = 1;
+            // 
+            // gCoDescription
+            // 
+            this.gCoDescription.Caption = "Mô tả";
+            this.gCoDescription.FieldName = "Description";
+            this.gCoDescription.Name = "gCoDescription";
+            this.gCoDescription.Visible = true;
+            this.gCoDescription.VisibleIndex = 2;
+            // 
+            // gCoStandardWorkdays
+            // 
+            this.gCoStandardWorkdays.Caption = "Ngày công quy định";
+            this.gCoStandardWorkdays.FieldName = "StandardWorkdays";
+            this.gCoStandardWorkdays.Name = "gCoStandardWorkdays";
+            this.gCoStandardWorkdays.Visible = true;
+            this.gCoStandardWorkdays.VisibleIndex = 3;
+            // 
+            // gCoPhone
+            // 
+            this.gCoPhone.Caption = "Số điện thoại";
+            this.gCoPhone.FieldName = "Phone";
+            this.gCoPhone.Name = "gCoPhone";
+            this.gCoPhone.Visible = true;
+            this.gCoPhone.VisibleIndex = 4;
             // 
             // ucSection
             // 
@@ -236,10 +294,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcSection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -262,5 +320,10 @@
         private DevExpress.XtraEditors.SimpleButton btnEdit;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private DevExpress.XtraGrid.Columns.GridColumn gCoSectionID;
+        private DevExpress.XtraGrid.Columns.GridColumn gCoSectionName;
+        private DevExpress.XtraGrid.Columns.GridColumn gCoDescription;
+        private DevExpress.XtraGrid.Columns.GridColumn gCoStandardWorkdays;
+        private DevExpress.XtraGrid.Columns.GridColumn gCoPhone;
     }
 }
