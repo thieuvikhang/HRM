@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucContract));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -56,9 +55,9 @@
             this.txtContractID = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.Contractgrid = new DevExpress.XtraGrid.GridControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -70,49 +69,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.mmNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBasicPay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtContractID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Contractgrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.panel1.Controls.Add(this.groupControl2);
-            this.panel1.Controls.Add(this.dateSign);
-            this.panel1.Controls.Add(this.dateStart);
-            this.panel1.Controls.Add(this.dateEnd);
-            this.panel1.Controls.Add(this.cbbStatus);
-            this.panel1.Controls.Add(this.cbbCurrency);
-            this.panel1.Controls.Add(this.cbbPayment);
-            this.panel1.Controls.Add(this.cbbContractTypeID);
-            this.panel1.Controls.Add(this.cbbStaffID);
-            this.panel1.Controls.Add(this.mmNote);
-            this.panel1.Controls.Add(this.labelControl10);
-            this.panel1.Controls.Add(this.txtBasicPay);
-            this.panel1.Controls.Add(this.labelControl1);
-            this.panel1.Controls.Add(this.labelControl11);
-            this.panel1.Controls.Add(this.labelControl6);
-            this.panel1.Controls.Add(this.labelControl7);
-            this.panel1.Controls.Add(this.labelControl8);
-            this.panel1.Controls.Add(this.labelControl9);
-            this.panel1.Controls.Add(this.labelControl4);
-            this.panel1.Controls.Add(this.labelControl5);
-            this.panel1.Controls.Add(this.txtContractID);
-            this.panel1.Controls.Add(this.labelControl2);
-            this.panel1.Controls.Add(this.labelControl3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(821, 238);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.btnEdit);
             this.groupControl2.Controls.Add(this.btnDelete);
             this.groupControl2.Controls.Add(this.btnAdd);
-            this.groupControl2.Location = new System.Drawing.Point(301, 165);
+            this.groupControl2.Location = new System.Drawing.Point(277, 168);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(277, 63);
             this.groupControl2.TabIndex = 46;
@@ -153,7 +121,7 @@
             // dateSign
             // 
             this.dateSign.EditValue = null;
-            this.dateSign.Location = new System.Drawing.Point(131, 103);
+            this.dateSign.Location = new System.Drawing.Point(107, 106);
             this.dateSign.Name = "dateSign";
             this.dateSign.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -165,7 +133,7 @@
             // dateStart
             // 
             this.dateStart.EditValue = null;
-            this.dateStart.Location = new System.Drawing.Point(415, 25);
+            this.dateStart.Location = new System.Drawing.Point(391, 28);
             this.dateStart.Name = "dateStart";
             this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -177,7 +145,7 @@
             // dateEnd
             // 
             this.dateEnd.EditValue = null;
-            this.dateEnd.Location = new System.Drawing.Point(415, 51);
+            this.dateEnd.Location = new System.Drawing.Point(391, 54);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -189,7 +157,7 @@
             // cbbStatus
             // 
             this.cbbStatus.FormattingEnabled = true;
-            this.cbbStatus.Location = new System.Drawing.Point(131, 129);
+            this.cbbStatus.Location = new System.Drawing.Point(107, 132);
             this.cbbStatus.Name = "cbbStatus";
             this.cbbStatus.Size = new System.Drawing.Size(163, 21);
             this.cbbStatus.TabIndex = 35;
@@ -197,7 +165,7 @@
             // cbbCurrency
             // 
             this.cbbCurrency.FormattingEnabled = true;
-            this.cbbCurrency.Location = new System.Drawing.Point(415, 129);
+            this.cbbCurrency.Location = new System.Drawing.Point(391, 132);
             this.cbbCurrency.Name = "cbbCurrency";
             this.cbbCurrency.Size = new System.Drawing.Size(163, 21);
             this.cbbCurrency.TabIndex = 34;
@@ -205,7 +173,7 @@
             // cbbPayment
             // 
             this.cbbPayment.FormattingEnabled = true;
-            this.cbbPayment.Location = new System.Drawing.Point(415, 76);
+            this.cbbPayment.Location = new System.Drawing.Point(391, 79);
             this.cbbPayment.Name = "cbbPayment";
             this.cbbPayment.Size = new System.Drawing.Size(163, 21);
             this.cbbPayment.TabIndex = 33;
@@ -213,7 +181,7 @@
             // cbbContractTypeID
             // 
             this.cbbContractTypeID.FormattingEnabled = true;
-            this.cbbContractTypeID.Location = new System.Drawing.Point(131, 76);
+            this.cbbContractTypeID.Location = new System.Drawing.Point(107, 79);
             this.cbbContractTypeID.Name = "cbbContractTypeID";
             this.cbbContractTypeID.Size = new System.Drawing.Size(163, 21);
             this.cbbContractTypeID.TabIndex = 32;
@@ -221,14 +189,14 @@
             // cbbStaffID
             // 
             this.cbbStaffID.FormattingEnabled = true;
-            this.cbbStaffID.Location = new System.Drawing.Point(131, 50);
+            this.cbbStaffID.Location = new System.Drawing.Point(107, 53);
             this.cbbStaffID.Name = "cbbStaffID";
             this.cbbStaffID.Size = new System.Drawing.Size(163, 21);
             this.cbbStaffID.TabIndex = 31;
             // 
             // mmNote
             // 
-            this.mmNote.Location = new System.Drawing.Point(632, 29);
+            this.mmNote.Location = new System.Drawing.Point(608, 32);
             this.mmNote.Name = "mmNote";
             this.mmNote.Size = new System.Drawing.Size(167, 121);
             this.mmNote.TabIndex = 30;
@@ -236,7 +204,7 @@
             // labelControl10
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl10.Location = new System.Drawing.Point(360, 130);
+            this.labelControl10.Location = new System.Drawing.Point(336, 133);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(48, 16);
             this.labelControl10.TabIndex = 28;
@@ -244,7 +212,7 @@
             // 
             // txtBasicPay
             // 
-            this.txtBasicPay.Location = new System.Drawing.Point(415, 103);
+            this.txtBasicPay.Location = new System.Drawing.Point(391, 106);
             this.txtBasicPay.Name = "txtBasicPay";
             this.txtBasicPay.Size = new System.Drawing.Size(163, 20);
             this.txtBasicPay.TabIndex = 27;
@@ -252,7 +220,7 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl1.Location = new System.Drawing.Point(331, 104);
+            this.labelControl1.Location = new System.Drawing.Point(307, 107);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(77, 16);
             this.labelControl1.TabIndex = 26;
@@ -261,7 +229,7 @@
             // labelControl11
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl11.Location = new System.Drawing.Point(64, 130);
+            this.labelControl11.Location = new System.Drawing.Point(40, 133);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(59, 16);
             this.labelControl11.TabIndex = 24;
@@ -270,7 +238,7 @@
             // labelControl6
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl6.Location = new System.Drawing.Point(584, 29);
+            this.labelControl6.Location = new System.Drawing.Point(560, 32);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(42, 16);
             this.labelControl6.TabIndex = 19;
@@ -279,7 +247,7 @@
             // labelControl7
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl7.Location = new System.Drawing.Point(334, 78);
+            this.labelControl7.Location = new System.Drawing.Point(310, 81);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(74, 16);
             this.labelControl7.TabIndex = 18;
@@ -289,7 +257,7 @@
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl8.Location = new System.Drawing.Point(43, 78);
+            this.labelControl8.Location = new System.Drawing.Point(19, 81);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(80, 16);
             this.labelControl8.TabIndex = 15;
@@ -298,7 +266,7 @@
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl9.Location = new System.Drawing.Point(42, 52);
+            this.labelControl9.Location = new System.Drawing.Point(18, 55);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(81, 16);
             this.labelControl9.TabIndex = 14;
@@ -307,7 +275,7 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl4.Location = new System.Drawing.Point(331, 52);
+            this.labelControl4.Location = new System.Drawing.Point(307, 55);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(77, 16);
             this.labelControl4.TabIndex = 11;
@@ -316,7 +284,7 @@
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl5.Location = new System.Drawing.Point(333, 26);
+            this.labelControl5.Location = new System.Drawing.Point(309, 29);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(75, 16);
             this.labelControl5.TabIndex = 10;
@@ -324,7 +292,7 @@
             // 
             // txtContractID
             // 
-            this.txtContractID.Location = new System.Drawing.Point(131, 25);
+            this.txtContractID.Location = new System.Drawing.Point(107, 28);
             this.txtContractID.Name = "txtContractID";
             this.txtContractID.Size = new System.Drawing.Size(163, 20);
             this.txtContractID.TabIndex = 8;
@@ -332,7 +300,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl2.Location = new System.Drawing.Point(74, 104);
+            this.labelControl2.Location = new System.Drawing.Point(50, 107);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(49, 16);
             this.labelControl2.TabIndex = 7;
@@ -341,26 +309,57 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl3.Location = new System.Drawing.Point(49, 26);
+            this.labelControl3.Location = new System.Drawing.Point(25, 29);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(74, 16);
             this.labelControl3.TabIndex = 6;
             this.labelControl3.Text = "Mã hợp đồng";
             // 
-            // Contractgrid
+            // panelControl1
             // 
-            this.Contractgrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Contractgrid.Location = new System.Drawing.Point(0, 238);
-            this.Contractgrid.MainView = this.gridView1;
-            this.Contractgrid.Name = "Contractgrid";
-            this.Contractgrid.Size = new System.Drawing.Size(821, 168);
-            this.Contractgrid.TabIndex = 1;
-            this.Contractgrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.panelControl1.Controls.Add(this.dateStart);
+            this.panelControl1.Controls.Add(this.groupControl2);
+            this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Controls.Add(this.dateSign);
+            this.panelControl1.Controls.Add(this.labelControl11);
+            this.panelControl1.Controls.Add(this.txtBasicPay);
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.labelControl6);
+            this.panelControl1.Controls.Add(this.dateEnd);
+            this.panelControl1.Controls.Add(this.labelControl10);
+            this.panelControl1.Controls.Add(this.labelControl2);
+            this.panelControl1.Controls.Add(this.labelControl7);
+            this.panelControl1.Controls.Add(this.cbbStatus);
+            this.panelControl1.Controls.Add(this.mmNote);
+            this.panelControl1.Controls.Add(this.txtContractID);
+            this.panelControl1.Controls.Add(this.labelControl8);
+            this.panelControl1.Controls.Add(this.cbbCurrency);
+            this.panelControl1.Controls.Add(this.cbbStaffID);
+            this.panelControl1.Controls.Add(this.labelControl5);
+            this.panelControl1.Controls.Add(this.labelControl9);
+            this.panelControl1.Controls.Add(this.cbbPayment);
+            this.panelControl1.Controls.Add(this.cbbContractTypeID);
+            this.panelControl1.Controls.Add(this.labelControl4);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(835, 250);
+            this.panelControl1.TabIndex = 47;
+            // 
+            // gcContract
+            // 
+            this.gcContract.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcContract.Location = new System.Drawing.Point(0, 250);
+            this.gcContract.MainView = this.gridView1;
+            this.gcContract.Name = "gcContract";
+            this.gcContract.Size = new System.Drawing.Size(835, 272);
+            this.gcContract.TabIndex = 48;
+            this.gcContract.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.Contractgrid;
+            this.gridView1.GridControl = this.gcContract;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             // 
@@ -368,13 +367,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.Contractgrid);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.gcContract);
+            this.Controls.Add(this.panelControl1);
             this.Name = "ucContract";
-            this.Size = new System.Drawing.Size(821, 406);
+            this.Size = new System.Drawing.Size(835, 522);
             this.Load += new System.EventHandler(this.ucContract_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).EndInit();
@@ -386,17 +383,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.mmNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBasicPay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtContractID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Contractgrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraGrid.GridControl Contractgrid;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl7;
@@ -423,5 +419,8 @@
         private DevExpress.XtraEditors.SimpleButton btnEdit;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraGrid.GridControl gcContract;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

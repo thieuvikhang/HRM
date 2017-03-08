@@ -28,7 +28,7 @@ namespace HRM
 
         private void ucSection_Load(object sender, EventArgs e)
         {
-            sectionGrid.DataSource = sectionBUS.loadAllSection();
+            gcSection.DataSource = sectionBUS.loadAllSection();
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

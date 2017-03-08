@@ -19,14 +19,14 @@ namespace HRM
         {
             InitializeComponent();
 
-            gridControl.DataSource = GetDataSource();
+            gcSalary.DataSource = GetDataSource();
             BindingList<Customer> dataSource = GetDataSource();
-            gridControl.DataSource = dataSource;
+            gcSalary.DataSource = dataSource;
     
         }
         void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
         {
-            gridControl.ShowRibbonPrintPreview();
+            gcSalary.ShowRibbonPrintPreview();
         }
         public BindingList<Customer> GetDataSource()
         {

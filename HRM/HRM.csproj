@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="AddTab, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\AddTab.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\AddTab.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v16.1" />
     <Reference Include="DevExpress.Data.v16.1" />
@@ -92,6 +92,12 @@
     <Compile Include="ucSection.Designer.cs">
       <DependentUpon>ucSection.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucSocialInsurancecs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucSocialInsurancecs.Designer.cs">
+      <DependentUpon>ucSocialInsurancecs.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucSection.resx">
       <DependentUpon>ucSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucSocialInsurancecs.resx">
+      <DependentUpon>ucSocialInsurancecs.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -125,5 +125,28 @@ namespace HRM
                 clsAddTab.AddTab(xtraTabControl1, "", "Hợp đồng", new ucContract());
             }
         }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // Kiểm tra khi bấm nút Sinh Viên: Nếu đã có TAb này rồi thì không Add vào nữa
+            // mà nó sẽ chuyển focus tới TAb Sinh Viên này
+            int t = 0;
+            foreach (DevExpress.XtraTab.XtraTabPage tab in xtraTabControl1.TabPages)
+            {
+                if (tab.Text == "BHXH")
+                {
+                    xtraTabControl1.SelectedTabPage = tab;
+                    t = 1;
+                }
+            }
+            if (t == 1)
+            {
+
+            }
+            else
+            {// Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
+                clsAddTab.AddTab(xtraTabControl1, "", "BHXH", new ucSocialInsurancecs());
+            }
+        }
     }
 }
