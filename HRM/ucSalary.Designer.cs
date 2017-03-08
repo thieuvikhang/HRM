@@ -92,7 +92,7 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(800, 153);
             this.panelControl1.TabIndex = 43;
-            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint_1);
             // 
             // cbbMonthYear
             // 
@@ -151,12 +151,12 @@
             this.gcSalary.TabIndex = 44;
             this.gcSalary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gcSalary.Load += new System.EventHandler(this.gcSalary_Load);
             // 
             // gridView1
             // 
             this.gridView1.GridControl = this.gcSalary;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             // 

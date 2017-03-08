@@ -6,10 +6,11 @@ using DevExpress.XtraBars;
 using System.ComponentModel.DataAnnotations;
 using DAL;
 using BUS;
+using DevExpress.XtraEditors;
 
 namespace HRM
 {
-    public partial class ucSalary : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucSalary : XtraUserControl
     {
         HRMModelDataContext aHRM = new HRMModelDataContext();
         SalaryBUS salaryBUS = new SalaryBUS();
@@ -24,7 +25,7 @@ namespace HRM
         }
         #region Load Combobox
         public void LoadComboboxStaff()
-        {
+        {   //Load Chọn nhân viên
             var staff = from s in aHRM.Staffs
                         select new
                         {
@@ -36,7 +37,7 @@ namespace HRM
             cbbStaffID.ValueMember = "manv";
         }
         public void LoadComboboxMonth()
-        {
+        {   //Load chọn tháng
             var staff = (from s in aHRM.Salaries
                          select new
                          {
@@ -51,6 +52,7 @@ namespace HRM
         {
             gcSalary.ShowRibbonPrintPreview();
         }
+        #region DEMO
         public BindingList<Customer> GetDataSource()
         {
             BindingList<Customer> result = new BindingList<Customer>();
@@ -89,6 +91,7 @@ namespace HRM
             public string ZipCode { get; set; }
             public string Phone { get; set; }
         }
+        #endregion
         private void ucSalary_Load(object sender, EventArgs e)
         {
             gcSalary.DataSource = salaryBUS.LoadSalary();
@@ -107,6 +110,11 @@ namespace HRM
         }
 
         private void gcSalary_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelControl1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }

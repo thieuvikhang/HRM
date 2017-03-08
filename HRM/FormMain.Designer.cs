@@ -142,7 +142,7 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Hệ thống";
+            this.ribbonPage1.Text = "Hệ Thống";
             // 
             // ribbonPageGroup1
             // 
@@ -157,7 +157,7 @@
             this.ribbonPageGroup3,
             this.ribbonPageGroup4});
             this.ribbonPage2.Name = "ribbonPage2";
-            this.ribbonPage2.Text = "Nhân sự";
+            this.ribbonPage2.Text = "Nhân Sự";
             // 
             // ribbonPageGroup2
             // 
@@ -180,12 +180,12 @@
             // ribbonPage3
             // 
             this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "Thống kê";
+            this.ribbonPage3.Text = "Thống Kê";
             // 
             // ribbonPage4
             // 
             this.ribbonPage4.Name = "ribbonPage4";
-            this.ribbonPage4.Text = "Báo cáo";
+            this.ribbonPage4.Text = "Báo Cáo";
             // 
             // xtraTabControl1
             // 
