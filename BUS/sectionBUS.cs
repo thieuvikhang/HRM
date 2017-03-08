@@ -7,73 +7,100 @@ using DAL;
 
 namespace BUS
 {
+    /**
+     * sectionBUS xu ly cac nghiep vu lien quan den table section
+     * LoadAll, create, edit, delete, checkValueInputDuplicate
+    */
     public class sectionBUS
     {
         HRMModelDataContext aHRM = new HRMModelDataContext();
 
         // Load tat ca section
-        public IQueryable loadAllSection()
-        {
-            var shawAllSection = from st in aHRM.Sections select st;
-            return shawAllSection;
+        public IQueryable loadAll() {
+            var allRecords = from st in aHRM.Sections select st;
+            return allRecords;
         }
 
-        public bool checkInputDuplicate(string stringInput)
-        {
+        //Ham tim kiem nameInput trong table section
+        public bool findNameInputIntable(string nameInput) {
             //Dem record trung ten hoac so dien thoai
             int countSection = (from st in aHRM.Sections
-                                where (st.Name == stringInput) || (st.Phone == stringInput) || (st.SectionID == stringInput)
+                                where (st.Name == nameInput)
                                 select st).Count();
 
-            if (countSection == 0)
-            {
+            if (countSection == 0) {
                 //Khong co record trung 
-                return true;
-            }
-            else
-            {
-                //co record trung
                 return false;
+            }
+            else {
+                //co record trung
+                return true;
             }
         }
 
-        public bool createASection(string newSTID, string newName, string newDescription, int NewStandWorkDay, string newPhone)
-        {
-            try
-            {
-                if (checkInputDuplicate(newSTID) == true || checkInputDuplicate(newPhone) == true || checkInputDuplicate(newSTID) == true)
-                {
+        //Ham tim kiem idInput trong table section 
+        public bool findIDInputIntable(string idInput) {
+            //Dem record trung ten hoac so dien thoai
+            int countSection = (from st in aHRM.Sections
+                                where (st.SectionID == idInput)
+                                select st).Count();
+
+            if (countSection == 0) {
+                //Khong co record trung 
+                return false;
+            }
+            else {
+                //co record trung
+                return true;
+            }
+        }
+
+        //Ham tim kiem phoneInput trong table section 
+        public bool findPhoneInputIntable(string phoneInput) {
+            //Dem record trung ten hoac so dien thoai
+            int countSection = (from st in aHRM.Sections
+                                where (st.Phone == phoneInput)
+                                select st).Count();
+
+            if (countSection == 0) {
+                //Khong co record trung 
+                return false;
+            }
+            else {
+                //co record trung
+                return true;
+            }
+        }
+
+        public bool createASection(string idInput, string nameInput, string descriptionInput, int standWorkDayInput, string phoneInput) {
+            try {
+                if (findIDInputIntable(idInput) == false && findPhoneInputIntable(phoneInput) == false && findNameInputIntable(nameInput) == false) {
                     Section aSection = new Section();
-                    aSection.SectionID = newSTID;
-                    aSection.Name = newName;
-                    aSection.Description = newDescription;
-                    aSection.StandardWorkdays = NewStandWorkDay;
-                    aSection.Phone = newPhone;
+                    aSection.SectionID = idInput;
+                    aSection.Name = nameInput;
+                    aSection.Description = descriptionInput;
+                    aSection.StandardWorkdays = standWorkDayInput;
+                    aSection.Phone = phoneInput;
 
                     aHRM.Sections.InsertOnSubmit(aSection);
                     aHRM.SubmitChanges();
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 return false;
             }
         }
 
-        public bool ecitSection(string newSTID, string newName, string newDescription, int NewStandWorkDay, string newPhone)
-        {
-            try
-            {
+        public bool ecitSection(string newSTID, string newName, string newDescription, int NewStandWorkDay, string newPhone) {
+            try {
                 //Tim redocrd cua section co ID
                 Section aSection = aHRM.Sections.SingleOrDefault(st => st.SectionID == newSTID);
                 //Kiem tra record co ton tai
-                if (aSection != null)
-                {
+                if (aSection != null) {
                     aSection.SectionID = newSTID;
                     aSection.Name = newName;
                     aSection.Description = newDescription;
@@ -82,29 +109,29 @@ namespace BUS
                     aHRM.SubmitChanges();
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 return false;
             }
         }
 
-        public bool deleteASection(string sectionID)
-        {
-            try
-            {
-                Section aSection = (from st in aHRM.Sections select st).SingleOrDefault(st => st.SectionID == sectionID);
-                aHRM.Sections.DeleteOnSubmit(aSection);
-                aHRM.SubmitChanges();
-                return true;
+        public bool deleteASection(string idInput) {
+            try {
+                Section aSection = (from st in aHRM.Sections select st).SingleOrDefault(st => st.SectionID == idInput);
+                if(aSection != null) {
+                    aHRM.Sections.DeleteOnSubmit(aSection);
+                    aHRM.SubmitChanges();
+                    return true;
+                }
+                else {
+                    return false;
+                } 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 return false;
             }
         }

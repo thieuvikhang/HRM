@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="AddTab, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\AddTab.dll</HintPath>
+      <HintPath>..\..\Project\KhangProject\AddTab.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v16.1" />
     <Reference Include="DevExpress.Data.v16.1" />
@@ -142,7 +142,7 @@
       <Name>BUS</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{a86e0ddf-efd5-4825-a40c-510aec666037}</Project>
+      <Project>{aaf9a13a-e19d-4b7e-94a6-f1953ae63c19}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>

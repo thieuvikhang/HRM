@@ -5,114 +5,109 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 
-
 namespace BUS
 {
+    /**
+     * contractBUS xu ly cac nghiep vu lien quan den table contract
+     * LoadAll, create, edit, delete, checkValueInputDuplicate
+    */
     public class socialInsuranceBUS
     {
         HRMModelDataContext aHRM = new HRMModelDataContext();
 
         // Load tat ca socialInsurance
-        public IQueryable loadAllSocialInsurance()
-        {
-            var shawAllSocialInsurance = from si in aHRM.SocialInsurances select si;
-            return shawAllSocialInsurance;
+        public IQueryable loadAll() {
+            var allRecords = from si in aHRM.SocialInsurances select si;
+            return allRecords;
         }
 
         // Load tat ca socialInsurance theo StaffID
-        public IQueryable loadAllSocialInsuranceWithStaffID(string staffID)
-        {
-            var shawAllSocialInsurance = from si in aHRM.SocialInsurances
-                                         where si.StaffID == staffID
+        public IQueryable loadAllWithStaffID(string idInput) {
+            var allRecords = from si in aHRM.SocialInsurances
+                                         where si.StaffID == idInput
                                          select si;
-            return shawAllSocialInsurance;
+            return allRecords;
         }
 
         //Check trung ky tu
-        public bool checkInputDuplicate(string stringInput)
-        {
-            int countDataDuplicate = (from si in aHRM.SocialInsurances
-                                      where si.InsuranceID == stringInput
+        public bool findIDInputInTable(string idInput) {
+            int numberOfRecords = (from si in aHRM.SocialInsurances
+                                      where si.InsuranceID == idInput
                                       select si).Count();
-            if (countDataDuplicate == 0)
-            {
+            if (numberOfRecords == 0) {
                 //khong co record trung ten nhap vao
-                return true;
-            }
-            else
-            {
-                //co record trung ten nhap vao
                 return false;
+            }
+            else {
+                //co record trung ten nhap vao
+                return true;
             }
         }
 
         //Tem moi 1 SocialInsurances
-        public bool createNewSocialInsurances(string siID, DateTime NewSIMonth, int newSIPayRate, decimal newPrice, string newPayment, string staffID)
-        {
-            try
-            {
-                if (checkInputDuplicate(siID))
-                {
+        public bool createASocialInsurances(string idInput, DateTime monthInput, int payRateInput, decimal priceInput, string paymentInput, string staffIDInput) {
+            try {
+                if (!findIDInputInTable(idInput)) {
                     SocialInsurance aSI = new SocialInsurance();
-
-                    aSI.InsuranceID = siID;
-                    aSI.InsuranceID = newPayment;
-                    aSI.PayRate = newSIPayRate;
-                    aSI.Price = newPrice;
-                    aSI.SIMonth = NewSIMonth;
-                    aSI.StaffID = staffID;
+                    aSI.InsuranceID = idInput;
+                    aSI.InsuranceID = paymentInput;
+                    aSI.PayRate = payRateInput;
+                    aSI.Price = priceInput;
+                    aSI.SIMonth = monthInput;
+                    aSI.StaffID = staffIDInput;
 
                     aHRM.SocialInsurances.InsertOnSubmit(aSI);
                     aHRM.SubmitChanges();
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 return false;
             }
         }
 
         //Sua moi 1 SocialInsurances
-        public bool editASocialInsurances(string siID, DateTime NewSIMonth, int newSIPayRate, decimal newPrice, string newPayment, string staffID)
-        {
-            try
-            {
+        public bool editASocialInsurances(string idInput, DateTime monthInput, int payRateInput, decimal priceInput, string paymentInput, string staffIDInput) {
+            try {
                 //tim kiem record cua SocialInsurance theo ID
-                SocialInsurance aSI = aHRM.SocialInsurances.SingleOrDefault(si => si.InsuranceID == siID);
+                SocialInsurance aSI = aHRM.SocialInsurances.SingleOrDefault(si => si.InsuranceID == idInput);
                 //Kiem tra record co ton tai
-                if (aSI != null)
-                {
-                    aSI.InsuranceID = siID;
-                    aSI.InsuranceID = newPayment;
-                    aSI.PayRate = newSIPayRate;
-                    aSI.Price = newPrice;
-                    aSI.SIMonth = NewSIMonth;
-                    aSI.StaffID = staffID;
+                if (aSI != null) {
+                    aSI.InsuranceID = paymentInput;
+                    aSI.PayRate = payRateInput;
+                    aSI.Price = priceInput;
+                    aSI.SIMonth = monthInput;
+                    aSI.StaffID = staffIDInput;
                     aHRM.SubmitChanges();
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 return false;
             }
         }
 
         // Xoa Sociallnsurance theo SociallnsuranceID
-        public void deleteASociallnsurance(string sociallnsuranceID)
-        {
-            SocialInsurance aSI = (from si in aHRM.SocialInsurances select si).SingleOrDefault(si => si.InsuranceID == sociallnsuranceID);
-            aHRM.SocialInsurances.DeleteOnSubmit(aSI);
-            aHRM.SubmitChanges();
+        public bool deleteASociallnsurance(string sociallnsuranceID) {
+            try {
+                SocialInsurance aSI = aHRM.SocialInsurances.SingleOrDefault(si => si.InsuranceID == sociallnsuranceID);
+                if(aSI != null) {
+                    aHRM.SocialInsurances.DeleteOnSubmit(aSI);
+                    aHRM.SubmitChanges();
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            } catch (Exception ex) {
+                return false;
+            }
         }
     }
 }
