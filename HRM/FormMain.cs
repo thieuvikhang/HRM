@@ -1,11 +1,6 @@
 ﻿using AddTab;
+using DevExpress.XtraSplashScreen;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HRM
@@ -26,6 +21,7 @@ namespace HRM
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             // Kiểm tra khi bấm nút Sinh Viên: Nếu đã có TAb này rồi thì không Add vào nữa
             // mà nó sẽ chuyển focus tới TAb Sinh Viên này
             int t = 0;
@@ -45,6 +41,7 @@ namespace HRM
             {// Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
                 clsAddTab.AddTab(xtraTabControl1, "", "Nhân viên", new ucEmployees());
             }
+            SplashScreenManager.CloseForm();
         }
         private void xtraTabControl1_CloseButtonClick(object sender, EventArgs e)
         {// dong tab
@@ -59,6 +56,7 @@ namespace HRM
 
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             // Kiểm tra khi bấm nút Sinh Viên: Nếu đã có TAb này rồi thì không Add vào nữa
             // mà nó sẽ chuyển focus tới TAb Sinh Viên này
             int t = 0;
@@ -78,6 +76,7 @@ namespace HRM
             {// Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
                 clsAddTab.AddTab(xtraTabControl1, "", "Quản lý lương", new ucSalary());
             }
+            SplashScreenManager.CloseForm();
         }
 
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -101,10 +100,12 @@ namespace HRM
             {// Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
                 clsAddTab.AddTab(xtraTabControl1, "", "Phòng ban", new ucSection());
             }
+            SplashScreenManager.CloseForm();
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             // Kiểm tra khi bấm nút Sinh Viên: Nếu đã có TAb này rồi thì không Add vào nữa
             // mà nó sẽ chuyển focus tới TAb Sinh Viên này
             int t = 0;
@@ -124,10 +125,12 @@ namespace HRM
             {// Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
                 clsAddTab.AddTab(xtraTabControl1, "", "Hợp đồng", new ucContract());
             }
+            SplashScreenManager.CloseForm();
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             // Kiểm tra khi bấm nút Sinh Viên: Nếu đã có TAb này rồi thì không Add vào nữa
             // mà nó sẽ chuyển focus tới TAb Sinh Viên này
             int t = 0;
@@ -147,6 +150,12 @@ namespace HRM
             {// Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
                 clsAddTab.AddTab(xtraTabControl1, "", "BHXH", new ucSocialInsurancecs());
             }
+            SplashScreenManager.CloseForm();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

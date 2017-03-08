@@ -161,7 +161,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(647, 250);
+            this.panelControl1.Size = new System.Drawing.Size(647, 194);
             this.panelControl1.TabIndex = 49;
             // 
             // groupControl2
@@ -212,10 +212,10 @@
             // gcSection
             // 
             this.gcSection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSection.Location = new System.Drawing.Point(0, 250);
+            this.gcSection.Location = new System.Drawing.Point(0, 194);
             this.gcSection.MainView = this.gridView1;
             this.gcSection.Name = "gcSection";
-            this.gcSection.Size = new System.Drawing.Size(647, 118);
+            this.gcSection.Size = new System.Drawing.Size(647, 174);
             this.gcSection.TabIndex = 50;
             this.gcSection.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});

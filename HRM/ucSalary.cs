@@ -1,22 +1,52 @@
 ﻿using System;
+using System.Linq;
 using System.ComponentModel;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using System.ComponentModel.DataAnnotations;
+using DAL;
+using BUS;
 
 namespace HRM
 {
     public partial class ucSalary : DevExpress.XtraEditors.XtraUserControl
     {
+        HRMModelDataContext aHRM = new HRMModelDataContext();
+        SalaryBUS salaryBUS = new SalaryBUS();
         public ucSalary()
         {
             InitializeComponent();
 
-            gcSalary.DataSource = GetDataSource();
+            /*gcSalary.DataSource = GetDataSource();
             BindingList<Customer> dataSource = GetDataSource();
-            gcSalary.DataSource = dataSource;
+            gcSalary.DataSource = dataSource;*/
     
         }
+        #region Load Combobox
+        public void LoadComboboxStaff()
+        {
+            var staff = from s in aHRM.Staffs
+                        select new
+                        {
+                            tennv = s.Name,
+                            manv = s.StaffsID,
+                        };
+            cbbStaffID.DataSource = staff.ToList();
+            cbbStaffID.DisplayMember = "tennv";
+            cbbStaffID.ValueMember = "manv";
+        }
+        public void LoadComboboxMonth()
+        {
+            var staff = (from s in aHRM.Salaries
+                         select new
+                         {
+                             month = s.SalaryMonth,
+                        }).Distinct();
+            cbbMonthYear.DataSource = staff.ToList();
+            cbbMonthYear.DisplayMember = "month";
+            cbbMonthYear.ValueMember = "month";
+        }
+        #endregion
         void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
         {
             gcSalary.ShowRibbonPrintPreview();
@@ -59,6 +89,12 @@ namespace HRM
             public string ZipCode { get; set; }
             public string Phone { get; set; }
         }
+        private void ucSalary_Load(object sender, EventArgs e)
+        {
+            gcSalary.DataSource = salaryBUS.LoadSalary();
+            LoadComboboxStaff();
+            LoadComboboxMonth();
+        }
 
         private void ribbonControl_Click(object sender, EventArgs e)
         {
@@ -66,6 +102,11 @@ namespace HRM
         }
 
         private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gcSalary_Load(object sender, EventArgs e)
         {
 
         }
