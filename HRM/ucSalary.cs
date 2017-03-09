@@ -30,7 +30,7 @@ namespace HRM
                         select new
                         {
                             tennv = s.Name,
-                            manv = s.StaffsID,
+                            manv = s.StaffID,
                         };
             cbbStaffID.DataSource = staff.ToList();
             cbbStaffID.DisplayMember = "tennv";

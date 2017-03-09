@@ -92,7 +92,7 @@ namespace BUS
             }
         }
 
-        public bool ecitSection(string newSTID, string newName, string newDescription, int NewStandWorkDay, string newPhone) {
+        public bool editSection(string newSTID, string newName, string newDescription, int NewStandWorkDay, string newPhone) {
             try {
                 //Tim redocrd cua section co ID
                 Section aSection = aHRM.Sections.SingleOrDefault(st => st.SectionID == newSTID);
