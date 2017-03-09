@@ -36,7 +36,7 @@ namespace HRM
 
         private void ucContract_Load(object sender, EventArgs e)
         {
-            gcContract.DataSource = conTractBUS.loadAllContract();
+            gcContract.DataSource = conTractBUS.loadAll();
         }
     }
 }
