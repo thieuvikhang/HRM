@@ -38,7 +38,7 @@
             this.cbbStaffID = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXem = new DevExpress.XtraEditors.SimpleButton();
             this.gcSalary = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -92,7 +92,7 @@
             this.panelControl1.Controls.Add(this.cbbStaffID);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.btnAdd);
+            this.panelControl1.Controls.Add(this.btnXem);
             this.panelControl1.Controls.Add(this.labelControl8);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -143,17 +143,17 @@
             this.labelControl1.TabIndex = 37;
             this.labelControl1.Text = "Chọn tháng:";
             // 
-            // btnAdd
+            // btnXem
             // 
-            this.btnAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnAdd.Appearance.Options.UseFont = true;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(690, 24);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(85, 34);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Xem";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnXem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnXem.Appearance.Options.UseFont = true;
+            this.btnXem.Image = ((System.Drawing.Image)(resources.GetObject("btnXem.Image")));
+            this.btnXem.Location = new System.Drawing.Point(690, 24);
+            this.btnXem.Name = "btnXem";
+            this.btnXem.Size = new System.Drawing.Size(85, 34);
+            this.btnXem.TabIndex = 0;
+            this.btnXem.Text = "Xem";
+            this.btnXem.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // gcSalary
             // 
@@ -173,9 +173,9 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
+            this.gridColumn6,
             this.gridColumn4,
             this.gridColumn5,
-            this.gridColumn6,
             this.gridColumn7});
             this.gridView1.GridControl = this.gcSalary;
             this.gridView1.Name = "gridView1";
@@ -213,7 +213,7 @@
             this.gridColumn4.FieldName = "BasicPay";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 4;
             // 
             // gridColumn5
             // 
@@ -221,7 +221,7 @@
             this.gridColumn5.FieldName = "Allowance";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 5;
             // 
             // gridColumn6
             // 
@@ -229,7 +229,7 @@
             this.gridColumn6.FieldName = "Workdays";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 3;
             // 
             // gridColumn7
             // 
@@ -265,7 +265,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gcSalary;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private DevExpress.XtraEditors.SimpleButton btnXem;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.ComboBox cbbMonthYear;

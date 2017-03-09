@@ -6,6 +6,24 @@ namespace BUS
     public class SalaryBUS
     {
         HRMModelDataContext aHRM = new HRMModelDataContext();
+        //Kiểm tra mả trả về là phòng ban hay nhân viên
+        public bool CheckTheCode(string maSo, string kyTu)
+        {
+            //Kiểm tra chuổi maSo có bắt đầu bằng ký tự kyTu không
+            if (maSo.StartsWith(kyTu) == true)
+            {
+                //Có
+                return true;
+            }
+            //Không
+            return false;
+        }
+        //Lấy mã số phòng ban
+        public string GetTheSectionID(string sectionID, int kt)
+        {
+            //Tạo chuỗi con từ chuỗi sectionID bắt đầu từ vị trí kt đến hết.
+            return sectionID.Substring(kt);
+        }
         //Tính tiền bảo hiểm của nhân viên
         public decimal siPrice(float SIPayRate, decimal basicPay)
         {
