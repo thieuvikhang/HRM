@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 
 namespace BUS
@@ -95,7 +92,7 @@ namespace BUS
             }
         }
 
-        public bool ecitSection(string newSTID, string newName, string newDescription, int NewStandWorkDay, string newPhone) {
+        public bool editSection(string newSTID, string newName, string newDescription, int NewStandWorkDay, string newPhone) {
             try {
                 //Tim redocrd cua section co ID
                 Section aSection = aHRM.Sections.SingleOrDefault(st => st.SectionID == newSTID);
@@ -134,6 +131,12 @@ namespace BUS
             catch (Exception ex) {
                 return false;
             }
+        }
+        //Lấy só ngày công quy định dựa vào Mã phòng ban
+        public int GetStandardWorkdaysBySectionID(string sectionID)
+        {
+            var standardWorkday = (from s in aHRM.Sections where s.SectionID == sectionID select s.StandardWorkdays).FirstOrDefault();
+            return Convert.ToInt16(standardWorkday);
         }
     }
 }

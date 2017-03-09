@@ -49,6 +49,7 @@
     <Compile Include="SalaryBUS.cs" />
     <Compile Include="sectionBUS.cs" />
     <Compile Include="socialInsuranceBUS.cs" />
+    <Compile Include="staffBUS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

@@ -30,18 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucEmployees));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cbbManID = new System.Windows.Forms.ComboBox();
+            this.cbbPost = new System.Windows.Forms.ComboBox();
+            this.cbbSection = new System.Windows.Forms.ComboBox();
+            this.cbbEducation = new System.Windows.Forms.ComboBox();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbNu = new System.Windows.Forms.RadioButton();
             this.rbNam = new System.Windows.Forms.RadioButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.cbbManagerID = new DevExpress.XtraEditors.ComboBoxEdit();
             this.dateEnd = new DevExpress.XtraEditors.DateEdit();
             this.dateStart = new DevExpress.XtraEditors.DateEdit();
             this.dateBirth = new DevExpress.XtraEditors.DateEdit();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbbPosition = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbbSection = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbbEducation = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmail = new DevExpress.XtraEditors.TextEdit();
@@ -63,14 +67,11 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gcEmployees = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
-            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbManagerID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).BeginInit();
@@ -78,9 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbPosition.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbSection.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbEducation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
@@ -89,23 +87,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.cbbManID);
+            this.panelControl1.Controls.Add(this.cbbPost);
+            this.panelControl1.Controls.Add(this.cbbSection);
+            this.panelControl1.Controls.Add(this.cbbEducation);
             this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.groupBox1);
             this.panelControl1.Controls.Add(this.labelControl4);
-            this.panelControl1.Controls.Add(this.cbbManagerID);
             this.panelControl1.Controls.Add(this.dateEnd);
             this.panelControl1.Controls.Add(this.dateStart);
             this.panelControl1.Controls.Add(this.dateBirth);
             this.panelControl1.Controls.Add(this.pictureBox1);
-            this.panelControl1.Controls.Add(this.cbbPosition);
-            this.panelControl1.Controls.Add(this.cbbSection);
-            this.panelControl1.Controls.Add(this.cbbEducation);
             this.panelControl1.Controls.Add(this.labelControl14);
             this.panelControl1.Controls.Add(this.labelControl15);
             this.panelControl1.Controls.Add(this.txtEmail);
@@ -131,6 +127,84 @@
             this.panelControl1.Size = new System.Drawing.Size(1044, 250);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            // 
+            // cbbManID
+            // 
+            this.cbbManID.FormattingEnabled = true;
+            this.cbbManID.Location = new System.Drawing.Point(683, 129);
+            this.cbbManID.Name = "cbbManID";
+            this.cbbManID.Size = new System.Drawing.Size(144, 21);
+            this.cbbManID.TabIndex = 51;
+            // 
+            // cbbPost
+            // 
+            this.cbbPost.FormattingEnabled = true;
+            this.cbbPost.Location = new System.Drawing.Point(683, 76);
+            this.cbbPost.Name = "cbbPost";
+            this.cbbPost.Size = new System.Drawing.Size(144, 21);
+            this.cbbPost.TabIndex = 50;
+            // 
+            // cbbSection
+            // 
+            this.cbbSection.FormattingEnabled = true;
+            this.cbbSection.Location = new System.Drawing.Point(683, 103);
+            this.cbbSection.Name = "cbbSection";
+            this.cbbSection.Size = new System.Drawing.Size(144, 21);
+            this.cbbSection.TabIndex = 49;
+            // 
+            // cbbEducation
+            // 
+            this.cbbEducation.FormattingEnabled = true;
+            this.cbbEducation.Items.AddRange(new object[] {
+            "Đại học",
+            "Cao Đẳng"});
+            this.cbbEducation.Location = new System.Drawing.Point(683, 50);
+            this.cbbEducation.Name = "cbbEducation";
+            this.cbbEducation.Size = new System.Drawing.Size(144, 21);
+            this.cbbEducation.TabIndex = 48;
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.btnEdit);
+            this.groupControl2.Controls.Add(this.btnDelete);
+            this.groupControl2.Controls.Add(this.btnAdd);
+            this.groupControl2.Location = new System.Drawing.Point(550, 155);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(277, 63);
+            this.groupControl2.TabIndex = 47;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnEdit.Appearance.Options.UseFont = true;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(96, 23);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(85, 34);
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Text = "Sửa";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnDelete.Appearance.Options.UseFont = true;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(187, 23);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(85, 34);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Xóa";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnAdd.Appearance.Options.UseFont = true;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(5, 23);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(85, 34);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Thêm";
             // 
             // groupBox1
             // 
@@ -175,15 +249,6 @@
             this.labelControl4.TabIndex = 42;
             this.labelControl4.Text = "Giới tính";
             // 
-            // cbbManagerID
-            // 
-            this.cbbManagerID.Location = new System.Drawing.Point(683, 129);
-            this.cbbManagerID.Name = "cbbManagerID";
-            this.cbbManagerID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbbManagerID.Size = new System.Drawing.Size(144, 20);
-            this.cbbManagerID.TabIndex = 40;
-            // 
             // dateEnd
             // 
             this.dateEnd.EditValue = null;
@@ -227,33 +292,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(155, 204);
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
-            // 
-            // cbbPosition
-            // 
-            this.cbbPosition.Location = new System.Drawing.Point(683, 77);
-            this.cbbPosition.Name = "cbbPosition";
-            this.cbbPosition.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbbPosition.Size = new System.Drawing.Size(144, 20);
-            this.cbbPosition.TabIndex = 35;
-            // 
-            // cbbSection
-            // 
-            this.cbbSection.Location = new System.Drawing.Point(683, 103);
-            this.cbbSection.Name = "cbbSection";
-            this.cbbSection.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbbSection.Size = new System.Drawing.Size(144, 20);
-            this.cbbSection.TabIndex = 34;
-            // 
-            // cbbEducation
-            // 
-            this.cbbEducation.Location = new System.Drawing.Point(683, 51);
-            this.cbbEducation.Name = "cbbEducation";
-            this.cbbEducation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbbEducation.Size = new System.Drawing.Size(144, 20);
-            this.cbbEducation.TabIndex = 33;
             // 
             // labelControl14
             // 
@@ -436,49 +474,6 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             // 
-            // groupControl2
-            // 
-            this.groupControl2.Controls.Add(this.btnEdit);
-            this.groupControl2.Controls.Add(this.btnDelete);
-            this.groupControl2.Controls.Add(this.btnAdd);
-            this.groupControl2.Location = new System.Drawing.Point(550, 155);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(277, 63);
-            this.groupControl2.TabIndex = 47;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnEdit.Appearance.Options.UseFont = true;
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(96, 23);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(85, 34);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Sửa";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDelete.Appearance.Options.UseFont = true;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(187, 23);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(85, 34);
-            this.btnDelete.TabIndex = 1;
-            this.btnDelete.Text = "Xóa";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnAdd.Appearance.Options.UseFont = true;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(5, 23);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(85, 34);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Thêm";
-            // 
             // ucEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,9 +486,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbManagerID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).EndInit();
@@ -501,9 +497,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbPosition.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbSection.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbEducation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
@@ -512,8 +505,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -534,9 +525,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private DevExpress.XtraEditors.ComboBoxEdit cbbPosition;
-        private DevExpress.XtraEditors.ComboBoxEdit cbbSection;
-        private DevExpress.XtraEditors.ComboBoxEdit cbbEducation;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.TextEdit txtEmail;
@@ -549,7 +537,6 @@
         private DevExpress.XtraEditors.DateEdit dateStart;
         private DevExpress.XtraEditors.DateEdit dateBirth;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.ComboBoxEdit cbbManagerID;
         private DevExpress.XtraGrid.GridControl gcEmployees;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -558,5 +545,9 @@
         private DevExpress.XtraEditors.SimpleButton btnEdit;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private System.Windows.Forms.ComboBox cbbManID;
+        private System.Windows.Forms.ComboBox cbbPost;
+        private System.Windows.Forms.ComboBox cbbSection;
+        private System.Windows.Forms.ComboBox cbbEducation;
     }
 }
