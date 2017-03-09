@@ -78,7 +78,11 @@ namespace HRM
         {
 
         }
-
+        public void LoadStaff()
+        {
+            staffBUS.loadStaff();
+     
+        }
         private void ucEmployees_Load(object sender, EventArgs e)
         {
             gcEmployees.DataSource = staffBUS.loadStaff();
@@ -86,6 +90,11 @@ namespace HRM
             loadComboboxPosition();
             loadComboboxPosition();
             cbbEducation.SelectedItem = "Đại học";
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

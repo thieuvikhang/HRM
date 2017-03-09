@@ -21,6 +21,7 @@ namespace HRM
             InitializeComponent();
         }
         sectionBUS sectionBUS = new sectionBUS();
+        
 
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
@@ -32,7 +33,6 @@ namespace HRM
             txtName.Text = "";
             txtPhone.Text = "";
             mmDescription.Text = "";
-            numStandardWorkdays.Text = "";
 
             //txtTTSanPham.Text = "";
         }
@@ -41,6 +41,8 @@ namespace HRM
             gcSection.DataSource = sectionBUS.loadAll();
             SetTxt(false);
             SetBtn(true);
+            numStandardWorkdays.Minimum = 24;
+            numStandardWorkdays.Maximum = 26;      
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -58,6 +60,7 @@ namespace HRM
         private void gcSection_Click(object sender, EventArgs e)
         {
             GetInfo();
+            dxErrorProvider.ClearErrors();
         }
         public void AddSection()
         {
@@ -77,28 +80,15 @@ namespace HRM
         {
             GetInfo();
         }
-        void setHinhErrorTextBoxRong()
-        {
-            if (txtSectionID.Text == "")
-            {
-                dxErrorProvider.SetError(txtSectionID, "Chưa nhập mã phòng ban....");
-            }
-            if (txtName.Text == "")
-            {
-                dxErrorProvider.SetError(txtName, "Chưa nhập mã phòng ban....");
-            }
-            if (sectionBUS.findNameInputIntable(txtName.Text) == true)
-            {
-                dxErrorProvider.SetError(txtName, "Mã phòng ban trùng....");
-            }
-
-        }
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             SetTxt(true);
             resetTextBox();
             SetBtn(false);
             checkAdd = 1;
+            gcSection.Enabled = false;
+            dxErrorProvider.ClearErrors();
+            numStandardWorkdays.Value = 26;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -155,22 +145,50 @@ namespace HRM
                 //kiem tra them             
                 if(checkAdd == 1)
                 {
-                    setHinhErrorTextBoxRong();
-                    AddSection();
-                    resetTextBox();
-                    SetTxt(false);
-                    SetBtn(true);
-                    
+                    if (string.IsNullOrEmpty(txtSectionID.Text))
+                    {
+                        dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc trống");
+                    }
+                    if(string.IsNullOrEmpty(txtName.Text))
+                    {
+                        dxErrorProvider.SetError(txtName, "Tên phòng ko dc trống");
+                    }
+                    if (string.IsNullOrEmpty(numStandardWorkdays.Text))
+                    {
+                        dxErrorProvider.SetError(numStandardWorkdays, "Số ngày qui định ko dc trống");
+                    }
+                    if (!dxErrorProvider.HasErrors)
+                    {
+                        AddSection();                       
+                        resetTextBox();
+                        SetTxt(false);
+                        SetBtn(true);
+                        gcSection.Enabled = true;
+                    }                                             
                 }
                 //kiem tra xoa
                 if(checkAdd == 2)
                 {
-                    setHinhErrorTextBoxRong();
-                    EditSection();
-                    resetTextBox();
-                    SetTxt(false);
-                    SetBtn(true);
-
+                    if (string.IsNullOrEmpty(txtSectionID.Text))
+                    {
+                        dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc trống");
+                    }
+                    if (string.IsNullOrEmpty(txtName.Text))
+                    {
+                        dxErrorProvider.SetError(txtName, "Tên phòng ko dc trống");
+                    }
+                    if (string.IsNullOrEmpty(numStandardWorkdays.Text))
+                    {
+                        dxErrorProvider.SetError(numStandardWorkdays, "Số ngày qui định ko dc trống");
+                    }
+                    if (!dxErrorProvider.HasErrors)
+                    {
+                        EditSection();
+                        resetTextBox();
+                        SetTxt(false);
+                        SetBtn(true);
+                        gcSection.Enabled = true;
+                    }
                 }
                     
             }
@@ -178,7 +196,7 @@ namespace HRM
             {
                 MessageBox.Show("Các trường * không được bỏ trống");
             }
-            gcSection.DataSource = sectionBUS.loadAll();                     
+            gcSection.DataSource = sectionBUS.loadAll();          
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -186,6 +204,93 @@ namespace HRM
             SetBtn(true);
             SetTxt(false);
             checkAdd = 0;
+            dxErrorProvider.ClearErrors();
+            gcSection.Enabled = true;
+        }
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dxErrorProvider.SetError(txtName,null);
+        }
+
+        private void txtSectionID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+        private void txtSectionID_TextChanged(object sender, EventArgs e)
+        {
+            if(sectionBUS.findIDInputIntable(txtSectionID.Text) == true)
+            {
+                dxErrorProvider.SetError(txtSectionID, "Mã phòng ban trùng");
+            }
+            else if (string.IsNullOrEmpty(txtSectionID.Text))
+            {
+                dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc để trống");
+            }
+            //else if (txtSectionID.Text.Length > 6)
+            //{
+            //    dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc vượt quá 6 ký tự");
+            //}
+            else
+            {
+                dxErrorProvider.SetError(txtSectionID, null);
+            }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            if (sectionBUS.findNameInputIntable(txtName.Text) == true)
+            {
+                dxErrorProvider.SetError(txtName, "Tên phòng ban trùng");
+            }
+            else if(string.IsNullOrEmpty(txtName.Text))
+            {
+                dxErrorProvider.SetError(txtName, "Tên phòng ban ko dc để trống");
+            }
+            //else if(txtName.Text.Length > 20)
+            //{
+            //    dxErrorProvider.SetError(txtName, "Tên phòng ban ko dc vượt quá 20 ký tự");
+            //}
+            else
+            {
+                dxErrorProvider.SetError(txtName, null);
+            }
+        }
+
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPhone_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhone_TextChanged_1(object sender, EventArgs e)
+        {
+            if (txtPhone.Text.Length > 11 || txtPhone.Text.Length <3)
+            {
+                dxErrorProvider.SetError(txtPhone, "Số điện thoại quá dài hoặc quá ngắn");
+            }
+            else if (sectionBUS.findPhoneInputIntable(txtPhone.Text) == true)
+            {
+                dxErrorProvider.SetError(txtPhone, "Số điện thoại trùng");
+            }
+            else
+            {
+                dxErrorProvider.SetError(txtPhone, null);
+            }
+        }
+
+        private void numStandardWorkdays_ValueChanged(object sender, EventArgs e)
+        {
+            if(numStandardWorkdays.Value > 30 || numStandardWorkdays.Value < 23)
+            {
+                dxErrorProvider.SetError(numStandardWorkdays, "Số ngày công qui định ko đúng");
+            }
         }
     }
 }

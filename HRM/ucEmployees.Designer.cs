@@ -67,6 +67,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gcEmployees = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcoGender = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -205,6 +206,7 @@
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // groupBox1
             // 
@@ -470,9 +472,19 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcoGender});
             this.gridView1.GridControl = this.gcEmployees;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            // 
+            // gcoGender
+            // 
+            this.gcoGender.Caption = "Giới tính";
+            this.gcoGender.FieldName = "Gender";
+            this.gcoGender.Name = "gcoGender";
+            this.gcoGender.Visible = true;
+            this.gcoGender.VisibleIndex = 0;
             // 
             // ucEmployees
             // 
@@ -549,5 +561,6 @@
         private System.Windows.Forms.ComboBox cbbPost;
         private System.Windows.Forms.ComboBox cbbSection;
         private System.Windows.Forms.ComboBox cbbEducation;
+        private DevExpress.XtraGrid.Columns.GridColumn gcoGender;
     }
 }
