@@ -27,14 +27,14 @@ namespace HRM
             var section = (from se in aHRM.Sections
                            select new
                            {
-                               tennv = se.Name,
+                               tennv = se.SectionName,
                                manv = se.SectionID,
                            }).ToList();
             sta.AddRange(section);
             var staff = (from s in aHRM.Staffs
                          select new
                          {
-                             tennv = s.Name,
+                             tennv = s.StaffName,
                              manv = s.StaffID,
                          }).ToArray();
             sta.AddRange(staff);

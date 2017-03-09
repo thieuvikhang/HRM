@@ -102,7 +102,7 @@
             // 
             this.txtPhone.Location = new System.Drawing.Point(155, 79);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(171, 20);
+            this.txtPhone.Size = new System.Drawing.Size(169, 20);
             this.txtPhone.TabIndex = 8;
             this.txtPhone.EditValueChanged += new System.EventHandler(this.txtPhone_EditValueChanged);
             this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged_1);
@@ -293,7 +293,7 @@
             // gCoSectionName
             // 
             this.gCoSectionName.Caption = "Tên phòng ban";
-            this.gCoSectionName.FieldName = "Name";
+            this.gCoSectionName.FieldName = "SectionName";
             this.gCoSectionName.Name = "gCoSectionName";
             this.gCoSectionName.Visible = true;
             this.gCoSectionName.VisibleIndex = 1;

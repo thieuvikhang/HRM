@@ -16,16 +16,20 @@ namespace BUS
                           select new
                           {
                               st.StaffID,
-                              st.Name,
+                              st.StaffName,
                               st.Gender,
                               st.BirthDay,
                               st.CardID,
                               st.Phone,
                               st.Address,
                               st.Education,
+                              st.StartDate,
+                              st.EndDate,
+                              st.ManagerID,                     
                               st.Email,
-                              postName = post.Name,                        
-                              secName = sec.Name
+                              st.DaysRemain,
+                              post.PostName,                        
+                              sec.SectionName
                           });
             return loadStaff;
         }
@@ -47,7 +51,7 @@ namespace BUS
                          group sala by new
                          {
                              staffID = sta.StaffID,
-                             name = sta.Name,
+                             name = sta.StaffName,
                              basicPay = sala.BasicPay,
                              allowance = sala.Allowance,
                              workdays = sala.Workdays,
@@ -80,7 +84,7 @@ namespace BUS
                          group sala by new
                          {
                              staffID = sta.StaffID,
-                             name = sta.Name,
+                             name = sta.StaffName,
                              basicPay = sala.BasicPay,
                              allowance = sala.Allowance,
                              workdays = sala.Workdays,

@@ -21,7 +21,7 @@ namespace HRM
             InitializeComponent();
         }
         sectionBUS sectionBUS = new sectionBUS();
-        
+       
 
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
@@ -41,6 +41,7 @@ namespace HRM
             gcSection.DataSource = sectionBUS.loadAll();
             SetTxt(false);
             SetBtn(true);
+            txtPhone.Properties.MaxLength = 11;
             numStandardWorkdays.Minimum = 24;
             numStandardWorkdays.Maximum = 26;      
         }
@@ -137,7 +138,12 @@ namespace HRM
             SetBtn(false);
             txtSectionID.Enabled = false;
         }
-
+        void Clearerror()
+        {
+            dxErrorProvider.SetError(txtName, null);
+            dxErrorProvider.SetError(txtPhone, null);
+            dxErrorProvider.SetError(txtSectionID, null);
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -159,7 +165,7 @@ namespace HRM
                     }
                     if (!dxErrorProvider.HasErrors)
                     {
-                        AddSection();                       
+                        AddSection();           
                         resetTextBox();
                         SetTxt(false);
                         SetBtn(true);
@@ -202,6 +208,7 @@ namespace HRM
         private void btnCancel_Click(object sender, EventArgs e)
         {
             SetBtn(true);
+            resetTextBox();
             SetTxt(false);
             checkAdd = 0;
             dxErrorProvider.ClearErrors();
@@ -222,14 +229,14 @@ namespace HRM
             {
                 dxErrorProvider.SetError(txtSectionID, "Mã phòng ban trùng");
             }
-            else if (string.IsNullOrEmpty(txtSectionID.Text))
-            {
-                dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc để trống");
-            }
-            //else if (txtSectionID.Text.Length > 6)
+            //else if (string.IsNullOrEmpty(txtSectionID.Text))
             //{
-            //    dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc vượt quá 6 ký tự");
+            //    dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc để trống");
             //}
+            ////else if (txtSectionID.Text.Length > 6)
+            ////{
+            ////    dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc vượt quá 6 ký tự");
+            ////}
             else
             {
                 dxErrorProvider.SetError(txtSectionID, null);
@@ -242,10 +249,10 @@ namespace HRM
             {
                 dxErrorProvider.SetError(txtName, "Tên phòng ban trùng");
             }
-            else if(string.IsNullOrEmpty(txtName.Text))
-            {
-                dxErrorProvider.SetError(txtName, "Tên phòng ban ko dc để trống");
-            }
+            //else if(string.IsNullOrEmpty(txtName.Text))
+            //{
+            //    dxErrorProvider.SetError(txtName, "Tên phòng ban ko dc để trống");
+            //}
             //else if(txtName.Text.Length > 20)
             //{
             //    dxErrorProvider.SetError(txtName, "Tên phòng ban ko dc vượt quá 20 ký tự");
@@ -262,6 +269,10 @@ namespace HRM
             {
                 e.Handled = true;
             }
+            else
+            {
+                dxErrorProvider.SetError(txtPhone, null);
+            }
         }
 
         private void txtPhone_EditValueChanged(object sender, EventArgs e)
@@ -271,11 +282,7 @@ namespace HRM
 
         private void txtPhone_TextChanged_1(object sender, EventArgs e)
         {
-            if (txtPhone.Text.Length > 11 || txtPhone.Text.Length <3)
-            {
-                dxErrorProvider.SetError(txtPhone, "Số điện thoại quá dài hoặc quá ngắn");
-            }
-            else if (sectionBUS.findPhoneInputIntable(txtPhone.Text) == true)
+            if (sectionBUS.findPhoneInputIntable(txtPhone.Text) == true)
             {
                 dxErrorProvider.SetError(txtPhone, "Số điện thoại trùng");
             }

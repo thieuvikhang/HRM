@@ -35,7 +35,7 @@ namespace BUS
                          group sala by new
                          {
                              staffID = sta.StaffID,
-                             name = sta.Name,
+                             name = sta.StaffName,
                              basicPay = sala.BasicPay,
                              allowance = sala.Allowance,
                              workdays = sala.Workdays,
