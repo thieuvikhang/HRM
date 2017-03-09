@@ -104,18 +104,24 @@
             // cbbMonthYear
             // 
             this.cbbMonthYear.FormattingEnabled = true;
+            this.cbbMonthYear.Items.AddRange(new object[] {
+            "Tất cả"});
             this.cbbMonthYear.Location = new System.Drawing.Point(442, 28);
             this.cbbMonthYear.Name = "cbbMonthYear";
             this.cbbMonthYear.Size = new System.Drawing.Size(231, 21);
             this.cbbMonthYear.TabIndex = 41;
+            this.cbbMonthYear.SelectedIndexChanged += new System.EventHandler(this.cbbMonthYear_SelectedIndexChanged);
             // 
             // cbbStaffID
             // 
             this.cbbStaffID.FormattingEnabled = true;
+            this.cbbStaffID.Items.AddRange(new object[] {
+            "Tất cả"});
             this.cbbStaffID.Location = new System.Drawing.Point(114, 28);
             this.cbbStaffID.Name = "cbbStaffID";
             this.cbbStaffID.Size = new System.Drawing.Size(235, 21);
             this.cbbStaffID.TabIndex = 40;
+            this.cbbStaffID.SelectedIndexChanged += new System.EventHandler(this.cbbStaffID_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -147,6 +153,7 @@
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Xem";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // gcSalary
             // 
