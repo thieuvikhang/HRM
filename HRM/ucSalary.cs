@@ -7,6 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using DAL;
 using BUS;
 using DevExpress.XtraEditors;
+using System.Drawing;
+using System.Collections;
 
 namespace HRM
 {
@@ -21,31 +23,47 @@ namespace HRM
             /*gcSalary.DataSource = GetDataSource();
             BindingList<Customer> dataSource = GetDataSource();
             gcSalary.DataSource = dataSource;*/
-    
+
         }
         #region Load Combobox
         public void LoadComboboxStaff()
         {   //Load Chọn nhân viên
-            var staff = from s in aHRM.Staffs
-                        select new
-                        {
-                            tennv = s.Name,
-                            manv = s.StaffID,
-                        };
-            cbbStaffID.DataSource = staff.ToList();
+            ArrayList sta = new ArrayList();
+            var section = (from se in aHRM.Sections
+                           select new
+                           {
+                               tennv = se.Name,
+                               manv = se.SectionID,
+                           }).ToList();
+            sta.AddRange(section);
+            var staff = (from s in aHRM.Staffs
+                         select new
+                         {
+                             tennv = s.Name,
+                             manv = s.StaffID,
+                         }).ToArray();
+            sta.AddRange(staff);
+            cbbStaffID.DataSource = sta;
             cbbStaffID.DisplayMember = "tennv";
             cbbStaffID.ValueMember = "manv";
         }
         public void LoadComboboxMonth()
-        {   //Load chọn tháng
-            var staff = (from s in aHRM.Salaries
-                         select new
-                         {
-                             month = s.SalaryMonth,
-                        }).Distinct();
-            cbbMonthYear.DataSource = staff.ToList();
-            cbbMonthYear.DisplayMember = "month";
-            cbbMonthYear.ValueMember = "month";
+        {   //Load chọn tháng định dạng MM/yyyy
+            var months = aHRM.Salaries
+                .AsEnumerable()
+                .Select(c => new {
+                    monthName = c.SalaryMonth.Value.Month,
+                    yearName = c.SalaryMonth.Value.Year,
+                    monthID = c.SalaryMonth,
+                }).ToList();
+
+            var grouped = (from p in aHRM.Salaries
+                           group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year } into d
+                           select new { dt = string.Format("{0}/{1}", d.Key.month, d.Key.year) }).ToList().OrderByDescending(g => g.dt);
+
+            cbbMonthYear.DataSource = grouped.ToList();
+            cbbMonthYear.DisplayMember = "dt";
+            cbbMonthYear.ValueMember = "dt";
         }
         #endregion
         void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
@@ -115,6 +133,11 @@ namespace HRM
         }
 
         private void panelControl1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gcSalary_Click(object sender, EventArgs e)
         {
 
         }
