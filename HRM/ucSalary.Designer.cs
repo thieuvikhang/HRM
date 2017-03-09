@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSalary));
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btThemLuong = new DevExpress.XtraEditors.SimpleButton();
             this.cbbMonthYear = new System.Windows.Forms.ComboBox();
             this.cbbStaffID = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,9 +44,9 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -88,6 +88,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btThemLuong);
             this.panelControl1.Controls.Add(this.cbbMonthYear);
             this.panelControl1.Controls.Add(this.cbbStaffID);
             this.panelControl1.Controls.Add(this.label1);
@@ -97,9 +98,21 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(800, 153);
+            this.panelControl1.Size = new System.Drawing.Size(800, 147);
             this.panelControl1.TabIndex = 43;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint_1);
+            // 
+            // btThemLuong
+            // 
+            this.btThemLuong.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btThemLuong.Appearance.Options.UseFont = true;
+            this.btThemLuong.Image = global::HRM.Properties.Resources.addgroupheader_32x32;
+            this.btThemLuong.Location = new System.Drawing.Point(651, 77);
+            this.btThemLuong.Name = "btThemLuong";
+            this.btThemLuong.Size = new System.Drawing.Size(124, 34);
+            this.btThemLuong.TabIndex = 42;
+            this.btThemLuong.Text = "Thêm lương";
+            this.btThemLuong.Click += new System.EventHandler(this.btThemLuong_Click);
             // 
             // cbbMonthYear
             // 
@@ -127,7 +140,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(310, 99);
+            this.label1.Location = new System.Drawing.Point(306, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 26);
             this.label1.TabIndex = 39;
@@ -147,7 +160,7 @@
             // 
             this.btnXem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnXem.Appearance.Options.UseFont = true;
-            this.btnXem.Image = ((System.Drawing.Image)(resources.GetObject("btnXem.Image")));
+            this.btnXem.Image = global::HRM.Properties.Resources.reset_32x32;
             this.btnXem.Location = new System.Drawing.Point(690, 24);
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(85, 34);
@@ -158,10 +171,10 @@
             // gcSalary
             // 
             this.gcSalary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSalary.Location = new System.Drawing.Point(0, 153);
+            this.gcSalary.Location = new System.Drawing.Point(0, 147);
             this.gcSalary.MainView = this.gridView1;
             this.gcSalary.Name = "gcSalary";
-            this.gcSalary.Size = new System.Drawing.Size(800, 447);
+            this.gcSalary.Size = new System.Drawing.Size(800, 453);
             this.gcSalary.TabIndex = 44;
             this.gcSalary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -207,6 +220,14 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Số ngày làm việc";
+            this.gridColumn6.FieldName = "Workdays";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 3;
+            // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Lương cơ bản";
@@ -222,14 +243,6 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Số ngày làm việc";
-            this.gridColumn6.FieldName = "Workdays";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 3;
             // 
             // gridColumn7
             // 
@@ -277,5 +290,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraEditors.SimpleButton btThemLuong;
     }
 }

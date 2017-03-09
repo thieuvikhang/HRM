@@ -69,6 +69,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Salary\frmAddSalary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Salary\frmAddSalary.Designer.cs">
+      <DependentUpon>frmAddSalary.cs</DependentUpon>
+    </Compile>
     <Compile Include="SplashScreenStarting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,7 +129,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Salary\frmAddSalary.resx">
+      <DependentUpon>frmAddSalary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashScreenStarting.resx">
       <DependentUpon>SplashScreenStarting.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +174,12 @@
       <Project>{aaf9a13a-e19d-4b7e-94a6-f1953ae63c19}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addgroupheader_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -6,6 +6,8 @@ using DAL;
 using BUS;
 using DevExpress.XtraEditors;
 using System.Collections;
+using DevExpress.XtraSplashScreen;
+using HRM.Salary;
 
 namespace HRM
 {
@@ -168,5 +170,13 @@ namespace HRM
 
         }
         #endregion
+
+        private void btThemLuong_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            frmAddSalary frm = new frmAddSalary();
+            frm.Show();
+            SplashScreenManager.CloseForm();
+        }
     }
 }
