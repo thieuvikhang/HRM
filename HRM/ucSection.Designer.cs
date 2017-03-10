@@ -75,6 +75,12 @@
             this.numStandardWorkdays.Name = "numStandardWorkdays";
             this.numStandardWorkdays.Size = new System.Drawing.Size(171, 21);
             this.numStandardWorkdays.TabIndex = 48;
+            this.numStandardWorkdays.Value = new decimal(new int[] {
+            26,
+            0,
+            0,
+            0});
+            this.numStandardWorkdays.ValueChanged += new System.EventHandler(this.numStandardWorkdays_ValueChanged);
             // 
             // labelControl5
             // 
@@ -96,8 +102,11 @@
             // 
             this.txtPhone.Location = new System.Drawing.Point(155, 79);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(171, 20);
+            this.txtPhone.Size = new System.Drawing.Size(169, 20);
             this.txtPhone.TabIndex = 8;
+            this.txtPhone.EditValueChanged += new System.EventHandler(this.txtPhone_EditValueChanged);
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged_1);
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // labelControl4
             // 
@@ -123,6 +132,8 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(171, 20);
             this.txtName.TabIndex = 4;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // labelControl2
             // 
@@ -140,6 +151,8 @@
             this.txtSectionID.Size = new System.Drawing.Size(171, 20);
             this.txtSectionID.TabIndex = 1;
             this.txtSectionID.EditValueChanged += new System.EventHandler(this.textEdit1_EditValueChanged);
+            this.txtSectionID.TextChanged += new System.EventHandler(this.txtSectionID_TextChanged);
+            this.txtSectionID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSectionID_KeyPress);
             // 
             // labelControl1
             // 
@@ -280,7 +293,7 @@
             // gCoSectionName
             // 
             this.gCoSectionName.Caption = "Tên phòng ban";
-            this.gCoSectionName.FieldName = "Name";
+            this.gCoSectionName.FieldName = "SectionName";
             this.gCoSectionName.Name = "gCoSectionName";
             this.gCoSectionName.Visible = true;
             this.gCoSectionName.VisibleIndex = 1;

@@ -25,8 +25,8 @@ namespace BUS
         //Ham tim kiem nameInput trong table contractType
         public bool findNameInputInTable(string nameInput) {
             int nunberOfRecords = (from ctt in aHRM.ContractTypes
-                                     where ctt.Name == nameInput
-                                     select ctt.Name).Count();
+                                     where ctt.ContractTypeName == nameInput
+                                     select ctt.ContractTypeName).Count();
             if (nunberOfRecords == 0) {
                 //nameInput khong ton tai trong table contractType
                 return false;
@@ -58,7 +58,7 @@ namespace BUS
                 if (findNameInputInTable(nameInput) == false && findIdInputInTable(idInput) == false) {
                     ContractType aContractType = new ContractType();
                     aContractType.ContractTypeID = idInput;
-                    aContractType.Name = nameInput;
+                    aContractType.ContractTypeName = nameInput;
                     aHRM.ContractTypes.InsertOnSubmit(aContractType);
                     aHRM.SubmitChanges();
                     return true;
@@ -77,7 +77,7 @@ namespace BUS
                 //kiem tra nameInput co ton tai trong database
                 if(!findNameInputInTable(nameInput)) {
                     ContractType aContractType = aHRM.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idInput);
-                    aContractType.Name = nameInput;
+                    aContractType.ContractTypeName = nameInput;
                     aHRM.SubmitChanges();
                     return true;
                 }

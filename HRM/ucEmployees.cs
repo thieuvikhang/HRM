@@ -23,7 +23,7 @@ namespace HRM
             var section = from sec in aHRM.Sections
                           select new
                           {
-                              tenloai = sec.Name,
+                              tenloai = sec.SectionName,
                               maloai = sec.SectionID,
                           };
             cbbSection.DataSource = section.ToList();
@@ -35,7 +35,7 @@ namespace HRM
             var post = from po in aHRM.Positions
                        select new
                        {
-                           tenloai = po.Name,
+                           tenloai = po.PostName,
                            maloai = po.PostID,
                        };
             cbbPost.DataSource = post.ToList();
@@ -47,7 +47,7 @@ namespace HRM
             var mana = from ma in aHRM.Staffs
                        select new
                        {
-                           tenloai = ma.Name,
+                           tenloai = ma.StaffName,
                            maloai = ma.StaffID,
                        };
             cbbManID.DataSource = mana.ToList();
@@ -78,14 +78,22 @@ namespace HRM
         {
 
         }
+        public void LoadStaff()
+        {
+            gcEmployees.DataSource = staffBUS.loadStaff();
 
+        }
         private void ucEmployees_Load(object sender, EventArgs e)
         {
             gcEmployees.DataSource = staffBUS.loadStaff();
             loadComboboxSection();
             loadComboboxPosition();
-            loadComboboxPosition();
             cbbEducation.SelectedItem = "Đại học";
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

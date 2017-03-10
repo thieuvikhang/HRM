@@ -22,7 +22,7 @@ namespace BUS
         public bool findNameInputIntable(string nameInput) {
             //Dem record trung ten hoac so dien thoai
             int countSection = (from st in aHRM.Sections
-                                where (st.Name == nameInput)
+                                where (st.SectionName == nameInput)
                                 select st).Count();
 
             if (countSection == 0) {
@@ -74,7 +74,7 @@ namespace BUS
                 if (findIDInputIntable(idInput) == false && findPhoneInputIntable(phoneInput) == false && findNameInputIntable(nameInput) == false) {
                     Section aSection = new Section();
                     aSection.SectionID = idInput;
-                    aSection.Name = nameInput;
+                    aSection.SectionName = nameInput;
                     aSection.Description = descriptionInput;
                     aSection.StandardWorkdays = standWorkDayInput;
                     aSection.Phone = phoneInput;
@@ -99,7 +99,7 @@ namespace BUS
                 //Kiem tra record co ton tai
                 if (aSection != null) {
                     aSection.SectionID = newSTID;
-                    aSection.Name = newName;
+                    aSection.SectionName = newName;
                     aSection.Description = newDescription;
                     aSection.StandardWorkdays = NewStandWorkDay;
                     aSection.Phone = newPhone;

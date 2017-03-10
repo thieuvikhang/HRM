@@ -67,6 +67,17 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gcEmployees = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcStaffID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcStaffName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcoGender = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBirthDay = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCardID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcPhone = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcAddress = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEducation = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEmail = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcPosition = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSection = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -205,6 +216,7 @@
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // groupBox1
             // 
@@ -470,9 +482,112 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcStaffID,
+            this.gcStaffName,
+            this.gcoGender,
+            this.gcBirthDay,
+            this.gcCardID,
+            this.gcPhone,
+            this.gcAddress,
+            this.gcEducation,
+            this.gcEmail,
+            this.gcPosition,
+            this.gcSection});
             this.gridView1.GridControl = this.gcEmployees;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            // 
+            // gcStaffID
+            // 
+            this.gcStaffID.Caption = "Mã nhân viên";
+            this.gcStaffID.FieldName = "StaffID";
+            this.gcStaffID.Name = "gcStaffID";
+            this.gcStaffID.Visible = true;
+            this.gcStaffID.VisibleIndex = 0;
+            // 
+            // gcStaffName
+            // 
+            this.gcStaffName.Caption = "Tên nhân viên";
+            this.gcStaffName.FieldName = "Name";
+            this.gcStaffName.Name = "gcStaffName";
+            this.gcStaffName.Visible = true;
+            this.gcStaffName.VisibleIndex = 1;
+            // 
+            // gcoGender
+            // 
+            this.gcoGender.Caption = "Giới tính";
+            this.gcoGender.FieldName = "Gender";
+            this.gcoGender.Name = "gcoGender";
+            this.gcoGender.Visible = true;
+            this.gcoGender.VisibleIndex = 2;
+            // 
+            // gcBirthDay
+            // 
+            this.gcBirthDay.Caption = "Ngày sinh";
+            this.gcBirthDay.FieldName = "BirthDay";
+            this.gcBirthDay.Name = "gcBirthDay";
+            this.gcBirthDay.Visible = true;
+            this.gcBirthDay.VisibleIndex = 3;
+            // 
+            // gcCardID
+            // 
+            this.gcCardID.Caption = "CMND";
+            this.gcCardID.FieldName = "CardID";
+            this.gcCardID.Name = "gcCardID";
+            this.gcCardID.Visible = true;
+            this.gcCardID.VisibleIndex = 4;
+            // 
+            // gcPhone
+            // 
+            this.gcPhone.Caption = "Điện thoại";
+            this.gcPhone.FieldName = "Phone";
+            this.gcPhone.Name = "gcPhone";
+            this.gcPhone.Visible = true;
+            this.gcPhone.VisibleIndex = 5;
+            // 
+            // gcAddress
+            // 
+            this.gcAddress.Caption = "Địa chỉ";
+            this.gcAddress.FieldName = "Address";
+            this.gcAddress.Name = "gcAddress";
+            this.gcAddress.Visible = true;
+            this.gcAddress.VisibleIndex = 6;
+            // 
+            // gcEducation
+            // 
+            this.gcEducation.Caption = "Trình độ học vấn";
+            this.gcEducation.FieldName = "Education";
+            this.gcEducation.Name = "gcEducation";
+            this.gcEducation.Visible = true;
+            this.gcEducation.VisibleIndex = 7;
+            // 
+            // gcEmail
+            // 
+            this.gcEmail.Caption = "Email";
+            this.gcEmail.FieldName = "Email";
+            this.gcEmail.Name = "gcEmail";
+            this.gcEmail.Visible = true;
+            this.gcEmail.VisibleIndex = 8;
+            // 
+            // gcPosition
+            // 
+            this.gcPosition.Caption = "Chức vụ";
+            this.gcPosition.FieldName = "PostName";
+            this.gcPosition.Name = "gcPosition";
+            this.gcPosition.Visible = true;
+            this.gcPosition.VisibleIndex = 9;
+            // 
+            // gcSection
+            // 
+            this.gcSection.Caption = "Phòng ban";
+            this.gcSection.FieldName = "SectionName";
+            this.gcSection.Name = "gcSection";
+            this.gcSection.Visible = true;
+            this.gcSection.VisibleIndex = 10;
             // 
             // ucEmployees
             // 
@@ -549,5 +664,16 @@
         private System.Windows.Forms.ComboBox cbbPost;
         private System.Windows.Forms.ComboBox cbbSection;
         private System.Windows.Forms.ComboBox cbbEducation;
+        private DevExpress.XtraGrid.Columns.GridColumn gcoGender;
+        private DevExpress.XtraGrid.Columns.GridColumn gcStaffID;
+        private DevExpress.XtraGrid.Columns.GridColumn gcStaffName;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBirthDay;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCardID;
+        private DevExpress.XtraGrid.Columns.GridColumn gcPhone;
+        private DevExpress.XtraGrid.Columns.GridColumn gcAddress;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEducation;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEmail;
+        private DevExpress.XtraGrid.Columns.GridColumn gcPosition;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSection;
     }
 }
