@@ -424,7 +424,7 @@ namespace DAL
 		
 		private string _StaffID;
 		
-		private string _Name;
+		private string _StaffName;
 		
 		private string _Image;
 		
@@ -474,8 +474,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnStaffIDChanging(string value);
     partial void OnStaffIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnStaffNameChanging(string value);
+    partial void OnStaffNameChanged();
     partial void OnImageChanging(string value);
     partial void OnImageChanged();
     partial void OnGenderChanging(System.Nullable<bool> value);
@@ -538,22 +538,22 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(30)")]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffName", DbType="NVarChar(30)")]
+		public string StaffName
 		{
 			get
 			{
-				return this._Name;
+				return this._StaffName;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._StaffName != value))
 				{
-					this.OnNameChanging(value);
+					this.OnStaffNameChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._StaffName = value;
+					this.SendPropertyChanged("StaffName");
+					this.OnStaffNameChanged();
 				}
 			}
 		}
@@ -1867,7 +1867,7 @@ namespace DAL
 		
 		private string _ContractTypeID;
 		
-		private string _Name;
+		private string _ContractTypeName;
 		
 		private EntitySet<Contract> _Contracts;
 		
@@ -1877,8 +1877,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnContractTypeIDChanging(string value);
     partial void OnContractTypeIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnContractTypeNameChanging(string value);
+    partial void OnContractTypeNameChanged();
     #endregion
 		
 		public ContractType()
@@ -1907,22 +1907,22 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(20)")]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContractTypeName", DbType="NVarChar(20)")]
+		public string ContractTypeName
 		{
 			get
 			{
-				return this._Name;
+				return this._ContractTypeName;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._ContractTypeName != value))
 				{
-					this.OnNameChanging(value);
+					this.OnContractTypeNameChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._ContractTypeName = value;
+					this.SendPropertyChanged("ContractTypeName");
+					this.OnContractTypeNameChanged();
 				}
 			}
 		}
@@ -2197,7 +2197,7 @@ namespace DAL
 		
 		private int _GroupAccessID;
 		
-		private string _Name;
+		private string _GroupAccessName;
 		
 		private string _Description;
 		
@@ -2211,8 +2211,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnGroupAccessIDChanging(int value);
     partial void OnGroupAccessIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnGroupAccessNameChanging(string value);
+    partial void OnGroupAccessNameChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
     #endregion
@@ -2244,22 +2244,22 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(20)")]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessName", DbType="NVarChar(20)")]
+		public string GroupAccessName
 		{
 			get
 			{
-				return this._Name;
+				return this._GroupAccessName;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._GroupAccessName != value))
 				{
-					this.OnNameChanging(value);
+					this.OnGroupAccessNameChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._GroupAccessName = value;
+					this.SendPropertyChanged("GroupAccessName");
+					this.OnGroupAccessNameChanged();
 				}
 			}
 		}
@@ -2363,7 +2363,7 @@ namespace DAL
 		
 		private string _PostID;
 		
-		private string _Name;
+		private string _PostName;
 		
 		private string _Description;
 		
@@ -2375,8 +2375,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnPostIDChanging(string value);
     partial void OnPostIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnPostNameChanging(string value);
+    partial void OnPostNameChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
     #endregion
@@ -2407,22 +2407,22 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(20)")]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostName", DbType="NVarChar(20)")]
+		public string PostName
 		{
 			get
 			{
-				return this._Name;
+				return this._PostName;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._PostName != value))
 				{
-					this.OnNameChanging(value);
+					this.OnPostNameChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._PostName = value;
+					this.SendPropertyChanged("PostName");
+					this.OnPostNameChanged();
 				}
 			}
 		}
@@ -2906,7 +2906,7 @@ namespace DAL
 		
 		private string _SectionID;
 		
-		private string _Name;
+		private string _SectionName;
 		
 		private string _Description;
 		
@@ -2922,8 +2922,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnSectionIDChanging(string value);
     partial void OnSectionIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnSectionNameChanging(string value);
+    partial void OnSectionNameChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
     partial void OnStandardWorkdaysChanging(System.Nullable<int> value);
@@ -2958,22 +2958,22 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(20)")]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionName", DbType="NVarChar(20)")]
+		public string SectionName
 		{
 			get
 			{
-				return this._Name;
+				return this._SectionName;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._SectionName != value))
 				{
-					this.OnNameChanging(value);
+					this.OnSectionNameChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._SectionName = value;
+					this.SendPropertyChanged("SectionName");
+					this.OnSectionNameChanged();
 				}
 			}
 		}

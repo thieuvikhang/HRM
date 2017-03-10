@@ -58,6 +58,8 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -77,12 +79,14 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.btnCancel);
             this.groupControl2.Controls.Add(this.btnEdit);
+            this.groupControl2.Controls.Add(this.btnSave);
             this.groupControl2.Controls.Add(this.btnDelete);
             this.groupControl2.Controls.Add(this.btnAdd);
             this.groupControl2.Location = new System.Drawing.Point(277, 168);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(277, 63);
+            this.groupControl2.Size = new System.Drawing.Size(459, 63);
             this.groupControl2.TabIndex = 46;
             // 
             // btnEdit
@@ -117,6 +121,7 @@
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dateSign
             // 
@@ -129,6 +134,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateSign.Size = new System.Drawing.Size(163, 20);
             this.dateSign.TabIndex = 39;
+            this.dateSign.EditValueChanged += new System.EventHandler(this.dateSign_EditValueChanged);
             // 
             // dateStart
             // 
@@ -196,6 +202,9 @@
             // 
             // mmNote
             // 
+            this.mmNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mmNote.Location = new System.Drawing.Point(608, 32);
             this.mmNote.Name = "mmNote";
             this.mmNote.Size = new System.Drawing.Size(167, 121);
@@ -363,6 +372,28 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Location = new System.Drawing.Point(369, 23);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(85, 34);
+            this.btnCancel.TabIndex = 53;
+            this.btnCancel.Text = "Hủy";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSave.Appearance.Options.UseFont = true;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(278, 23);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(85, 34);
+            this.btnSave.TabIndex = 52;
+            this.btnSave.Text = "Lưu";
+            // 
             // ucContract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -422,5 +453,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gcContract;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
     }
 }

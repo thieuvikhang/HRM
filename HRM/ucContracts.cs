@@ -14,6 +14,8 @@ namespace HRM
 {
     public partial class ucContract : DevExpress.XtraEditors.XtraUserControl
     {
+
+        int flag = 0;
         public ucContract()
         {
             InitializeComponent();
@@ -22,6 +24,20 @@ namespace HRM
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+
+        //Ham set các button 
+        public void SetButton(bool set)
+        {
+            //code set
+            
+        }
+
+        //ham set cac TextBox
+        public void SetText(bool set)
+        {
+            //code set
         }
 
         private void textEdit6_EditValueChanged(object sender, EventArgs e)
@@ -38,5 +54,22 @@ namespace HRM
         {
             gcContract.DataSource = conTractBUS.loadAll();
         }
+
+        private void dateSign_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //flag=1 xác nhận click vào button add 
+            //reset các button
+            //reset các textbox
+            //reset datagridview
+            flag = 1;
+
+        }
+
+
     }
 }
