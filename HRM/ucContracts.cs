@@ -78,11 +78,11 @@ namespace HRM
 
         public void GetInfo()
         {
-            txtSectionID.Text = gridView1.GetFocusedRowCellDisplayText(gCoSectionID);
-            txtName.Text = gridView1.GetFocusedRowCellDisplayText(gCoSectionName);
-            mmDescription.Text = gridView1.GetFocusedRowCellDisplayText(gCoDescription);
-            numStandardWorkdays.Text = gridView1.GetFocusedRowCellDisplayText(gCoStandardWorkdays);
-            txtPhone.Text = gridView1.GetFocusedRowCellDisplayText(gCoPhone);
+            //txtSectionID.Text = gridView1.GetFocusedRowCellDisplayText(gCoSectionID);
+            //txtName.Text = gridView1.GetFocusedRowCellDisplayText(gCoSectionName);
+            //mmDescription.Text = gridView1.GetFocusedRowCellDisplayText(gCoDescription);
+            //numStandardWorkdays.Text = gridView1.GetFocusedRowCellDisplayText(gCoStandardWorkdays);
+            //txtPhone.Text = gridView1.GetFocusedRowCellDisplayText(gCoPhone);
         }
 
         private bool CheckDateStartVSDateEnd()

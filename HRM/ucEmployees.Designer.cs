@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucEmployees));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.cbbManID = new System.Windows.Forms.ComboBox();
             this.cbbPost = new System.Windows.Forms.ComboBox();
             this.cbbSection = new System.Windows.Forms.ComboBox();
             this.cbbEducation = new System.Windows.Forms.ComboBox();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
-            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbNu = new System.Windows.Forms.RadioButton();
             this.rbNam = new System.Windows.Forms.RadioButton();
@@ -78,6 +81,10 @@
             this.gcEmail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcPosition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSection = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEndDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcManagerID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -98,15 +105,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.cbbManID);
             this.panelControl1.Controls.Add(this.cbbPost);
             this.panelControl1.Controls.Add(this.cbbSection);
             this.panelControl1.Controls.Add(this.cbbEducation);
-            this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.groupBox1);
             this.panelControl1.Controls.Add(this.labelControl4);
             this.panelControl1.Controls.Add(this.dateEnd);
@@ -138,6 +146,77 @@
             this.panelControl1.Size = new System.Drawing.Size(1044, 250);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.btnDelete);
+            this.groupControl2.Controls.Add(this.btnCancel);
+            this.groupControl2.Controls.Add(this.btnEdit);
+            this.groupControl2.Controls.Add(this.btnAdd);
+            this.groupControl2.Controls.Add(this.btnSave);
+            this.groupControl2.Location = new System.Drawing.Point(420, 156);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(458, 67);
+            this.groupControl2.TabIndex = 52;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnDelete.Appearance.Options.UseFont = true;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(369, 23);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(85, 34);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Location = new System.Drawing.Point(278, 23);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(85, 34);
+            this.btnCancel.TabIndex = 51;
+            this.btnCancel.Text = "Hủy";
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnEdit.Appearance.Options.UseFont = true;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(96, 23);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(85, 34);
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Text = "Sửa";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnAdd.Appearance.Options.UseFont = true;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(5, 23);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(85, 34);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSave.Appearance.Options.UseFont = true;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(187, 23);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(85, 34);
+            this.btnSave.TabIndex = 50;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cbbManID
             // 
@@ -173,50 +252,6 @@
             this.cbbEducation.Name = "cbbEducation";
             this.cbbEducation.Size = new System.Drawing.Size(144, 21);
             this.cbbEducation.TabIndex = 48;
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.Controls.Add(this.btnEdit);
-            this.groupControl2.Controls.Add(this.btnDelete);
-            this.groupControl2.Controls.Add(this.btnAdd);
-            this.groupControl2.Location = new System.Drawing.Point(550, 155);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(277, 63);
-            this.groupControl2.TabIndex = 47;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnEdit.Appearance.Options.UseFont = true;
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(96, 23);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(85, 34);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Sửa";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDelete.Appearance.Options.UseFont = true;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(187, 23);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(85, 34);
-            this.btnDelete.TabIndex = 1;
-            this.btnDelete.Text = "Xóa";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnAdd.Appearance.Options.UseFont = true;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(5, 23);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(85, 34);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // groupBox1
             // 
@@ -390,6 +425,7 @@
             this.txtPhone.Size = new System.Drawing.Size(171, 20);
             this.txtPhone.TabIndex = 17;
             this.txtPhone.EditValueChanged += new System.EventHandler(this.textEdit4_EditValueChanged);
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // labelControl3
             // 
@@ -417,6 +453,7 @@
             this.txtCardID.Name = "txtCardID";
             this.txtCardID.Size = new System.Drawing.Size(144, 20);
             this.txtCardID.TabIndex = 13;
+            this.txtCardID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardID_KeyPress);
             // 
             // labelControl5
             // 
@@ -493,13 +530,18 @@
             this.gcEducation,
             this.gcEmail,
             this.gcPosition,
-            this.gcSection});
+            this.gcSection,
+            this.gcDateStart,
+            this.gcEndDate,
+            this.gcManagerID});
             this.gridView1.GridControl = this.gcEmployees;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView1_CustomColumnDisplayText);
             // 
             // gcStaffID
             // 
@@ -512,7 +554,7 @@
             // gcStaffName
             // 
             this.gcStaffName.Caption = "Tên nhân viên";
-            this.gcStaffName.FieldName = "Name";
+            this.gcStaffName.FieldName = "StaffName";
             this.gcStaffName.Name = "gcStaffName";
             this.gcStaffName.Visible = true;
             this.gcStaffName.VisibleIndex = 1;
@@ -589,6 +631,28 @@
             this.gcSection.Visible = true;
             this.gcSection.VisibleIndex = 10;
             // 
+            // gcDateStart
+            // 
+            this.gcDateStart.Caption = "Ngày bắt đầu";
+            this.gcDateStart.FieldName = "StartDate";
+            this.gcDateStart.Name = "gcDateStart";
+            // 
+            // gcEndDate
+            // 
+            this.gcEndDate.Caption = "Ngày kết thúc";
+            this.gcEndDate.FieldName = "EndDate";
+            this.gcEndDate.Name = "gcEndDate";
+            // 
+            // gcManagerID
+            // 
+            this.gcManagerID.Caption = "Tên nhân viên quản lý";
+            this.gcManagerID.FieldName = "ManagerID";
+            this.gcManagerID.Name = "gcManagerID";
+            // 
+            // dxErrorProvider
+            // 
+            this.dxErrorProvider.ContainerControl = this;
+            // 
             // ucEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -620,6 +684,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -656,10 +721,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
         private System.Windows.Forms.ComboBox cbbManID;
         private System.Windows.Forms.ComboBox cbbPost;
         private System.Windows.Forms.ComboBox cbbSection;
@@ -675,5 +736,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcEmail;
         private DevExpress.XtraGrid.Columns.GridColumn gcPosition;
         private DevExpress.XtraGrid.Columns.GridColumn gcSection;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton btnEdit;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDateStart;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEndDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gcManagerID;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
     }
 }
