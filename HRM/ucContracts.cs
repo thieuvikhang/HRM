@@ -7,8 +7,7 @@ namespace HRM
 {
     public partial class UcContract : XtraUserControl
     {
-
-        int _flag = 0;
+        public int Flag;
         public UcContract()
         {
             InitializeComponent();
@@ -130,7 +129,7 @@ namespace HRM
             //reset các button
             //reset các textbox
             //reset datagridview
-            _flag = 1;
+            Flag = 1;
 
         }
 

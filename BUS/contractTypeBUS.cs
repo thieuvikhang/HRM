@@ -28,10 +28,8 @@ namespace BUS
                 //nameInput khong ton tai trong table contractType
                 return false;
             }
-            else {
-                //nameInput da ton tai trong table contractType
-                return true;
-            }
+            //nameInput da ton tai trong table contractType
+            return true;
         }
 
         //Ham tim kiem idInput Trong table contractType
@@ -69,7 +67,8 @@ namespace BUS
         }
 
         public bool EditAContractType(string idInput, string nameInput) {
-            try {
+            try
+            {
                 //kiem tra nameInput co ton tai trong database
                 if(!FindNameInputInTable(nameInput)) {
                     ContractType aContractType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idInput);
@@ -77,18 +76,17 @@ namespace BUS
                     _aHrm.SubmitChanges();
                     return true;
                 }
-                else {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             }
         }
 
         //Ham xoa 1 contractType
         public bool DeleteAContractType(string idIput) {
-            try {
+            try
+            {
                 //kiem tra idInput co ton tai trong database
                 if(FindIdInputInTable(idIput)) {
                     ContractType aContracType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idIput);
@@ -96,9 +94,7 @@ namespace BUS
                     _aHrm.SubmitChanges();
                     return true;
                 }
-                else {
-                    return false;
-                }
+                return false;
             }
             catch (Exception) {
                 return false;

@@ -86,7 +86,7 @@ namespace BUS
                 }
                 return false;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             }
         }
@@ -120,11 +120,9 @@ namespace BUS
                     _aHrm.SubmitChanges();
                     return true;
                 }
-                else {
-                    return false;
-                } 
+                return false;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             }
         }

@@ -6,7 +6,7 @@ namespace BUS
 {
     public class StaffBus
     {
-        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         public IQueryable LoadStaff()
         {
             var loadStaff = (from st in _aHrm.Staffs
@@ -201,7 +201,7 @@ namespace BUS
             return salary;
         }
         //kiem tra trung id
-        public bool findIDInputInTable(string idInput)
+        public bool FindIdInputInTable(string idInput)
         {
             int numberOfRecords = (from ct in _aHrm.Staffs
                                    where ct.StaffID == idInput
@@ -217,11 +217,11 @@ namespace BUS
                 return true;
             }
         }
-        public bool createAStaff(string idInput, string nameInput, Boolean genderInput, DateTime birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
+        public bool CreateAStaff(string idInput, string nameInput, Boolean genderInput, DateTime birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
         {
             try
             {
-                if (findIDInputInTable(idInput) == false)
+                if (FindIdInputInTable(idInput) == false)
                 {
                     Staff aStaff = new Staff();
                     aStaff.StaffID = idInput;
@@ -244,12 +244,9 @@ namespace BUS
                     _aHrm.SubmitChanges();
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -281,17 +278,14 @@ namespace BUS
                     _aHrm.SubmitChanges();
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
         }
-        public bool createAStafft(string staffid, string secid, DateTime startdate, Boolean gender)
+        public bool CreateAStafft(string staffid, string secid, DateTime startdate, Boolean gender)
         {
             try
             {
@@ -306,12 +300,12 @@ namespace BUS
                 _aHrm.SubmitChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
         }
-        public bool deleteAStaff(string idInput)
+        public bool DeleteAStaff(string idInput)
         {
             try
             {
@@ -322,12 +316,9 @@ namespace BUS
                     _aHrm.SubmitChanges();
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

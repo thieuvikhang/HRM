@@ -100,7 +100,7 @@ namespace BUS
                 }
                 return false;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             }
         }
@@ -118,7 +118,7 @@ namespace BUS
                 }
                 return false;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             }
         }

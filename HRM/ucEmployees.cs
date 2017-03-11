@@ -144,11 +144,11 @@ namespace HRM
             string manid = cbbManID.SelectedValue.ToString();
             if(rbNam.Checked==true)
             {
-                _staffBus.createAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post,section);
+                _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post,section);
             }
             else
             {
-                _staffBus.createAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+                _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
             }
         }
         public void EditStaff()
@@ -226,7 +226,7 @@ namespace HRM
                 DialogResult dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes)
                 {
-                    _staffBus.deleteAStaff(txtStaffID.Text);
+                    _staffBus.DeleteAStaff(txtStaffID.Text);
 
                 }
                 else
