@@ -200,6 +200,137 @@ namespace BUS
                          };
             return salary;
         }
+        //kiem tra trung id
+        public bool findIDInputInTable(string idInput)
+        {
+            int numberOfRecords = (from ct in aHRM.Staffs
+                                   where ct.StaffID == idInput
+                                   select ct).Count();
+            if (numberOfRecords == 0)
+            {
+                //idInput khong ton tai trong table contract
+                return false;
+            }
+            else
+            {
+                //idInput da ton tai trong table contract
+                return true;
+            }
+        }
+        public bool createAStaff(string idInput, string nameInput, Boolean genderInput, DateTime birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
+        {
+            try
+            {
+                if (findIDInputInTable(idInput) == false)
+                {
+                    Staff aStaff = new Staff();
+                    aStaff.StaffID = idInput;
+                    aStaff.StaffName = nameInput;
+                    aStaff.Gender = genderInput;
+                    aStaff.BirthDay = birthdayInput;
+                    aStaff.CardID = cardidInput;
+                    aStaff.Phone = phoneInput;
+                    aStaff.Address = addressInput;
+                    aStaff.Education = eduInput;
+                    aStaff.StartDate = startdateInput;
+                    aStaff.EndDate = enddateInput;
+                    aStaff.ManagerID = manageridInput;
+                    aStaff.Email = emailInput;
+                    aStaff.DaysRemain = dayremainInput;
+                    aStaff.PostID = postidInput;
+                    aStaff.SectionID = sectionidInput;
 
+                    aHRM.Staffs.InsertOnSubmit(aStaff);
+                    aHRM.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool editAStaff(string newid, string nameInput, Boolean genderInput, DateTime birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
+        {
+            try
+            {
+                Staff aStaff = aHRM.Staffs.SingleOrDefault(st => st.StaffID == newid);
+                if (aStaff != null)
+                {
+                    aStaff.StaffID = newid;
+                    aStaff.StaffName = nameInput;
+                    aStaff.Gender = genderInput;
+                    aStaff.BirthDay = birthdayInput;
+                    aStaff.CardID = cardidInput;
+                    aStaff.Phone = phoneInput;
+                    aStaff.Address = addressInput;
+                    aStaff.Education = eduInput;
+                    aStaff.StartDate = startdateInput;
+                    aStaff.EndDate = enddateInput;
+                    aStaff.ManagerID = manageridInput;
+                    aStaff.Email = emailInput;
+                    aStaff.DaysRemain = dayremainInput;
+                    aStaff.PostID = postidInput;
+                    aStaff.SectionID = sectionidInput;
+
+                    aHRM.Staffs.InsertOnSubmit(aStaff);
+                    aHRM.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool createAStafft(string staffid, string secid,DateTime startdate,Boolean gender)
+        {
+            try
+            {
+                    Staff aStaff = new Staff();
+                    aStaff.StaffID = staffid;
+                    aStaff.StaffName = "saddsa";            
+                    aStaff.PostID = "CV01";
+                    aStaff.SectionID = secid;
+                    aStaff.StartDate = startdate;
+                aStaff.Gender = gender;
+                    aHRM.Staffs.InsertOnSubmit(aStaff);
+                    aHRM.SubmitChanges();
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool deleteAStaff(string idInput)
+        {
+            try
+            {
+                Staff aStaff = (from st in aHRM.Staffs select st).SingleOrDefault(st => st.StaffID == idInput);
+                if (aStaff != null)
+                {
+                    aHRM.Staffs.DeleteOnSubmit(aStaff);
+                    aHRM.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
