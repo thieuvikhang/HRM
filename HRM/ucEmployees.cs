@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using BUS;
 using DAL;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Repository;
+using  BUS;
 
 namespace HRM
 {
-    public partial class ucEmployees : DevExpress.XtraEditors.XtraUserControl
+    public partial class UcEmployees : XtraUserControl
     {
-        public ucEmployees()
+        public UcEmployees()
         {
             InitializeComponent();
         }
-        staffBUS staffBUS = new staffBUS();
-        HRMModelDataContext aHRM = new HRMModelDataContext();
-        int checkAdd = 0;
+
+        readonly StaffBus _staffBus = new StaffBus();
+        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        int _checkAdd = 0;
         private void labelControl7_Click(object sender, EventArgs e)
         {
 
@@ -62,9 +61,9 @@ namespace HRM
             btnSave.Enabled = !val;
             btnCancel.Enabled = !val;
         }
-        public void loadComboboxSection()
+        public void LoadComboboxSection()
         {
-            var section = from sec in aHRM.Sections
+            var section = from sec in _aHrm.Sections
                           select new
                           {
                               tenloai = sec.SectionName,
@@ -74,9 +73,9 @@ namespace HRM
             cbbSection.DisplayMember = "tenloai";
             cbbSection.ValueMember = "maloai";
         }
-        public void loadComboboxPosition()
+        public void LoadComboboxPosition()
         {
-            var post = from po in aHRM.Positions
+            var post = from po in _aHrm.Positions
                        select new
                        {
                            tenloai = po.PostName,
@@ -86,9 +85,9 @@ namespace HRM
             cbbPost.DisplayMember = "tenloai";
             cbbPost.ValueMember = "maloai";
         }
-        public void loadComboboxManID()
+        public void LoadComboboxManId()
         {
-            var mana = from ma in aHRM.Staffs
+            var mana = from ma in _aHrm.Staffs
                        select new
                        {
                            tenloai = ma.StaffName,
@@ -124,24 +123,20 @@ namespace HRM
         }
         public void LoadStaff()
         {
-            gcEmployees.DataSource = staffBUS.loadStaff();
+            gcEmployees.DataSource = _staffBus.LoadStaff();
             
         }
         private void ucEmployees_Load(object sender, EventArgs e)
         {
             SetTxt(false);
-            gcEmployees.DataSource = staffBUS.loadStaff();
-            loadComboboxSection();
-            loadComboboxPosition();
-            loadComboboxManID();
+            gcEmployees.DataSource = _staffBus.LoadStaff();
+            LoadComboboxSection();
+            LoadComboboxPosition();
+            LoadComboboxManId();
             rbNam.Checked = true;
             cbbEducation.SelectedItem = "Đại học";
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-
-        }
         public void AddStaff()
         {
             string section = cbbSection.SelectedValue.ToString();
@@ -149,11 +144,11 @@ namespace HRM
             string manid = cbbManID.SelectedValue.ToString();
             if(rbNam.Checked==true)
             {
-                staffBUS.createAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post,section);
+                _staffBus.createAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post,section);
             }
             else
             {
-                staffBUS.createAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+                _staffBus.createAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
             }
         }
         public void EditStaff()
@@ -163,11 +158,11 @@ namespace HRM
             string manid = cbbManID.SelectedValue.ToString();
             if (rbNam.Checked == true)
             {
-                staffBUS.editAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+                _staffBus.editAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
             }
             else
             {
-                staffBUS.editAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+                _staffBus.editAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
             }
         }
         private void btnAdd_Click_1(object sender, EventArgs e)
@@ -175,7 +170,7 @@ namespace HRM
             SetTxt(true);
             ResettextBox();
             SetBtn(false);
-            checkAdd = 1;
+            _checkAdd = 1;
             gcEmployees.Enabled = false;
             dxErrorProvider.ClearErrors();
         }
@@ -184,7 +179,7 @@ namespace HRM
         {
             try
             {
-                if(checkAdd == 1)
+                if(_checkAdd == 1)
                 {
                     AddStaff();
                     ResettextBox();
@@ -192,7 +187,7 @@ namespace HRM
                     SetBtn(true);
                     gcEmployees.Enabled = true;
                 }
-                else if(checkAdd == 2)
+                else if(_checkAdd == 2)
                 {
                     EditStaff();
                     ResettextBox();
@@ -203,9 +198,9 @@ namespace HRM
             }
             catch
             {
-                MessageBox.Show("Các trường * không được bỏ trống");
+                MessageBox.Show(@"Các trường * không được bỏ trống");
             }
-            gcEmployees.DataSource = staffBUS.loadStaff();
+            gcEmployees.DataSource = _staffBus.LoadStaff();
         }
         public void GetInfo()
         {
@@ -228,10 +223,10 @@ namespace HRM
         {
             try
             {
-                DialogResult dialog = XtraMessageBox.Show(string.Format("Bạn muốn xóa nhân viên {0} này", txtName.Text), "Xóa nhân viên", MessageBoxButtons.YesNo);
+                DialogResult dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes)
                 {
-                    staffBUS.deleteAStaff(txtStaffID.Text);
+                    _staffBus.deleteAStaff(txtStaffID.Text);
 
                 }
                 else
@@ -242,9 +237,9 @@ namespace HRM
             }
             catch
             {
-
+                // ignored
             }
-            gcEmployees.DataSource = staffBUS.loadStaff();
+            gcEmployees.DataSource = _staffBus.LoadStaff();
         }
 
         private void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
@@ -254,7 +249,7 @@ namespace HRM
 
         private void txtCardID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -262,7 +257,7 @@ namespace HRM
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -270,7 +265,7 @@ namespace HRM
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            checkAdd = 2;
+            _checkAdd = 2;
         }
     }
 }

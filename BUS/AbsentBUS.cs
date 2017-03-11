@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace BUS
 {
-    class AbsentBUS
+    class AbsentBus
     {
-        HRMModelDataContext aHRM = new HRMModelDataContext();
+        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         //Lấy số ngày nghỉ không lương theo Mã nhân viên, tháng
-        public int GetAbsentDays(DateTime day, string StaffID)
+        public int GetAbsentDays(DateTime day, string staffId)
         {
-            var absentDays = (from ad in aHRM.DetailAbsents where ad.AbsentMonth == day && ad.StaffID == StaffID select ad.AbsentDays).FirstOrDefault();
+            var absentDays = (from ad in _aHrm.DetailAbsents where ad.AbsentMonth == day && ad.StaffID == staffId select ad.AbsentDays).FirstOrDefault();
             return Convert.ToInt16(absentDays);
         }
     }

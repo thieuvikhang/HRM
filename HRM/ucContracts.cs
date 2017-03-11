@@ -1,30 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using DAL;
 using BUS;
+using DevExpress.XtraEditors;
+
 namespace HRM
 {
-    public partial class ucContract : DevExpress.XtraEditors.XtraUserControl
+    public partial class UcContract : XtraUserControl
     {
 
-        int flag = 0;
-        public ucContract()
+        int _flag = 0;
+        public UcContract()
         {
             InitializeComponent();
         }
-        contractBUS conTractBUS = new contractBUS();
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
+        readonly ContractBus _conTractBus = new ContractBus();
 
 
         //Ham set các button 
@@ -47,11 +37,6 @@ namespace HRM
             txtContractID.Enabled = set;
         }
 
-        private void textEdit6_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void labelControl7_Click(object sender, EventArgs e)
         {
 
@@ -59,7 +44,7 @@ namespace HRM
 
         private void ucContract_Load(object sender, EventArgs e)
         {
-            gcContract.DataSource = conTractBUS.loadAll();
+            gcContract.DataSource = _conTractBus.LoadAll();
             dateSign.DateTime = DateTime.Now;
             dateEnd.DateTime = DateTime.Now;
             dateStart.DateTime = DateTime.Now;
@@ -85,7 +70,7 @@ namespace HRM
             //txtPhone.Text = gridView1.GetFocusedRowCellDisplayText(gCoPhone);
         }
 
-        private bool CheckDateStartVSDateEnd()
+        private bool CheckDateStartVsDateEnd()
         {
             //Lấy thông tin ngày tháng năm của dateStart
             var namBatDau = dateStart.DateTime.Year;
@@ -112,7 +97,7 @@ namespace HRM
             }
         }
 
-        private bool CheckDateStartVSDateSign()
+        private bool CheckDateStartVsDateSign()
         {
             //Lấy thông tin ngày tháng năm của dateStart
             var namBatDau = dateStart.DateTime.Year;
@@ -121,10 +106,10 @@ namespace HRM
             DateTime fullNgayBatDau = new DateTime(namBatDau, thangBatDau, ngayBatDau);
 
             //Lấy thông tin ngày tháng năm của dateSign
-            var namlapHD = dateSign.DateTime.Year;
-            var thangLapHD = dateSign.DateTime.Month;
-            var ngayLapHD = dateSign.DateTime.Day;
-            DateTime fullNgayKetThuc = new DateTime(namlapHD, thangLapHD, ngayLapHD);
+            var namlapHd = dateSign.DateTime.Year;
+            var thangLapHd = dateSign.DateTime.Month;
+            var ngayLapHd = dateSign.DateTime.Day;
+            DateTime fullNgayKetThuc = new DateTime(namlapHd, thangLapHd, ngayLapHd);
 
             //So sánh 2 ngày dateStart vs Datesign
             if (DateTime.Compare(fullNgayBatDau, fullNgayKetThuc) < 0)
@@ -145,7 +130,7 @@ namespace HRM
             //reset các button
             //reset các textbox
             //reset datagridview
-            flag = 1;
+            _flag = 1;
 
         }
 

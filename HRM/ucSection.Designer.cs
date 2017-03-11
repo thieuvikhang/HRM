@@ -1,6 +1,6 @@
 ﻿namespace HRM
 {
-    partial class ucSection
+    partial class UcSection
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSection));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcSection));
             this.numStandardWorkdays = new System.Windows.Forms.NumericUpDown();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.mmDescription = new DevExpress.XtraEditors.MemoEdit();
@@ -332,7 +332,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcSection);
             this.Controls.Add(this.panelControl1);
-            this.Name = "ucSection";
+            this.Name = "UcSection";
             this.Size = new System.Drawing.Size(863, 398);
             this.Load += new System.EventHandler(this.ucSection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numStandardWorkdays)).EndInit();

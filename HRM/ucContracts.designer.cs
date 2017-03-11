@@ -1,6 +1,6 @@
 ﻿namespace HRM
 {
-    partial class ucContract
+    partial class UcContract
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucContract));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcContract));
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
@@ -125,7 +125,7 @@
             this.btnSave.Size = new System.Drawing.Size(85, 34);
             this.btnSave.TabIndex = 52;
             this.btnSave.Text = "Lưu";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            //this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -190,7 +190,7 @@
             this.dateEnd.Size = new System.Drawing.Size(163, 20);
             this.dateEnd.TabIndex = 37;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
-            this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged);
+            //this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged);
             // 
             // cbbStatus
             // 
@@ -234,7 +234,7 @@
             this.cbbStaffID.Name = "cbbStaffID";
             this.cbbStaffID.Size = new System.Drawing.Size(163, 21);
             this.cbbStaffID.TabIndex = 31;
-            this.cbbStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStaffID_KeyPress);
+            //this.cbbStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStaffID_KeyPress);
             // 
             // mmNote
             // 
@@ -429,7 +429,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcContract);
             this.Controls.Add(this.panelControl1);
-            this.Name = "ucContract";
+            this.Name = "UcContract";
             this.Size = new System.Drawing.Size(835, 522);
             this.Load += new System.EventHandler(this.ucContract_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();

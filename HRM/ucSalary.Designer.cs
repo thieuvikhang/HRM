@@ -1,6 +1,6 @@
 ﻿namespace HRM
 {
-    partial class ucSalary
+    partial class UcSalary
     {
         /// <summary>
         /// Required designer variable.
@@ -258,7 +258,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcSalary);
             this.Controls.Add(this.panelControl1);
-            this.Name = "ucSalary";
+            this.Name = "UcSalary";
             this.Size = new System.Drawing.Size(800, 600);
             this.Load += new System.EventHandler(this.ucSalary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

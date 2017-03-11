@@ -11,7 +11,7 @@ namespace HRM
 {
     public partial class FormMain : RibbonForm
     {
-        TabAdd clsAddTab = new TabAdd();
+        readonly TabAdd _clsAddTab = new TabAdd();
         public FormMain()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace HRM
             }
             else
             {   // Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
-                clsAddTab.AddTab(xtraTabControl1, "", tabName, uc);
+                _clsAddTab.AddTab(xtraTabControl1, "", tabName, uc);
             }
             //Đóng màn hình Loading
             SplashScreenManager.CloseForm();
@@ -68,35 +68,35 @@ namespace HRM
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Nhân viên
-            AddTab("Nhân viên",new ucEmployees());
+            AddTab("Nhân viên",new UcEmployees());
         }
 
         private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Quản lý lương
-            AddTab("Quản lý lương", new ucSalary());
+            AddTab("Quản lý lương", new UcSalary());
         }
 
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Phòng ban
-            AddTab("Phòng ban", new ucSection());
+            AddTab("Phòng ban", new UcSection());
         }
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Hợp đồng
-            AddTab("Hợp đồng", new ucContract());
+            AddTab("Hợp đồng", new UcContract());
         }
 
         private void barButtonItem5_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab BHXH
-            AddTab("BHXH", new ucSocialInsurancecs());
+            AddTab("BHXH", new UcSocialInsurancecs());
         }
         #endregion
 

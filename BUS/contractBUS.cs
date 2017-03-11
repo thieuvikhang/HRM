@@ -8,27 +8,27 @@ namespace BUS
      * contractBUS xu ly cac nghiep vu lien quan den table contract
      * LoadAll, create, edit, delete, checkValueInputDuplicate
     */
-    public class contractBUS
+    public class ContractBus
     {
-        HRMModelDataContext aHRM = new HRMModelDataContext();
+        private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
 
         //Load all contract
-        public IQueryable loadAll() {
-            var AllContract = from ct in aHRM.Contracts select ct;
-            return AllContract;
+        public IQueryable LoadAll() {
+            var allContract = from ct in _aHrm.Contracts select ct;
+            return allContract;
         }
 
         //LoadAll contract whith contractTypeID
-        public IQueryable LoadAllWithTypeID(string idInput) {
-            var allRecord = from ct in aHRM.Contracts
+        public IQueryable LoadAllWithTypeId(string idInput) {
+            var allRecord = from ct in _aHrm.Contracts
                                   where ct.ContractTypeID == idInput
                                   select ct;
             return allRecord;
         }
 
         //Ham tim kiem idInput trong table contract
-        public bool findIDInputInTable(string idInput) {
-            int numberOfRecords = (from ct in aHRM.Contracts
+        public bool FindIdInputInTable(string idInput) {
+            int numberOfRecords = (from ct in _aHrm.Contracts
                                where ct.ContractID == idInput
                                select ct).Count();
             if(numberOfRecords == 0)
@@ -45,10 +45,11 @@ namespace BUS
         //Create a contract
         public bool CreateAContract(string idInput, DateTime dateInput, string currencyInput, DateTime startDateInput, 
             DateTime endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput, 
-            string staffIDInput, string contractTypeIDInput) {
-            try {
+            string staffIdInput, string contractTypeIdInput) {
+            try
+            {
                 //Kiem tra idInput vs Id trong table contract
-                if(!findIDInputInTable(idInput)) {
+                if(!FindIdInputInTable(idInput)) {
                     //tao mot doi tuong 
                     Contract aContract = new Contract();
                     aContract.ContractID = idInput;
@@ -60,29 +61,27 @@ namespace BUS
                     aContract.BasicPay = basicPayInput;
                     aContract.Payment = paymentInput;
                     aContract.Note = noteInput;
-                    aContract.StaffID = staffIDInput;
-                    aContract.ContractTypeID = contractTypeIDInput;
+                    aContract.StaffID = staffIdInput;
+                    aContract.ContractTypeID = contractTypeIdInput;
                     // Thong tin khach hang se dc luu lai
-                    aHRM.Contracts.InsertOnSubmit(aContract);
+                    _aHrm.Contracts.InsertOnSubmit(aContract);
                     // Luu thong tin xuong SQL
-                    aHRM.SubmitChanges();
+                    _aHrm.SubmitChanges();
                     return true;
                 }
-                else {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             } 
         }
 
         //Ham edit mot contract
-        public bool editContract(string idInput, DateTime dateInput, string currencyInput, DateTime startDateInput,
+        public bool EditContract(string idInput, DateTime dateInput, string currencyInput, DateTime startDateInput,
             DateTime endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput,
-            string staffIDInput, string contractTypeIDInput) {
+            string staffIdInput, string contractTypeIdInput) {
             try {
-                Contract aContract = aHRM.Contracts.SingleOrDefault(ct => ct.ContractID == idInput);
+                Contract aContract = _aHrm.Contracts.SingleOrDefault(ct => ct.ContractID == idInput);
                 //kiem tra aContract co tontai
                 if(aContract != null) {
                     aContract.Date = dateInput;
@@ -93,15 +92,13 @@ namespace BUS
                     aContract.BasicPay = basicPayInput;
                     aContract.Payment = paymentInput;
                     aContract.Note = noteInput;
-                    aContract.StaffID = staffIDInput;
-                    aContract.ContractTypeID = contractTypeIDInput;
+                    aContract.StaffID = staffIdInput;
+                    aContract.ContractTypeID = contractTypeIdInput;
                     //thay doi csdl trong SQL
-                    aHRM.SubmitChanges();
+                    _aHrm.SubmitChanges();
                     return true;
                 }
-                else {
-                    return false;
-                }
+                return false;
             }
             catch (Exception ex) {
                 return false;
@@ -109,27 +106,26 @@ namespace BUS
         }
 
         //Ham xoa mot contract theo idInput
-        public bool deleteAContract(string idInput) {
-            try {
+        public bool DeleteAContract(string idInput) {
+            try
+            {
                 //kiem tra contract co ton tai
-                if(findIDInputInTable(idInput)) {
-                    Contract aContract = aHRM.Contracts.SingleOrDefault(ct => ct.ContractID == idInput);
-                    aHRM.Contracts.DeleteOnSubmit(aContract);
-                    aHRM.SubmitChanges();
+                if(FindIdInputInTable(idInput)) {
+                    Contract aContract = _aHrm.Contracts.SingleOrDefault(ct => ct.ContractID == idInput);
+                    _aHrm.Contracts.DeleteOnSubmit(aContract);
+                    _aHrm.SubmitChanges();
                     return true;
                 }
-                else {
-                    return false;
-                }
+                return false;
             }
             catch (Exception ex) {
                 return false;
             }
         }
         //Lấy Lương cơ bản trong bảng hợp đồng dựa vào Mã nhân viên
-        public decimal GetBasicPayByStaffID(string StaffID)
+        public decimal GetBasicPayByStaffId(string staffId)
         {
-            var basicPay = (from cc in aHRM.Contracts where cc.StaffID == StaffID select cc.BasicPay).FirstOrDefault();
+            var basicPay = (from cc in _aHrm.Contracts where cc.StaffID == staffId select cc.BasicPay).FirstOrDefault();
             return Convert.ToDecimal(basicPay);
         }
     }
