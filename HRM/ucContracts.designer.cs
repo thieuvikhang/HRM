@@ -59,10 +59,10 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lblThongBao = new System.Windows.Forms.Label();
             this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.lblThongBao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -125,6 +125,7 @@
             this.btnSave.Size = new System.Drawing.Size(85, 34);
             this.btnSave.TabIndex = 52;
             this.btnSave.Text = "Lưu";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -179,7 +180,7 @@
             // 
             // dateEnd
             // 
-            this.dateEnd.EditValue = null;
+            this.dateEnd.EditValue = new System.DateTime(2017, 3, 11, 1, 22, 24, 487);
             this.dateEnd.Location = new System.Drawing.Point(391, 54);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -189,10 +190,14 @@
             this.dateEnd.Size = new System.Drawing.Size(163, 20);
             this.dateEnd.TabIndex = 37;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
+            this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged);
             // 
             // cbbStatus
             // 
             this.cbbStatus.FormattingEnabled = true;
+            this.cbbStatus.Items.AddRange(new object[] {
+            "còn",
+            "hết"});
             this.cbbStatus.Location = new System.Drawing.Point(107, 132);
             this.cbbStatus.Name = "cbbStatus";
             this.cbbStatus.Size = new System.Drawing.Size(163, 21);
@@ -229,6 +234,7 @@
             this.cbbStaffID.Name = "cbbStaffID";
             this.cbbStaffID.Size = new System.Drawing.Size(163, 21);
             this.cbbStaffID.TabIndex = 31;
+            this.cbbStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStaffID_KeyPress);
             // 
             // mmNote
             // 
@@ -387,6 +393,15 @@
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.Location = new System.Drawing.Point(15, 234);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(35, 13);
+            this.lblThongBao.TabIndex = 47;
+            this.lblThongBao.Text = "label1";
+            // 
             // gcContract
             // 
             this.gcContract.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -407,15 +422,6 @@
             // dxErrorProvider1
             // 
             this.dxErrorProvider1.ContainerControl = this;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.AutoSize = true;
-            this.lblThongBao.Location = new System.Drawing.Point(15, 234);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(35, 13);
-            this.lblThongBao.TabIndex = 47;
-            this.lblThongBao.Text = "label1";
             // 
             // ucContract
             // 
