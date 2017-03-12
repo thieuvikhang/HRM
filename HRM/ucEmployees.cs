@@ -13,10 +13,11 @@ namespace HRM
         {
             InitializeComponent();
         }
-
         readonly StaffBus _staffBus = new StaffBus();
         readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         int _checkAdd = 0;
+        readonly StaffBus staffbus = new StaffBus();
+
         private void labelControl7_Click(object sender, EventArgs e)
         {
 
@@ -36,6 +37,8 @@ namespace HRM
             dateStart.Enabled = val;
             dateBirth.Enabled = val;
             txtEmail.Enabled = val;
+            rbNam.Enabled = val;
+            rbNu.Enabled = val;
         }
         public void ResettextBox()
         {
@@ -44,10 +47,10 @@ namespace HRM
             txtPhone.Text = "";
             txtAddress.Text = "";
             txtCardID.Text = "";
-            cbbSection.Text = "";
-            cbbPost.Text = "";
-            cbbManID.Text = "";
-            cbbEducation.Text = "";
+            //cbbSection.Text = "";
+            //cbbPost.Text = "";
+            //cbbManID.Text = "";
+            //cbbEducation.Text = "";
             dateEnd.Text = "";
             dateStart.Text = "";
             dateBirth.Text = "";
@@ -120,6 +123,7 @@ namespace HRM
         private void gridControl1_Click(object sender, EventArgs e)
         {
             GetInfo();
+            dxErrorProvider.ClearErrors();
         }
         public void LoadStaff()
         {
@@ -139,31 +143,36 @@ namespace HRM
 
         public void AddStaff()
         {
+            DateTime cc;
             string section = cbbSection.SelectedValue.ToString();
             string post = cbbPost.SelectedValue.ToString();
             string manid = cbbManID.SelectedValue.ToString();
+            bool gender = true;
             if(rbNam.Checked==true)
             {
-                _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post,section);
+                gender = true;             
             }
             else
             {
-                _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+                gender = false;
             }
+            _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, gender, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
         }
         public void EditStaff()
         {
             string section = cbbSection.SelectedValue.ToString();
             string post = cbbPost.SelectedValue.ToString();
             string manid = cbbManID.SelectedValue.ToString();
-            if (rbNam.Checked == true)
+            bool gioitinh = true;
+            if (rbNam.Checked)
             {
-                _staffBus.editAStaff(txtStaffID.Text, txtName.Text, true, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+                gioitinh = true;
             }
             else
             {
-                _staffBus.editAStaff(txtStaffID.Text, txtName.Text, false, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+                gioitinh = false;
             }
+            _staffBus.editAStaff(txtStaffID.Text, txtName.Text, gioitinh, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
         }
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
@@ -181,19 +190,37 @@ namespace HRM
             {
                 if(_checkAdd == 1)
                 {
-                    AddStaff();
-                    ResettextBox();
-                    SetTxt(false);
-                    SetBtn(true);
-                    gcEmployees.Enabled = true;
+                    if (string.IsNullOrEmpty(txtStaffID.Text))
+                    {
+                        dxErrorProvider.SetError(txtStaffID, "Mã nhân viên ko dc trống");
+                    }
+                    if (string.IsNullOrEmpty(txtName.Text))
+                    {
+                        dxErrorProvider.SetError(txtName, "Tên nhân viên ko dc trống");
+                    }
+                    if (!dxErrorProvider.HasErrors)
+                    {
+                        AddStaff();
+                        ResettextBox();
+                        SetTxt(false);
+                        SetBtn(true);
+                        gcEmployees.Enabled = true;
+                    }
                 }
-                else if(_checkAdd == 2)
+                if(_checkAdd == 2)
                 {
-                    EditStaff();
-                    ResettextBox();
-                    SetTxt(false);
-                    SetBtn(true);
-                    gcEmployees.Enabled = true;
+                    if (string.IsNullOrEmpty(txtName.Text))
+                    {
+                        dxErrorProvider.SetError(txtName, "Tên nhân viên ko dc trống");
+                    }
+                    if (!dxErrorProvider.HasErrors)
+                    {
+                        EditStaff();
+                        ResettextBox();
+                        SetTxt(false);
+                        SetBtn(true);
+                        gcEmployees.Enabled = true;
+                    }
                 }
             }
             catch
@@ -216,6 +243,16 @@ namespace HRM
             cbbManID.Text = gridView1.GetFocusedRowCellDisplayText(gcManagerID);
             txtEmail.Text = gridView1.GetFocusedRowCellDisplayText(gcEmail);
             cbbPost.Text = gridView1.GetFocusedRowCellDisplayText(gcPosition);
+            string gender = gridView1.GetFocusedRowCellDisplayText(gcoGender);
+            if(gender == "Nam")
+            {
+                rbNam.Checked = true;
+            }
+            else
+            {
+                rbNu.Checked = true;
+            }
+            
             cbbSection.Text = gridView1.GetFocusedRowCellDisplayText(gcSection);
 
         }
@@ -266,6 +303,71 @@ namespace HRM
         private void btnEdit_Click(object sender, EventArgs e)
         {
             _checkAdd = 2;
+            SetTxt(true);
+            SetBtn(false);
+            txtStaffID.Enabled = false;
+            gcEmployees.Enabled = false;
+        }
+
+        private void groupControl2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            SetBtn(true);
+            ResettextBox();
+            SetTxt(false);
+            _checkAdd = 0;
+            dxErrorProvider.ClearErrors();
+            gcEmployees.Enabled = true;
+        }
+
+        private void txtStaffID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txtStaffID_TextChanged(object sender, EventArgs e)
+        {
+            if ((staffbus.FindIdInputInTable(txtStaffID.Text) == true))
+            {
+                dxErrorProvider.SetError(txtStaffID, "Mã phòng ban trùng");
+            }
+            else
+            {
+                dxErrorProvider.SetError(txtStaffID, null);
+            }
+        }
+
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dxErrorProvider.SetError(txtName, null);
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            if ((staffbus.FindEmailInputInTable(txtEmail.Text) == true))
+            {
+                dxErrorProvider.SetError(txtEmail, "Email trùng");
+            }
+            else
+            {
+                dxErrorProvider.SetError(txtEmail, null);
+            }
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            if ((staffbus.FindPhoneInputInTable(txtPhone.Text) == true))
+            {
+                dxErrorProvider.SetError(txtPhone, "Số điện thoại trùng");
+            }
+            else
+            {
+                dxErrorProvider.SetError(txtPhone, null);
+            }
         }
     }
 }

@@ -143,7 +143,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1044, 250);
+            this.panelControl1.Size = new System.Drawing.Size(1090, 250);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
@@ -154,10 +154,11 @@
             this.groupControl2.Controls.Add(this.btnEdit);
             this.groupControl2.Controls.Add(this.btnAdd);
             this.groupControl2.Controls.Add(this.btnSave);
-            this.groupControl2.Location = new System.Drawing.Point(420, 156);
+            this.groupControl2.Location = new System.Drawing.Point(436, 155);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(458, 67);
             this.groupControl2.TabIndex = 52;
+            this.groupControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl2_Paint);
             // 
             // btnDelete
             // 
@@ -181,6 +182,7 @@
             this.btnCancel.Size = new System.Drawing.Size(85, 34);
             this.btnCancel.TabIndex = 51;
             this.btnCancel.Text = "Hủy";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnEdit
             // 
@@ -221,7 +223,7 @@
             // cbbManID
             // 
             this.cbbManID.FormattingEnabled = true;
-            this.cbbManID.Location = new System.Drawing.Point(683, 129);
+            this.cbbManID.Location = new System.Drawing.Point(699, 128);
             this.cbbManID.Name = "cbbManID";
             this.cbbManID.Size = new System.Drawing.Size(144, 21);
             this.cbbManID.TabIndex = 51;
@@ -229,7 +231,7 @@
             // cbbPost
             // 
             this.cbbPost.FormattingEnabled = true;
-            this.cbbPost.Location = new System.Drawing.Point(683, 76);
+            this.cbbPost.Location = new System.Drawing.Point(699, 75);
             this.cbbPost.Name = "cbbPost";
             this.cbbPost.Size = new System.Drawing.Size(144, 21);
             this.cbbPost.TabIndex = 50;
@@ -237,7 +239,7 @@
             // cbbSection
             // 
             this.cbbSection.FormattingEnabled = true;
-            this.cbbSection.Location = new System.Drawing.Point(683, 103);
+            this.cbbSection.Location = new System.Drawing.Point(699, 102);
             this.cbbSection.Name = "cbbSection";
             this.cbbSection.Size = new System.Drawing.Size(144, 21);
             this.cbbSection.TabIndex = 49;
@@ -248,7 +250,7 @@
             this.cbbEducation.Items.AddRange(new object[] {
             "Đại học",
             "Cao Đẳng"});
-            this.cbbEducation.Location = new System.Drawing.Point(683, 50);
+            this.cbbEducation.Location = new System.Drawing.Point(699, 49);
             this.cbbEducation.Name = "cbbEducation";
             this.cbbEducation.Size = new System.Drawing.Size(144, 21);
             this.cbbEducation.TabIndex = 48;
@@ -257,7 +259,7 @@
             // 
             this.groupBox1.Controls.Add(this.rbNu);
             this.groupBox1.Controls.Add(this.rbNam);
-            this.groupBox1.Location = new System.Drawing.Point(103, 77);
+            this.groupBox1.Location = new System.Drawing.Point(119, 76);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(163, 43);
             this.groupBox1.TabIndex = 43;
@@ -290,7 +292,7 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl4.Location = new System.Drawing.Point(51, 96);
+            this.labelControl4.Location = new System.Drawing.Point(67, 95);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(46, 16);
             this.labelControl4.TabIndex = 42;
@@ -299,7 +301,7 @@
             // dateEnd
             // 
             this.dateEnd.EditValue = null;
-            this.dateEnd.Location = new System.Drawing.Point(366, 129);
+            this.dateEnd.Location = new System.Drawing.Point(382, 128);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -311,7 +313,7 @@
             // dateStart
             // 
             this.dateStart.EditValue = null;
-            this.dateStart.Location = new System.Drawing.Point(366, 103);
+            this.dateStart.Location = new System.Drawing.Point(382, 102);
             this.dateStart.Name = "dateStart";
             this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -323,7 +325,7 @@
             // dateBirth
             // 
             this.dateBirth.EditValue = null;
-            this.dateBirth.Location = new System.Drawing.Point(103, 126);
+            this.dateBirth.Location = new System.Drawing.Point(119, 125);
             this.dateBirth.Name = "dateBirth";
             this.dateBirth.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -334,7 +336,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(884, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(900, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(155, 204);
             this.pictureBox1.TabIndex = 36;
@@ -343,7 +345,7 @@
             // labelControl14
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl14.Location = new System.Drawing.Point(617, 104);
+            this.labelControl14.Location = new System.Drawing.Point(633, 103);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(60, 16);
             this.labelControl14.TabIndex = 32;
@@ -352,7 +354,7 @@
             // labelControl15
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl15.Location = new System.Drawing.Point(631, 78);
+            this.labelControl15.Location = new System.Drawing.Point(647, 77);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(46, 16);
             this.labelControl15.TabIndex = 31;
@@ -360,15 +362,16 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(366, 77);
+            this.txtEmail.Location = new System.Drawing.Point(382, 76);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(171, 20);
             this.txtEmail.TabIndex = 29;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // labelControl13
             // 
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl13.Location = new System.Drawing.Point(329, 78);
+            this.labelControl13.Location = new System.Drawing.Point(345, 77);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(31, 16);
             this.labelControl13.TabIndex = 27;
@@ -377,7 +380,7 @@
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl8.Location = new System.Drawing.Point(551, 130);
+            this.labelControl8.Location = new System.Drawing.Point(567, 129);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(126, 16);
             this.labelControl8.TabIndex = 24;
@@ -386,7 +389,7 @@
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl9.Location = new System.Drawing.Point(283, 130);
+            this.labelControl9.Location = new System.Drawing.Point(299, 129);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(77, 16);
             this.labelControl9.TabIndex = 23;
@@ -395,7 +398,7 @@
             // labelControl10
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl10.Location = new System.Drawing.Point(285, 104);
+            this.labelControl10.Location = new System.Drawing.Point(301, 103);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(75, 16);
             this.labelControl10.TabIndex = 20;
@@ -404,7 +407,7 @@
             // labelControl11
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl11.Location = new System.Drawing.Point(581, 52);
+            this.labelControl11.Location = new System.Drawing.Point(597, 51);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(96, 16);
             this.labelControl11.TabIndex = 19;
@@ -412,7 +415,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(366, 25);
+            this.txtAddress.Location = new System.Drawing.Point(382, 24);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(171, 20);
             this.txtAddress.TabIndex = 18;
@@ -420,17 +423,18 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(366, 51);
+            this.txtPhone.Location = new System.Drawing.Point(382, 50);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(171, 20);
             this.txtPhone.TabIndex = 17;
             this.txtPhone.EditValueChanged += new System.EventHandler(this.textEdit4_EditValueChanged);
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl3.Location = new System.Drawing.Point(321, 26);
+            this.labelControl3.Location = new System.Drawing.Point(337, 25);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(39, 16);
             this.labelControl3.TabIndex = 16;
@@ -440,7 +444,7 @@
             // labelControl7
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl7.Location = new System.Drawing.Point(302, 52);
+            this.labelControl7.Location = new System.Drawing.Point(318, 51);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(58, 16);
             this.labelControl7.TabIndex = 15;
@@ -449,7 +453,7 @@
             // 
             // txtCardID
             // 
-            this.txtCardID.Location = new System.Drawing.Point(683, 25);
+            this.txtCardID.Location = new System.Drawing.Point(699, 24);
             this.txtCardID.Name = "txtCardID";
             this.txtCardID.Size = new System.Drawing.Size(144, 20);
             this.txtCardID.TabIndex = 13;
@@ -458,7 +462,7 @@
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl5.Location = new System.Drawing.Point(624, 26);
+            this.labelControl5.Location = new System.Drawing.Point(640, 25);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(53, 16);
             this.labelControl5.TabIndex = 11;
@@ -467,7 +471,7 @@
             // labelControl6
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl6.Location = new System.Drawing.Point(42, 127);
+            this.labelControl6.Location = new System.Drawing.Point(58, 126);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(55, 16);
             this.labelControl6.TabIndex = 10;
@@ -475,35 +479,38 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(103, 51);
+            this.txtName.Location = new System.Drawing.Point(119, 50);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(163, 20);
             this.txtName.TabIndex = 5;
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtStaffID
             // 
-            this.txtStaffID.Location = new System.Drawing.Point(103, 25);
+            this.txtStaffID.Location = new System.Drawing.Point(119, 24);
             this.txtStaffID.Name = "txtStaffID";
             this.txtStaffID.Size = new System.Drawing.Size(163, 20);
             this.txtStaffID.TabIndex = 4;
+            this.txtStaffID.TextChanged += new System.EventHandler(this.txtStaffID_TextChanged);
+            this.txtStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStaffID_KeyPress);
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl2.Location = new System.Drawing.Point(16, 52);
+            this.labelControl2.Location = new System.Drawing.Point(10, 51);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(81, 16);
+            this.labelControl2.Size = new System.Drawing.Size(103, 16);
             this.labelControl2.TabIndex = 3;
-            this.labelControl2.Text = "Tên nhân viên";
+            this.labelControl2.Text = "Tên nhân viên (*)";
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl1.Location = new System.Drawing.Point(21, 26);
+            this.labelControl1.Location = new System.Drawing.Point(15, 25);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(76, 16);
+            this.labelControl1.Size = new System.Drawing.Size(98, 16);
             this.labelControl1.TabIndex = 2;
-            this.labelControl1.Text = "Mã nhân viên";
+            this.labelControl1.Text = "Mã nhân viên (*)";
             // 
             // gcEmployees
             // 
@@ -511,7 +518,7 @@
             this.gcEmployees.Location = new System.Drawing.Point(0, 250);
             this.gcEmployees.MainView = this.gridView1;
             this.gcEmployees.Name = "gcEmployees";
-            this.gcEmployees.Size = new System.Drawing.Size(1044, 328);
+            this.gcEmployees.Size = new System.Drawing.Size(1090, 328);
             this.gcEmployees.TabIndex = 1;
             this.gcEmployees.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -653,14 +660,14 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
-            // ucEmployees
+            // UcEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcEmployees);
             this.Controls.Add(this.panelControl1);
             this.Name = "UcEmployees";
-            this.Size = new System.Drawing.Size(1044, 578);
+            this.Size = new System.Drawing.Size(1090, 578);
             this.Load += new System.EventHandler(this.ucEmployees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);

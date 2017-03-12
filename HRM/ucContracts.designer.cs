@@ -59,7 +59,6 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new System.Windows.Forms.Label();
             this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
@@ -114,6 +113,7 @@
             this.btnEdit.Size = new System.Drawing.Size(85, 34);
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "Sửa";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnSave
             // 
@@ -365,7 +365,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.lblThongBao);
             this.panelControl1.Controls.Add(this.dateStart);
             this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
@@ -395,15 +394,6 @@
             this.panelControl1.Size = new System.Drawing.Size(835, 250);
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.AutoSize = true;
-            this.lblThongBao.Location = new System.Drawing.Point(15, 234);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(35, 13);
-            this.lblThongBao.TabIndex = 47;
-            this.lblThongBao.Text = "label1";
             // 
             // gcContract
             // 
@@ -489,6 +479,5 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
-        private System.Windows.Forms.Label lblThongBao;
     }
 }

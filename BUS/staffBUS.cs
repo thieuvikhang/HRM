@@ -17,7 +17,7 @@ namespace BUS
                              {
                                  st.StaffID,
                                  st.StaffName,
-                                 st.Gender,
+                                 Gender = st.Gender == true ? @"Nam" : @"Nữ",
                                  st.BirthDay,
                                  st.CardID,
                                  st.Phone,
@@ -217,6 +217,38 @@ namespace BUS
                 return true;
             }
         }
+        public bool FindPhoneInputInTable(string phoneInput)
+        {
+            int numberOfRecords = (from ct in _aHrm.Staffs
+                                   where ct.Phone == phoneInput
+                                   select ct).Count();
+            if (numberOfRecords == 0)
+            {
+                //idInput khong ton tai trong table contract
+                return false;
+            }
+            else
+            {
+                //idInput da ton tai trong table contract
+                return true;
+            }
+        }
+        public bool FindEmailInputInTable(string emailInput)
+        {
+            int numberOfRecords = (from ct in _aHrm.Staffs
+                                   where ct.Email == emailInput
+                                   select ct).Count();
+            if (numberOfRecords == 0)
+            {
+                //idInput khong ton tai trong table contract
+                return false;
+            }
+            else
+            {
+                //idInput da ton tai trong table contract
+                return true;
+            }
+        }
         public bool CreateAStaff(string idInput, string nameInput, Boolean genderInput, DateTime birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
         {
             try
@@ -251,7 +283,11 @@ namespace BUS
                 return false;
             }
         }
-        public bool editAStaff(string newid, string nameInput, Boolean genderInput, DateTime birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
+        public bool editAStaff(string newid, string nameInput, Boolean genderInput, 
+            DateTime birthdayInput, string cardidInput, string phoneInput, 
+            string addressInput, string eduInput, DateTime? startdateInput,
+            DateTime enddateInput, string manageridInput, string emailInput, 
+            int dayremainInput, string postidInput, string sectionidInput)
         {
             try
             {
@@ -273,8 +309,7 @@ namespace BUS
                     aStaff.DaysRemain = dayremainInput;
                     aStaff.PostID = postidInput;
                     aStaff.SectionID = sectionidInput;
-
-                    _aHrm.Staffs.InsertOnSubmit(aStaff);
+                    
                     _aHrm.SubmitChanges();
                     return true;
                 }

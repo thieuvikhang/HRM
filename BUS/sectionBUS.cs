@@ -72,7 +72,7 @@ namespace BUS
         public bool CreateASection(string idInput, string nameInput, string descriptionInput, int standWorkDayInput, string phoneInput) {
             try
             {
-                if (FindIdInputIntable(idInput) == false && FindPhoneInputIntable(phoneInput) == false && FindNameInputIntable(nameInput) == false) {
+                if (FindIdInputIntable(idInput) == false && FindNameInputIntable(nameInput) == false) {
                     Section aSection = new Section();
                     aSection.SectionID = idInput;
                     aSection.SectionName = nameInput;

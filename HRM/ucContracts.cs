@@ -163,5 +163,10 @@ namespace HRM
             dateEnd.Properties.MinValue = dateStart.DateTime;
             dateEnd.Properties.MaxValue = DateTime.Now;
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

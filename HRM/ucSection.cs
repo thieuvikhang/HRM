@@ -181,10 +181,6 @@ namespace HRM
                 //kiem tra xoa
                 if(_checkAdd == 2)
                 {
-                    if (string.IsNullOrEmpty(txtSectionID.Text))
-                    {
-                        dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc trống");
-                    }
                     if (string.IsNullOrEmpty(txtName.Text))
                     {
                         dxErrorProvider.SetError(txtName, "Tên phòng ko dc trống");
@@ -274,10 +270,11 @@ namespace HRM
 
         private void txtPhone_TextChanged_1(object sender, EventArgs e)
         {
-            if (_sectionBus.FindPhoneInputIntable(txtPhone.Text) == true)
+            if ((_sectionBus.FindPhoneInputIntable(txtPhone.Text) == true) &&(txtPhone.Text != ""))
             {
                 dxErrorProvider.SetError(txtPhone, "Số điện thoại trùng");
             }
+         
             else
             {
                 dxErrorProvider.SetError(txtPhone, null);
