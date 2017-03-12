@@ -125,7 +125,6 @@
             this.btnSave.Size = new System.Drawing.Size(85, 34);
             this.btnSave.TabIndex = 52;
             this.btnSave.Text = "Lưu";
-            //this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -190,7 +189,6 @@
             this.dateEnd.Size = new System.Drawing.Size(163, 20);
             this.dateEnd.TabIndex = 37;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
-            //this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged);
             // 
             // cbbStatus
             // 
@@ -206,6 +204,9 @@
             // cbbCurrency
             // 
             this.cbbCurrency.FormattingEnabled = true;
+            this.cbbCurrency.Items.AddRange(new object[] {
+            "VND",
+            "USD"});
             this.cbbCurrency.Location = new System.Drawing.Point(391, 132);
             this.cbbCurrency.Name = "cbbCurrency";
             this.cbbCurrency.Size = new System.Drawing.Size(163, 21);
@@ -214,6 +215,9 @@
             // cbbPayment
             // 
             this.cbbPayment.FormattingEnabled = true;
+            this.cbbPayment.Items.AddRange(new object[] {
+            "Tiền mặt",
+            "Qua ATM"});
             this.cbbPayment.Location = new System.Drawing.Point(391, 79);
             this.cbbPayment.Name = "cbbPayment";
             this.cbbPayment.Size = new System.Drawing.Size(163, 21);
@@ -234,7 +238,6 @@
             this.cbbStaffID.Name = "cbbStaffID";
             this.cbbStaffID.Size = new System.Drawing.Size(163, 21);
             this.cbbStaffID.TabIndex = 31;
-            //this.cbbStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStaffID_KeyPress);
             // 
             // mmNote
             // 
@@ -423,7 +426,7 @@
             // 
             this.dxErrorProvider1.ContainerControl = this;
             // 
-            // ucContract
+            // UcContract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

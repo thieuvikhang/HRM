@@ -98,7 +98,20 @@ namespace HRM
             //Mở Tab BHXH
             AddTab("BHXH", new UcSocialInsurancecs());
         }
+        
+        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab loại hợp đồng
+            AddTab("Loại hợp đồng", new ucContractTypes());
+        }
+        
+        private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Chức vụ", new ucPostions());
+        }
         #endregion
-
     }
 }

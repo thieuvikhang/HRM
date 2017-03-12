@@ -48,6 +48,8 @@ namespace HRM
             dateEnd.DateTime = DateTime.Now;
             dateStart.DateTime = DateTime.Now;
             dateStart.Properties.MaxValue = DateTime.Now;
+            cbbCurrency.SelectedItem = "VND";
+            cbbPayment.SelectedItem = "Tiền mặt";
         }
 
 

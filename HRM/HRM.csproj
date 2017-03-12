@@ -87,11 +87,23 @@
     <Compile Include="ucContracts.designer.cs">
       <DependentUpon>ucContracts.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucContractTypes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucContractTypes.Designer.cs">
+      <DependentUpon>ucContractTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucEmployees.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucEmployees.Designer.cs">
       <DependentUpon>ucEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucPostions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucPostions.Designer.cs">
+      <DependentUpon>ucPostions.cs</DependentUpon>
     </Compile>
     <Compile Include="ucSalary.cs">
       <SubType>UserControl</SubType>
@@ -140,8 +152,14 @@
     <EmbeddedResource Include="ucContracts.resx">
       <DependentUpon>ucContracts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucContractTypes.resx">
+      <DependentUpon>ucContractTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucEmployees.resx">
       <DependentUpon>ucEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucPostions.resx">
+      <DependentUpon>ucPostions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucSalary.resx">
       <DependentUpon>ucSalary.cs</DependentUpon>
