@@ -280,6 +280,7 @@
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsFind.AlwaysVisible = true;
+            this.gridView1.OptionsFind.FindNullPrompt = "Nhập tên phòng ban";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             // 
             // gCoSectionID
@@ -326,7 +327,7 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
-            // ucSection
+            // UcSection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

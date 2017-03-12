@@ -2,15 +2,32 @@
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using BUS;
+using DevExpress.XtraGrid.Localization;
 
 namespace HRM
 {
     public partial class UcSection : XtraUserControl
     {
         int _checkAdd = 0;
+        public class MyGridLocalizer : GridLocalizer
+        {
+            public override string GetLocalizedString(GridStringId id)
+            {
+                switch (id)
+                {
+                    case GridStringId.FindControlFindButton:
+                        return "Tìm kiếm";
+                    case GridStringId.FindControlClearButton:
+                        return "Hủy";
+                    default:
+                        return base.GetLocalizedString(id);
+                }
+            }
+        }
         public UcSection()
         {
             InitializeComponent();
+            GridLocalizer.Active = new MyGridLocalizer();
         }
 
         readonly SectionBus _sectionBus = new SectionBus();
