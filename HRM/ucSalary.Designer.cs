@@ -36,9 +36,7 @@
             this.btThemLuong = new DevExpress.XtraEditors.SimpleButton();
             this.cbbMonthYear = new System.Windows.Forms.ComboBox();
             this.cbbStaffID = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnXem = new DevExpress.XtraEditors.SimpleButton();
             this.gcSalary = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -91,9 +89,7 @@
             this.panelControl1.Controls.Add(this.btThemLuong);
             this.panelControl1.Controls.Add(this.cbbMonthYear);
             this.panelControl1.Controls.Add(this.cbbStaffID);
-            this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.btnXem);
             this.panelControl1.Controls.Add(this.labelControl8);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -119,54 +115,31 @@
             this.cbbMonthYear.FormattingEnabled = true;
             this.cbbMonthYear.Items.AddRange(new object[] {
             "Tất cả"});
-            this.cbbMonthYear.Location = new System.Drawing.Point(442, 28);
+            this.cbbMonthYear.Location = new System.Drawing.Point(127, 94);
             this.cbbMonthYear.Name = "cbbMonthYear";
-            this.cbbMonthYear.Size = new System.Drawing.Size(231, 21);
+            this.cbbMonthYear.Size = new System.Drawing.Size(263, 21);
             this.cbbMonthYear.TabIndex = 41;
-            this.cbbMonthYear.SelectedIndexChanged += new System.EventHandler(this.cbbMonthYear_SelectedIndexChanged);
+            this.cbbMonthYear.TextChanged += new System.EventHandler(this.cbbMonthYear_TextChanged);
             // 
             // cbbStaffID
             // 
             this.cbbStaffID.FormattingEnabled = true;
             this.cbbStaffID.Items.AddRange(new object[] {
             "Tất cả"});
-            this.cbbStaffID.Location = new System.Drawing.Point(114, 28);
+            this.cbbStaffID.Location = new System.Drawing.Point(127, 32);
             this.cbbStaffID.Name = "cbbStaffID";
-            this.cbbStaffID.Size = new System.Drawing.Size(235, 21);
+            this.cbbStaffID.Size = new System.Drawing.Size(263, 21);
             this.cbbStaffID.TabIndex = 40;
-            this.cbbStaffID.SelectedIndexChanged += new System.EventHandler(this.cbbStaffID_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(306, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 26);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "Bảng tính lương";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbbStaffID.TextChanged += new System.EventHandler(this.cbbStaffID_TextChanged);
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl1.Location = new System.Drawing.Point(366, 33);
+            this.labelControl1.Location = new System.Drawing.Point(15, 95);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(70, 16);
             this.labelControl1.TabIndex = 37;
             this.labelControl1.Text = "Chọn tháng:";
-            // 
-            // btnXem
-            // 
-            this.btnXem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXem.Appearance.Options.UseFont = true;
-            this.btnXem.Image = global::HRM.Properties.Resources.reset_32x32;
-            this.btnXem.Location = new System.Drawing.Point(690, 24);
-            this.btnXem.Name = "btnXem";
-            this.btnXem.Size = new System.Drawing.Size(85, 34);
-            this.btnXem.TabIndex = 0;
-            this.btnXem.Text = "Xem";
-            this.btnXem.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // gcSalary
             // 
@@ -252,7 +225,7 @@
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 6;
             // 
-            // ucSalary
+            // UcSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -278,8 +251,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gcSalary;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton btnXem;
-        private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.ComboBox cbbMonthYear;
         private System.Windows.Forms.ComboBox cbbStaffID;
