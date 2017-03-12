@@ -3,7 +3,8 @@ using System.Linq;
 using System.Windows.Forms;
 using DAL;
 using DevExpress.XtraEditors;
-using  BUS;
+using BUS;
+using System.Text.RegularExpressions;
 
 namespace HRM
 {
@@ -139,6 +140,7 @@ namespace HRM
             LoadComboboxManId();
             rbNam.Checked = true;
             cbbEducation.SelectedItem = "Đại học";
+            txtStaffID.Properties.MaxLength = 6;
         }
 
         public void AddStaff()
@@ -156,7 +158,24 @@ namespace HRM
             {
                 gender = false;
             }
-            _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, gender, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+            DateTime? birth = null, start = null, end = null;
+            if (dateBirth.SelectionLength != 0)
+            {
+                birth = dateBirth.DateTime;
+            }
+            if (dateStart.SelectionLength != 0)
+            {
+                start = dateStart.DateTime;
+
+            }
+            if (dateEnd.SelectionLength != 0)
+            {
+                end = dateEnd.DateTime;
+
+            }
+            _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, gender, birth,
+                txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, start, end,
+                manid, txtEmail.Text, 10, post, section);          
         }
         public void EditStaff()
         {
@@ -174,6 +193,13 @@ namespace HRM
             }
             _staffBus.editAStaff(txtStaffID.Text, txtName.Text, gioitinh, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
         }
+        public const string MatchEmailPattern =
+            @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+     + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+				[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+     + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+				[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+     + @"([a-zA-Z0-9]+[\w-]+\.)+[a-zA-Z]{1}[a-zA-Z0-9-]{1,23})$";
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             SetTxt(true);
@@ -348,7 +374,11 @@ namespace HRM
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            if ((staffbus.FindEmailInputInTable(txtEmail.Text) == true))
+            if(!Regex.IsMatch(txtEmail.Text,MatchEmailPattern))
+            {
+                dxErrorProvider.SetError(txtEmail, "Email chưa đúng định dạng");
+            }
+            else if ((staffbus.FindEmailInputInTable(txtEmail.Text) == true))
             {
                 dxErrorProvider.SetError(txtEmail, "Email trùng");
             }
@@ -360,7 +390,7 @@ namespace HRM
 
         private void txtPhone_TextChanged(object sender, EventArgs e)
         {
-            if ((staffbus.FindPhoneInputInTable(txtPhone.Text) == true))
+            if ((staffbus.FindPhoneInputInTable(txtPhone.Text) == true) && (txtPhone.Text != ""))
             {
                 dxErrorProvider.SetError(txtPhone, "Số điện thoại trùng");
             }

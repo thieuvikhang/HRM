@@ -52,6 +52,7 @@ namespace HRM
             SetTxt(false);
             SetBtn(true);
             txtPhone.Properties.MaxLength = 11;
+            txtSectionID.Properties.MaxLength = 6;
             numStandardWorkdays.Minimum = 24;
             numStandardWorkdays.Maximum = 26;      
         }

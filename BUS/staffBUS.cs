@@ -249,7 +249,7 @@ namespace BUS
                 return true;
             }
         }
-        public bool CreateAStaff(string idInput, string nameInput, Boolean genderInput, DateTime birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
+        public bool CreateAStaff(string idInput, string nameInput, Boolean genderInput, DateTime? birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime? enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
         {
             try
             {
