@@ -43,8 +43,6 @@ namespace HRM
             txtName.Text = "";
             txtPhone.Text = "";
             mmDescription.Text = "";
-
-            //txtTTSanPham.Text = "";
         }
         private void ucSection_Load(object sender, EventArgs e)
         {

@@ -230,6 +230,7 @@
             // 
             // cbbPost
             // 
+            this.cbbPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbPost.FormattingEnabled = true;
             this.cbbPost.Location = new System.Drawing.Point(699, 75);
             this.cbbPost.Name = "cbbPost";
@@ -238,6 +239,7 @@
             // 
             // cbbSection
             // 
+            this.cbbSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbSection.FormattingEnabled = true;
             this.cbbSection.Location = new System.Drawing.Point(699, 102);
             this.cbbSection.Name = "cbbSection";
@@ -479,6 +481,7 @@
             // 
             // txtName
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtName, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtName.Location = new System.Drawing.Point(119, 50);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(163, 20);
@@ -487,6 +490,7 @@
             // 
             // txtStaffID
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtStaffID, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtStaffID.Location = new System.Drawing.Point(119, 24);
             this.txtStaffID.Name = "txtStaffID";
             this.txtStaffID.Size = new System.Drawing.Size(163, 20);

@@ -100,6 +100,7 @@
             // 
             // txtPhone
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtPhone, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtPhone.Location = new System.Drawing.Point(155, 79);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(169, 20);
@@ -128,6 +129,7 @@
             // 
             // txtName
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtName, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtName.Location = new System.Drawing.Point(155, 53);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(171, 20);
@@ -146,6 +148,7 @@
             // 
             // txtSectionID
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtSectionID, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtSectionID.Location = new System.Drawing.Point(155, 27);
             this.txtSectionID.Name = "txtSectionID";
             this.txtSectionID.Size = new System.Drawing.Size(171, 20);
@@ -282,6 +285,7 @@
             this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsFind.FindNullPrompt = "Nhập tên phòng ban";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowDetailButtons = false;
             // 
             // gCoSectionID
             // 
