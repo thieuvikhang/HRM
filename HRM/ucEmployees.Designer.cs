@@ -149,6 +149,7 @@
             // 
             // txtMail
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtMail, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtMail.Location = new System.Drawing.Point(383, 75);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(170, 20);
@@ -427,6 +428,7 @@
             // 
             // txtPhone
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtPhone, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtPhone.Location = new System.Drawing.Point(382, 50);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(171, 20);
@@ -457,10 +459,12 @@
             // 
             // txtCardID
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtCardID, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtCardID.Location = new System.Drawing.Point(699, 24);
             this.txtCardID.Name = "txtCardID";
             this.txtCardID.Size = new System.Drawing.Size(144, 20);
             this.txtCardID.TabIndex = 10;
+            this.txtCardID.TextChanged += new System.EventHandler(this.txtCardID_TextChanged);
             this.txtCardID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardID_KeyPress);
             // 
             // labelControl5

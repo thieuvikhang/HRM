@@ -157,6 +157,12 @@ namespace HRM
             rbNam.Checked = true;
             cbbEducation.SelectedItem = "Đại học";
             txtStaffID.Properties.MaxLength = 6;
+            txtName.Properties.MaxLength = 30;
+            txtCardID.Properties.MaxLength = 12;
+            cbbEducation.MaxLength = 30;
+            txtPhone.Properties.MaxLength = 11;
+            txtMail.Properties.MaxLength = 20;
+            txtAddress.Properties.MaxLength = 50;
         }
         private bool CheckDateStartVsDateEnd()
         {
@@ -451,6 +457,18 @@ namespace HRM
         private void dateEnd_DateTimeChanged(object sender, EventArgs e)
         {
             dateStart.Properties.MaxValue = dateEnd.DateTime;
+        }
+
+        private void txtCardID_TextChanged(object sender, EventArgs e)
+        {
+            if ((staffbus.FindCardIDInputInTable(txtCardID.Text) == true))
+            {
+                dxErrorProvider.SetError(txtCardID, "CMND trùng");
+            }
+            else
+            {
+                dxErrorProvider.SetError(txtCardID, null);
+            }
         }
     }
 }

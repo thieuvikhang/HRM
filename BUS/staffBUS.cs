@@ -233,6 +233,22 @@ namespace BUS
                 return true;
             }
         }
+        public bool FindCardIDInputInTable(string Input)
+        {
+            int numberOfRecords = (from ct in _aHrm.Staffs
+                                   where ct.CardID == Input
+                                   select ct).Count();
+            if (numberOfRecords == 0)
+            {
+                //idInput khong ton tai trong table contract
+                return false;
+            }
+            else
+            {
+                //idInput da ton tai trong table contract
+                return true;
+            }
+        }
         public bool FindEmailInputInTable(string emailInput)
         {
             int numberOfRecords = (from ct in _aHrm.Staffs
