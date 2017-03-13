@@ -43,8 +43,8 @@ namespace BUS
         }
 
         //Create a contract
-        public bool CreateAContract(string idInput, DateTime dateInput, string currencyInput, DateTime startDateInput, 
-            DateTime endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput, 
+        public bool CreateAContract(string idInput, DateTime? dateInput, string currencyInput, DateTime? startDateInput, 
+            DateTime? endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput, 
             string staffIdInput, string contractTypeIdInput) {
             try
             {
@@ -77,8 +77,8 @@ namespace BUS
         }
 
         //Ham edit mot contract
-        public bool EditContract(string idInput, DateTime dateInput, string currencyInput, DateTime startDateInput,
-            DateTime endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput,
+        public bool EditContract(string idInput, DateTime? dateInput, string currencyInput, DateTime? startDateInput,
+            DateTime? endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput,
             string staffIdInput, string contractTypeIdInput) {
             try {
                 Contract aContract = _aHrm.Contracts.SingleOrDefault(ct => ct.ContractID == idInput);
@@ -127,6 +127,12 @@ namespace BUS
         {
             var basicPay = (from cc in _aHrm.Contracts where cc.StaffID == staffId select cc.BasicPay).FirstOrDefault();
             return Convert.ToDecimal(basicPay);
+        }
+
+        public Contract LoadContractbyId(string id)
+        {
+            Contract ct = _aHrm.Contracts.SingleOrDefault(c => c.ContractID == id);
+            return ct;
         }
     }
 }

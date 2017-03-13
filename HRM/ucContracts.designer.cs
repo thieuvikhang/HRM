@@ -59,9 +59,14 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lblThongBao = new System.Windows.Forms.Label();
             this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcoContractID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcoDateSign = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcoDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -102,6 +107,7 @@
             this.btnCancel.Size = new System.Drawing.Size(85, 34);
             this.btnCancel.TabIndex = 53;
             this.btnCancel.Text = "Hủy";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
             // 
             // btnEdit
             // 
@@ -125,6 +131,7 @@
             this.btnSave.Size = new System.Drawing.Size(85, 34);
             this.btnSave.TabIndex = 52;
             this.btnSave.Text = "Lưu";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // btnDelete
             // 
@@ -151,7 +158,7 @@
             // 
             // dateSign
             // 
-            this.dateSign.EditValue = null;
+            this.dateSign.EditValue = new System.DateTime(2017, 3, 13, 14, 37, 36, 816);
             this.dateSign.Location = new System.Drawing.Point(107, 106);
             this.dateSign.Name = "dateSign";
             this.dateSign.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -165,7 +172,7 @@
             // 
             // dateStart
             // 
-            this.dateStart.EditValue = null;
+            this.dateStart.EditValue = new System.DateTime(2017, 3, 13, 14, 37, 49, 941);
             this.dateStart.Location = new System.Drawing.Point(391, 28);
             this.dateStart.Name = "dateStart";
             this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -189,6 +196,7 @@
             this.dateEnd.Size = new System.Drawing.Size(163, 20);
             this.dateEnd.TabIndex = 37;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
+            this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged_1);
             // 
             // cbbStatus
             // 
@@ -365,6 +373,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.lblThongBao);
             this.panelControl1.Controls.Add(this.dateStart);
             this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
@@ -395,6 +404,15 @@
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.Location = new System.Drawing.Point(64, 182);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(35, 13);
+            this.lblThongBao.TabIndex = 54;
+            this.lblThongBao.Text = "label1";
+            // 
             // gcContract
             // 
             this.gcContract.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -405,16 +423,59 @@
             this.gcContract.TabIndex = 48;
             this.gcContract.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcContract.Click += new System.EventHandler(this.gcContract_Click_1);
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcoContractID,
+            this.gcoDateSign,
+            this.gcoDateStart,
+            this.gcoDateEnd});
             this.gridView1.GridControl = this.gcContract;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.gridView1.OptionsFind.AlwaysVisible = true;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowDetailButtons = false;
+            // 
+            // gcoContractID
+            // 
+            this.gcoContractID.Caption = "Mã hợp đồng";
+            this.gcoContractID.FieldName = "ContractID";
+            this.gcoContractID.Name = "gcoContractID";
+            this.gcoContractID.Visible = true;
+            this.gcoContractID.VisibleIndex = 0;
+            // 
+            // gcoDateSign
+            // 
+            this.gcoDateSign.Caption = "Ngày lập";
+            this.gcoDateSign.FieldName = "Date";
+            this.gcoDateSign.Name = "gcoDateSign";
+            this.gcoDateSign.Visible = true;
+            this.gcoDateSign.VisibleIndex = 1;
+            // 
+            // gcoDateStart
+            // 
+            this.gcoDateStart.Caption = "Ngày bắt đầu";
+            this.gcoDateStart.FieldName = "StartDate";
+            this.gcoDateStart.Name = "gcoDateStart";
+            this.gcoDateStart.Visible = true;
+            this.gcoDateStart.VisibleIndex = 2;
             // 
             // dxErrorProvider1
             // 
             this.dxErrorProvider1.ContainerControl = this;
+            // 
+            // gcoDateEnd
+            // 
+            this.gcoDateEnd.Caption = "Ngày kết thúc";
+            this.gcoDateEnd.FieldName = "EndDate";
+            this.gcoDateEnd.Name = "gcoDateEnd";
+            this.gcoDateEnd.Visible = true;
+            this.gcoDateEnd.VisibleIndex = 3;
             // 
             // UcContract
             // 
@@ -479,5 +540,10 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
+        private System.Windows.Forms.Label lblThongBao;
+        private DevExpress.XtraGrid.Columns.GridColumn gcoContractID;
+        private DevExpress.XtraGrid.Columns.GridColumn gcoDateSign;
+        private DevExpress.XtraGrid.Columns.GridColumn gcoDateStart;
+        private DevExpress.XtraGrid.Columns.GridColumn gcoDateEnd;
     }
 }
