@@ -14,7 +14,7 @@ namespace BUS
 
         //Load all contract
         public IQueryable LoadAll() {
-            var allContract = from ct in _aHrm.Contracts select ct;
+            var allContract = _aHrm.Contracts.OrderByDescending(ct => ct.Date);
             return allContract;
         }
 
@@ -134,5 +134,6 @@ namespace BUS
             Contract ct = _aHrm.Contracts.SingleOrDefault(c => c.ContractID == id);
             return ct;
         }
+         
     }
 }

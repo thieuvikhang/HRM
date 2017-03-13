@@ -166,6 +166,18 @@
         TkSuQmCC
 </value>
   </data>
+  <data name="btnKiemTraLoi.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJ
+        TUUH4QMFDRI23iSefAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEZSURBVFhH
+        xZdLCsJAEEQbFx5FEXcezZtln2sY9Bhu3cSuYVp0GGJ/BrqgJNKTeqVJIEPQQqfLnY4z+8leHnS4rkS7
+        MhwgZCET2ZUxg1mGFf5ir42nG533ZVFAyEBWkw2/Sgk+wC9vh+JQiQ24eEYB/CW9odhVQgGHnyiA69Ib
+        fttUQgmHF6o3R2/YWlXCAF/BLncof1GdwN4sYYGzp8+TZj2xVyKcEQkIw0WeoGFwkTWwujdr/R8uMpbQ
+        WA8XDSxhh4sGlPDDRYEScbjIUWIcHEot4ICLU6+/2F9iAFxsLzEQLtaXMMKxTr32bwkrHOs951TcryJB
+        4RLhAJY7I/2VLP2llA9yX8v5I31jkrs1S9+cQrVEwvac6A3u7a5ZxFUMrAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
