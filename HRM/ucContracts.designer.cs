@@ -34,6 +34,7 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnKiemTraLoi = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.dateSign = new DevExpress.XtraEditors.DateEdit();
@@ -59,20 +60,19 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.grbxThongTin = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblThongBao2 = new System.Windows.Forms.Label();
+            this.lblThongBao1 = new System.Windows.Forms.Label();
             this.lblThongBao = new System.Windows.Forms.Label();
+            this.lblThucHienCN = new DevExpress.XtraEditors.LabelControl();
             this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcoContractID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateSign = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grbxThongTin = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnKiemTraLoi = new DevExpress.XtraEditors.SimpleButton();
-            this.lblThongBao1 = new System.Windows.Forms.Label();
-            this.lblThongBao2 = new System.Windows.Forms.Label();
-            this.lblThucHienCN = new DevExpress.XtraEditors.LabelControl();
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -86,10 +86,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtContractID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.grbxThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
-            this.grbxThongTin.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl2
@@ -141,6 +141,18 @@
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
+            // btnKiemTraLoi
+            // 
+            this.btnKiemTraLoi.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnKiemTraLoi.Appearance.Options.UseFont = true;
+            this.btnKiemTraLoi.Image = ((System.Drawing.Image)(resources.GetObject("btnKiemTraLoi.Image")));
+            this.btnKiemTraLoi.Location = new System.Drawing.Point(278, 24);
+            this.btnKiemTraLoi.Name = "btnKiemTraLoi";
+            this.btnKiemTraLoi.Size = new System.Drawing.Size(115, 34);
+            this.btnKiemTraLoi.TabIndex = 1;
+            this.btnKiemTraLoi.Text = "Kiểm tra";
+            this.btnKiemTraLoi.Click += new System.EventHandler(this.btnKiemTraLoi_Click);
+            // 
             // btnDelete
             // 
             this.btnDelete.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -175,7 +187,7 @@
             this.dateSign.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateSign.Size = new System.Drawing.Size(163, 20);
-            this.dateSign.TabIndex = 39;
+            this.dateSign.TabIndex = 2;
             this.dateSign.DateTimeChanged += new System.EventHandler(this.dateSign_DateTimeChanged);
             this.dateSign.EditValueChanged += new System.EventHandler(this.dateSign_EditValueChanged);
             this.dateSign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateSign_KeyPress);
@@ -191,7 +203,7 @@
             this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateStart.Size = new System.Drawing.Size(163, 20);
-            this.dateStart.TabIndex = 38;
+            this.dateStart.TabIndex = 4;
             this.dateStart.DateTimeChanged += new System.EventHandler(this.dateStart_DateTimeChanged);
             this.dateStart.EditValueChanged += new System.EventHandler(this.dateStart_EditValueChanged);
             this.dateStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateStart_KeyPress);
@@ -207,7 +219,7 @@
             this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Size = new System.Drawing.Size(163, 20);
-            this.dateEnd.TabIndex = 37;
+            this.dateEnd.TabIndex = 5;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
             this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged_1);
             this.dateEnd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateEnd_KeyPress);
@@ -215,6 +227,7 @@
             // 
             // cbbStatus
             // 
+            this.cbbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbStatus.FormattingEnabled = true;
             this.cbbStatus.Items.AddRange(new object[] {
             "còn",
@@ -222,12 +235,13 @@
             this.cbbStatus.Location = new System.Drawing.Point(100, 124);
             this.cbbStatus.Name = "cbbStatus";
             this.cbbStatus.Size = new System.Drawing.Size(163, 21);
-            this.cbbStatus.TabIndex = 35;
+            this.cbbStatus.TabIndex = 3;
             this.cbbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStatus_KeyPress);
             this.cbbStatus.Leave += new System.EventHandler(this.cbbStatus_Leave);
             // 
             // cbbCurrency
             // 
+            this.cbbCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCurrency.FormattingEnabled = true;
             this.cbbCurrency.Items.AddRange(new object[] {
             "VND",
@@ -235,12 +249,13 @@
             this.cbbCurrency.Location = new System.Drawing.Point(384, 124);
             this.cbbCurrency.Name = "cbbCurrency";
             this.cbbCurrency.Size = new System.Drawing.Size(163, 21);
-            this.cbbCurrency.TabIndex = 34;
+            this.cbbCurrency.TabIndex = 8;
             this.cbbCurrency.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbCurrency_KeyPress);
             this.cbbCurrency.Leave += new System.EventHandler(this.cbbCurrency_Leave);
             // 
             // cbbPayment
             // 
+            this.cbbPayment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbPayment.FormattingEnabled = true;
             this.cbbPayment.Items.AddRange(new object[] {
             "Tiền mặt",
@@ -248,7 +263,8 @@
             this.cbbPayment.Location = new System.Drawing.Point(384, 71);
             this.cbbPayment.Name = "cbbPayment";
             this.cbbPayment.Size = new System.Drawing.Size(163, 21);
-            this.cbbPayment.TabIndex = 33;
+            this.cbbPayment.TabIndex = 6;
+            this.cbbPayment.SelectedIndexChanged += new System.EventHandler(this.cbbPayment_SelectedIndexChanged);
             this.cbbPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbPayment_KeyPress);
             this.cbbPayment.Leave += new System.EventHandler(this.cbbPayment_Leave);
             // 
@@ -258,7 +274,7 @@
             this.cbbContractTypeID.Location = new System.Drawing.Point(100, 71);
             this.cbbContractTypeID.Name = "cbbContractTypeID";
             this.cbbContractTypeID.Size = new System.Drawing.Size(163, 21);
-            this.cbbContractTypeID.TabIndex = 32;
+            this.cbbContractTypeID.TabIndex = 1;
             this.cbbContractTypeID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbContractTypeID_KeyPress);
             this.cbbContractTypeID.Leave += new System.EventHandler(this.cbbContractTypeID_Leave);
             // 
@@ -268,7 +284,7 @@
             this.cbbStaffID.Location = new System.Drawing.Point(100, 45);
             this.cbbStaffID.Name = "cbbStaffID";
             this.cbbStaffID.Size = new System.Drawing.Size(163, 21);
-            this.cbbStaffID.TabIndex = 31;
+            this.cbbStaffID.TabIndex = 0;
             this.cbbStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStaffID_KeyPress);
             this.cbbStaffID.Leave += new System.EventHandler(this.cbbStaffID_Leave);
             // 
@@ -280,7 +296,7 @@
             this.mmNote.Location = new System.Drawing.Point(601, 24);
             this.mmNote.Name = "mmNote";
             this.mmNote.Size = new System.Drawing.Size(200, 117);
-            this.mmNote.TabIndex = 30;
+            this.mmNote.TabIndex = 9;
             // 
             // labelControl10
             // 
@@ -296,7 +312,7 @@
             this.txtBasicPay.Location = new System.Drawing.Point(384, 98);
             this.txtBasicPay.Name = "txtBasicPay";
             this.txtBasicPay.Size = new System.Drawing.Size(163, 20);
-            this.txtBasicPay.TabIndex = 27;
+            this.txtBasicPay.TabIndex = 7;
             this.txtBasicPay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBasicPay_KeyPress);
             this.txtBasicPay.Leave += new System.EventHandler(this.txtBasicPay_Leave);
             // 
@@ -414,6 +430,76 @@
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // grbxThongTin
+            // 
+            this.grbxThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbxThongTin.Controls.Add(this.txtContractID);
+            this.grbxThongTin.Controls.Add(this.labelControl4);
+            this.grbxThongTin.Controls.Add(this.dateStart);
+            this.grbxThongTin.Controls.Add(this.cbbContractTypeID);
+            this.grbxThongTin.Controls.Add(this.cbbPayment);
+            this.grbxThongTin.Controls.Add(this.labelControl1);
+            this.grbxThongTin.Controls.Add(this.labelControl9);
+            this.grbxThongTin.Controls.Add(this.dateSign);
+            this.grbxThongTin.Controls.Add(this.labelControl5);
+            this.grbxThongTin.Controls.Add(this.labelControl11);
+            this.grbxThongTin.Controls.Add(this.cbbStaffID);
+            this.grbxThongTin.Controls.Add(this.txtBasicPay);
+            this.grbxThongTin.Controls.Add(this.cbbCurrency);
+            this.grbxThongTin.Controls.Add(this.labelControl3);
+            this.grbxThongTin.Controls.Add(this.labelControl8);
+            this.grbxThongTin.Controls.Add(this.labelControl6);
+            this.grbxThongTin.Controls.Add(this.mmNote);
+            this.grbxThongTin.Controls.Add(this.dateEnd);
+            this.grbxThongTin.Controls.Add(this.cbbStatus);
+            this.grbxThongTin.Controls.Add(this.labelControl10);
+            this.grbxThongTin.Controls.Add(this.labelControl7);
+            this.grbxThongTin.Controls.Add(this.labelControl2);
+            this.grbxThongTin.Location = new System.Drawing.Point(5, 5);
+            this.grbxThongTin.Name = "grbxThongTin";
+            this.grbxThongTin.Size = new System.Drawing.Size(825, 156);
+            this.grbxThongTin.TabIndex = 55;
+            this.grbxThongTin.TabStop = false;
+            this.grbxThongTin.Text = "Thông tin";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(593, 167);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 23);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "THÔNG BÁO:";
+            // 
+            // lblThongBao2
+            // 
+            this.lblThongBao2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblThongBao2.AutoSize = true;
+            this.lblThongBao2.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblThongBao2.Location = new System.Drawing.Point(706, 234);
+            this.lblThongBao2.Name = "lblThongBao2";
+            this.lblThongBao2.Size = new System.Drawing.Size(17, 26);
+            this.lblThongBao2.TabIndex = 54;
+            this.lblThongBao2.Text = " ";
+            // 
+            // lblThongBao1
+            // 
+            this.lblThongBao1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblThongBao1.AutoSize = true;
+            this.lblThongBao1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblThongBao1.Location = new System.Drawing.Point(706, 199);
+            this.lblThongBao1.Name = "lblThongBao1";
+            this.lblThongBao1.Size = new System.Drawing.Size(17, 26);
+            this.lblThongBao1.TabIndex = 54;
+            this.lblThongBao1.Text = " ";
+            // 
             // lblThongBao
             // 
             this.lblThongBao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -426,6 +512,15 @@
             this.lblThongBao.Size = new System.Drawing.Size(17, 26);
             this.lblThongBao.TabIndex = 54;
             this.lblThongBao.Text = " ";
+            // 
+            // lblThucHienCN
+            // 
+            this.lblThucHienCN.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblThucHienCN.Location = new System.Drawing.Point(5, 233);
+            this.lblThucHienCN.Name = "lblThucHienCN";
+            this.lblThucHienCN.Size = new System.Drawing.Size(36, 23);
+            this.lblThucHienCN.TabIndex = 24;
+            this.lblThucHienCN.Text = "      ";
             // 
             // gcContract
             // 
@@ -479,10 +574,6 @@
             this.gcoDateStart.Visible = true;
             this.gcoDateStart.VisibleIndex = 2;
             // 
-            // dxErrorProvider1
-            // 
-            this.dxErrorProvider1.ContainerControl = this;
-            // 
             // gcoDateEnd
             // 
             this.gcoDateEnd.Caption = "Ngày kết thúc";
@@ -491,96 +582,9 @@
             this.gcoDateEnd.Visible = true;
             this.gcoDateEnd.VisibleIndex = 3;
             // 
-            // grbxThongTin
+            // dxErrorProvider1
             // 
-            this.grbxThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbxThongTin.Controls.Add(this.txtContractID);
-            this.grbxThongTin.Controls.Add(this.labelControl4);
-            this.grbxThongTin.Controls.Add(this.dateStart);
-            this.grbxThongTin.Controls.Add(this.cbbContractTypeID);
-            this.grbxThongTin.Controls.Add(this.cbbPayment);
-            this.grbxThongTin.Controls.Add(this.labelControl1);
-            this.grbxThongTin.Controls.Add(this.labelControl9);
-            this.grbxThongTin.Controls.Add(this.dateSign);
-            this.grbxThongTin.Controls.Add(this.labelControl5);
-            this.grbxThongTin.Controls.Add(this.labelControl11);
-            this.grbxThongTin.Controls.Add(this.cbbStaffID);
-            this.grbxThongTin.Controls.Add(this.txtBasicPay);
-            this.grbxThongTin.Controls.Add(this.cbbCurrency);
-            this.grbxThongTin.Controls.Add(this.labelControl3);
-            this.grbxThongTin.Controls.Add(this.labelControl8);
-            this.grbxThongTin.Controls.Add(this.labelControl6);
-            this.grbxThongTin.Controls.Add(this.mmNote);
-            this.grbxThongTin.Controls.Add(this.dateEnd);
-            this.grbxThongTin.Controls.Add(this.cbbStatus);
-            this.grbxThongTin.Controls.Add(this.labelControl10);
-            this.grbxThongTin.Controls.Add(this.labelControl7);
-            this.grbxThongTin.Controls.Add(this.labelControl2);
-            this.grbxThongTin.Location = new System.Drawing.Point(5, 5);
-            this.grbxThongTin.Name = "grbxThongTin";
-            this.grbxThongTin.Size = new System.Drawing.Size(825, 156);
-            this.grbxThongTin.TabIndex = 55;
-            this.grbxThongTin.TabStop = false;
-            this.grbxThongTin.Text = "Thông tin";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(593, 167);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 23);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "THÔNG BÁO:";
-            // 
-            // btnKiemTraLoi
-            // 
-            this.btnKiemTraLoi.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnKiemTraLoi.Appearance.Options.UseFont = true;
-            this.btnKiemTraLoi.Image = ((System.Drawing.Image)(resources.GetObject("btnKiemTraLoi.Image")));
-            this.btnKiemTraLoi.Location = new System.Drawing.Point(278, 24);
-            this.btnKiemTraLoi.Name = "btnKiemTraLoi";
-            this.btnKiemTraLoi.Size = new System.Drawing.Size(115, 34);
-            this.btnKiemTraLoi.TabIndex = 1;
-            this.btnKiemTraLoi.Text = "Kiểm tra";
-            this.btnKiemTraLoi.Click += new System.EventHandler(this.btnKiemTraLoi_Click);
-            // 
-            // lblThongBao1
-            // 
-            this.lblThongBao1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThongBao1.AutoSize = true;
-            this.lblThongBao1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblThongBao1.Location = new System.Drawing.Point(706, 199);
-            this.lblThongBao1.Name = "lblThongBao1";
-            this.lblThongBao1.Size = new System.Drawing.Size(17, 26);
-            this.lblThongBao1.TabIndex = 54;
-            this.lblThongBao1.Text = " ";
-            // 
-            // lblThongBao2
-            // 
-            this.lblThongBao2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThongBao2.AutoSize = true;
-            this.lblThongBao2.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblThongBao2.Location = new System.Drawing.Point(706, 234);
-            this.lblThongBao2.Name = "lblThongBao2";
-            this.lblThongBao2.Size = new System.Drawing.Size(17, 26);
-            this.lblThongBao2.TabIndex = 54;
-            this.lblThongBao2.Text = " ";
-            // 
-            // lblThucHienCN
-            // 
-            this.lblThucHienCN.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblThucHienCN.Location = new System.Drawing.Point(5, 233);
-            this.lblThucHienCN.Name = "lblThucHienCN";
-            this.lblThucHienCN.Size = new System.Drawing.Size(36, 23);
-            this.lblThucHienCN.TabIndex = 24;
-            this.lblThucHienCN.Text = "      ";
+            this.dxErrorProvider1.ContainerControl = this;
             // 
             // UcContract
             // 
@@ -605,11 +609,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            this.grbxThongTin.ResumeLayout(false);
+            this.grbxThongTin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
-            this.grbxThongTin.ResumeLayout(false);
-            this.grbxThongTin.PerformLayout();
             this.ResumeLayout(false);
 
         }

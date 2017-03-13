@@ -15,7 +15,7 @@ namespace HRM
             InitializeComponent();
         }
         readonly StaffBus _staffBus = new StaffBus();
-        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        HRMModelDataContext _aHrm = new HRMModelDataContext();
         int _checkAdd = 0;
         readonly StaffBus staffbus = new StaffBus();
 
@@ -110,7 +110,23 @@ namespace HRM
         {
 
         }
+        private string GetLastIDEmployee()
+        {
+            int id = 0;
+            string lastID = "";
 
+            int countrecords = _aHrm.Staffs.Count();
+            if (countrecords == 0)
+            {
+                id = 0;
+            }
+            else
+            {
+                id = countrecords + 1;
+            }
+            lastID = "NV" + id;
+            return lastID;
+        }
         private void textEdit3_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -142,10 +158,34 @@ namespace HRM
             cbbEducation.SelectedItem = "Đại học";
             txtStaffID.Properties.MaxLength = 6;
         }
+        private bool CheckDateStartVsDateEnd()
+        {
+            //Lấy thông tin ngày tháng năm của dateStart
+            var namBatDau = dateStart.DateTime.Year;
+            var thangBatDau = dateStart.DateTime.Month;
+            var ngayBatDau = dateStart.DateTime.Day;
+            DateTime fullNgayBatDau = new DateTime(namBatDau, thangBatDau, ngayBatDau);
 
+            //Lấy thông tin ngày tháng năm của dateEnd
+            var namKetThuc = dateEnd.DateTime.Year;
+            var thangKetThuc = dateEnd.DateTime.Month;
+            var ngayKetThuc = dateEnd.DateTime.Day;
+            DateTime fullNgayKetThuc = new DateTime(namKetThuc, thangKetThuc, ngayKetThuc);
+
+            //So sánh 2 ngày dateStart vs DateEnd
+            if (DateTime.Compare(fullNgayBatDau, fullNgayKetThuc) > 0)
+            {
+                //Ngày bắt đầu lớn hơn ngày kết thúc
+                return false;
+            }
+            else
+            {
+                //Ngày bắt đầu nhỏ hơn ngày kết thúc
+                return true;
+            }
+        }
         public void AddStaff()
         {
-            DateTime cc;
             string section = cbbSection.SelectedValue.ToString();
             string post = cbbPost.SelectedValue.ToString();
             string manid = cbbManID.SelectedValue.ToString();
@@ -206,6 +246,9 @@ namespace HRM
             ResettextBox();
             SetBtn(false);
             _checkAdd = 1;
+            string idInsert = "";
+            idInsert = GetLastIDEmployee();
+            txtStaffID.Text = idInsert;
             gcEmployees.Enabled = false;
             dxErrorProvider.ClearErrors();
         }
@@ -398,6 +441,16 @@ namespace HRM
             {
                 dxErrorProvider.SetError(txtMail, null);
             }
+        }
+
+        private void dateStart_DateTimeChanged(object sender, EventArgs e)
+        {
+            dateEnd.Properties.MinValue = dateStart.DateTime;
+        }
+
+        private void dateEnd_DateTimeChanged(object sender, EventArgs e)
+        {
+            dateStart.Properties.MaxValue = dateEnd.DateTime;
         }
     }
 }

@@ -319,6 +319,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Size = new System.Drawing.Size(171, 20);
             this.dateEnd.TabIndex = 9;
+            this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
             // 
             // dateStart
             // 
@@ -331,6 +332,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateStart.Size = new System.Drawing.Size(171, 20);
             this.dateStart.TabIndex = 8;
+            this.dateStart.DateTimeChanged += new System.EventHandler(this.dateStart_DateTimeChanged);
             // 
             // dateBirth
             // 

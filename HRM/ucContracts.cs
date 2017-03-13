@@ -821,5 +821,10 @@ namespace HRM
         {
             lblThongBao.Text = "";
         }
+
+        private void cbbPayment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
