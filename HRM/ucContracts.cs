@@ -78,8 +78,10 @@ namespace HRM
 
             //Set cac date 
             dateSign.Properties.MaxValue = DateTime.Now;
-        }
 
+            lblThongBao.Text = "- - - CHÚC BẠN CÓ 1 NGÀY LÀM VIỆC VUI VẺ - - -";
+        }
+         
         #region load combodox Staffs and ContractType
         // Hàm load Combobox Loai Contract
         public void LoadComboboxStaffs()
@@ -306,7 +308,11 @@ namespace HRM
             Flag = 1;
             string idInsert = "";
             idInsert = GetLastIDContract();
-            txtContractID.Text = idInsert; 
+            txtContractID.Text = idInsert;
+            lblThongBao.Text = "Bạn nên \"kiểm tra\" trước khi click vào nút \"lưu\".";
+            lblThongBao1.Text = "";
+            lblThongBao1.Text = "";
+            lblThucHienCN.Text = "đang thực hiện thêm.";
         }
 
         private string GetNewID()
@@ -504,10 +510,16 @@ namespace HRM
                 txtContractID.Enabled = false;
                 gcContract.Enabled = false;
                 grbxThongTin.Enabled = true;
+                lblThongBao.Text = "Bạn nên \"kiểm tra\" trước khi click vào nút \"lưu\".";
+                lblThongBao1.Text = "";
+                lblThongBao2.Text = "";
+                
             }
             else
-            {
-                DialogResult dia = MessageBox.Show("Bạn chưa chọn hợp đồng đẻ sửa.", "Thông báo");
+            { 
+                lblThongBao.Text = "Bạn chưa chọn hợp đồng để sửa.";
+                lblThongBao1.Text = "";
+                lblThongBao2.Text = "";
             }
         }
 
@@ -519,6 +531,9 @@ namespace HRM
         private void gcContract_Click_1(object sender, EventArgs e)
         {
             GetInfo();
+            lblThongBao.Text = "";
+            lblThongBao1.Text = "";
+            lblThongBao2.Text = "";
         }
 
         private void btnSave_Click_1(object sender, EventArgs e)
@@ -569,7 +584,9 @@ namespace HRM
             dxErrorProvider1.ClearErrors();
             gcContract.Enabled = true;
             grbxThongTin.Enabled = false;
-            lblThongBao.Text = "--Chúc bạn có một ngày làm việc vui vẻ.";
+            lblThongBao.Text = "- - -CHÚC BẠN CÓ 1 NGÀY LÀM VIỆC VUI VẺ - - -"; 
+            lblThongBao1.Text = "";
+            lblThongBao2.Text = "";
         }
 
         private void dateEnd_EditValueChanged_1(object sender, EventArgs e)
@@ -702,8 +719,9 @@ namespace HRM
             //    txtBasicPay.Text = String.Empty;
             if(txtBasicPay.Text != "")
             {
-                txtBasicPay.Text = string.Format("{0:n0}", double.Parse(txtBasicPay.Text));
+                txtBasicPay.Text = string.Format("{0:n0}", double.Parse(txtBasicPay.Text));  
             }
+            lblThongBao.Text = "";
         }
 
         private void btnKiemTraLoi_Click(object sender, EventArgs e)
@@ -762,6 +780,46 @@ namespace HRM
                 }
                 lblThongBao.Text = "Đã không còn lỗi. nhấn vào nút lưu đễ hoàn tất thủ tục " + ThuTuc;
             }
+        }
+
+        private void cbbStaffID_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
+        }
+
+        private void cbbContractTypeID_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
+        }
+
+        private void dateSign_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
+        }
+
+        private void cbbStatus_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
+        }
+
+        private void dateStart_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
+        }
+
+        private void dateEnd_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
+        }
+
+        private void cbbPayment_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
+        }
+
+        private void cbbCurrency_Leave(object sender, EventArgs e)
+        {
+            lblThongBao.Text = "";
         }
     }
 }

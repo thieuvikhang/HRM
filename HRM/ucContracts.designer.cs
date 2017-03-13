@@ -72,6 +72,7 @@
             this.btnKiemTraLoi = new DevExpress.XtraEditors.SimpleButton();
             this.lblThongBao1 = new System.Windows.Forms.Label();
             this.lblThongBao2 = new System.Windows.Forms.Label();
+            this.lblThucHienCN = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -178,6 +179,7 @@
             this.dateSign.DateTimeChanged += new System.EventHandler(this.dateSign_DateTimeChanged);
             this.dateSign.EditValueChanged += new System.EventHandler(this.dateSign_EditValueChanged);
             this.dateSign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateSign_KeyPress);
+            this.dateSign.Leave += new System.EventHandler(this.dateSign_Leave);
             // 
             // dateStart
             // 
@@ -193,6 +195,7 @@
             this.dateStart.DateTimeChanged += new System.EventHandler(this.dateStart_DateTimeChanged);
             this.dateStart.EditValueChanged += new System.EventHandler(this.dateStart_EditValueChanged);
             this.dateStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateStart_KeyPress);
+            this.dateStart.Leave += new System.EventHandler(this.dateStart_Leave);
             // 
             // dateEnd
             // 
@@ -208,6 +211,7 @@
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
             this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged_1);
             this.dateEnd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateEnd_KeyPress);
+            this.dateEnd.Leave += new System.EventHandler(this.dateEnd_Leave);
             // 
             // cbbStatus
             // 
@@ -220,6 +224,7 @@
             this.cbbStatus.Size = new System.Drawing.Size(163, 21);
             this.cbbStatus.TabIndex = 35;
             this.cbbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStatus_KeyPress);
+            this.cbbStatus.Leave += new System.EventHandler(this.cbbStatus_Leave);
             // 
             // cbbCurrency
             // 
@@ -232,6 +237,7 @@
             this.cbbCurrency.Size = new System.Drawing.Size(163, 21);
             this.cbbCurrency.TabIndex = 34;
             this.cbbCurrency.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbCurrency_KeyPress);
+            this.cbbCurrency.Leave += new System.EventHandler(this.cbbCurrency_Leave);
             // 
             // cbbPayment
             // 
@@ -244,6 +250,7 @@
             this.cbbPayment.Size = new System.Drawing.Size(163, 21);
             this.cbbPayment.TabIndex = 33;
             this.cbbPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbPayment_KeyPress);
+            this.cbbPayment.Leave += new System.EventHandler(this.cbbPayment_Leave);
             // 
             // cbbContractTypeID
             // 
@@ -253,6 +260,7 @@
             this.cbbContractTypeID.Size = new System.Drawing.Size(163, 21);
             this.cbbContractTypeID.TabIndex = 32;
             this.cbbContractTypeID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbContractTypeID_KeyPress);
+            this.cbbContractTypeID.Leave += new System.EventHandler(this.cbbContractTypeID_Leave);
             // 
             // cbbStaffID
             // 
@@ -262,6 +270,7 @@
             this.cbbStaffID.Size = new System.Drawing.Size(163, 21);
             this.cbbStaffID.TabIndex = 31;
             this.cbbStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbStaffID_KeyPress);
+            this.cbbStaffID.Leave += new System.EventHandler(this.cbbStaffID_Leave);
             // 
             // mmNote
             // 
@@ -397,10 +406,11 @@
             this.panelControl1.Controls.Add(this.lblThongBao1);
             this.panelControl1.Controls.Add(this.lblThongBao);
             this.panelControl1.Controls.Add(this.groupControl2);
+            this.panelControl1.Controls.Add(this.lblThucHienCN);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(835, 243);
+            this.panelControl1.Size = new System.Drawing.Size(835, 262);
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
@@ -409,20 +419,21 @@
             this.lblThongBao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblThongBao.AutoSize = true;
-            this.lblThongBao.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Location = new System.Drawing.Point(713, 172);
+            this.lblThongBao.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblThongBao.Location = new System.Drawing.Point(706, 167);
             this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(80, 16);
+            this.lblThongBao.Size = new System.Drawing.Size(17, 26);
             this.lblThongBao.TabIndex = 54;
-            this.lblThongBao.Text = ". . . . . . . . . ";
+            this.lblThongBao.Text = " ";
             // 
             // gcContract
             // 
             this.gcContract.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcContract.Location = new System.Drawing.Point(0, 243);
+            this.gcContract.Location = new System.Drawing.Point(0, 262);
             this.gcContract.MainView = this.gridView1;
             this.gcContract.Name = "gcContract";
-            this.gcContract.Size = new System.Drawing.Size(835, 279);
+            this.gcContract.Size = new System.Drawing.Size(835, 260);
             this.gcContract.TabIndex = 48;
             this.gcContract.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -541,24 +552,35 @@
             this.lblThongBao1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblThongBao1.AutoSize = true;
-            this.lblThongBao1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao1.Location = new System.Drawing.Point(713, 191);
+            this.lblThongBao1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblThongBao1.Location = new System.Drawing.Point(706, 199);
             this.lblThongBao1.Name = "lblThongBao1";
-            this.lblThongBao1.Size = new System.Drawing.Size(80, 16);
+            this.lblThongBao1.Size = new System.Drawing.Size(17, 26);
             this.lblThongBao1.TabIndex = 54;
-            this.lblThongBao1.Text = ". . . . . . . . . ";
+            this.lblThongBao1.Text = " ";
             // 
             // lblThongBao2
             // 
             this.lblThongBao2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblThongBao2.AutoSize = true;
-            this.lblThongBao2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao2.Location = new System.Drawing.Point(713, 214);
+            this.lblThongBao2.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblThongBao2.Location = new System.Drawing.Point(706, 234);
             this.lblThongBao2.Name = "lblThongBao2";
-            this.lblThongBao2.Size = new System.Drawing.Size(80, 16);
+            this.lblThongBao2.Size = new System.Drawing.Size(17, 26);
             this.lblThongBao2.TabIndex = 54;
-            this.lblThongBao2.Text = ". . . . . . . . . ";
+            this.lblThongBao2.Text = " ";
+            // 
+            // lblThucHienCN
+            // 
+            this.lblThucHienCN.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblThucHienCN.Location = new System.Drawing.Point(5, 233);
+            this.lblThucHienCN.Name = "lblThucHienCN";
+            this.lblThucHienCN.Size = new System.Drawing.Size(36, 23);
+            this.lblThucHienCN.TabIndex = 24;
+            this.lblThucHienCN.Text = "      ";
             // 
             // UcContract
             // 
@@ -635,5 +657,6 @@
         private DevExpress.XtraEditors.SimpleButton btnKiemTraLoi;
         private System.Windows.Forms.Label lblThongBao2;
         private System.Windows.Forms.Label lblThongBao1;
+        private DevExpress.XtraEditors.LabelControl lblThucHienCN;
     }
 }
