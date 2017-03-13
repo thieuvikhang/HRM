@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcEmployees));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txtMail = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -51,7 +52,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
@@ -87,6 +87,7 @@
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -97,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).BeginInit();
@@ -110,6 +110,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.txtMail);
             this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.cbbManID);
             this.panelControl1.Controls.Add(this.cbbPost);
@@ -123,7 +124,6 @@
             this.panelControl1.Controls.Add(this.pictureBox1);
             this.panelControl1.Controls.Add(this.labelControl14);
             this.panelControl1.Controls.Add(this.labelControl15);
-            this.panelControl1.Controls.Add(this.txtEmail);
             this.panelControl1.Controls.Add(this.labelControl13);
             this.panelControl1.Controls.Add(this.labelControl8);
             this.panelControl1.Controls.Add(this.labelControl9);
@@ -146,6 +146,14 @@
             this.panelControl1.Size = new System.Drawing.Size(1090, 250);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            // 
+            // txtMail
+            // 
+            this.txtMail.Location = new System.Drawing.Point(383, 75);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(170, 20);
+            this.txtMail.TabIndex = 7;
+            this.txtMail.TextChanged += new System.EventHandler(this.txtMail_TextChanged);
             // 
             // groupControl2
             // 
@@ -226,7 +234,7 @@
             this.cbbManID.Location = new System.Drawing.Point(699, 128);
             this.cbbManID.Name = "cbbManID";
             this.cbbManID.Size = new System.Drawing.Size(144, 21);
-            this.cbbManID.TabIndex = 51;
+            this.cbbManID.TabIndex = 14;
             // 
             // cbbPost
             // 
@@ -235,7 +243,7 @@
             this.cbbPost.Location = new System.Drawing.Point(699, 75);
             this.cbbPost.Name = "cbbPost";
             this.cbbPost.Size = new System.Drawing.Size(144, 21);
-            this.cbbPost.TabIndex = 50;
+            this.cbbPost.TabIndex = 12;
             // 
             // cbbSection
             // 
@@ -244,7 +252,7 @@
             this.cbbSection.Location = new System.Drawing.Point(699, 102);
             this.cbbSection.Name = "cbbSection";
             this.cbbSection.Size = new System.Drawing.Size(144, 21);
-            this.cbbSection.TabIndex = 49;
+            this.cbbSection.TabIndex = 13;
             // 
             // cbbEducation
             // 
@@ -255,7 +263,7 @@
             this.cbbEducation.Location = new System.Drawing.Point(699, 49);
             this.cbbEducation.Name = "cbbEducation";
             this.cbbEducation.Size = new System.Drawing.Size(144, 21);
-            this.cbbEducation.TabIndex = 48;
+            this.cbbEducation.TabIndex = 11;
             // 
             // groupBox1
             // 
@@ -274,7 +282,7 @@
             this.rbNu.Location = new System.Drawing.Point(64, 17);
             this.rbNu.Name = "rbNu";
             this.rbNu.Size = new System.Drawing.Size(42, 20);
-            this.rbNu.TabIndex = 1;
+            this.rbNu.TabIndex = 3;
             this.rbNu.TabStop = true;
             this.rbNu.Text = "Nữ";
             this.rbNu.UseVisualStyleBackColor = true;
@@ -286,7 +294,7 @@
             this.rbNam.Location = new System.Drawing.Point(6, 17);
             this.rbNam.Name = "rbNam";
             this.rbNam.Size = new System.Drawing.Size(52, 20);
-            this.rbNam.TabIndex = 0;
+            this.rbNam.TabIndex = 2;
             this.rbNam.TabStop = true;
             this.rbNam.Text = "Nam";
             this.rbNam.UseVisualStyleBackColor = true;
@@ -310,7 +318,7 @@
             this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Size = new System.Drawing.Size(171, 20);
-            this.dateEnd.TabIndex = 39;
+            this.dateEnd.TabIndex = 9;
             // 
             // dateStart
             // 
@@ -322,7 +330,7 @@
             this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateStart.Size = new System.Drawing.Size(171, 20);
-            this.dateStart.TabIndex = 38;
+            this.dateStart.TabIndex = 8;
             // 
             // dateBirth
             // 
@@ -334,7 +342,7 @@
             this.dateBirth.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateBirth.Size = new System.Drawing.Size(163, 20);
-            this.dateBirth.TabIndex = 37;
+            this.dateBirth.TabIndex = 4;
             // 
             // pictureBox1
             // 
@@ -361,14 +369,6 @@
             this.labelControl15.Size = new System.Drawing.Size(46, 16);
             this.labelControl15.TabIndex = 31;
             this.labelControl15.Text = "Chức vụ";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(382, 76);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(171, 20);
-            this.txtEmail.TabIndex = 29;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // labelControl13
             // 
@@ -420,7 +420,7 @@
             this.txtAddress.Location = new System.Drawing.Point(382, 24);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(171, 20);
-            this.txtAddress.TabIndex = 18;
+            this.txtAddress.TabIndex = 5;
             this.txtAddress.EditValueChanged += new System.EventHandler(this.textEdit3_EditValueChanged);
             // 
             // txtPhone
@@ -428,7 +428,7 @@
             this.txtPhone.Location = new System.Drawing.Point(382, 50);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(171, 20);
-            this.txtPhone.TabIndex = 17;
+            this.txtPhone.TabIndex = 6;
             this.txtPhone.EditValueChanged += new System.EventHandler(this.textEdit4_EditValueChanged);
             this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
@@ -458,7 +458,7 @@
             this.txtCardID.Location = new System.Drawing.Point(699, 24);
             this.txtCardID.Name = "txtCardID";
             this.txtCardID.Size = new System.Drawing.Size(144, 20);
-            this.txtCardID.TabIndex = 13;
+            this.txtCardID.TabIndex = 10;
             this.txtCardID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardID_KeyPress);
             // 
             // labelControl5
@@ -485,7 +485,7 @@
             this.txtName.Location = new System.Drawing.Point(119, 50);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(163, 20);
-            this.txtName.TabIndex = 5;
+            this.txtName.TabIndex = 1;
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtStaffID
@@ -494,7 +494,7 @@
             this.txtStaffID.Location = new System.Drawing.Point(119, 24);
             this.txtStaffID.Name = "txtStaffID";
             this.txtStaffID.Size = new System.Drawing.Size(163, 20);
-            this.txtStaffID.TabIndex = 4;
+            this.txtStaffID.TabIndex = 0;
             this.txtStaffID.TextChanged += new System.EventHandler(this.txtStaffID_TextChanged);
             this.txtStaffID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStaffID_KeyPress);
             // 
@@ -676,6 +676,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -687,7 +688,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).EndInit();
@@ -718,7 +718,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.TextEdit txtEmail;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl9;
@@ -757,5 +756,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcEndDate;
         private DevExpress.XtraGrid.Columns.GridColumn gcManagerID;
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
+        private DevExpress.XtraEditors.TextEdit txtMail;
     }
 }

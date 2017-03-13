@@ -214,5 +214,10 @@ namespace HRM
             dxErrorProvider.SetError(txtPostName,
                 postBUS.FindNameInputIntable(txtPostName.Text) == true ? "Tên chức vụ trùng" : null);
         }
+
+        private void txtPostID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
     }
 }

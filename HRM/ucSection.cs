@@ -222,7 +222,7 @@ namespace HRM
 
         private void txtSectionID_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            e.Handled = (e.KeyChar == (char)Keys.Space);
         }
         private void txtSectionID_TextChanged(object sender, EventArgs e)
         {

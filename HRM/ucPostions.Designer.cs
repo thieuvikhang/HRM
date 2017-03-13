@@ -45,10 +45,10 @@
             this.txtPostID = new DevExpress.XtraEditors.TextEdit();
             this.gcPostions = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.gcoPostID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoPostName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mmDescription.Properties)).BeginInit();
@@ -167,11 +167,11 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl1.Location = new System.Drawing.Point(82, 69);
+            this.labelControl1.Location = new System.Drawing.Point(60, 69);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(70, 16);
+            this.labelControl1.Size = new System.Drawing.Size(92, 16);
             this.labelControl1.TabIndex = 15;
-            this.labelControl1.Text = "Tên chức vụ";
+            this.labelControl1.Text = "Tên chức vụ (*)";
             // 
             // txtPostName
             // 
@@ -186,11 +186,11 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl3.Location = new System.Drawing.Point(87, 43);
+            this.labelControl3.Location = new System.Drawing.Point(65, 45);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(65, 16);
+            this.labelControl3.Size = new System.Drawing.Size(87, 16);
             this.labelControl3.TabIndex = 13;
-            this.labelControl3.Text = "Mã chức vụ";
+            this.labelControl3.Text = "Mã chức vụ (*)";
             // 
             // txtPostID
             // 
@@ -200,6 +200,7 @@
             this.txtPostID.Size = new System.Drawing.Size(163, 20);
             this.txtPostID.TabIndex = 14;
             this.txtPostID.TextChanged += new System.EventHandler(this.txtPostID_TextChanged);
+            this.txtPostID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPostID_KeyPress);
             // 
             // gcPostions
             // 
@@ -228,10 +229,6 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowDetailButtons = false;
             // 
-            // dxErrorProvider
-            // 
-            this.dxErrorProvider.ContainerControl = this;
-            // 
             // gcoPostID
             // 
             this.gcoPostID.Caption = "Mã chức vụ";
@@ -255,6 +252,10 @@
             this.gcoDescription.Name = "gcoDescription";
             this.gcoDescription.Visible = true;
             this.gcoDescription.VisibleIndex = 2;
+            // 
+            // dxErrorProvider
+            // 
+            this.dxErrorProvider.ContainerControl = this;
             // 
             // ucPostions
             // 

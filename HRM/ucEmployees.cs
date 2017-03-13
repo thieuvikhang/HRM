@@ -37,7 +37,7 @@ namespace HRM
             dateEnd.Enabled = val;
             dateStart.Enabled = val;
             dateBirth.Enabled = val;
-            txtEmail.Enabled = val;
+            txtMail.Enabled = val;
             rbNam.Enabled = val;
             rbNu.Enabled = val;
         }
@@ -55,7 +55,7 @@ namespace HRM
             dateEnd.Text = "";
             dateStart.Text = "";
             dateBirth.Text = "";
-            txtEmail.Text = "";
+            txtMail.Text = "";
         }
         void SetBtn(bool val)
         {
@@ -175,7 +175,7 @@ namespace HRM
             }
             _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, gender, birth,
                 txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, start, end,
-                manid, txtEmail.Text, 10, post, section);          
+                manid, txtMail.Text, 10, post, section);          
         }
         public void EditStaff()
         {
@@ -191,7 +191,7 @@ namespace HRM
             {
                 gioitinh = false;
             }
-            _staffBus.editAStaff(txtStaffID.Text, txtName.Text, gioitinh, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtEmail.Text, 10, post, section);
+            _staffBus.editAStaff(txtStaffID.Text, txtName.Text, gioitinh, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtMail.Text, 10, post, section);
         }
         public const string MatchEmailPattern =
             @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
@@ -267,7 +267,7 @@ namespace HRM
             dateStart.Text = gridView1.GetFocusedRowCellDisplayText(gcDateStart);
             dateEnd.Text = gridView1.GetFocusedRowCellDisplayText(gcEndDate);
             cbbManID.Text = gridView1.GetFocusedRowCellDisplayText(gcManagerID);
-            txtEmail.Text = gridView1.GetFocusedRowCellDisplayText(gcEmail);
+            txtMail.Text = gridView1.GetFocusedRowCellDisplayText(gcEmail);
             cbbPost.Text = gridView1.GetFocusedRowCellDisplayText(gcPosition);
             string gender = gridView1.GetFocusedRowCellDisplayText(gcoGender);
             if(gender == "Nam")
@@ -352,7 +352,7 @@ namespace HRM
 
         private void txtStaffID_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            e.Handled = (e.KeyChar == (char)Keys.Space);
         }
 
         private void txtStaffID_TextChanged(object sender, EventArgs e)
@@ -372,22 +372,6 @@ namespace HRM
             dxErrorProvider.SetError(txtName, null);
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-            if(!Regex.IsMatch(txtEmail.Text,MatchEmailPattern))
-            {
-                dxErrorProvider.SetError(txtEmail, "Email chưa đúng định dạng");
-            }
-            else if ((staffbus.FindEmailInputInTable(txtEmail.Text) == true))
-            {
-                dxErrorProvider.SetError(txtEmail, "Email trùng");
-            }
-            else
-            {
-                dxErrorProvider.SetError(txtEmail, null);
-            }
-        }
-
         private void txtPhone_TextChanged(object sender, EventArgs e)
         {
             if ((staffbus.FindPhoneInputInTable(txtPhone.Text) == true) && (txtPhone.Text != ""))
@@ -397,6 +381,22 @@ namespace HRM
             else
             {
                 dxErrorProvider.SetError(txtPhone, null);
+            }
+        }
+
+        private void txtMail_TextChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(txtMail.Text, MatchEmailPattern))
+            {
+                dxErrorProvider.SetError(txtMail, "Email chưa đúng định dạng");
+            }
+            else if ((staffbus.FindEmailInputInTable(txtMail.Text) == true))
+            {
+                dxErrorProvider.SetError(txtMail, "Email trùng");
+            }
+            else
+            {
+                dxErrorProvider.SetError(txtMail, null);
             }
         }
     }
