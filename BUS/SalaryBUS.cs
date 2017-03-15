@@ -5,17 +5,13 @@ namespace BUS
 {
     public class SalaryBus
     {
+        readonly ExtendBus _extendBus = new ExtendBus();
         //Kiểm tra mả trả về là phòng ban hay nhân viên
         public bool CheckTheCode(string maSo, string kyTu)
         {
             //Kiểm tra chuổi maSo có bắt đầu bằng ký tự kyTu không
-            if (maSo.StartsWith(kyTu))
-            {
-                //Có
-                return true;
-            }
+            return maSo.StartsWith(kyTu);
             //Không
-            return false;
         }
         //Lấy mã số phòng ban
         public string GetTheSectionId(string sectionId, int kt)
@@ -26,12 +22,12 @@ namespace BUS
         //Tính tiền bảo hiểm của nhân viên
         public decimal SiPrice(float siPayRate, decimal basicPay)
         {
-            return (basicPay * (int)siPayRate) / 100;
+            return basicPay * (int)siPayRate / 100;
         }
         //Tính lương cơ bản của tháng
         public decimal BasicSalary(decimal basicPay, int standardWorkday, int absentDay)
         {
-            return (basicPay / standardWorkday) * (standardWorkday - absentDay);
+            return basicPay / standardWorkday * (standardWorkday - absentDay);
         }
         //Tính lương thực lãnh
         public decimal RealPay(decimal basicSalary, decimal allowance, decimal siPrice)
@@ -72,10 +68,10 @@ namespace BUS
                                  Name = d.Key.name,
                                  //định dạng MM/yyyy
                                  SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                                 BasicPay = d.Key.basicPay,
-                                 Allowance = d.Key.allowance,
+                                 BasicPay = _extendBus.FormatMoney(d.Key.basicPay.Value),
+                                 Allowance = _extendBus.FormatMoney(d.Key.allowance.Value),
                                  Workdays = d.Key.workdays,
-                                 RealPay = d.Key.realPay,
+                                 RealPay = _extendBus.FormatMoney(d.Key.realPay.Value),
                              };
                 return salary;
             }
@@ -132,11 +128,11 @@ namespace BUS
             var staff = from sta in AHrm.Staffs
                         from sala in AHrm.Salaries
                         from sec in AHrm.Sections
-                        where (sta.StaffID == sala.StaffID
-                               && sec.SectionID == sta.SectionID
-                               && sta.SectionID == maPb
-                               && sala.SalaryMonth.Value.Month != month
-                               && sala.SalaryMonth.Value.Year != year)
+                        where sta.StaffID == sala.StaffID
+                              && sec.SectionID == sta.SectionID
+                              && sta.SectionID == maPb
+                              && sala.SalaryMonth.Value.Month != month
+                              && sala.SalaryMonth.Value.Year != year
                         select new
                         {
                             sta.StaffID,
@@ -144,6 +140,11 @@ namespace BUS
                             sec.SectionName
                         };
             return staff;
+        }
+        //Lưu tính lương
+        public bool SaveSalary()
+        {
+            return false;
         }
     }
 }

@@ -78,19 +78,19 @@
             // 
             // mmDescription
             // 
-            this.mmDescription.Location = new System.Drawing.Point(378, 45);
+            this.mmDescription.Location = new System.Drawing.Point(425, 43);
             this.mmDescription.Name = "mmDescription";
-            this.mmDescription.Size = new System.Drawing.Size(262, 40);
-            this.mmDescription.TabIndex = 52;
+            this.mmDescription.Size = new System.Drawing.Size(262, 45);
+            this.mmDescription.TabIndex = 2;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl2.Location = new System.Drawing.Point(339, 43);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(32, 16);
+            this.labelControl2.Size = new System.Drawing.Size(80, 16);
             this.labelControl2.TabIndex = 51;
-            this.labelControl2.Text = "Mô tả";
+            this.labelControl2.Text = "Mô tả chức vụ";
             // 
             // groupControl2
             // 
@@ -99,7 +99,7 @@
             this.groupControl2.Controls.Add(this.btnEdit);
             this.groupControl2.Controls.Add(this.btnAdd);
             this.groupControl2.Controls.Add(this.btnSave);
-            this.groupControl2.Location = new System.Drawing.Point(82, 94);
+            this.groupControl2.Location = new System.Drawing.Point(91, 133);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(458, 67);
             this.groupControl2.TabIndex = 50;
@@ -179,7 +179,7 @@
             this.txtPostName.Location = new System.Drawing.Point(158, 68);
             this.txtPostName.Name = "txtPostName";
             this.txtPostName.Size = new System.Drawing.Size(163, 20);
-            this.txtPostName.TabIndex = 16;
+            this.txtPostName.TabIndex = 1;
             this.txtPostName.TextChanged += new System.EventHandler(this.txtPostName_TextChanged);
             this.txtPostName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPostName_KeyPress);
             // 
@@ -198,7 +198,7 @@
             this.txtPostID.Location = new System.Drawing.Point(158, 42);
             this.txtPostID.Name = "txtPostID";
             this.txtPostID.Size = new System.Drawing.Size(163, 20);
-            this.txtPostID.TabIndex = 14;
+            this.txtPostID.TabIndex = 0;
             this.txtPostID.TextChanged += new System.EventHandler(this.txtPostID_TextChanged);
             this.txtPostID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPostID_KeyPress);
             // 

@@ -1,17 +1,22 @@
 ﻿using DAL;
-using System;
 using System.Linq;
+using static System.Convert;
 
 namespace BUS
 {
-    internal class AbsentBus
+    public class AbsentBus
     {
         readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         //Lấy số ngày nghỉ không lương theo Mã nhân viên, tháng
-        //public int GetAbsentDays(DateTime day, string staffId)
-        //{
-        //    var absentDays = (from ad in _aHrm.DetailAbsents where ad.AbsentMonth == day && ad.StaffID == staffId select ad.AbsentDays).FirstOrDefault();
-        //    return Convert.ToInt16(absentDays);
-        //}
+        public int GetAbsentDays(int month, int year, string staffId)
+        {
+            var absentDays = (from ad in _aHrm.Absents
+                              where ad.StaffID == staffId
+                                && ad.ToDate.Value.Year == year
+                                && ad.ToDate.Value.Month == month
+                                && ad.AbsentType == true
+                              select ad.AbsentDay).Count();
+            return ToInt16(absentDays);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DAL;
+using static System.Convert;
 
 namespace BUS
 {
@@ -130,7 +131,13 @@ namespace BUS
         public int GetStandardWorkdaysBySectionId(string sectionId)
         {
             var standardWorkday = (from s in _aHrm.Sections where s.SectionID == sectionId select s.StandardWorkdays).FirstOrDefault();
-            return Convert.ToInt16(standardWorkday);
+            return ToInt16(standardWorkday);
+        }
+        //Lấy tên phòng ban theo mã phòng
+        public string GetSectionName(string sectionId)
+        {
+            var sectionName = (from s in _aHrm.Sections where s.SectionID == sectionId select s.SectionName).FirstOrDefault();
+            return sectionName;
         }
     }
 }

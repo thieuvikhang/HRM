@@ -72,7 +72,7 @@ namespace DAL
     #endregion
 		
 		public HRMModelDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HRMConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HRMConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
