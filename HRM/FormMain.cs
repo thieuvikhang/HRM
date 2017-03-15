@@ -112,6 +112,13 @@ namespace HRM
             //Mở Tab chức vụ
             AddTab("Chức vụ", new ucPostions());
         }
+        
+        private void barButtonItem10_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Nghỉ phép", new ucAbsent());
+        }
         #endregion
     }
 }

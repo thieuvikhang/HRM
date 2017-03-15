@@ -346,6 +346,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateBirth.Size = new System.Drawing.Size(163, 20);
             this.dateBirth.TabIndex = 4;
+            this.dateBirth.Click += new System.EventHandler(this.dateBirth_Click);
+            this.dateBirth.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dateBirth_MouseClick);
             // 
             // pictureBox1
             // 

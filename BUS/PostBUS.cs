@@ -17,6 +17,15 @@ namespace BUS
             var allRecords = from st in _aHrm.Positions select st;
             return allRecords;
         }
+        public IQueryable LoadAllCheck()
+        {
+            var allRecords = from st in _aHrm.Positions
+                             from staf in _aHrm.Staffs
+                             from sec in _aHrm.Sections
+                             where (st.PostID == staf.PostID && staf.SectionID == sec.SectionID && st.PostName =="Trưởng phòng")
+                               select staf.StaffID;
+            return allRecords;
+        }
         //tim key trung
         public bool FindIdInputIntable(string id)
         {

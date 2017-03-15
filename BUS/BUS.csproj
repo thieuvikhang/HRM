@@ -50,6 +50,7 @@
     <Compile Include="RuleBus.cs" />
     <Compile Include="SalaryBus.cs" />
     <Compile Include="SectionBus.cs" />
+    <Compile Include="SIBUS.cs" />
     <Compile Include="SocialInsuranceBus.cs" />
     <Compile Include="StaffBus.cs" />
   </ItemGroup>

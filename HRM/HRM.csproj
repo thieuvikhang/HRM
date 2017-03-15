@@ -70,6 +70,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPayrate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPayrate.Designer.cs">
+      <DependentUpon>frmPayrate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Salary\frmAddSalary.cs">
@@ -83,6 +89,12 @@
     </Compile>
     <Compile Include="SplashScreenStarting.Designer.cs">
       <DependentUpon>SplashScreenStarting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucAbsent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucAbsent.Designer.cs">
+      <DependentUpon>ucAbsent.cs</DependentUpon>
     </Compile>
     <Compile Include="ucContracts.cs">
       <SubType>UserControl</SubType>
@@ -135,6 +147,9 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPayrate.resx">
+      <DependentUpon>frmPayrate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -151,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreenStarting.resx">
       <DependentUpon>SplashScreenStarting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucAbsent.resx">
+      <DependentUpon>ucAbsent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucContracts.resx">
       <DependentUpon>ucContracts.cs</DependentUpon>

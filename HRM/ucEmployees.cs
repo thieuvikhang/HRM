@@ -163,6 +163,7 @@ namespace HRM
             txtMail.Properties.MaxLength = 20;
             txtAddress.Properties.MaxLength = 100;
             txtMail.SelectionStart = txtMail.Text.Length;
+            dateBirth.Properties.MaxValue = DateTime.Today;
         }
 
         public void AddStaff()
@@ -444,6 +445,16 @@ namespace HRM
             {
                 dxErrorProvider.SetError(txtCardID, null);
             }
+        }
+
+        private void dateBirth_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dateBirth_MouseClick(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }
