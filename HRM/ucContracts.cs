@@ -11,7 +11,12 @@ namespace HRM
 {
     public partial class UcContract : XtraUserControl
     {
-        public int Flag;
+        int Flag;
+        int dateNull;
+        DateTime dSign = new DateTime();
+        DateTime dStart = new DateTime();
+        DateTime dEnd = new DateTime();
+
         public UcContract()
         {
             InitializeComponent();
@@ -35,6 +40,7 @@ namespace HRM
             int idcontract = 0;
             string lastID = "";
             
+
             int countrecords = aHRM.Contracts.Count();
             if (countrecords == 0)
             {
@@ -146,30 +152,35 @@ namespace HRM
 
         private void dateSign_EditValueChanged(object sender, EventArgs e)
         {
-            if (CheckDateSignVsDateStart() == false)
-            {
-                //Ngay lap lon hon ngay bat dau
-                lblThongBao.Text += "Lỗi: Ngày lập lớn hơn ngày bắt đầu.";
-                dxErrorProvider1.SetError(dateSign, "Ngày lập lớn hơn ngày bắt đầu.");
-                dxErrorProvider1.SetError(dateStart, "Ngày lập lớn hơn ngày bắt đầu.");
+            dSign = dateSign.DateTime;
+            dStart = dateStart.DateTime;
+            dEnd = dateEnd.DateTime;
+
+            int yearStartOfTheWord = 1;
+            int yearOfDateStart = dateStart.DateTime.Year;
+            int yearOfDateEnd = dateEnd.DateTime.Year;
+            if (yearOfDateStart == yearStartOfTheWord) {
+                lblThongBao1.Text = "[Dữ liệu trống] Chưa có ngày bắt đầu.";
+                if (yearOfDateEnd == yearStartOfTheWord) {
+                    lblThongBao2.Text = "[Dữ liệu trống] Chưa có ngày kết thúc.";
+                }
+                else {
+                    lblThongBao2.Text = "[Cảnh báo] Ngày bắt đầu trống => ";
+                }
+            }
+
+            if(CheckTwoDate(dSign, dStart) == false) 
+            { 
+                lblThongBao1.Text = "[Cảnh báo] Ngày bắt đầu nhỏ hơn ngày lập.";
+            }
+            else if(CheckTwoDate(dSign, dEnd) == false)
+            {  
+                lblThongBao2.Text = "[Cảnh báo] Ngày kết thúc nhỏ hơn ngày lập.";
             }
             else
             {
-                lblThongBao.Text = "";
-                dxErrorProvider1.SetError(dateSign, null);
-                dxErrorProvider1.SetError(dateStart, null);
-            }
-            if (CheckDateSignVsDateEnd() == false)
-            {
-                lblThongBao.Text += "Lỗi: Ngày Lập lớn hơn ngày kết thúc.";
-                dxErrorProvider1.SetError(dateSign, "Ngày Lập lớn hơn ngày kết thúc.");
-                dxErrorProvider1.SetError(dateEnd, "Ngày Lập lớn hơn ngày kết thúc.");
-            }
-            else
-            {
-                lblThongBao.Text = "";
-                dxErrorProvider1.SetError(dateSign, null);
-                dxErrorProvider1.SetError(dateEnd, null);
+                lblThongBao1.Text = "";
+                lblThongBao2.Text = "";
             }
         }
 
@@ -216,98 +227,61 @@ namespace HRM
             cbbPayment.SelectedValue = ctByid.Payment;
             cbbStaffID.SelectedValue = ctByid.StaffID;
             cbbStatus.SelectedValue = ctByid.Status;
-        }
+        } 
 
-        private bool CheckDateStartVsDateEnd()
+        private bool CheckTwoDate(DateTime dateStart, DateTime dateEnd)
         {
-            //Lấy thông tin ngày tháng năm của dateStart
-            var namBatDau = dateStart.DateTime.Year;
-            var thangBatDau = dateStart.DateTime.Month;
-            var ngayBatDau = dateStart.DateTime.Day;
-            DateTime fullNgayBatDau = new DateTime(namBatDau, thangBatDau, ngayBatDau);
-
-            //Lấy thông tin ngày tháng năm của dateEnd
-            var namKetThuc = dateEnd.DateTime.Year;
-            var thangKetThuc = dateEnd.DateTime.Month;
-            var ngayKetThuc = dateEnd.DateTime.Day;
-            DateTime fullNgayKetThuc = new DateTime(namKetThuc, thangKetThuc, ngayKetThuc);
-
-            //So sánh 2 ngày dateStart vs DateEnd
-            if (DateTime.Compare(fullNgayBatDau, fullNgayKetThuc) > 0)
-            {
-                //Ngày bắt đầu lớn hơn ngày kết thúc
-                return false;
-            }
-            else
-            {
-                //Ngày bắt đầu nhỏ hơn ngày kết thúc
-                return true;
-            }
-        }
-
-        private bool CheckDateSignVsDateEnd()
-        {
-            //Lấy thông tin ngày tháng năm của dateSign
-            var namlapHd = dateSign.DateTime.Year;
-            var thangLapHd = dateSign.DateTime.Month;
-            var ngayLapHd = dateSign.DateTime.Day;
-            DateTime fullNgayLap = new DateTime(namlapHd, thangLapHd, ngayLapHd);
-
-            //Lấy thông tin ngày tháng năm của dateEnd
-            var namKetThuc = dateEnd.DateTime.Year;
-            var thangKetThuc = dateEnd.DateTime.Month;
-            var ngayKetThuc = dateEnd.DateTime.Day;
-            DateTime fullNgayKetThuc = new DateTime(namKetThuc, thangKetThuc, ngayKetThuc);
-
-            //So sánh 2 ngày dateStart vs Datesign
-            if (DateTime.Compare(fullNgayLap, fullNgayKetThuc) > 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool CheckDateSignVsDateStart()
-        {
-            //Lấy thông tin ngày tháng năm của dateSign
-            var namlapHd = dateSign.DateTime.Year;
-            var thangLapHd = dateSign.DateTime.Month;
-            var ngayLapHd = dateSign.DateTime.Day;
-            DateTime fullNgayLap = new DateTime(namlapHd, thangLapHd, ngayLapHd);
 
             //Lấy thông tin ngày tháng năm của dateStart
-            var namBatDau = dateStart.DateTime.Year;
-            var thangBatDau = dateStart.DateTime.Month;
-            var ngayBatDau = dateStart.DateTime.Day;
-            DateTime fullNgayBatDau = new DateTime(namBatDau, thangBatDau, ngayBatDau);
+            var yearStart = dateStart.Year;
+            var monthStart = dateStart.Month;
+            var dayStart = dateStart.Day;
+            DateTime fullDateStart = new DateTime(yearStart, monthStart, dayStart);
+
+            //Lấy thông tin ngày tháng năm của dateSign
+            var yearEnd = dateEnd.Year;
+            var monthEnd = dateEnd.Month;
+            var dayEnd = dateEnd.Day;
+            DateTime fullDateEnd = new DateTime(yearEnd, monthEnd, dayEnd); 
 
             //So sánh 2 ngày dateStart vs Datesign
-            if (DateTime.Compare(fullNgayLap, fullNgayBatDau) > 0)
+            if (DateTime.Compare(fullDateStart, fullDateEnd) > 0)
             {
-                //Ngày bắt đầu nho hơn ngày lập Hợp đồng
+                //Ngay bat dau lon hon ngay ket thuc
                 return false;
             }
             else
-            {
-                //Ngày bắt đầu lớn hơn hoặc trùng ngày lập hợp đồng
+            { 
+                //Ngay bat dau nho hon ngay ket thuc
                 return true;
             }
         }
 
+
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            btnCancel.Enabled = true;
+            btnSave.Enabled = false;
+            btnAdd.Enabled = false;
+            btnDelete.Enabled = false;
+            btnEdit.Enabled = false;
+            dateSign.EditValue = null;
+            dateStart.EditValue = null;
+            dateEnd.EditValue = null;
+
+
             SetTxt(true);
             grbxThongTin.Enabled = true;
             txtContractID.Enabled = false;
-            ResetTextBox();
-            SetBtn(false);
+            ResetTextBox(); 
+            
             gcContract.Enabled = false;
             Flag = 1;
+
+             
             string idInsert = "";
-            idInsert = GetLastIDContract();
+            idInsert = GetNewID();
             txtContractID.Text = idInsert;
             lblThongBao.Text = "Bạn nên \"kiểm tra\" trước khi click vào nút \"lưu\".";
             lblThongBao1.Text = "";
@@ -318,9 +292,25 @@ namespace HRM
         private string GetNewID()
         {
             Random generator = new Random();
-            int getrandom = generator.Next(1000, 10000);
-            string idnew = getrandom.ToString();
-            return idnew;
+            int getrandom = 0;
+            string idNew = "";
+            bool checkID = false;
+            Contract act = new Contract();
+            do
+            {
+                getrandom = generator.Next(1000, 10000);
+                idNew = "HD" + getrandom.ToString();
+                act = aHRM.Contracts.SingleOrDefault(ct => ct.ContractID == idNew);
+                if (act != null)
+                {
+                    checkID = false;
+                }
+                else
+                {
+                    checkID = true;
+                }
+            } while (checkID == false);
+            return idNew;
         }
 
         private void dateStart_DateTimeChanged(object sender, EventArgs e)
@@ -345,32 +335,25 @@ namespace HRM
             dateStart.Properties.MinValue = dateSign.DateTime;
         }
 
+        
         private void dateStart_EditValueChanged(object sender, EventArgs e)
         {
-            if (CheckDateSignVsDateStart() == false)
+            dSign = dateSign.DateTime;
+            dStart = dateStart.DateTime;
+            dEnd = dateEnd.DateTime;
+
+            if(CheckTwoDate(dSign, dStart)== false)
             {
-                //Ngay lap lon hon ngay bat dau
-                lblThongBao.Text += "Lỗi: Ngày lập lớn hơn ngày bắt đầu.";
-                dxErrorProvider1.SetError(dateSign, "Ngày lập lớn hơn ngày bắt đầu.");
-                dxErrorProvider1.SetError(dateStart, "Ngày lập lớn hơn ngày bắt đầu.");
+                lblThongBao1.Text = "[Cảnh báo] Ngày bắt đầu nhỏ hơn ngày lập.";
+            }
+            else if (CheckTwoDate(dStart, dEnd) == false)
+            { 
+                lblThongBao2.Text = "[Cảnh báo] Ngày kết thúc nhỏ hơn ngày bắt đầu.";
             }
             else
             {
-                lblThongBao.Text = "";
-                dxErrorProvider1.SetError(dateSign, null);
-                dxErrorProvider1.SetError(dateStart, null);
-            }
-            if (CheckDateStartVsDateEnd() == false)
-            {
-                lblThongBao.Text += "Lỗi: Ngày bắt đầu lớn hơn ngày kết thúc.";
-                dxErrorProvider1.SetError(dateEnd, "Ngày bắt đầu lớn hơn ngày kết thúc.");
-                dxErrorProvider1.SetError(dateStart, "Ngày bắt đầu lớn hơn ngày kết thúc.");
-            }
-            else
-            {
-                lblThongBao.Text = "";
-                dxErrorProvider1.SetError(dateEnd, null);
-                dxErrorProvider1.SetError(dateStart, null);
+                lblThongBao1.Text = "";
+                lblThongBao2.Text = "";
             }
         }
 
@@ -405,18 +388,21 @@ namespace HRM
         {
             try {
                 DateTime? sign = null, start = null, end = null;
-                if (dateSign.DateTime != null)
-                {
-                    sign = dateSign.DateTime;
+                int yearStartOfTheWord = 1;
+                int yearOfDateStart = dateStart.DateTime.Year;
+                int yearOfDateEnd = dateEnd.DateTime.Year;
+                //Default date sign != null 
+                sign = dateSign.DateTime;
+                if (yearOfDateStart == yearStartOfTheWord)
+                { start = null; }
+                else { start = dateStart.DateTime; }
+                if(yearOfDateEnd == yearStartOfTheWord) {
+                    end = null;
                 }
-                if (dateStart.DateTime != null)
-                {
-                    start = dateStart.DateTime;
-                }
-                if (dateEnd.DateTime != null)
-                {
+                else {
                     end = dateEnd.DateTime;
                 }
+                
                 string currencyInput = cbbCurrency.SelectedValue.ToString();
                 bool statusInput = bool.Parse(cbbStatus.SelectedValue.ToString());
                 decimal basicPayInput = decimal.Parse(txtBasicPay.Text);
@@ -424,15 +410,9 @@ namespace HRM
                 string noteInput = mmNote.Text;
                 string staffIdInput = cbbStaffID.SelectedValue.ToString();
                 string contractTypeIdInput = cbbContractTypeID.SelectedValue.ToString();
-                if (sign == null)
-                {
-                    MessageBox.Show("Chưa chọn ngày lập không thể sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    _conTractBus.CreateAContract(txtContractID.Text, sign, currencyInput, start, end, statusInput, basicPayInput, paymentInput, noteInput, staffIdInput, contractTypeIdInput);
-                    MessageBox.Show("Chúc mừng bạn thêm hợp đồng thành công.", "thông báo");
-                }
+                _conTractBus.CreateAContract(txtContractID.Text, sign, currencyInput, start, end, statusInput, basicPayInput, paymentInput, noteInput, staffIdInput, contractTypeIdInput);
+                MessageBox.Show("Chúc mừng bạn thêm hợp đồng thành công.", "thông báo");
+                
             } catch(Exception ex)
             {
                 MessageBox.Show("Thêm hợp đồng thất bại", "thông báo");
@@ -443,19 +423,23 @@ namespace HRM
         public void EditContract()
         {
             DateTime? sign = null, start = null, end = null;
-            if (dateSign.DateTime != null)
+            int yearStartOfTheWord = 1;
+            int yearOfDateStart = dateStart.DateTime.Year;
+            int yearOfDateEnd = dateEnd.DateTime.Year;
+            //Default date sign != null 
+            sign = dateSign.DateTime;
+            if (yearOfDateStart == yearStartOfTheWord)
+            { start = null; }
+            else { start = dateStart.DateTime; }
+            if (yearOfDateEnd == yearStartOfTheWord)
             {
-                sign = dateSign.DateTime;
+                end = null;
             }
-            if (dateStart.DateTime != null)
+            else
             {
-                start = dateStart.DateTime;
+                end = dateEnd.DateTime;
+            }
 
-            }
-            if (dateEnd.DateTime != null)
-            {
-                end = dateEnd.DateTime; 
-            }
             string currencyInput = cbbCurrency.SelectedValue.ToString();
             bool statusInput = bool.Parse(cbbStatus.SelectedValue.ToString());
             decimal basicPayInput = decimal.Parse(txtBasicPay.Text);
@@ -463,15 +447,8 @@ namespace HRM
             string noteInput = mmNote.Text;
             string staffIdInput = cbbStaffID.SelectedValue.ToString();
             string contractTypeIdInput = cbbContractTypeID.SelectedValue.ToString(); 
-            if(sign == null)
-            {
-                MessageBox.Show("Chưa chọn ngày lập không thể sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                _conTractBus.EditContract(txtContractID.Text, sign, currencyInput, start, end, statusInput, basicPayInput, paymentInput, noteInput, staffIdInput, contractTypeIdInput);
-                MessageBox.Show("Chúc mừng bạn đã sửa hợp đồng thành công.", "thông báo");
-            }
+            _conTractBus.EditContract(txtContractID.Text, sign, currencyInput, start, end, statusInput, basicPayInput, paymentInput, noteInput, staffIdInput, contractTypeIdInput);
+            MessageBox.Show("Chúc mừng bạn đã sửa hợp đồng thành công.", "thông báo");
         }
         #endregion
 
@@ -504,9 +481,15 @@ namespace HRM
         {
             if(txtContractID.Text != "")
             {
+                //set button
+                btnCancel.Enabled = true;
+                btnSave.Enabled = false;
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                btnEdit.Enabled = false;
+
                 SetTxt(true);
-                Flag = 2;
-                SetBtn(false);
+                Flag = 2; 
                 txtContractID.Enabled = false;
                 gcContract.Enabled = false;
                 grbxThongTin.Enabled = true;
@@ -577,7 +560,13 @@ namespace HRM
 
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            SetBtn(true);
+            //set button
+            btnCancel.Enabled = false;
+            btnSave.Enabled = false;
+            btnAdd.Enabled = true;
+            btnDelete.Enabled = true;
+            btnEdit.Enabled = true;
+
             ResetTextBox();
             SetTxt(false);
             Flag = 0;
@@ -591,29 +580,21 @@ namespace HRM
 
         private void dateEnd_EditValueChanged_1(object sender, EventArgs e)
         {
-            if (CheckDateStartVsDateEnd() == false)
+            dSign = dateSign.DateTime;
+            dStart = dateStart.DateTime;
+            dEnd = dateEnd.DateTime;
+            if (CheckTwoDate(dStart, dEnd) == false)
             {
-                lblThongBao.Text += "Lỗi: Ngày bắt đầu lớn hơn ngày kết thúc.";
-                dxErrorProvider1.SetError(dateEnd, "Ngày bắt đầu lớn hơn ngày kết thúc.");
-                dxErrorProvider1.SetError(dateStart, "Ngày bắt đầu lớn hơn ngày kết thúc.");
+                lblThongBao2.Text = "[Cảnh báo] Ngày kết thúc nhỏ hơn ngày bắt đầu.";
+            }
+            else if (CheckTwoDate(dSign, dEnd) == false)
+            {
+                lblThongBao2.Text = "[Cảnh báo] Ngày kết thúc nhỏ hơn ngày lập.";
             }
             else
             {
-                lblThongBao.Text = "";
-                dxErrorProvider1.SetError(dateEnd, null);
-                dxErrorProvider1.SetError(dateStart, null);
-            }
-            if (CheckDateSignVsDateEnd() == false)
-            {
-                lblThongBao.Text += "Lỗi: Ngày Lập lớn hơn ngày kết thúc.";
-                dxErrorProvider1.SetError(dateSign, "Ngày Lập lớn hơn ngày kết thúc.");
-                dxErrorProvider1.SetError(dateEnd, "Ngày Lập lớn hơn ngày kết thúc.");
-            }
-            else
-            {
-                lblThongBao.Text = "";
-                dxErrorProvider1.SetError(dateSign, null);
-                dxErrorProvider1.SetError(dateEnd, null);
+                lblThongBao1.Text = "";
+                lblThongBao2.Text = "";
             }
         }
 
@@ -698,7 +679,7 @@ namespace HRM
             }
             else
             {
-                if (txtBasicPay.Text.Length > 10)
+                if (txtBasicPay.Text.Length == 10)
                 {
                     e.Handled = true;
                     lblThongBao.Text = "Chúng tôi không thể đáp ứng mức lương cơ bản trên 10 chữ số.";
@@ -707,6 +688,7 @@ namespace HRM
                 {
                     e.Handled = false;
                 }
+                dxErrorProvider1.SetError(txtBasicPay, null);
             } 
         }
 
@@ -726,61 +708,99 @@ namespace HRM
 
         private void btnKiemTraLoi_Click(object sender, EventArgs e)
         {
-            if (CheckDateSignVsDateStart() == false)
-            {
-                dxErrorProvider1.SetError(dateStart, "Ngày bắt đầu nhỏ hơn ngày lập.");
-                lblThongBao.Text = "Ngày bắt đầu nhỏ hơn ngày lập.";
-            }
-            else
-            {
-                dxErrorProvider1.SetError(dateStart, null);
-                lblThongBao.Text = "";
-            }
-            if (CheckDateSignVsDateEnd() == false)
-            {
-                dxErrorProvider1.SetError(dateSign, "Ngày lập nhỏ hơn ngày bắt đầu.");
-                lblThongBao1.Text = "Ngày lập nhỏ hơn ngày bắt đầu.";
-            }
-            else
-            {
-                dxErrorProvider1.SetError(dateSign, null);
-                lblThongBao1.Text = "";
-            }
-            if (CheckDateStartVsDateEnd() == false)
-            {
-                dxErrorProvider1.SetError(dateEnd, "Ngày kết thúc nhỏ hơn ngày bắt đầu.");
-                lblThongBao2.Text = "Ngày kết thúc nhỏ hơn ngày bắt đầu.";
-            }
-            else
-            {
-                dxErrorProvider1.SetError(dateEnd, null);
-                lblThongBao2.Text = "";
-            }
+            dSign = dateSign.DateTime;
+            dStart = dateStart.DateTime;
+            dEnd = dateEnd.DateTime;
 
-            if(!dxErrorProvider1.HasErrors)
-            {
-                SetButton(false);
-                string ThuTuc = "";
-                switch (Flag)
+            DateTime? sign = null, start = null, end = null;
+            int yearStartOfTheWord = 1;
+            int yearOfDateSign = dateSign.DateTime.Year;
+            int yearOfDateStart = dateStart.DateTime.Year;
+            int yearOfDateEnd = dateEnd.DateTime.Year;
+
+
+            if (txtBasicPay.Text == "") {
+                dxErrorProvider1.SetError(txtBasicPay, "Lương cơ bản hiện vẫn còn trống");
+            }
+            else { dxErrorProvider1.SetError(txtBasicPay, null); }
+
+            //Kiem tra date sign = null(chua co gia tri)
+            if (yearOfDateSign == yearStartOfTheWord) {
+                btnSave.Enabled = false;
+                dxErrorProvider1.SetError(dateSign, "Phải thiết lập ngày lập hợp đồng.");
+            }
+            else {
+                dxErrorProvider1.SetError(dateSign, null);
+
+                //check value of date start  == null 
+                if (yearOfDateStart == yearStartOfTheWord)
                 {
-                    case 1:
-                        {
-                            ThuTuc = "Thêm hóa đơn.";
-                            break;
-                        }
-                    case 2:
-                        {
-                            ThuTuc = "Sửa hóa đơn.";
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
+                    
+                    dateEnd.EditValue = null;
                 }
-                lblThongBao.Text = "Đã không còn lỗi. nhấn vào nút lưu đễ hoàn tất thủ tục " + ThuTuc;
+                else
+                {
+                    //When value of date start != null
+                    //check value of date end = null
+                    if(yearOfDateEnd == yearStartOfTheWord)
+                    {
+                        lblThongBao2.Text = "[Dữ liệu trống] Chưa có ngày kết thúc.";
+                    }
+                    else
+                    {
+                        //When value of date start != nul and date end != null
+                        //Check validate 3 date 
+                        if (CheckTwoDate(dStart, dEnd) == false)
+                        { 
+                            lblThongBao2.Text = "[Cảnh báo] Ngày kết thúc nhỏ hơn ngày bắt đầu.";
+                        }
+                        else
+                        {
+                            dxErrorProvider1.SetError(dateEnd, null);
+                            lblThongBao2.Text = "";
+                        }
+                    }
+                }
+            }
+            if(dxErrorProvider1.HasErrors)
+            {
+                btnSave.Enabled = false;
+                lblThongBao.Text = "[LỖI] click vào biểu tượng (X) để xem lỗi.";
+            }
+            else
+            {
+                lblThongBao.Text = "Đã hết lỗi, hãy nhấn vào nút lưu để hoàn tất thủ tục";
+                btnSave.Enabled = true;
             }
         }
+
+
+        /*
+         * 
+                // Kiểm tra tính hợp lệ của 3 ô
+                if (CheckValidDate(dSign, dStart, dEnd) == true) {
+                // Thông tin hợp lệ
+            }
+            else {
+                //lỗi giữa các ô  Ngày tháng
+            }
+         * 
+         //Kiểm tra ngày bắt đầu null
+                if(dStart == null) {
+                    //date start = null => gan datenull = 1
+                    dateNull = 1;
+                }
+                else {
+                    if (dateEnd == null) {
+                        //date start != null vs date end = null => gan datenull = 2
+                        dateNull = 2;
+                    }
+                    else {
+                        //date start != null vs date end != null => gan datenull = 2
+                        dateNull = 0;
+                    }
+                }
+             */
 
         private void cbbStaffID_Leave(object sender, EventArgs e)
         {
@@ -820,6 +840,162 @@ namespace HRM
         private void cbbCurrency_Leave(object sender, EventArgs e)
         {
             lblThongBao.Text = "";
+        }
+
+        //Ham kiem tra tinh hop ly cua 3 ngay.
+        void GetValidDate(DateTime dStart, DateTime dBetween, DateTime dEnd)
+        {
+            //Lưu Ý: Ở trong này quy định
+            //  dStart = dateSign.DateTime;
+            //  dBetween = dateStart.DateTime;
+            //  dEnd = dateEnd.DateTime;
+              
+            // khi date sign da co thi xet 2 date: between vs End
+            //Khi date betwen != null vs date end == null
+            if (dBetween != null && dEnd == null)
+            {
+                //Kiem tra date start vs date between
+                //Khi date start > date between
+                if (CheckTwoDate(dStart, dBetween) == false)
+                {
+                    dxErrorProvider1.SetError(dateStart, "Ngày bắt đầu nhỏ hơn ngày lập hợp đồng.");
+                    lblThongBao1.Text = "Ngày bắt đầu nhỏ hơn ngày lập hợp đồng.";
+                }
+                //khi date start < date between
+                else
+                {
+                    dxErrorProvider1.SetError(dateStart, null);
+                    lblThongBao1.Text = "";
+                }
+            }
+            //Khi date between == null vs date End != null
+            else if (dBetween == null && dEnd != null)
+            {
+                dxErrorProvider1.SetError(dateEnd, "Chưa có ngày bắt đàu.");
+                lblThongBao2.Text = "Chưa có ngày bắt đàu.";
+            }
+            //Khi date between != null vs date end != null => 3 date deu co gia tri
+            else if (dBetween != null && dEnd != null)
+            {
+                //kiem tra tinh hop le cua 3 date
+                //1. Kiem tra date start vs date between
+                if (CheckTwoDate(dStart, dBetween) == false)
+                {
+                    //date start > date between
+                    dxErrorProvider1.SetError(dateStart, "Ngày bắt đầu nhỏ hơn ngày lập.");
+                    lblThongBao1.Text = "Ngày bắt đầu nhỏ hơn ngày lập.";
+                }
+                //2. Kiem tra date between vs date end
+                else if (CheckTwoDate(dBetween, dEnd) == false)
+                {
+                    //date between > date end
+                    dxErrorProvider1.SetError(dateEnd, "Ngày kết thúc nhỏ hơn ngày bắt đầu.");
+                    lblThongBao2.Text = "Ngày kết thúc nhỏ hơn ngày bắt đầu.";
+                }
+                else
+                {
+                    dxErrorProvider1.SetError(dateEnd, null);
+                    dxErrorProvider1.SetError(dateStart, null);
+                    lblThongBao2.Text = "";
+                    lblThongBao1.Text = "";
+                }
+            }
+            else
+            {
+                dxErrorProvider1.SetError(dateStart, null);
+                dxErrorProvider1.SetError(dateEnd, null);
+                lblThongBao.Text = "";
+                lblThongBao1.Text = "";
+                lblThongBao2.Text = "";
+            } 
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            dateEnd.EditValue = null;
+        }
+
+        private void dateSign_Click(object sender, EventArgs e)
+        {
+            int yearStartOftheWord = 1;
+            int YearOfdateStart = dateStart.DateTime.Year;
+            int yearOfDateEnd = dateEnd.DateTime.Year;
+            dateSign.Properties.MaxValue = DateTime.Now;
+            if(YearOfdateStart != yearStartOftheWord)
+            {
+                dateSign.Properties.MaxValue = dateStart.DateTime;
+            }
+            else
+            {
+                if(yearOfDateEnd != yearStartOftheWord)
+                {
+                    dateSign.Properties.MaxValue = dateEnd.DateTime;
+                }
+                else
+                {
+                    dateSign.Properties.MaxValue = DateTime.Now;
+                }
+            }
+        }
+
+        private void dateStart_Click(object sender, EventArgs e)
+        {
+            int yearStartOftheWord = 1;
+            int yearOfDateSign = dateSign.DateTime.Year;
+            int YearOfdateStart = dateStart.DateTime.Year;
+            int yearOfDateEnd = dateEnd.DateTime.Year;
+            if(yearOfDateSign != yearStartOftheWord)
+            {
+                dateStart.Properties.MinValue = dateSign.DateTime;
+                dxErrorProvider1.SetError(dateSign, null);
+            }
+            else
+            {
+                dxErrorProvider1.SetError(dateSign, "Phải thiết lập ngày lập hợp đồng.");
+            }
+            if(yearOfDateEnd != yearStartOftheWord)
+            {
+                dateStart.Properties.MaxValue = dateEnd.DateTime;
+                lblThongBao2.Text = "";
+            }
+            else
+            {
+                lblThongBao2.Text = "[Dữ liệu trống] Chưa có ngày kết thúc.";
+            }
+        }
+
+        private void dateEnd_Click(object sender, EventArgs e)
+        {
+            int yearStartOftheWord = 1;
+            int yearOfDateSign = dateSign.DateTime.Year;
+            int YearOfdateStart = dateStart.DateTime.Year;
+            int yearOfDateEnd = dateEnd.DateTime.Year;
+            
+            if(YearOfdateStart != yearStartOftheWord)
+            {
+                dateEnd.Properties.MinValue = dateStart.DateTime;
+            }
+            else
+            {
+                dateEnd.Properties.MinValue = dateSign.DateTime;
+                if(yearOfDateSign != yearStartOftheWord)
+                {
+                    dateEnd.Properties.MinValue = dateSign.DateTime;
+                    dxErrorProvider1.SetError(dateSign, null);
+                }
+                else
+                {
+                    dxErrorProvider1.SetError(dateSign, "Phải thiết lập ngày lập hợp đồng.");
+                }
+            }
+        }
+
+        private void txtBasicPay_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                txtBasicPay.Text = "";
+            }
         }
     }
 }
