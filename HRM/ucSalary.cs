@@ -26,17 +26,17 @@ namespace HRM
         {   //Load Chọn nhân viên
             var sta = new ArrayList { new { tennv = "Tất cả nhân viên", manv = "all" } };
             sta.AddRange((from se in _aHrm.Sections
-                           select new
-                           {
-                               tennv = "# Phòng " + se.SectionName,
-                               manv = "#" + se.SectionID,
-                           }).ToList());
+                          select new
+                          {
+                              tennv = "# Phòng " + se.SectionName,
+                              manv = "#" + se.SectionID,
+                          }).ToList());
             sta.AddRange((from s in _aHrm.Staffs
-                         select new
-                         {
-                             tennv = s.StaffName,
-                             manv = s.StaffID,
-                         }).ToArray());
+                          select new
+                          {
+                              tennv = s.StaffName,
+                              manv = s.StaffID,
+                          }).ToArray());
             cbbStaffID.DataSource = sta;
             cbbStaffID.DisplayMember = "tennv";
             cbbStaffID.ValueMember = "manv";
@@ -47,12 +47,12 @@ namespace HRM
             var month = new ArrayList { new { dt = "Tất cả tháng lương", monthID = "all" } };
             //Load chọn tháng định dạng MM/yyyy
             month.AddRange((from p in _aHrm.Salaries
-                    group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year, } into d
-                    select new
-                    {
-                        dt = $"Tháng {d.Key.month}, {d.Key.year}",
-                        monthID = $"{d.Key.month}-{d.Key.year}",
-                    }).ToList().OrderByDescending(g => g.monthID).ToArray());
+                            group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year, } into d
+                            select new
+                            {
+                                dt = $"Tháng {d.Key.month}, {d.Key.year}",
+                                monthID = $"{d.Key.month}-{d.Key.year}",
+                            }).ToList().OrderByDescending(g => g.monthID).ToArray());
             cbbMonthYear.DataSource = month;
             cbbMonthYear.DisplayMember = "dt";
             cbbMonthYear.ValueMember = "monthID";

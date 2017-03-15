@@ -233,73 +233,54 @@ namespace BUS
                 return true;
             }
         }
-        public bool FindCardIDInputInTable(string Input)
+        public bool FindCardIdInputInTable(string Input)
         {
-            int numberOfRecords = (from ct in _aHrm.Staffs
+            var numberOfRecords = (from ct in _aHrm.Staffs
                                    where ct.CardID == Input
                                    select ct).Count();
-            if (numberOfRecords == 0)
-            {
-                //idInput khong ton tai trong table contract
-                return false;
-            }
-            else
-            {
-                //idInput da ton tai trong table contract
-                return true;
-            }
+            return numberOfRecords != 0;
         }
         public bool FindEmailInputInTable(string emailInput)
         {
-            int numberOfRecords = (from ct in _aHrm.Staffs
+            var numberOfRecords = (from ct in _aHrm.Staffs
                                    where ct.Email == emailInput
                                    select ct).Count();
-            if (numberOfRecords == 0)
-            {
-                //idInput khong ton tai trong table contract
-                return false;
-            }
-            else
-            {
-                //idInput da ton tai trong table contract
-                return true;
-            }
+            return numberOfRecords != 0;
         }
         public bool CreateAStaff(string idInput, string nameInput, Boolean genderInput, DateTime? birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime? enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
         {
             try
             {
-                if (FindIdInputInTable(idInput) == false)
+                if (FindIdInputInTable(idInput) != false) return false;
+                var aStaff = new Staff
                 {
-                    Staff aStaff = new Staff();
-                    aStaff.StaffID = idInput;
-                    aStaff.StaffName = nameInput;
-                    aStaff.Gender = genderInput;
-                    aStaff.BirthDay = birthdayInput;
-                    aStaff.CardID = cardidInput;
-                    aStaff.Phone = phoneInput;
-                    aStaff.Address = addressInput;
-                    aStaff.Education = eduInput;
-                    aStaff.StartDate = startdateInput;
-                    aStaff.EndDate = enddateInput;
-                    aStaff.ManagerID = manageridInput;
-                    aStaff.Email = emailInput;
-                    aStaff.DaysRemain = dayremainInput;
-                    aStaff.PostID = postidInput;
-                    aStaff.SectionID = sectionidInput;
+                    StaffID = idInput,
+                    StaffName = nameInput,
+                    Gender = genderInput,
+                    BirthDay = birthdayInput,
+                    CardID = cardidInput,
+                    Phone = phoneInput,
+                    Address = addressInput,
+                    Education = eduInput,
+                    StartDate = startdateInput,
+                    EndDate = enddateInput,
+                    ManagerID = manageridInput,
+                    Email = emailInput,
+                    DaysRemain = dayremainInput,
+                    PostID = postidInput,
+                    SectionID = sectionidInput
+                };
 
-                    _aHrm.Staffs.InsertOnSubmit(aStaff);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                _aHrm.Staffs.InsertOnSubmit(aStaff);
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception)
             {
                 return false;
             }
         }
-        public bool editAStaff(string newid, string nameInput, Boolean genderInput, 
+        public bool EditAStaff(string newid, string nameInput, Boolean genderInput, 
             DateTime birthdayInput, string cardidInput, string phoneInput, 
             string addressInput, string eduInput, DateTime? startdateInput,
             DateTime enddateInput, string manageridInput, string emailInput, 

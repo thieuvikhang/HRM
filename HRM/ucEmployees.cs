@@ -237,7 +237,7 @@ namespace HRM
             {
                 gioitinh = false;
             }
-            _staffBus.editAStaff(txtStaffID.Text, txtName.Text, gioitinh, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtMail.Text, 10, post, section);
+            _staffBus.EditAStaff(txtStaffID.Text, txtName.Text, gioitinh, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtMail.Text, 10, post, section);
         }
         public const string MatchEmailPattern =
             @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
@@ -461,7 +461,7 @@ namespace HRM
 
         private void txtCardID_TextChanged(object sender, EventArgs e)
         {
-            if ((staffbus.FindCardIDInputInTable(txtCardID.Text) == true))
+            if ((staffbus.FindCardIdInputInTable(txtCardID.Text) == true))
             {
                 dxErrorProvider.SetError(txtCardID, "CMND trùng");
             }

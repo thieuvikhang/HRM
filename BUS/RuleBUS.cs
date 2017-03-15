@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BUS
 {
-    class RuleBus
+    public class RuleBus
     {
         readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         //Lấy số % bảo hiểm xã hội

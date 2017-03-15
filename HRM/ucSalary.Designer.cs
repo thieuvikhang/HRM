@@ -103,7 +103,7 @@
             this.btThemLuong.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btThemLuong.Appearance.Options.UseFont = true;
             this.btThemLuong.Image = global::HRM.Properties.Resources.addgroupheader_32x32;
-            this.btThemLuong.Location = new System.Drawing.Point(651, 77);
+            this.btThemLuong.Location = new System.Drawing.Point(419, 86);
             this.btThemLuong.Name = "btThemLuong";
             this.btThemLuong.Size = new System.Drawing.Size(124, 34);
             this.btThemLuong.TabIndex = 42;
@@ -112,6 +112,7 @@
             // 
             // cbbMonthYear
             // 
+            this.cbbMonthYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbMonthYear.FormattingEnabled = true;
             this.cbbMonthYear.Items.AddRange(new object[] {
             "Tất cả"});
@@ -123,6 +124,7 @@
             // 
             // cbbStaffID
             // 
+            this.cbbStaffID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbStaffID.FormattingEnabled = true;
             this.cbbStaffID.Items.AddRange(new object[] {
             "Tất cả"});
@@ -206,6 +208,7 @@
             this.gridColumn4.Caption = "Lương cơ bản";
             this.gridColumn4.FieldName = "BasicPay";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;
             // 

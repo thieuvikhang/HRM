@@ -48,9 +48,6 @@ namespace DAL
     partial void InsertContractType(ContractType instance);
     partial void UpdateContractType(ContractType instance);
     partial void DeleteContractType(ContractType instance);
-    partial void InsertDetailAbsent(DetailAbsent instance);
-    partial void UpdateDetailAbsent(DetailAbsent instance);
-    partial void DeleteDetailAbsent(DetailAbsent instance);
     partial void InsertGroupAccess(GroupAccess instance);
     partial void UpdateGroupAccess(GroupAccess instance);
     partial void DeleteGroupAccess(GroupAccess instance);
@@ -149,14 +146,6 @@ namespace DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<DetailAbsent> DetailAbsents
-		{
-			get
-			{
-				return this.GetTable<DetailAbsent>();
-			}
-		}
-		
 		public System.Data.Linq.Table<GroupAccess> GroupAccesses
 		{
 			get
@@ -214,7 +203,7 @@ namespace DAL
 		
 		private int _AbsentID;
 		
-		private System.Nullable<int> _AmountDay;
+		private System.Nullable<int> _AbsentDay;
 		
 		private System.Nullable<System.DateTime> _FromDate;
 		
@@ -224,7 +213,9 @@ namespace DAL
 		
 		private string _Note;
 		
-		private EntitySet<DetailAbsent> _DetailAbsents;
+		private string _StaffID;
+		
+		private EntityRef<Staff> _Staff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -232,8 +223,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnAbsentIDChanging(int value);
     partial void OnAbsentIDChanged();
-    partial void OnAmountDayChanging(System.Nullable<int> value);
-    partial void OnAmountDayChanged();
+    partial void OnAbsentDayChanging(System.Nullable<int> value);
+    partial void OnAbsentDayChanged();
     partial void OnFromDateChanging(System.Nullable<System.DateTime> value);
     partial void OnFromDateChanged();
     partial void OnToDateChanging(System.Nullable<System.DateTime> value);
@@ -242,11 +233,13 @@ namespace DAL
     partial void OnAbsentTypeChanged();
     partial void OnNoteChanging(string value);
     partial void OnNoteChanged();
+    partial void OnStaffIDChanging(string value);
+    partial void OnStaffIDChanged();
     #endregion
 		
 		public Absent()
 		{
-			this._DetailAbsents = new EntitySet<DetailAbsent>(new Action<DetailAbsent>(this.attach_DetailAbsents), new Action<DetailAbsent>(this.detach_DetailAbsents));
+			this._Staff = default(EntityRef<Staff>);
 			OnCreated();
 		}
 		
@@ -270,22 +263,22 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AmountDay", DbType="Int")]
-		public System.Nullable<int> AmountDay
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbsentDay", DbType="Int")]
+		public System.Nullable<int> AbsentDay
 		{
 			get
 			{
-				return this._AmountDay;
+				return this._AbsentDay;
 			}
 			set
 			{
-				if ((this._AmountDay != value))
+				if ((this._AbsentDay != value))
 				{
-					this.OnAmountDayChanging(value);
+					this.OnAbsentDayChanging(value);
 					this.SendPropertyChanging();
-					this._AmountDay = value;
-					this.SendPropertyChanged("AmountDay");
-					this.OnAmountDayChanged();
+					this._AbsentDay = value;
+					this.SendPropertyChanged("AbsentDay");
+					this.OnAbsentDayChanged();
 				}
 			}
 		}
@@ -370,16 +363,61 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Absent_DetailAbsent", Storage="_DetailAbsents", ThisKey="AbsentID", OtherKey="AbsentID")]
-		public EntitySet<DetailAbsent> DetailAbsents
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false)]
+		public string StaffID
 		{
 			get
 			{
-				return this._DetailAbsents;
+				return this._StaffID;
 			}
 			set
 			{
-				this._DetailAbsents.Assign(value);
+				if ((this._StaffID != value))
+				{
+					if (this._Staff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStaffIDChanging(value);
+					this.SendPropertyChanging();
+					this._StaffID = value;
+					this.SendPropertyChanged("StaffID");
+					this.OnStaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Absent", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
+		public Staff Staff
+		{
+			get
+			{
+				return this._Staff.Entity;
+			}
+			set
+			{
+				Staff previousValue = this._Staff.Entity;
+				if (((previousValue != value) 
+							|| (this._Staff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Staff.Entity = null;
+						previousValue.Absents.Remove(this);
+					}
+					this._Staff.Entity = value;
+					if ((value != null))
+					{
+						value.Absents.Add(this);
+						this._StaffID = value.StaffID;
+					}
+					else
+					{
+						this._StaffID = default(string);
+					}
+					this.SendPropertyChanged("Staff");
+				}
 			}
 		}
 		
@@ -401,18 +439,6 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_DetailAbsents(DetailAbsent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Absent = this;
-		}
-		
-		private void detach_DetailAbsents(DetailAbsent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Absent = null;
 		}
 	}
 	
@@ -454,11 +480,11 @@ namespace DAL
 		
 		private string _SectionID;
 		
+		private EntitySet<Absent> _Absents;
+		
 		private EntitySet<Account> _Accounts;
 		
 		private EntitySet<Contract> _Contracts;
-		
-		private EntitySet<DetailAbsent> _DetailAbsents;
 		
 		private EntitySet<Salary> _Salaries;
 		
@@ -508,9 +534,9 @@ namespace DAL
 		
 		public Staff()
 		{
+			this._Absents = new EntitySet<Absent>(new Action<Absent>(this.attach_Absents), new Action<Absent>(this.detach_Absents));
 			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
-			this._DetailAbsents = new EntitySet<DetailAbsent>(new Action<DetailAbsent>(this.attach_DetailAbsents), new Action<DetailAbsent>(this.detach_DetailAbsents));
 			this._Salaries = new EntitySet<Salary>(new Action<Salary>(this.attach_Salaries), new Action<Salary>(this.detach_Salaries));
 			this._SocialInsurances = new EntitySet<SocialInsurance>(new Action<SocialInsurance>(this.attach_SocialInsurances), new Action<SocialInsurance>(this.detach_SocialInsurances));
 			this._Position = default(EntityRef<Position>);
@@ -846,6 +872,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Absent", Storage="_Absents", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<Absent> Absents
+		{
+			get
+			{
+				return this._Absents;
+			}
+			set
+			{
+				this._Absents.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Accounts", ThisKey="StaffID", OtherKey="StaffID")]
 		public EntitySet<Account> Accounts
 		{
@@ -869,19 +908,6 @@ namespace DAL
 			set
 			{
 				this._Contracts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_DetailAbsent", Storage="_DetailAbsents", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<DetailAbsent> DetailAbsents
-		{
-			get
-			{
-				return this._DetailAbsents;
-			}
-			set
-			{
-				this._DetailAbsents.Assign(value);
 			}
 		}
 		
@@ -999,6 +1025,18 @@ namespace DAL
 			}
 		}
 		
+		private void attach_Absents(Absent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Absents(Absent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
 		private void attach_Accounts(Account entity)
 		{
 			this.SendPropertyChanging();
@@ -1018,18 +1056,6 @@ namespace DAL
 		}
 		
 		private void detach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_DetailAbsents(DetailAbsent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_DetailAbsents(DetailAbsent entity)
 		{
 			this.SendPropertyChanging();
 			entity.Staff = null;
@@ -1970,222 +1996,6 @@ namespace DAL
 		{
 			this.SendPropertyChanging();
 			entity.ContractType = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DetailAbsent")]
-	public partial class DetailAbsent : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _StaffID;
-		
-		private int _AbsentID;
-		
-		private System.Nullable<System.DateTime> _AbsentMonth;
-		
-		private System.Nullable<int> _AbsentDays;
-		
-		private EntityRef<Absent> _Absent;
-		
-		private EntityRef<Staff> _Staff;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnStaffIDChanging(string value);
-    partial void OnStaffIDChanged();
-    partial void OnAbsentIDChanging(int value);
-    partial void OnAbsentIDChanged();
-    partial void OnAbsentMonthChanging(System.Nullable<System.DateTime> value);
-    partial void OnAbsentMonthChanged();
-    partial void OnAbsentDaysChanging(System.Nullable<int> value);
-    partial void OnAbsentDaysChanged();
-    #endregion
-		
-		public DetailAbsent()
-		{
-			this._Absent = default(EntityRef<Absent>);
-			this._Staff = default(EntityRef<Staff>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string StaffID
-		{
-			get
-			{
-				return this._StaffID;
-			}
-			set
-			{
-				if ((this._StaffID != value))
-				{
-					if (this._Staff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStaffIDChanging(value);
-					this.SendPropertyChanging();
-					this._StaffID = value;
-					this.SendPropertyChanged("StaffID");
-					this.OnStaffIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbsentID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int AbsentID
-		{
-			get
-			{
-				return this._AbsentID;
-			}
-			set
-			{
-				if ((this._AbsentID != value))
-				{
-					if (this._Absent.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAbsentIDChanging(value);
-					this.SendPropertyChanging();
-					this._AbsentID = value;
-					this.SendPropertyChanged("AbsentID");
-					this.OnAbsentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbsentMonth", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AbsentMonth
-		{
-			get
-			{
-				return this._AbsentMonth;
-			}
-			set
-			{
-				if ((this._AbsentMonth != value))
-				{
-					this.OnAbsentMonthChanging(value);
-					this.SendPropertyChanging();
-					this._AbsentMonth = value;
-					this.SendPropertyChanged("AbsentMonth");
-					this.OnAbsentMonthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbsentDays", DbType="Int")]
-		public System.Nullable<int> AbsentDays
-		{
-			get
-			{
-				return this._AbsentDays;
-			}
-			set
-			{
-				if ((this._AbsentDays != value))
-				{
-					this.OnAbsentDaysChanging(value);
-					this.SendPropertyChanging();
-					this._AbsentDays = value;
-					this.SendPropertyChanged("AbsentDays");
-					this.OnAbsentDaysChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Absent_DetailAbsent", Storage="_Absent", ThisKey="AbsentID", OtherKey="AbsentID", IsForeignKey=true)]
-		public Absent Absent
-		{
-			get
-			{
-				return this._Absent.Entity;
-			}
-			set
-			{
-				Absent previousValue = this._Absent.Entity;
-				if (((previousValue != value) 
-							|| (this._Absent.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Absent.Entity = null;
-						previousValue.DetailAbsents.Remove(this);
-					}
-					this._Absent.Entity = value;
-					if ((value != null))
-					{
-						value.DetailAbsents.Add(this);
-						this._AbsentID = value.AbsentID;
-					}
-					else
-					{
-						this._AbsentID = default(int);
-					}
-					this.SendPropertyChanged("Absent");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_DetailAbsent", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
-		public Staff Staff
-		{
-			get
-			{
-				return this._Staff.Entity;
-			}
-			set
-			{
-				Staff previousValue = this._Staff.Entity;
-				if (((previousValue != value) 
-							|| (this._Staff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Staff.Entity = null;
-						previousValue.DetailAbsents.Remove(this);
-					}
-					this._Staff.Entity = value;
-					if ((value != null))
-					{
-						value.DetailAbsents.Add(this);
-						this._StaffID = value.StaffID;
-					}
-					else
-					{
-						this._StaffID = default(string);
-					}
-					this.SendPropertyChanged("Staff");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
