@@ -1,6 +1,6 @@
 ﻿namespace HRM
 {
-    partial class ucPostions
+    partial class UcPostions
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucPostions));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcPostions));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.mmDescription = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -263,7 +263,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcPostions);
             this.Controls.Add(this.panelControl1);
-            this.Name = "ucPostions";
+            this.Name = "UcPostions";
             this.Size = new System.Drawing.Size(715, 345);
             this.Load += new System.EventHandler(this.ucPostions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

@@ -1,13 +1,10 @@
 ﻿using DAL;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BUS
 {
-    public class PostBUS
+    public class PostBus
     {
         readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
 
@@ -34,34 +31,16 @@ namespace BUS
                                 where (st.PostID == id)
                                 select st).Count();
 
-            if (count == 0)
-            {
-                //Khong co record trung 
-                return false;
-            }
-            else
-            {
-                //co record trung
-                return true;
-            }
+            return count != 0;
         }
         public bool FindNameInputIntable(string name)
         {
             //Dem record trung ten hoac so dien thoai
-            int count = (from st in _aHrm.Positions
+            var count = (from st in _aHrm.Positions
                          where (st.PostName == name)
                          select st).Count();
 
-            if (count == 0)
-            {
-                //Khong co record trung 
-                return false;
-            }
-            else
-            {
-                //co record trung
-                return true;
-            }
+            return count != 0;
         }
         public bool CreateAPost(string idInput, string nameInput, string descriptionInput)
         {
@@ -69,10 +48,12 @@ namespace BUS
             {
                 if (FindIdInputIntable(idInput) == false && FindNameInputIntable(nameInput) == false)
                 {
-                    Position aPost = new Position();
-                    aPost.PostID = idInput;
-                    aPost.PostName = nameInput;
-                    aPost.Description = descriptionInput;
+                    var aPost = new Position
+                    {
+                        PostID = idInput,
+                        PostName = nameInput,
+                        Description = descriptionInput
+                    };
 
                     _aHrm.Positions.InsertOnSubmit(aPost);
                     _aHrm.SubmitChanges();

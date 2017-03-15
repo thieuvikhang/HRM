@@ -20,72 +20,54 @@ namespace BUS
         }
 
         //Ham tim kiem nameInput trong table section
-        public bool FindNameInputIntable(string nameInput) {
+        public bool FindNameInputIntable(string nameInput)
+        {
             //Dem record trung ten hoac so dien thoai
-            int countSection = (from st in _aHrm.Sections
+            var countSection = (from st in _aHrm.Sections
                                 where (st.SectionName == nameInput)
                                 select st).Count();
 
-            if (countSection == 0) {
-                //Khong co record trung 
-                return false;
-            }
-            else {
-                //co record trung
-                return true;
-            }
+            return countSection != 0;
         }
 
         //Ham tim kiem idInput trong table section 
-        public bool FindIdInputIntable(string idInput) {
+        public bool FindIdInputIntable(string idInput)
+        {
             //Dem record trung ten hoac so dien thoai
             int countSection = (from st in _aHrm.Sections
                                 where (st.SectionID == idInput)
                                 select st).Count();
 
-            if (countSection == 0) {
-                //Khong co record trung 
-                return false;
-            }
-            else {
-                //co record trung
-                return true;
-            }
+            return countSection != 0;
         }
 
         //Ham tim kiem phoneInput trong table section 
-        public bool FindPhoneInputIntable(string phoneInput) {
+        public bool FindPhoneInputIntable(string phoneInput)
+        {
             //Dem record trung ten hoac so dien thoai
-            int countSection = (from st in _aHrm.Sections
+            var countSection = (from st in _aHrm.Sections
                                 where (st.Phone == phoneInput)
                                 select st).Count();
 
-            if (countSection == 0) {
-                //Khong co record trung 
-                return false;
-            }
-            else {
-                //co record trung
-                return true;
-            }
+            return countSection != 0;
         }
 
         public bool CreateASection(string idInput, string nameInput, string descriptionInput, int standWorkDayInput, string phoneInput) {
             try
             {
-                if (FindIdInputIntable(idInput) == false && FindNameInputIntable(nameInput) == false) {
-                    Section aSection = new Section();
-                    aSection.SectionID = idInput;
-                    aSection.SectionName = nameInput;
-                    aSection.Description = descriptionInput;
-                    aSection.StandardWorkdays = standWorkDayInput;
-                    aSection.Phone = phoneInput;
+                if (FindIdInputIntable(idInput) || FindNameInputIntable(nameInput)) return false;
+                var aSection = new Section
+                {
+                    SectionID = idInput,
+                    SectionName = nameInput,
+                    Description = descriptionInput,
+                    StandardWorkdays = standWorkDayInput,
+                    Phone = phoneInput
+                };
 
-                    _aHrm.Sections.InsertOnSubmit(aSection);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                _aHrm.Sections.InsertOnSubmit(aSection);
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;
@@ -95,18 +77,16 @@ namespace BUS
         public bool EditSection(string newStid, string newName, string newDescription, int newStandWorkDay, string newPhone) {
             try {
                 //Tim redocrd cua section co ID
-                Section aSection = _aHrm.Sections.SingleOrDefault(st => st.SectionID == newStid);
+                var aSection = _aHrm.Sections.SingleOrDefault(st => st.SectionID == newStid);
                 //Kiem tra record co ton tai
-                if (aSection != null) {
-                    aSection.SectionID = newStid;
-                    aSection.SectionName = newName;
-                    aSection.Description = newDescription;
-                    aSection.StandardWorkdays = newStandWorkDay;
-                    aSection.Phone = newPhone;
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                if (aSection == null) return false;
+                aSection.SectionID = newStid;
+                aSection.SectionName = newName;
+                aSection.Description = newDescription;
+                aSection.StandardWorkdays = newStandWorkDay;
+                aSection.Phone = newPhone;
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;
@@ -115,13 +95,11 @@ namespace BUS
 
         public bool DeleteASection(string idInput) {
             try {
-                Section aSection = (from st in _aHrm.Sections select st).SingleOrDefault(st => st.SectionID == idInput);
-                if(aSection != null) {
-                    _aHrm.Sections.DeleteOnSubmit(aSection);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                var aSection = (from st in _aHrm.Sections select st).SingleOrDefault(st => st.SectionID == idInput);
+                if (aSection == null) return false;
+                _aHrm.Sections.DeleteOnSubmit(aSection);
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;

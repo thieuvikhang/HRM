@@ -8,7 +8,7 @@ namespace HRM
 {
     public partial class UcSection : XtraUserControl
     {
-        int _checkAdd = 0;
+        int _checkAdd;
         public class MyGridLocalizer : GridLocalizer
         {
             public override string GetLocalizedString(GridStringId id)
@@ -82,10 +82,7 @@ namespace HRM
         {
             _sectionBus.DeleteASection(txtSectionID.Text);
         }
-        private void gridView1_Click(object sender, EventArgs e)
-        {
-            GetInfo();
-        }
+
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             SetTxt(true);
@@ -115,7 +112,7 @@ namespace HRM
             }
             catch
             {
-
+                // ignored
             }
             gcSection.DataSource = _sectionBus.LoadAll();
         }
@@ -143,12 +140,7 @@ namespace HRM
             SetBtn(false);
             txtSectionID.Enabled = false;
         }
-        void Clearerror()
-        {
-            dxErrorProvider.SetError(txtName, null);
-            dxErrorProvider.SetError(txtPhone, null);
-            dxErrorProvider.SetError(txtSectionID, null);
-        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -226,28 +218,14 @@ namespace HRM
         }
         private void txtSectionID_TextChanged(object sender, EventArgs e)
         {
-            if(_sectionBus.FindIdInputIntable(txtSectionID.Text) == true)
-            {
-                dxErrorProvider.SetError(txtSectionID, "Mã phòng ban trùng");
-            }
-            //else if (string.IsNullOrEmpty(txtSectionID.Text))
-            //{
-            //    dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc để trống");
-            //}
-            ////else if (txtSectionID.Text.Length > 6)
-            ////{
-            ////    dxErrorProvider.SetError(txtSectionID, "Mã phòng ban ko dc vượt quá 6 ký tự");
-            ////}
-            else
-            {
-                dxErrorProvider.SetError(txtSectionID, null);
-            }
+            dxErrorProvider.SetError(txtSectionID,
+                _sectionBus.FindIdInputIntable(txtSectionID.Text) ? "Mã phòng ban trùng" : null);
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
             dxErrorProvider.SetError(txtName,
-                _sectionBus.FindNameInputIntable(txtName.Text) == true ? "Tên phòng ban trùng" : null);
+                _sectionBus.FindNameInputIntable(txtName.Text) ? "Tên phòng ban trùng" : null);
         }
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
@@ -269,7 +247,7 @@ namespace HRM
 
         private void txtPhone_TextChanged_1(object sender, EventArgs e)
         {
-            if ((_sectionBus.FindPhoneInputIntable(txtPhone.Text) == true) &&(txtPhone.Text != ""))
+            if (_sectionBus.FindPhoneInputIntable(txtPhone.Text) &&(txtPhone.Text != ""))
             {
                 dxErrorProvider.SetError(txtPhone, "Số điện thoại trùng");
             }

@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using DAL;
 using BUS;
 using DevExpress.XtraGrid.Localization;
 
 namespace HRM
 {
-    public partial class ucPostions : DevExpress.XtraEditors.XtraUserControl
+    public partial class UcPostions : XtraUserControl
     {
-        int _checkAdd = 0;
+        int _checkAdd;
         public class MyGridLocalizer : GridLocalizer
         {
             public override string GetLocalizedString(GridStringId id)
@@ -32,13 +24,13 @@ namespace HRM
                 }
             }
         }
-        public ucPostions()
+        public UcPostions()
         {
             InitializeComponent();
             GridLocalizer.Active = new MyGridLocalizer();
         }
 
-        readonly PostBUS postBUS = new PostBUS();
+        private readonly PostBus _postBus = new PostBus();
         private void ResetTextBox()
         {
             txtPostID.Text = "";
@@ -61,7 +53,7 @@ namespace HRM
         }
         private void ucPostions_Load(object sender, EventArgs e)
         {
-            gcPostions.DataSource = postBUS.LoadAll();
+            gcPostions.DataSource = _postBus.LoadAll();
             SetTxt(false);
             SetBtn(true);
             txtPostName.Properties.MaxLength = 50;
@@ -76,15 +68,15 @@ namespace HRM
         }
         public void AddPost()
         {
-            postBUS.CreateAPost(txtPostID.Text, txtPostName.Text, mmDescription.Text);
+            _postBus.CreateAPost(txtPostID.Text, txtPostName.Text, mmDescription.Text);
         }
         public void EditPost()
         {
-            postBUS.EditPost(txtPostID.Text, txtPostName.Text, mmDescription.Text);
+            _postBus.EditPost(txtPostID.Text, txtPostName.Text, mmDescription.Text);
         }
         public void DelPost()
         {
-            postBUS.DeleteAPost(txtPostID.Text);
+            _postBus.DeleteAPost(txtPostID.Text);
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -120,9 +112,9 @@ namespace HRM
             }
             catch
             {
-
+                // ignored
             }
-            gcPostions.DataSource = postBUS.LoadAll();
+            gcPostions.DataSource = _postBus.LoadAll();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -179,7 +171,7 @@ namespace HRM
             {
                 MessageBox.Show(@"Các trường * không được bỏ trống");
             }
-            gcPostions.DataSource = postBUS.LoadAll();
+            gcPostions.DataSource = _postBus.LoadAll();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -199,7 +191,7 @@ namespace HRM
 
         private void txtPostID_TextChanged(object sender, EventArgs e)
         {
-            if (postBUS.FindIdInputIntable(txtPostID.Text) == true)
+            if (_postBus.FindIdInputIntable(txtPostID.Text))
             {
                 dxErrorProvider.SetError(txtPostID, "Mã chức vụ trùng");
             }
@@ -212,7 +204,7 @@ namespace HRM
         private void txtPostName_TextChanged(object sender, EventArgs e)
         {
             dxErrorProvider.SetError(txtPostName,
-                postBUS.FindNameInputIntable(txtPostName.Text) == true ? "Tên chức vụ trùng" : null);
+                _postBus.FindNameInputIntable(txtPostName.Text) ? "Tên chức vụ trùng" : null);
         }
 
         private void txtPostID_KeyPress(object sender, KeyPressEventArgs e)

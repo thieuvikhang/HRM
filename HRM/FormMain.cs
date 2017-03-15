@@ -110,7 +110,7 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Chức vụ", new ucPostions());
+            AddTab("Chức vụ", new UcPostions());
         }
         
         private void barButtonItem10_ItemClick(object sender, ItemClickEventArgs e)

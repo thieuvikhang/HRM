@@ -49,17 +49,15 @@ namespace BUS
             try
             {
                 //check su ton tai cua nameInput va idInput trong database
-                if (FindNameInputInTable(nameInput) == false && FindIdInputInTable(idInput) == false) {
-                    ContractType aContractType = new ContractType
-                    {
-                        ContractTypeID = idInput,
-                        ContractTypeName = nameInput
-                    };
-                    _aHrm.ContractTypes.InsertOnSubmit(aContractType);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                if (FindNameInputInTable(nameInput) || FindIdInputInTable(idInput)) return false;
+                var aContractType = new ContractType
+                {
+                    ContractTypeID = idInput,
+                    ContractTypeName = nameInput
+                };
+                _aHrm.ContractTypes.InsertOnSubmit(aContractType);
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;
@@ -70,13 +68,11 @@ namespace BUS
             try
             {
                 //kiem tra nameInput co ton tai trong database
-                if(!FindNameInputInTable(nameInput)) {
-                    ContractType aContractType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idInput);
-                    if (aContractType != null) aContractType.ContractTypeName = nameInput;
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                if (FindNameInputInTable(nameInput)) return false;
+                var aContractType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idInput);
+                if (aContractType != null) aContractType.ContractTypeName = nameInput;
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;
@@ -89,8 +85,8 @@ namespace BUS
             {
                 //kiem tra idInput co ton tai trong database
                 if(FindIdInputInTable(idIput)) {
-                    ContractType aContracType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idIput);
-                    _aHrm.ContractTypes.DeleteOnSubmit(aContracType);
+                    var aContracType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idIput);
+                    if (aContracType != null) _aHrm.ContractTypes.DeleteOnSubmit(aContracType);
                     _aHrm.SubmitChanges();
                     return true;
                 }

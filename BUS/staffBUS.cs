@@ -233,10 +233,10 @@ namespace BUS
                 return true;
             }
         }
-        public bool FindCardIdInputInTable(string Input)
+        public bool FindCardIdInputInTable(string input)
         {
             var numberOfRecords = (from ct in _aHrm.Staffs
-                                   where ct.CardID == Input
+                                   where ct.CardID == input
                                    select ct).Count();
             return numberOfRecords != 0;
         }
@@ -251,7 +251,7 @@ namespace BUS
         {
             try
             {
-                if (FindIdInputInTable(idInput) != false) return false;
+                if (FindIdInputInTable(idInput)) return false;
                 var aStaff = new Staff
                 {
                     StaffID = idInput,

@@ -27,18 +27,12 @@ namespace BUS
         }
 
         //Check trung ky tu
-        public bool FindIdInputInTable(string idInput) {
-            int numberOfRecords = (from si in _aHrm.SocialInsurances
+        public bool FindIdInputInTable(string idInput)
+        {
+            var numberOfRecords = (from si in _aHrm.SocialInsurances
                                       where si.InsuranceID == idInput
                                       select si).Count();
-            if (numberOfRecords == 0) {
-                //khong co record trung ten nhap vao
-                return false;
-            }
-            else {
-                //co record trung ten nhap vao
-                return true;
-            }
+            return numberOfRecords != 0;
         }
 
         //Tem moi 1 SocialInsurances
@@ -69,18 +63,16 @@ namespace BUS
         public bool EditASocialInsurances(string idInput, DateTime monthInput, int payRateInput, decimal priceInput, string paymentInput, string staffIdInput) {
             try {
                 //tim kiem record cua SocialInsurance theo ID
-                SocialInsurance aSi = _aHrm.SocialInsurances.SingleOrDefault(si => si.InsuranceID == idInput);
+                var aSi = _aHrm.SocialInsurances.SingleOrDefault(si => si.InsuranceID == idInput);
                 //Kiem tra record co ton tai
-                if (aSi != null) {
-                    aSi.InsuranceID = paymentInput;
-                    aSi.PayRate = payRateInput;
-                    aSi.Price = priceInput;
-                    aSi.SIMonth = monthInput;
-                    aSi.StaffID = staffIdInput;
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                if (aSi == null) return false;
+                aSi.InsuranceID = paymentInput;
+                aSi.PayRate = payRateInput;
+                aSi.Price = priceInput;
+                aSi.SIMonth = monthInput;
+                aSi.StaffID = staffIdInput;
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;
@@ -90,7 +82,7 @@ namespace BUS
         // Xoa Sociallnsurance theo SociallnsuranceID
         public bool DeleteASociallnsurance(string sociallnsuranceId) {
             try {
-                SocialInsurance aSi = _aHrm.SocialInsurances.SingleOrDefault(si => si.InsuranceID == sociallnsuranceId);
+                var aSi = _aHrm.SocialInsurances.SingleOrDefault(si => si.InsuranceID == sociallnsuranceId);
                 if (aSi == null) return false;
                 _aHrm.SocialInsurances.DeleteOnSubmit(aSi);
                 _aHrm.SubmitChanges();
