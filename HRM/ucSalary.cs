@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraBars;
 using DAL;
 using BUS;
 using DevExpress.XtraEditors;
 using System.Collections;
 using DevExpress.XtraSplashScreen;
 using HRM.Salary;
+using static System.Int32;
 
 namespace HRM
 {
-    public partial class ucSalary : XtraUserControl
+    public partial class UcSalary : XtraUserControl
     {
-        HRMModelDataContext aHRM = new HRMModelDataContext();
-        SalaryBUS salaryBUS = new SalaryBUS();
-        staffBUS staffBUS = new staffBUS();
-        public ucSalary()
+        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        readonly SalaryBus _salaryBus = new SalaryBus();
+        readonly StaffBus _staffBus = new StaffBus();
+        public UcSalary()
         {
             InitializeComponent();
         }
@@ -24,70 +24,47 @@ namespace HRM
         #region Load Combobox chọn nhân viên và tháng lương
         public void LoadComboboxStaff()
         {   //Load Chọn nhân viên
-            ArrayList sta = new ArrayList();
-            sta.Add(new { tennv = "Tất cả nhân viên", manv = "all" });
-            var section = (from se in aHRM.Sections
-                           select new
-                           {
-                               tennv = "# Phòng " + se.SectionName,
-                               manv = "#" + se.SectionID,
-                           }).ToList();
-            sta.AddRange(section);
-            var staff = (from s in aHRM.Staffs
-                         select new
-                         {
-                             tennv = s.StaffName,
-                             manv = s.StaffID,
-                         }).ToArray();
-            sta.AddRange(staff);
+            var sta = new ArrayList { new { tennv = "Tất cả nhân viên", manv = "all" } };
+            sta.AddRange((from se in _aHrm.Sections
+                          select new
+                          {
+                              tennv = "# Phòng " + se.SectionName,
+                              manv = "#" + se.SectionID,
+                          }).ToList());
+            sta.AddRange((from s in _aHrm.Staffs
+                          select new
+                          {
+                              tennv = s.StaffName,
+                              manv = s.StaffID,
+                          }).ToArray());
             cbbStaffID.DataSource = sta;
             cbbStaffID.DisplayMember = "tennv";
             cbbStaffID.ValueMember = "manv";
+            cbbStaffID.SelectedIndex = 0;
         }
         public void LoadComboboxMonth()
         {
-            ArrayList month = new ArrayList();
-            month.Add(new { dt = "Tất cả tháng lương", monthID = "all" });
+            var month = new ArrayList { new { dt = "Tất cả tháng lương", monthID = "all" } };
             //Load chọn tháng định dạng MM/yyyy
-            var grouped = ((from p in aHRM.Salaries
+            month.AddRange((from p in _aHrm.Salaries
                             group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year, } into d
                             select new
                             {
-                                dt = string.Format("Tháng {0}, {1}", d.Key.month, d.Key.year),
-                                monthID = string.Format("{0}-{1}", d.Key.month, d.Key.year),
-                            }).ToList()
-                           .OrderByDescending(g => g.dt));
-            month.AddRange(grouped.ToArray());
+                                dt = $"Tháng {d.Key.month}, {d.Key.year}",
+                                monthID = $"{d.Key.month}-{d.Key.year}",
+                            }).ToList().OrderByDescending(g => g.monthID).ToArray());
             cbbMonthYear.DataSource = month;
             cbbMonthYear.DisplayMember = "dt";
             cbbMonthYear.ValueMember = "monthID";
+            cbbMonthYear.SelectedIndex = 0;
         }
         #endregion
 
-        void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            gcSalary.ShowRibbonPrintPreview();
-        }
         private void ucSalary_Load(object sender, EventArgs e)
         {
-            gcSalary.DataSource = salaryBUS.LoadSalary();
+            gcSalary.DataSource = _salaryBus.LoadSalary;
             LoadComboboxStaff();
             LoadComboboxMonth();
-        }
-
-        private void ribbonControl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelControl1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void gcSalary_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void panelControl1_Paint_1(object sender, PaintEventArgs e)
@@ -99,84 +76,57 @@ namespace HRM
         {
 
         }
-        //Xử lý sự kiện xem lương
-        private void btnAdd_Click(object sender, EventArgs e)
+        //Hàm Load GirdView khi thay đổi Combobox chọn nhân viên hoặc chọn Tháng
+        private void LoadGridView()
         {
-            string maChonNhanVien = cbbStaffID.SelectedValue.ToString();/*Mã số chọn nhân viên*/
-            string maChonThangNam = cbbMonthYear.SelectedValue.ToString();/*Mã số chọn tháng lương*/
+            var maChonNhanVien = cbbStaffID.SelectedValue.ToString();/*Mã số chọn nhân viên*/
+            var maChonThangNam = cbbMonthYear.SelectedValue.ToString();/*Mã số chọn tháng lương*/
             int month = 0, year = 0, chonPhongBan = 0;
-            if (salaryBUS.CheckTheCode(maChonNhanVien, "#") == true)/*Nếu maChonNhanVien có ký tự # ở đầu là phòng ban*/
+            if (_salaryBus.CheckTheCode(maChonNhanVien, "#"))/*Nếu maChonNhanVien có ký tự # ở đầu là phòng ban*/
             {
-                maChonNhanVien = salaryBUS.GetTheSectionID(maChonNhanVien, 1);/*Cắt chuổi lấy mã phòng ban gán vào maChonNhanVien*/
+                maChonNhanVien = _salaryBus.GetTheSectionId(maChonNhanVien, 1);/*Cắt chuổi lấy mã phòng ban gán vào maChonNhanVien*/
                 chonPhongBan = 1;/*Bật cờ hiệu*/
             }
             if (maChonThangNam != "all")/*Nếu maChonThangNam khác All tức đã chọn một tháng lương cụ thể*/
             {
-                string[] arrListStr = maChonThangNam.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
-                month = int.Parse(arrListStr[0]);/*Lấy giá trị tháng*/
-                year = int.Parse(arrListStr[1]);/*Lấy giá trị năm*/
+                var arrListStr = maChonThangNam.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
+                month = Parse(arrListStr[0]);/*Lấy giá trị tháng*/
+                year = Parse(arrListStr[1]);/*Lấy giá trị năm*/
             }
 
-
-            if (maChonNhanVien != "all" && maChonThangNam != "all")/*Không chọn tất cả nhân viên và tháng*/
-            {
-                if (chonPhongBan == 1)/*Cờ hiệu chọn phòng ban bật*/
-                {
-                    gcSalary.DataSource = staffBUS.LoadSalaryBySectionID(maChonNhanVien, month, year);/*Đã chọn phòng ban*/
-                }
-                else
-                {
-                    gcSalary.DataSource = staffBUS.LoadSalaryByStaffID(maChonNhanVien, month, year);/*Đã chọn nhân viên*/
-                }
-            }
-            else
-            {
-                if (maChonNhanVien == "all" && maChonThangNam != "all")/*Chọn tất cả nhân viên, tháng lương chọn cụ thể*/
-                {
-                    gcSalary.DataSource = staffBUS.LoadSalaryByMonthYear(month, year);
-                }
-                else
-                {
-                    if (maChonNhanVien != "all" && maChonThangNam == "all")/*Tháng lương là tất cả, nhân viên # All*/
-                    {
-                        if (chonPhongBan == 1)/*Phòng ban được chọn*/
-                        {
-                            gcSalary.DataSource = staffBUS.LoadSalaryByAllSection(maChonNhanVien);
-                        }
-                        else
-                        {
-                            //Nhân viên được chọn
-                            gcSalary.DataSource = staffBUS.LoadSalaryByStaffIDNonMonthYear(maChonNhanVien);
-                        }
-
-                    }
-                    else
-                    {
-                        //Cả combobox nhân viên và tháng lương đều chọn tất cả
-                        gcSalary.DataSource = salaryBUS.LoadSalary();
-                    }
-                }
-            }
-
+            gcSalary.DataSource = maChonNhanVien != "all" && maChonThangNam != "all"
+                ? (chonPhongBan == 1
+                    ? _staffBus.LoadSalaryBySectionId(maChonNhanVien, month, year)
+                    : _staffBus.LoadSalaryByStaffId(maChonNhanVien, month, year))
+                : (maChonNhanVien == "all" && maChonThangNam != "all"
+                    ? _staffBus.LoadSalaryByMonthYear(month, year)
+                    : (maChonNhanVien != "all" && maChonThangNam == "all"
+                        ? (chonPhongBan == 1
+                            ? _staffBus.LoadSalaryByAllSection(maChonNhanVien)
+                            : _staffBus.LoadSalaryByStaffIdNonMonthYear(maChonNhanVien))
+                        : _salaryBus.LoadSalary));
         }
         #region Sự kiện thay đổi giá trị combobox
-        private void cbbStaffID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void cbbMonthYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         #endregion
-
+        //Mở Form Thêm lương
         private void btThemLuong_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
-            frmAddSalary frm = new frmAddSalary();
+            var frm = new FrmAddSalary();
             frm.Show();
             SplashScreenManager.CloseForm();
+        }
+
+        private void cbbStaffID_TextChanged(object sender, EventArgs e)
+        {
+            if (cbbMonthYear.SelectedIndex == -1) return;
+            LoadGridView();
+        }
+
+        private void cbbMonthYear_TextChanged(object sender, EventArgs e)
+        {
+            if (cbbMonthYear.SelectedValue.ToString().Length > 8) return;
+            LoadGridView();
         }
     }
 }

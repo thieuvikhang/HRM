@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace HRM
 {
-    public partial class ucSocialInsurancecs : DevExpress.XtraEditors.XtraUserControl
+    public partial class UcSocialInsurancecs : XtraUserControl
     {
-        public ucSocialInsurancecs()
+        public UcSocialInsurancecs()
         {
             InitializeComponent();
         }

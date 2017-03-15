@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 
 namespace BUS
@@ -11,27 +8,27 @@ namespace BUS
      * contractBUS xu ly cac nghiep vu lien quan den table contract
      * LoadAll, create, edit, delete, checkValueInputDuplicate
     */
-    public class socialInsuranceBUS
+    public class SocialInsuranceBus
     {
-        HRMModelDataContext aHRM = new HRMModelDataContext();
+        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
 
         // Load tat ca socialInsurance
-        public IQueryable loadAll() {
-            var allRecords = from si in aHRM.SocialInsurances select si;
+        public IQueryable LoadAll() {
+            var allRecords = from si in _aHrm.SocialInsurances select si;
             return allRecords;
         }
 
         // Load tat ca socialInsurance theo StaffID
-        public IQueryable loadAllWithStaffID(string idInput) {
-            var allRecords = from si in aHRM.SocialInsurances
+        public IQueryable LoadAllWithStaffId(string idInput) {
+            var allRecords = from si in _aHrm.SocialInsurances
                                          where si.StaffID == idInput
                                          select si;
             return allRecords;
         }
 
         //Check trung ky tu
-        public bool findIDInputInTable(string idInput) {
-            int numberOfRecords = (from si in aHRM.SocialInsurances
+        public bool FindIdInputInTable(string idInput) {
+            int numberOfRecords = (from si in _aHrm.SocialInsurances
                                       where si.InsuranceID == idInput
                                       select si).Count();
             if (numberOfRecords == 0) {
@@ -45,67 +42,60 @@ namespace BUS
         }
 
         //Tem moi 1 SocialInsurances
-        public bool createASocialInsurances(string idInput, DateTime monthInput, int payRateInput, decimal priceInput, string paymentInput, string staffIDInput) {
+        public bool CreateASocialInsurances(string idInput, DateTime monthInput, int payRateInput, decimal priceInput, string paymentInput, string staffIdInput) {
             try {
-                if (!findIDInputInTable(idInput)) {
-                    SocialInsurance aSI = new SocialInsurance();
-                    aSI.InsuranceID = idInput;
-                    aSI.InsuranceID = paymentInput;
-                    aSI.PayRate = payRateInput;
-                    aSI.Price = priceInput;
-                    aSI.SIMonth = monthInput;
-                    aSI.StaffID = staffIDInput;
+                if (!FindIdInputInTable(idInput)) {
+                    var aSi = new SocialInsurance {InsuranceID = idInput};
+                    aSi.InsuranceID = paymentInput;
+                    aSi.PayRate = payRateInput;
+                    aSi.Price = priceInput;
+                    aSi.SIMonth = monthInput;
+                    aSi.StaffID = staffIdInput;
 
-                    aHRM.SocialInsurances.InsertOnSubmit(aSI);
-                    aHRM.SubmitChanges();
+                    _aHrm.SocialInsurances.InsertOnSubmit(aSi);
+                    _aHrm.SubmitChanges();
                     return true;
                 }
                 else {
                     return false;
                 }
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             }
         }
 
         //Sua moi 1 SocialInsurances
-        public bool editASocialInsurances(string idInput, DateTime monthInput, int payRateInput, decimal priceInput, string paymentInput, string staffIDInput) {
+        public bool EditASocialInsurances(string idInput, DateTime monthInput, int payRateInput, decimal priceInput, string paymentInput, string staffIdInput) {
             try {
                 //tim kiem record cua SocialInsurance theo ID
-                SocialInsurance aSI = aHRM.SocialInsurances.SingleOrDefault(si => si.InsuranceID == idInput);
+                SocialInsurance aSi = _aHrm.SocialInsurances.SingleOrDefault(si => si.InsuranceID == idInput);
                 //Kiem tra record co ton tai
-                if (aSI != null) {
-                    aSI.InsuranceID = paymentInput;
-                    aSI.PayRate = payRateInput;
-                    aSI.Price = priceInput;
-                    aSI.SIMonth = monthInput;
-                    aSI.StaffID = staffIDInput;
-                    aHRM.SubmitChanges();
+                if (aSi != null) {
+                    aSi.InsuranceID = paymentInput;
+                    aSi.PayRate = payRateInput;
+                    aSi.Price = priceInput;
+                    aSi.SIMonth = monthInput;
+                    aSi.StaffID = staffIdInput;
+                    _aHrm.SubmitChanges();
                     return true;
                 }
-                else {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 return false;
             }
         }
 
         // Xoa Sociallnsurance theo SociallnsuranceID
-        public bool deleteASociallnsurance(string sociallnsuranceID) {
+        public bool DeleteASociallnsurance(string sociallnsuranceId) {
             try {
-                SocialInsurance aSI = aHRM.SocialInsurances.SingleOrDefault(si => si.InsuranceID == sociallnsuranceID);
-                if(aSI != null) {
-                    aHRM.SocialInsurances.DeleteOnSubmit(aSI);
-                    aHRM.SubmitChanges();
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            } catch (Exception ex) {
+                SocialInsurance aSi = _aHrm.SocialInsurances.SingleOrDefault(si => si.InsuranceID == sociallnsuranceId);
+                if (aSi == null) return false;
+                _aHrm.SocialInsurances.DeleteOnSubmit(aSi);
+                _aHrm.SubmitChanges();
+                return true;
+            } catch (Exception) {
                 return false;
             }
         }

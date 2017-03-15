@@ -41,15 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbsentBUS.cs" />
-    <Compile Include="contractBUS.cs" />
-    <Compile Include="contractTypeBUS.cs" />
+    <Compile Include="AbsentBus.cs" />
+    <Compile Include="ContractBus.cs" />
+    <Compile Include="ContractTypeBus.cs" />
+    <Compile Include="ExtendBus.cs" />
+    <Compile Include="PostBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RuleBUS.cs" />
-    <Compile Include="SalaryBUS.cs" />
-    <Compile Include="sectionBUS.cs" />
-    <Compile Include="socialInsuranceBUS.cs" />
-    <Compile Include="staffBUS.cs" />
+    <Compile Include="RuleBus.cs" />
+    <Compile Include="SalaryBus.cs" />
+    <Compile Include="SectionBus.cs" />
+    <Compile Include="SocialInsuranceBus.cs" />
+    <Compile Include="StaffBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

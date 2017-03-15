@@ -1,6 +1,6 @@
 ﻿namespace HRM
 {
-    partial class ucSection
+    partial class UcSection
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSection));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcSection));
             this.numStandardWorkdays = new System.Windows.Forms.NumericUpDown();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.mmDescription = new DevExpress.XtraEditors.MemoEdit();
@@ -74,7 +74,7 @@
             this.numStandardWorkdays.Location = new System.Drawing.Point(155, 106);
             this.numStandardWorkdays.Name = "numStandardWorkdays";
             this.numStandardWorkdays.Size = new System.Drawing.Size(171, 21);
-            this.numStandardWorkdays.TabIndex = 48;
+            this.numStandardWorkdays.TabIndex = 3;
             this.numStandardWorkdays.Value = new decimal(new int[] {
             26,
             0,
@@ -96,14 +96,15 @@
             this.mmDescription.Location = new System.Drawing.Point(400, 27);
             this.mmDescription.Name = "mmDescription";
             this.mmDescription.Size = new System.Drawing.Size(207, 63);
-            this.mmDescription.TabIndex = 44;
+            this.mmDescription.TabIndex = 4;
             // 
             // txtPhone
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtPhone, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtPhone.Location = new System.Drawing.Point(155, 79);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(169, 20);
-            this.txtPhone.TabIndex = 8;
+            this.txtPhone.TabIndex = 2;
             this.txtPhone.EditValueChanged += new System.EventHandler(this.txtPhone_EditValueChanged);
             this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged_1);
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
@@ -128,10 +129,11 @@
             // 
             // txtName
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtName, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtName.Location = new System.Drawing.Point(155, 53);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(171, 20);
-            this.txtName.TabIndex = 4;
+            this.txtName.TabIndex = 1;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
@@ -146,10 +148,11 @@
             // 
             // txtSectionID
             // 
+            this.dxErrorProvider.SetIconAlignment(this.txtSectionID, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtSectionID.Location = new System.Drawing.Point(155, 27);
             this.txtSectionID.Name = "txtSectionID";
             this.txtSectionID.Size = new System.Drawing.Size(171, 20);
-            this.txtSectionID.TabIndex = 1;
+            this.txtSectionID.TabIndex = 0;
             this.txtSectionID.EditValueChanged += new System.EventHandler(this.textEdit1_EditValueChanged);
             this.txtSectionID.TextChanged += new System.EventHandler(this.txtSectionID_TextChanged);
             this.txtSectionID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSectionID_KeyPress);
@@ -280,7 +283,9 @@
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsFind.AlwaysVisible = true;
+            this.gridView1.OptionsFind.FindNullPrompt = "Nhập tên phòng ban";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowDetailButtons = false;
             // 
             // gCoSectionID
             // 
@@ -326,13 +331,13 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
-            // ucSection
+            // UcSection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcSection);
             this.Controls.Add(this.panelControl1);
-            this.Name = "ucSection";
+            this.Name = "UcSection";
             this.Size = new System.Drawing.Size(863, 398);
             this.Load += new System.EventHandler(this.ucSection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numStandardWorkdays)).EndInit();
