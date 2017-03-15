@@ -281,9 +281,9 @@ namespace BUS
             }
         }
         public bool EditAStaff(string newid, string nameInput, Boolean genderInput, 
-            DateTime birthdayInput, string cardidInput, string phoneInput, 
+            DateTime? birthdayInput, string cardidInput, string phoneInput, 
             string addressInput, string eduInput, DateTime? startdateInput,
-            DateTime enddateInput, string manageridInput, string emailInput, 
+            DateTime? enddateInput, string manageridInput, string emailInput, 
             int dayremainInput, string postidInput, string sectionidInput)
         {
             try
@@ -317,26 +317,7 @@ namespace BUS
                 return false;
             }
         }
-        public bool CreateAStafft(string staffid, string secid, DateTime startdate, Boolean gender)
-        {
-            try
-            {
-                Staff aStaff = new Staff();
-                aStaff.StaffID = staffid;
-                aStaff.StaffName = "saddsa";
-                aStaff.PostID = "CV01";
-                aStaff.SectionID = secid;
-                aStaff.StartDate = startdate;
-                aStaff.Gender = gender;
-                _aHrm.Staffs.InsertOnSubmit(aStaff);
-                _aHrm.SubmitChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+
         public bool DeleteAStaff(string idInput)
         {
             try

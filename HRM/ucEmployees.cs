@@ -15,9 +15,9 @@ namespace HRM
             InitializeComponent();
         }
         readonly StaffBus _staffBus = new StaffBus();
-        HRMModelDataContext _aHrm = new HRMModelDataContext();
-        int _checkAdd = 0;
-        readonly StaffBus staffbus = new StaffBus();
+        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        private int _checkAdd;
+        readonly StaffBus _staffbus = new StaffBus();
 
         private void labelControl7_Click(object sender, EventArgs e)
         {
@@ -110,10 +110,9 @@ namespace HRM
         {
 
         }
-        private string GetLastIDEmployee()
+        private string GetLastIdEmployee()
         {
-            int id = 0;
-            string lastID = "";
+            int id;
 
             int countrecords = _aHrm.Staffs.Count();
             if (countrecords == 0)
@@ -124,8 +123,8 @@ namespace HRM
             {
                 id = countrecords + 1;
             }
-            lastID = "NV" + id;
-            return lastID;
+            var lastId = "NV" + id;
+            return lastId;
         }
         private void textEdit3_EditValueChanged(object sender, EventArgs e)
         {
@@ -145,7 +144,7 @@ namespace HRM
         public void LoadStaff()
         {
             gcEmployees.DataSource = _staffBus.LoadStaff();
-            
+
         }
         private void ucEmployees_Load(object sender, EventArgs e)
         {
@@ -162,48 +161,16 @@ namespace HRM
             cbbEducation.MaxLength = 30;
             txtPhone.Properties.MaxLength = 11;
             txtMail.Properties.MaxLength = 20;
-            txtAddress.Properties.MaxLength = 50;
+            txtAddress.Properties.MaxLength = 100;
+            txtMail.SelectionStart = txtMail.Text.Length;
         }
-        private bool CheckDateStartVsDateEnd()
-        {
-            //Lấy thông tin ngày tháng năm của dateStart
-            var namBatDau = dateStart.DateTime.Year;
-            var thangBatDau = dateStart.DateTime.Month;
-            var ngayBatDau = dateStart.DateTime.Day;
-            DateTime fullNgayBatDau = new DateTime(namBatDau, thangBatDau, ngayBatDau);
 
-            //Lấy thông tin ngày tháng năm của dateEnd
-            var namKetThuc = dateEnd.DateTime.Year;
-            var thangKetThuc = dateEnd.DateTime.Month;
-            var ngayKetThuc = dateEnd.DateTime.Day;
-            DateTime fullNgayKetThuc = new DateTime(namKetThuc, thangKetThuc, ngayKetThuc);
-
-            //So sánh 2 ngày dateStart vs DateEnd
-            if (DateTime.Compare(fullNgayBatDau, fullNgayKetThuc) > 0)
-            {
-                //Ngày bắt đầu lớn hơn ngày kết thúc
-                return false;
-            }
-            else
-            {
-                //Ngày bắt đầu nhỏ hơn ngày kết thúc
-                return true;
-            }
-        }
         public void AddStaff()
         {
             string section = cbbSection.SelectedValue.ToString();
             string post = cbbPost.SelectedValue.ToString();
             string manid = cbbManID.SelectedValue.ToString();
-            bool gender = true;
-            if(rbNam.Checked==true)
-            {
-                gender = true;             
-            }
-            else
-            {
-                gender = false;
-            }
+            var gender = rbNam.Checked;
             DateTime? birth = null, start = null, end = null;
             if (dateBirth.SelectionLength != 0)
             {
@@ -221,23 +188,32 @@ namespace HRM
             }
             _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, gender, birth,
                 txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, start, end,
-                manid, txtMail.Text, 10, post, section);          
+                manid, txtMail.Text, 10, post, section);
         }
         public void EditStaff()
         {
-            string section = cbbSection.SelectedValue.ToString();
-            string post = cbbPost.SelectedValue.ToString();
-            string manid = cbbManID.SelectedValue.ToString();
-            bool gioitinh = true;
-            if (rbNam.Checked)
+            var section = cbbSection.SelectedValue.ToString();
+            var post = cbbPost.SelectedValue.ToString();
+            var manid = cbbManID.SelectedValue.ToString();
+            DateTime? birth = null, start = null, end = null;
+            var gender = rbNam.Checked;
+            if (dateBirth.SelectionLength != 0)
             {
-                gioitinh = true;
+                birth = dateBirth.DateTime;
             }
-            else
+            if (dateStart.SelectionLength != 0)
             {
-                gioitinh = false;
+                start = dateStart.DateTime;
+
             }
-            _staffBus.EditAStaff(txtStaffID.Text, txtName.Text, gioitinh, dateBirth.DateTime, txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, dateStart.DateTime, dateEnd.DateTime, manid, txtMail.Text, 10, post, section);
+            if (dateEnd.SelectionLength != 0)
+            {
+                end = dateEnd.DateTime;
+
+            }
+            _staffBus.EditAStaff(txtStaffID.Text, txtName.Text, gender, birth,
+                txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, start, end,
+                manid, txtMail.Text, 10, post, section);
         }
         public const string MatchEmailPattern =
             @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
@@ -252,8 +228,7 @@ namespace HRM
             ResettextBox();
             SetBtn(false);
             _checkAdd = 1;
-            string idInsert = "";
-            idInsert = GetLastIDEmployee();
+            var idInsert = GetLastIdEmployee();
             txtStaffID.Text = idInsert;
             gcEmployees.Enabled = false;
             dxErrorProvider.ClearErrors();
@@ -263,7 +238,7 @@ namespace HRM
         {
             try
             {
-                if(_checkAdd == 1)
+                if (_checkAdd == 1)
                 {
                     if (string.IsNullOrEmpty(txtStaffID.Text))
                     {
@@ -282,7 +257,7 @@ namespace HRM
                         gcEmployees.Enabled = true;
                     }
                 }
-                if(_checkAdd == 2)
+                if (_checkAdd == 2)
                 {
                     if (string.IsNullOrEmpty(txtName.Text))
                     {
@@ -319,7 +294,7 @@ namespace HRM
             txtMail.Text = gridView1.GetFocusedRowCellDisplayText(gcEmail);
             cbbPost.Text = gridView1.GetFocusedRowCellDisplayText(gcPosition);
             string gender = gridView1.GetFocusedRowCellDisplayText(gcoGender);
-            if(gender == "Nam")
+            if (gender == "Nam")
             {
                 rbNam.Checked = true;
             }
@@ -327,7 +302,7 @@ namespace HRM
             {
                 rbNu.Checked = true;
             }
-            
+
             cbbSection.Text = gridView1.GetFocusedRowCellDisplayText(gcSection);
 
         }
@@ -335,7 +310,7 @@ namespace HRM
         {
             try
             {
-                DialogResult dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo);
+                var dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes)
                 {
                     _staffBus.DeleteAStaff(txtStaffID.Text);
@@ -406,7 +381,7 @@ namespace HRM
 
         private void txtStaffID_TextChanged(object sender, EventArgs e)
         {
-            if ((staffbus.FindIdInputInTable(txtStaffID.Text) == true))
+            if (_staffbus.FindIdInputInTable(txtStaffID.Text))
             {
                 dxErrorProvider.SetError(txtStaffID, "Mã phòng ban trùng");
             }
@@ -423,7 +398,7 @@ namespace HRM
 
         private void txtPhone_TextChanged(object sender, EventArgs e)
         {
-            if ((staffbus.FindPhoneInputInTable(txtPhone.Text) == true) && (txtPhone.Text != ""))
+            if (_staffbus.FindPhoneInputInTable(txtPhone.Text) && (txtPhone.Text != ""))
             {
                 dxErrorProvider.SetError(txtPhone, "Số điện thoại trùng");
             }
@@ -435,11 +410,11 @@ namespace HRM
 
         private void txtMail_TextChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(txtMail.Text, MatchEmailPattern))
+            if (!Regex.IsMatch(txtMail.Text, MatchEmailPattern) && txtMail.Text != "")
             {
                 dxErrorProvider.SetError(txtMail, "Email chưa đúng định dạng");
             }
-            else if ((staffbus.FindEmailInputInTable(txtMail.Text) == true))
+            else if (_staffbus.FindEmailInputInTable(txtMail.Text) && txtMail.Text != "")
             {
                 dxErrorProvider.SetError(txtMail, "Email trùng");
             }
@@ -461,7 +436,7 @@ namespace HRM
 
         private void txtCardID_TextChanged(object sender, EventArgs e)
         {
-            if ((staffbus.FindCardIdInputInTable(txtCardID.Text) == true))
+            if (_staffbus.FindCardIdInputInTable(txtCardID.Text) && txtCardID.Text != "")
             {
                 dxErrorProvider.SetError(txtCardID, "CMND trùng");
             }
@@ -472,4 +447,5 @@ namespace HRM
         }
     }
 }
+
 
