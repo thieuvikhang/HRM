@@ -14,6 +14,18 @@ namespace BUS
             var allRecords = from st in _aHrm.Positions select st;
             return allRecords;
         }
+       //
+        public bool GetMainId(string maPhongBan)
+        {
+            var exist = (from st in _aHrm.Staffs
+                         from sect in _aHrm.Sections
+                         from pos in _aHrm.Positions
+                         where st.PostID == pos.PostID && st.SectionID == sect.SectionID
+                         && sect.SectionID == maPhongBan
+                         && pos.PostName == "Trưởng phòng"
+                         select st).Any();
+            return exist;
+        }
         public IQueryable LoadAllCheck()
         {
             var allRecords = from st in _aHrm.Positions

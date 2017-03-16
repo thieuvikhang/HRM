@@ -254,6 +254,7 @@
             this.cbbSection.Name = "cbbSection";
             this.cbbSection.Size = new System.Drawing.Size(144, 21);
             this.cbbSection.TabIndex = 13;
+            this.cbbSection.SelectedIndexChanged += new System.EventHandler(this.cbbSection_SelectedIndexChanged);
             // 
             // cbbEducation
             // 

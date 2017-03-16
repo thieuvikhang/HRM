@@ -57,7 +57,8 @@ namespace HRM
             dateBirth.Text = "";
             txtMail.Text = "";
         }
-        void SetBtn(bool val)
+
+        private void SetBtn(bool val)
         {
             btnAdd.Enabled = val;
             btnDelete.Enabled = val;
@@ -86,6 +87,25 @@ namespace HRM
                            maloai = po.PostID,
                        };
             cbbPost.DataSource = post.ToList();
+            cbbPost.DisplayMember = "tenloai";
+            cbbPost.ValueMember = "maloai";
+        }
+        public void LoadComboboxPositionCheck()
+        {
+            var post = from po in _aHrm.Positions 
+                       select new
+                       {
+                           tenloai = po.PostName,
+                           maloai = po.PostID,
+                       };
+            var pos = from po in _aHrm.Positions
+                      where po.PostName =="Trưởng phòng"
+                      select new
+                      {
+                          tenloai = po.PostName,
+                          maloai = po.PostID,
+                      };
+            cbbPost.DataSource = post.Except(pos).ToList();
             cbbPost.DisplayMember = "tenloai";
             cbbPost.ValueMember = "maloai";
         }
@@ -151,7 +171,6 @@ namespace HRM
             SetTxt(false);
             gcEmployees.DataSource = _staffBus.LoadStaff();
             LoadComboboxSection();
-            LoadComboboxPosition();
             LoadComboboxManId();
             rbNam.Checked = true;
             cbbEducation.SelectedItem = "Đại học";
@@ -232,9 +251,23 @@ namespace HRM
             var idInsert = GetLastIdEmployee();
             txtStaffID.Text = idInsert;
             gcEmployees.Enabled = false;
+            CheckPosition();
             dxErrorProvider.ClearErrors();
         }
 
+        void CheckPosition()
+        {
+            string section = cbbSection.SelectedValue.ToString();
+            var postBus = new PostBus();
+            if (postBus.GetMainId(section))
+            {
+                LoadComboboxPositionCheck();
+            }
+            else
+            {
+                LoadComboboxPosition();
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -243,12 +276,13 @@ namespace HRM
                 {
                     if (string.IsNullOrEmpty(txtStaffID.Text))
                     {
-                        dxErrorProvider.SetError(txtStaffID, "Mã nhân viên ko dc trống");
+                        dxErrorProvider.SetError(txtStaffID, "Mã nhân viên không được trống");
                     }
                     if (string.IsNullOrEmpty(txtName.Text))
                     {
-                        dxErrorProvider.SetError(txtName, "Tên nhân viên ko dc trống");
+                        dxErrorProvider.SetError(txtName, "Tên nhân viên không được trống");
                     }
+        
                     if (!dxErrorProvider.HasErrors)
                     {
                         AddStaff();
@@ -262,7 +296,7 @@ namespace HRM
                 {
                     if (string.IsNullOrEmpty(txtName.Text))
                     {
-                        dxErrorProvider.SetError(txtName, "Tên nhân viên ko dc trống");
+                        dxErrorProvider.SetError(txtName, "Tên nhân viên không được trống");
                     }
                     if (!dxErrorProvider.HasErrors)
                     {
@@ -358,6 +392,7 @@ namespace HRM
             SetBtn(false);
             txtStaffID.Enabled = false;
             gcEmployees.Enabled = false;
+            CheckPosition();
         }
 
         private void groupControl2_Paint(object sender, PaintEventArgs e)
@@ -439,7 +474,7 @@ namespace HRM
         {
             if (_staffbus.FindCardIdInputInTable(txtCardID.Text) && txtCardID.Text != "")
             {
-                dxErrorProvider.SetError(txtCardID, "CMND trùng");
+                dxErrorProvider.SetError(txtCardID, "Chứng minh thư trùng");
             }
             else
             {
@@ -455,6 +490,11 @@ namespace HRM
         private void dateBirth_MouseClick(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private void cbbSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckPosition();
         }
     }
 }
