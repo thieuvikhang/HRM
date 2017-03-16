@@ -43,7 +43,7 @@ namespace BUS
                     aSi.InsuranceID = paymentInput;
                     aSi.PayRate = payRateInput;
                     aSi.Price = priceInput;
-                    aSi.SIMonth = monthInput;
+                    aSi.SIStartDate = monthInput;
                     aSi.StaffID = staffIdInput;
 
                     _aHrm.SocialInsurances.InsertOnSubmit(aSi);
@@ -69,7 +69,7 @@ namespace BUS
                 aSi.InsuranceID = paymentInput;
                 aSi.PayRate = payRateInput;
                 aSi.Price = priceInput;
-                aSi.SIMonth = monthInput;
+                aSi.SIStartDate = monthInput;
                 aSi.StaffID = staffIdInput;
                 _aHrm.SubmitChanges();
                 return true;
