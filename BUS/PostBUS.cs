@@ -58,20 +58,17 @@ namespace BUS
         {
             try
             {
-                if (FindIdInputIntable(idInput) == false && FindNameInputIntable(nameInput) == false)
+                if (FindIdInputIntable(idInput) != false || FindNameInputIntable(nameInput) != false) return false;
+                var aPost = new Position
                 {
-                    var aPost = new Position
-                    {
-                        PostID = idInput,
-                        PostName = nameInput,
-                        Description = descriptionInput
-                    };
+                    PostID = idInput,
+                    PostName = nameInput,
+                    Description = descriptionInput
+                };
 
-                    _aHrm.Positions.InsertOnSubmit(aPost);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                _aHrm.Positions.InsertOnSubmit(aPost);
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception)
             {
@@ -85,16 +82,13 @@ namespace BUS
                 //Tim redocrd cua section co ID
                 Position aPost = _aHrm.Positions.SingleOrDefault(st => st.PostID == newStid);
                 //Kiem tra record co ton tai
-                if (aPost != null)
-                {
-                    aPost.PostID = newStid;
-                    aPost.PostName = newName;
-                    aPost.Description = newDescription;
+                if (aPost == null) return false;
+                aPost.PostID = newStid;
+                aPost.PostName = newName;
+                aPost.Description = newDescription;
 
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception)
             {
@@ -105,14 +99,11 @@ namespace BUS
         {
             try
             {
-                Position aPost = (from st in _aHrm.Positions select st).SingleOrDefault(st => st.PostID == idInput);
-                if (aPost != null)
-                {
-                    _aHrm.Positions.DeleteOnSubmit(aPost);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                var aPost = (from st in _aHrm.Positions select st).SingleOrDefault(st => st.PostID == idInput);
+                if (aPost == null) return false;
+                _aHrm.Positions.DeleteOnSubmit(aPost);
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception)
             {

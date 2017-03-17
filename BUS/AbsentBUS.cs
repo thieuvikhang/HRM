@@ -6,7 +6,7 @@ namespace BUS
 {
     public class AbsentBus
     {
-        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         //Lấy số ngày nghỉ không lương theo Mã nhân viên, tháng
         public int GetAbsentDays(int month, int year, string staffId)
         {

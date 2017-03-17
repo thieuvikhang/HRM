@@ -34,7 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.gcAddSalary = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcStaffId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cbbChonThang = new System.Windows.Forms.ComboBox();
@@ -42,6 +42,8 @@
             this.cbbChonPB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.txtPhuCap = new System.Windows.Forms.NumericUpDown();
+            this.txtChonNV = new DevExpress.XtraEditors.TextEdit();
             this.label14 = new System.Windows.Forms.Label();
             this.txtSoNgayNghi = new DevExpress.XtraEditors.TextEdit();
             this.label13 = new System.Windows.Forms.Label();
@@ -55,13 +57,11 @@
             this.txtLuongCoBan = new DevExpress.XtraEditors.TextEdit();
             this.txtBHXH = new DevExpress.XtraEditors.TextEdit();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtPhuCap = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
             this.txtGhiChu = new DevExpress.XtraEditors.MemoEdit();
             this.txtNgayCongQuyDinh = new DevExpress.XtraEditors.TextEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPhongBan = new DevExpress.XtraEditors.TextEdit();
-            this.cbbChonNv = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -70,13 +70,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChonNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayNghi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayCong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongThucLanh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongHD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongCoBan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBHXH.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgayCongQuyDinh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhongBan.Properties)).BeginInit();
@@ -101,8 +102,6 @@
             this.windowsUIButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.windowsUIButton.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("Lưu", "Save;Size32x32;GrayScaled", DevExpress.XtraBars.Docking2010.ImageLocation.Default, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", true, -1, true, null, true, false, true, null, "tagSave", -1, false, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Lưu & Tạo mới", "SaveAndNew;Size32x32;GrayScaled", DevExpress.XtraBars.Docking2010.ImageLocation.Default, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", true, -1, true, null, true, false, true, null, "tagSaveAndNew", -1, false, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("Lưu và Thoát", "SaveAndClose;Size32x32;GrayScaled", DevExpress.XtraBars.Docking2010.ImageLocation.Default, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", true, -1, true, null, true, false, true, null, "tagSaveAndClose", -1, false, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
@@ -163,7 +162,7 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
+            this.gcStaffId,
             this.gridColumn2,
             this.gridColumn3});
             this.gridView1.GridControl = this.gcAddSalary;
@@ -172,13 +171,13 @@
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             // 
-            // gridColumn1
+            // gcStaffId
             // 
-            this.gridColumn1.Caption = "Mã nhân viên";
-            this.gridColumn1.FieldName = "StaffID";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.gcStaffId.Caption = "Mã nhân viên";
+            this.gcStaffId.FieldName = "StaffID";
+            this.gcStaffId.Name = "gcStaffId";
+            this.gcStaffId.Visible = true;
+            this.gcStaffId.VisibleIndex = 0;
             // 
             // gridColumn2
             // 
@@ -236,6 +235,8 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.txtPhuCap);
+            this.groupControl2.Controls.Add(this.txtChonNV);
             this.groupControl2.Controls.Add(this.label14);
             this.groupControl2.Controls.Add(this.txtSoNgayNghi);
             this.groupControl2.Controls.Add(this.label13);
@@ -249,13 +250,11 @@
             this.groupControl2.Controls.Add(this.txtLuongCoBan);
             this.groupControl2.Controls.Add(this.txtBHXH);
             this.groupControl2.Controls.Add(this.label7);
-            this.groupControl2.Controls.Add(this.txtPhuCap);
             this.groupControl2.Controls.Add(this.label6);
             this.groupControl2.Controls.Add(this.txtGhiChu);
             this.groupControl2.Controls.Add(this.txtNgayCongQuyDinh);
             this.groupControl2.Controls.Add(this.label5);
             this.groupControl2.Controls.Add(this.txtPhongBan);
-            this.groupControl2.Controls.Add(this.cbbChonNv);
             this.groupControl2.Controls.Add(this.label12);
             this.groupControl2.Controls.Add(this.label4);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Right;
@@ -264,6 +263,27 @@
             this.groupControl2.Size = new System.Drawing.Size(664, 536);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Thêm lương";
+            // 
+            // txtPhuCap
+            // 
+            this.txtPhuCap.Location = new System.Drawing.Point(96, 236);
+            this.txtPhuCap.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.txtPhuCap.Name = "txtPhuCap";
+            this.txtPhuCap.Size = new System.Drawing.Size(220, 21);
+            this.txtPhuCap.TabIndex = 1;
+            this.txtPhuCap.ValueChanged += new System.EventHandler(this.txtPhuCap_ValueChanged);
+            // 
+            // txtChonNV
+            // 
+            this.txtChonNV.Enabled = false;
+            this.txtChonNV.Location = new System.Drawing.Point(96, 37);
+            this.txtChonNV.Name = "txtChonNV";
+            this.txtChonNV.Size = new System.Drawing.Size(220, 20);
+            this.txtChonNV.TabIndex = 76;
             // 
             // label14
             // 
@@ -376,13 +396,6 @@
             this.label7.TabIndex = 63;
             this.label7.Text = "Phụ cấp:";
             // 
-            // txtPhuCap
-            // 
-            this.txtPhuCap.Location = new System.Drawing.Point(96, 235);
-            this.txtPhuCap.Name = "txtPhuCap";
-            this.txtPhuCap.Size = new System.Drawing.Size(220, 20);
-            this.txtPhuCap.TabIndex = 1;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -427,16 +440,6 @@
             this.txtPhongBan.Size = new System.Drawing.Size(220, 20);
             this.txtPhongBan.TabIndex = 57;
             // 
-            // cbbChonNv
-            // 
-            this.cbbChonNv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbChonNv.FormattingEnabled = true;
-            this.cbbChonNv.Location = new System.Drawing.Point(96, 37);
-            this.cbbChonNv.Name = "cbbChonNv";
-            this.cbbChonNv.Size = new System.Drawing.Size(220, 21);
-            this.cbbChonNv.TabIndex = 4;
-            this.cbbChonNv.TextChanged += new System.EventHandler(this.cbbChonNv_TextChanged);
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -478,13 +481,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChonNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayNghi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayCong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongThucLanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongHD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongCoBan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBHXH.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgayCongQuyDinh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhongBan.Properties)).EndInit();
@@ -502,11 +506,10 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraGrid.GridControl gcAddSalary;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcStaffId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbbChonNv;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -525,9 +528,10 @@
         private DevExpress.XtraEditors.TextEdit txtLuongCoBan;
         private DevExpress.XtraEditors.TextEdit txtBHXH;
         private System.Windows.Forms.Label label7;
-        private DevExpress.XtraEditors.TextEdit txtPhuCap;
         private System.Windows.Forms.Label label6;
         private DevExpress.XtraEditors.MemoEdit txtGhiChu;
+        private DevExpress.XtraEditors.TextEdit txtChonNV;
+        private System.Windows.Forms.NumericUpDown txtPhuCap;
     }
 
 }

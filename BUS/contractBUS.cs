@@ -42,27 +42,27 @@ namespace BUS
             try
             {
                 //Kiem tra idInput vs Id trong table contract
-                if(!FindIdInputInTable(idInput)) {
-                    //tao mot doi tuong 
-                    Contract aContract = new Contract();
-                    aContract.ContractID = idInput;
-                    aContract.Date = dateInput;
-                    aContract.Currency = currencyInput;
-                    aContract.StartDate = startDateInput;
-                    aContract.EndDate = endDateInput;
-                    aContract.Status = statusInput;
-                    aContract.BasicPay = basicPayInput;
-                    aContract.Payment = paymentInput;
-                    aContract.Note = noteInput;
-                    aContract.StaffID = staffIdInput;
-                    aContract.ContractTypeID = contractTypeIdInput;
-                    // Thong tin khach hang se dc luu lai
-                    _aHrm.Contracts.InsertOnSubmit(aContract);
-                    // Luu thong tin xuong SQL
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                if (FindIdInputInTable(idInput)) return false;
+                //tao mot doi tuong 
+                var aContract = new Contract
+                {
+                    ContractID = idInput,
+                    Date = dateInput,
+                    Currency = currencyInput,
+                    StartDate = startDateInput,
+                    EndDate = endDateInput,
+                    Status = statusInput,
+                    BasicPay = basicPayInput,
+                    Payment = paymentInput,
+                    Note = noteInput,
+                    StaffID = staffIdInput,
+                    ContractTypeID = contractTypeIdInput
+                };
+                // Thong tin khach hang se dc luu lai
+                _aHrm.Contracts.InsertOnSubmit(aContract);
+                // Luu thong tin xuong SQL
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;

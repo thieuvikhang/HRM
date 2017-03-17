@@ -11,11 +11,11 @@ namespace BUS
     */
     public class SectionBus
     {
-        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        public readonly HRMModelDataContext AHrm = new HRMModelDataContext();
 
         // Load tat ca section
         public IQueryable LoadAll() {
-            var allRecords = from st in _aHrm.Sections select st;
+            var allRecords = from st in AHrm.Sections select st;
             return allRecords;
         }
 
@@ -23,7 +23,7 @@ namespace BUS
         public bool FindNameInputIntable(string nameInput)
         {
             //Dem record trung ten hoac so dien thoai
-            var countSection = (from st in _aHrm.Sections
+            var countSection = (from st in AHrm.Sections
                                 where (st.SectionName == nameInput)
                                 select st).Count();
 
@@ -34,7 +34,7 @@ namespace BUS
         public bool FindIdInputIntable(string idInput)
         {
             //Dem record trung ten hoac so dien thoai
-            int countSection = (from st in _aHrm.Sections
+            var countSection = (from st in AHrm.Sections
                                 where (st.SectionID == idInput)
                                 select st).Count();
 
@@ -45,7 +45,7 @@ namespace BUS
         public bool FindPhoneInputIntable(string phoneInput)
         {
             //Dem record trung ten hoac so dien thoai
-            var countSection = (from st in _aHrm.Sections
+            var countSection = (from st in AHrm.Sections
                                 where (st.Phone == phoneInput)
                                 select st).Count();
 
@@ -65,8 +65,8 @@ namespace BUS
                     Phone = phoneInput
                 };
 
-                _aHrm.Sections.InsertOnSubmit(aSection);
-                _aHrm.SubmitChanges();
+                AHrm.Sections.InsertOnSubmit(aSection);
+                AHrm.SubmitChanges();
                 return true;
             }
             catch (Exception) {
@@ -77,7 +77,7 @@ namespace BUS
         public bool EditSection(string newStid, string newName, string newDescription, int newStandWorkDay, string newPhone) {
             try {
                 //Tim redocrd cua section co ID
-                var aSection = _aHrm.Sections.SingleOrDefault(st => st.SectionID == newStid);
+                var aSection = AHrm.Sections.SingleOrDefault(st => st.SectionID == newStid);
                 //Kiem tra record co ton tai
                 if (aSection == null) return false;
                 aSection.SectionID = newStid;
@@ -85,7 +85,7 @@ namespace BUS
                 aSection.Description = newDescription;
                 aSection.StandardWorkdays = newStandWorkDay;
                 aSection.Phone = newPhone;
-                _aHrm.SubmitChanges();
+                AHrm.SubmitChanges();
                 return true;
             }
             catch (Exception) {
@@ -95,10 +95,10 @@ namespace BUS
 
         public bool DeleteASection(string idInput) {
             try {
-                var aSection = (from st in _aHrm.Sections select st).SingleOrDefault(st => st.SectionID == idInput);
+                var aSection = (from st in AHrm.Sections select st).SingleOrDefault(st => st.SectionID == idInput);
                 if (aSection == null) return false;
-                _aHrm.Sections.DeleteOnSubmit(aSection);
-                _aHrm.SubmitChanges();
+                AHrm.Sections.DeleteOnSubmit(aSection);
+                AHrm.SubmitChanges();
                 return true;
             }
             catch (Exception) {
@@ -108,13 +108,13 @@ namespace BUS
         //Lấy só ngày công quy định dựa vào Mã phòng ban
         public int GetStandardWorkdaysBySectionId(string sectionId)
         {
-            var standardWorkday = (from s in _aHrm.Sections where s.SectionID == sectionId select s.StandardWorkdays).FirstOrDefault();
+            var standardWorkday = (from s in AHrm.Sections where s.SectionID == sectionId select s.StandardWorkdays).FirstOrDefault();
             return ToInt16(standardWorkday);
         }
         //Lấy tên phòng ban theo mã phòng
         public string GetSectionName(string sectionId)
         {
-            var sectionName = (from s in _aHrm.Sections where s.SectionID == sectionId select s.SectionName).FirstOrDefault();
+            var sectionName = (from s in AHrm.Sections where s.SectionID == sectionId select s.SectionName).FirstOrDefault();
             return sectionName;
         }
     }

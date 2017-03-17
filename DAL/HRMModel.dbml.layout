@@ -1,160 +1,147 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 19.5" name="HRMModel">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 15.5" name="HRMModel">
   <DataContextMoniker Name="/HRMModelDataContext" />
   <nestedChildShapes>
-    <classShape Id="1389dd17-f71c-4af3-8059-9658a2d32d8a" absoluteBounds="3.5, 11.375, 2, 1.9631982421874987">
+    <classShape Id="80adfd89-2ce0-4e6d-ba66-b7b3d936f048" absoluteBounds="6.25, 9.875, 2, 2.1554996744791666">
       <DataClassMoniker Name="/HRMModelDataContext/Absent" />
       <nestedChildShapes>
-        <elementListCompartment Id="c3cec3ed-bc7e-4f59-9654-0ffa3c7d5141" absoluteBounds="3.515, 11.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4b58c4e5-a9d1-431b-8011-e0b08058e371" absoluteBounds="6.265, 10.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" absoluteBounds="3.5, 6.5, 2, 3.8862125651041666">
+    <classShape Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" absoluteBounds="3.5, 6.75, 2, 3.8862125651041666">
       <DataClassMoniker Name="/HRMModelDataContext/Staff" />
       <nestedChildShapes>
-        <elementListCompartment Id="5515eae9-37d7-4c8e-8225-379f3009af3d" absoluteBounds="3.515, 6.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="fe0fa887-1656-4b7a-84f1-5be8cf5b5426" absoluteBounds="3.515, 7.21, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e66e04cc-15c1-4c51-8c5b-28633091a819" absoluteBounds="6.25, 17.625, 2, 1.5785953776041666">
+    <classShape Id="aa0fd70e-3bc0-4af7-b23d-4a0b223ed824" absoluteBounds="9.25, 0.875, 2, 1.5785953776041666">
       <DataClassMoniker Name="/HRMModelDataContext/Access" />
       <nestedChildShapes>
-        <elementListCompartment Id="faa14434-5c71-439f-b72a-5484fcce6e2e" absoluteBounds="6.265, 18.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8d17cc0f-67f3-492b-8948-7a4fd423e0df" absoluteBounds="9.265, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="043f6479-c251-437c-8eac-b8ac8f7a1b08" absoluteBounds="6.25, 4.5, 2, 1.7708968098958327">
+    <classShape Id="dcfd35e7-a23f-49cc-a748-f4687fed488a" absoluteBounds="9.25, 7.875, 2, 1.7708968098958335">
       <DataClassMoniker Name="/HRMModelDataContext/Account" />
       <nestedChildShapes>
-        <elementListCompartment Id="4fe867c5-75ff-4dbb-a8e8-34592a08d2c4" absoluteBounds="6.265, 4.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4f5b6bb2-b2ca-4d0b-a7f7-8097ce0566b1" absoluteBounds="9.265, 8.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="10602fe4-6b0b-43ab-98f7-674d4fe2dae8" absoluteBounds="9.25, 7, 2, 2.9247054036458335">
+    <classShape Id="a376c656-64aa-40a7-a5b8-011dc06fb372" absoluteBounds="6.25, 3.25, 2, 2.9247054036458326">
       <DataClassMoniker Name="/HRMModelDataContext/Contract" />
       <nestedChildShapes>
-        <elementListCompartment Id="42d7e566-f73a-449a-a0f7-24391cd18747" absoluteBounds="9.265, 7.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e64ad935-d8e3-404e-82aa-a007871bd270" absoluteBounds="6.265, 3.71, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4835aab4-8caf-43c5-8994-e377ac8f97e1" absoluteBounds="6.5, 1.75, 2, 1.1939925130208335">
+    <classShape Id="8edb2faf-9470-4120-8e8f-2419787b54fd" absoluteBounds="3.5, 4.125, 2, 1.1939925130208344">
       <DataClassMoniker Name="/HRMModelDataContext/ContractType" />
       <nestedChildShapes>
-        <elementListCompartment Id="8d3bbc3f-c3cc-4bf6-9adf-de5486ea4817" absoluteBounds="6.515, 2.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f935a4d7-6662-43f9-8146-c17300b88c47" absoluteBounds="3.515, 4.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="96371c75-b760-4d0d-a581-aa5521a1f745" absoluteBounds="6.25, 7.625, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/HRMModelDataContext/DetailAbsent" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f543499c-c7f5-4cf0-88ca-d5097fb734e8" absoluteBounds="6.265, 8.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9f307482-eac9-48d6-8eef-058a3c3b46f3" absoluteBounds="3.5, 3.75, 2, 1.3862939453125005">
+    <classShape Id="e6f8c161-097a-4162-8cee-7ae7a69d2926" absoluteBounds="6.5, 1, 2, 1.3862939453125003">
       <DataClassMoniker Name="/HRMModelDataContext/GroupAccess" />
       <nestedChildShapes>
-        <elementListCompartment Id="33f6c9fa-f91d-4773-8888-1fb835e61565" absoluteBounds="3.515, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4fbd7f1d-7380-407e-a2df-784be029327a" absoluteBounds="6.515, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f34b9da0-5f18-461b-8283-1adfe2db36a0" absoluteBounds="0.75, 7.75, 2, 1.3862939453124996">
+    <classShape Id="5b5b9852-1edf-4b7b-a5b1-c3354a90daf2" absoluteBounds="0.75, 8, 2, 1.3862939453124987">
       <DataClassMoniker Name="/HRMModelDataContext/Position" />
       <nestedChildShapes>
-        <elementListCompartment Id="dd6d70f8-e893-416c-9976-63d08ec65a1c" absoluteBounds="0.765, 8.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4270c859-1053-4a74-bc69-e14b7762f334" absoluteBounds="0.765, 8.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f22e7325-5b3e-42b6-80fc-22cb7c49d81d" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
+    <classShape Id="bfedbed5-b178-41cf-bd43-cc7328df9abb" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
       <DataClassMoniker Name="/HRMModelDataContext/Rule" />
       <nestedChildShapes>
-        <elementListCompartment Id="3704f904-ce8a-4336-9673-f65b5c37a848" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4550476e-f1e6-46bd-b726-aae8ba381656" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2236a00e-f603-4eae-8692-7980bcdb2422" absoluteBounds="6.25, 13.375, 2, 2.5401025390624987">
+    <classShape Id="db3c9603-f02e-41a1-ad3c-492a0c8a838a" absoluteBounds="6.25, 12.75, 2, 2.5401025390624987">
       <DataClassMoniker Name="/HRMModelDataContext/Salary" />
       <nestedChildShapes>
-        <elementListCompartment Id="35381602-d533-40b6-8aef-8a7aa3be8bc0" absoluteBounds="6.265, 13.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="62071d69-6f4c-43c1-8ef4-92fa792427e3" absoluteBounds="6.265, 13.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e96bd07b-f404-4cf2-9d78-5fc7c0c50946" absoluteBounds="0.75, 4.5, 2, 1.7708968098958327">
+    <classShape Id="6a336e91-f2ad-4d35-b0d1-b8d490bfe9b4" absoluteBounds="0.75, 4.875, 2, 1.7708968098958327">
       <DataClassMoniker Name="/HRMModelDataContext/Section" />
       <nestedChildShapes>
-        <elementListCompartment Id="237c9383-c23e-400c-b927-748fbdf053b7" absoluteBounds="0.765, 4.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="eb6e9513-e68f-4782-a2e3-402abae2ed41" absoluteBounds="0.765, 5.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="778ed209-6297-4e6d-9f87-455a1c655bc6" absoluteBounds="6.25, 10.625, 2, 1.9631982421874987">
+    <classShape Id="c0a5abe0-8f53-407b-ba33-7d1301a6a91f" absoluteBounds="6.25, 7.125, 2, 1.9631982421874996">
       <DataClassMoniker Name="/HRMModelDataContext/SocialInsurance" />
       <nestedChildShapes>
-        <elementListCompartment Id="8d1a77d5-77e7-4508-b230-fac2b91d934c" absoluteBounds="6.265, 11.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f3b7bae5-3e11-4c78-a937-81703c28d473" absoluteBounds="6.265, 7.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 6.5); (5.875 : 6.125); (5.875 : 6.64589680989583); (6.00357443490112 : 6.51732237499471 : JumpStart); (6.12142556509888 : 6.39947124479695 : JumpEnd); (6.25 : 6.27089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 10.2556062825521); (6.25 : 10.2556062825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HRMModelDataContext/Staff/Staff_Absent" />
+      <nodes>
+        <classShapeMoniker Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" />
+        <classShapeMoniker Id="80adfd89-2ce0-4e6d-ba66-b7b3d936f048" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 9.39829752604167); (9.25 : 9.39829752604167)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HRMModelDataContext/Staff/Staff_Account" />
       <nodes>
-        <classShapeMoniker Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" />
-        <classShapeMoniker Id="043f6479-c251-437c-8eac-b8ac8f7a1b08" />
+        <classShapeMoniker Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" />
+        <classShapeMoniker Id="dcfd35e7-a23f-49cc-a748-f4687fed488a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.595400390625); (5.79166666666667 : 9.595400390625 : JumpStart); (5.95833333333333 : 9.595400390625 : JumpEnd); (5.97916666666667 : 9.595400390625 : JumpStart); (6.14583333333333 : 9.595400390625 : JumpEnd); (9.25 : 9.595400390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 6.75); (5.875 : 6.375); (5.875 : 6.54970540364583); (6.25 : 6.17470540364583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/HRMModelDataContext/Staff/Staff_Contract" />
       <nodes>
-        <classShapeMoniker Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" />
-        <classShapeMoniker Id="10602fe4-6b0b-43ab-98f7-674d4fe2dae8" />
+        <classShapeMoniker Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" />
+        <classShapeMoniker Id="a376c656-64aa-40a7-a5b8-011dc06fb372" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.40625 : 2.94399251302083); (8.40625 : 7.28125); (9.25 : 7.28125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.72199625651042); (6.25 : 4.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HRMModelDataContext/ContractType/ContractType_Contract" />
       <nodes>
-        <classShapeMoniker Id="4835aab4-8caf-43c5-8994-e377ac8f97e1" />
-        <classShapeMoniker Id="10602fe4-6b0b-43ab-98f7-674d4fe2dae8" />
+        <classShapeMoniker Id="8edb2faf-9470-4120-8e8f-2419787b54fd" />
+        <classShapeMoniker Id="a376c656-64aa-40a7-a5b8-011dc06fb372" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 11.375); (5.875 : 11); (5.875 : 8.41429768880208); (5.97916666666667 : 8.41429768880208 : JumpStart); (6.14583333333333 : 8.41429768880208 : JumpEnd); (6.25 : 8.41429768880208)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/HRMModelDataContext/Absent/Absent_DetailAbsent" />
-      <nodes>
-        <classShapeMoniker Id="1389dd17-f71c-4af3-8059-9658a2d32d8a" />
-        <classShapeMoniker Id="96371c75-b760-4d0d-a581-aa5521a1f745" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 7.95714884440104); (5.97916666666667 : 7.95714884440104 : JumpStart); (6.14583333333333 : 7.95714884440104 : JumpEnd); (6.25 : 7.95714884440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/HRMModelDataContext/Staff/Staff_DetailAbsent" />
-      <nodes>
-        <classShapeMoniker Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" />
-        <classShapeMoniker Id="96371c75-b760-4d0d-a581-aa5521a1f745" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.0744429077524); (6.0625 : 5.6369429077524); (6.0625 : 18.4142976888021); (6.25 : 18.4142976888021)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 1.69314697265625); (9.25 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HRMModelDataContext/GroupAccess/GroupAccess_Access" />
       <nodes>
-        <classShapeMoniker Id="9f307482-eac9-48d6-8eef-058a3c3b46f3" />
-        <classShapeMoniker Id="e66e04cc-15c1-4c51-8c5b-28633091a819" />
+        <classShapeMoniker Id="e6f8c161-097a-4162-8cee-7ae7a69d2926" />
+        <classShapeMoniker Id="aa0fd70e-3bc0-4af7-b23d-4a0b223ed824" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 4.7559689538762); (6.25 : 4.7559689538762)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.40625 : 2.3862939453125); (8.40625 : 9.24324538411458); (9.25 : 9.24324538411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HRMModelDataContext/GroupAccess/GroupAccess_Account" />
       <nodes>
-        <classShapeMoniker Id="9f307482-eac9-48d6-8eef-058a3c3b46f3" />
-        <classShapeMoniker Id="043f6479-c251-437c-8eac-b8ac8f7a1b08" />
+        <classShapeMoniker Id="e6f8c161-097a-4162-8cee-7ae7a69d2926" />
+        <classShapeMoniker Id="dcfd35e7-a23f-49cc-a748-f4687fed488a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.44314697265625); (3.5 : 8.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 8.69314697265625); (3.5 : 8.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HRMModelDataContext/Position/Position_Staff" />
       <nodes>
-        <classShapeMoniker Id="f34b9da0-5f18-461b-8283-1adfe2db36a0" />
-        <classShapeMoniker Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" />
+        <classShapeMoniker Id="5b5b9852-1edf-4b7b-a5b1-c3354a90daf2" />
+        <classShapeMoniker Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.46769230769231 : 10.3862125651042); (5.81607443490112 : 10.734594692313 : JumpStart); (5.93392556509888 : 10.8524458225107 : JumpEnd); (5.9375 : 10.8560202574119); (5.9375 : 14.6450512695312); (5.97916666666667 : 14.6450512695312 : JumpStart); (6.14583333333333 : 14.6450512695312 : JumpEnd); (6.25 : 14.6450512695312)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.5 : 10.6362125651042); (4.5 : 14.0200512695312); (6.25 : 14.0200512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HRMModelDataContext/Staff/Staff_Salary" />
       <nodes>
-        <classShapeMoniker Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" />
-        <classShapeMoniker Id="2236a00e-f603-4eae-8692-7980bcdb2422" />
+        <classShapeMoniker Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" />
+        <classShapeMoniker Id="db3c9603-f02e-41a1-ad3c-492a0c8a838a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.27089680989583); (3.125 : 6.64589680989583); (3.125 : 6.12346253846154); (3.50153746153846 : 6.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 6.64589680989583); (3.125 : 7.02089680989583); (3.125 : 6.37346253846154); (3.50153746153846 : 6.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/HRMModelDataContext/Section/Section_Staff" />
       <nodes>
-        <classShapeMoniker Id="e96bd07b-f404-4cf2-9d78-5fc7c0c50946" />
-        <classShapeMoniker Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" />
+        <classShapeMoniker Id="6a336e91-f2ad-4d35-b0d1-b8d490bfe9b4" />
+        <classShapeMoniker Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 10.3215961804888); (5.65625 : 10.4778461804888); (5.65625 : 10.03125); (5.81607443490112 : 10.1910744349011 : JumpStart); (5.93392556509888 : 10.3089255650989 : JumpEnd); (6.00357443490112 : 10.3785744349011 : JumpStart); (6.12142556509888 : 10.4964255650989 : JumpEnd); (6.25 : 10.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 8.10659912109375); (6.25 : 8.10659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HRMModelDataContext/Staff/Staff_SocialInsurance" />
       <nodes>
-        <classShapeMoniker Id="b4589c52-f5e8-4ea1-b51c-1251074e46ff" />
-        <classShapeMoniker Id="778ed209-6297-4e6d-9f87-455a1c655bc6" />
+        <classShapeMoniker Id="4ec63c0c-c690-4643-9fa2-c32e96191b17" />
+        <classShapeMoniker Id="c0a5abe0-8f53-407b-ba33-7d1301a6a91f" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

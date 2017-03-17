@@ -1,11 +1,13 @@
-﻿using DAL;
+﻿using System;
+using DAL;
 using System.Linq;
 
 namespace BUS
 {
     public class SalaryBus
     {
-        readonly ExtendBus _extendBus = new ExtendBus();
+        public readonly ExtendBus ExtendBus = new ExtendBus();
+        private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         //Kiểm tra mả trả về là phòng ban hay nhân viên
         public bool CheckTheCode(string maSo, string kyTu)
         {
@@ -39,7 +41,7 @@ namespace BUS
         {
             get
             {
-                var month = (from m in AHrm.Salaries select m.SalaryMonth).Distinct();
+                var month = (from m in _aHrm.Salaries select m.SalaryMonth).Distinct();
                 return month;
             }
         }
@@ -48,8 +50,8 @@ namespace BUS
         {
             get
             {
-                var salary = from sta in AHrm.Staffs
-                             from sala in AHrm.Salaries
+                var salary = from sta in _aHrm.Staffs
+                             from sala in _aHrm.Salaries
                              where sta.StaffID == sala.StaffID
                              group sala by new
                              {
@@ -68,83 +70,118 @@ namespace BUS
                                  Name = d.Key.name,
                                  //định dạng MM/yyyy
                                  SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                                 BasicPay = _extendBus.FormatMoney(d.Key.basicPay.Value),
-                                 Allowance = _extendBus.FormatMoney(d.Key.allowance.Value),
+                                 BasicPay = ExtendBus.FormatMoney(d.Key.basicPay.Value),
+                                 Allowance = ExtendBus.FormatMoney(d.Key.allowance.Value),
                                  Workdays = d.Key.workdays,
-                                 RealPay = _extendBus.FormatMoney(d.Key.realPay.Value),
+                                 RealPay = ExtendBus.FormatMoney(d.Key.realPay.Value),
                              };
                 return salary;
             }
         }
-
-        public IQueryable LoadAddSalary
-        {
-            get
-            {
-                var salary = from sta in AHrm.Staffs
-                             from sala in AHrm.Salaries
-                             where sta.StaffID == sala.StaffID
-                             group sala by new
-                             {
-                                 staffID = sta.StaffID,
-                                 name = sta.StaffName,
-                                 realPay = sala.RealPay,
-                                 month = sala.SalaryMonth.Value.Month,
-                                 year = sala.SalaryMonth.Value.Year
-                             } into d
-                             select new
-                             {
-                                 StaffID = d.Key.staffID,
-                                 Name = d.Key.name,
-                                 //định dạng MM/yyyy
-                                 SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                                 RealPay = d.Key.realPay,
-                             };
-                return salary;
-            }
-        }
-
-        public HRMModelDataContext AHrm { get; } = new HRMModelDataContext();
-
         public IQueryable LoadStaffNonSalary(string maPb, int month, int year)
         {
             if (maPb == "-")
             {
-                var staffal = from sta in AHrm.Staffs
-                              from sala in AHrm.Salaries
-                              from sec in AHrm.Sections
-                              where sta.StaffID == sala.StaffID
-                                    && sec.SectionID == sta.SectionID
-                                    && sala.SalaryMonth.Value.Month != month
-                                    && sala.SalaryMonth.Value.Year != year
-                              select new
-                              {
-                                  sta.StaffID,
-                                  sta.StaffName,
-                                  sec.SectionName
-                              };
-                return staffal;
+                var list2 = (from pb in _aHrm.Sections
+                             from nv in _aHrm.Staffs
+                             where nv.SectionID == pb.SectionID
+                             select new
+                             {
+                                 nv.StaffID,
+                                 nv.StaffName,
+                                 pb.SectionName
+                             }).ToList();
+                var list1 = (from luong in _aHrm.Salaries
+                             from pb in _aHrm.Sections
+                             from nv in _aHrm.Staffs
+                             where nv.SectionID == pb.SectionID
+                                   && nv.StaffID == luong.StaffID
+                                   && luong.SalaryMonth.Value.Month == month
+                                   && luong.SalaryMonth.Value.Year == year
+                             select new
+                             {
+                                 nv.StaffID,
+                                 nv.StaffName,
+                                 pb.SectionName
+                             }).ToList();
+                foreach (var item1 in list1)
+                {
+                    for (var index = 0; index < list2.Count; index++)
+                    {
+                        var item2 = list2[index];
+                        if (item1.StaffID != item2.StaffID || item1.StaffName != item2.StaffName ||
+                            item1.SectionName != item2.SectionName) continue;
+                        list2.RemoveAt(index);
+                    }
+                }
+                return list2.AsQueryable();
             }
-            var staff = from sta in AHrm.Staffs
-                        from sala in AHrm.Salaries
-                        from sec in AHrm.Sections
-                        where sta.StaffID == sala.StaffID
-                              && sec.SectionID == sta.SectionID
-                              && sta.SectionID == maPb
-                              && sala.SalaryMonth.Value.Month != month
-                              && sala.SalaryMonth.Value.Year != year
-                        select new
-                        {
-                            sta.StaffID,
-                            sta.StaffName,
-                            sec.SectionName
-                        };
-            return staff;
+            else
+            {
+                var list2 = (from pb in _aHrm.Sections
+                             from nv in _aHrm.Staffs
+                             where nv.SectionID == pb.SectionID
+                                   && nv.SectionID == maPb
+                             select new
+                             {
+                                 nv.StaffID,
+                                 nv.StaffName,
+                                 pb.SectionName
+                             }).ToList();
+                var list1 = (from luong in _aHrm.Salaries
+                             from pb in _aHrm.Sections
+                             from nv in _aHrm.Staffs
+                             where nv.SectionID == pb.SectionID
+                                   && nv.StaffID == luong.StaffID
+                                   && luong.SalaryMonth.Value.Month == month
+                                   && luong.SalaryMonth.Value.Year == year
+                             select new
+                             {
+                                 nv.StaffID,
+                                 nv.StaffName,
+                                 pb.SectionName
+                             }).ToList();
+                foreach (var item1 in list1)
+                {
+                    for (var index = 0; index < list2.Count; index++)
+                    {
+                        var item2 = list2[index];
+                        if (item1.StaffID != item2.StaffID || item1.StaffName != item2.StaffName ||
+                            item1.SectionName != item2.SectionName) continue;
+                        list2.RemoveAt(index);
+                    }
+                }
+                return list2.AsQueryable();
+            }
         }
         //Lưu tính lương
-        public bool SaveSalary()
+        public bool SaveSalary(string staffId, decimal basicPay, string monthYear, int workdays, decimal allowance, string allowanceDescription, int standardWorkdays, decimal realPay)
         {
-            return false;
+            IFormatProvider culture = new System.Globalization.CultureInfo("fr-FR", true);
+            var date = 01 + "/" + monthYear;
+            var day = DateTime.Parse(date, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+            try
+            {
+                var salarry = new Salary
+                {
+                    StaffID = staffId,
+                    BasicPay = basicPay,
+                    SalaryMonth = day,
+                    Workdays = workdays,
+                    Allowance = allowance,
+                    AllowanceDescription = allowanceDescription,
+                    StandardWorkdays = standardWorkdays,
+                    RealPay = realPay
+                };
+                _aHrm.Salaries.InsertOnSubmit(salarry);
+                _aHrm.SubmitChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

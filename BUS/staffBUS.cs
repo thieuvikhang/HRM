@@ -9,28 +9,28 @@ namespace BUS
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         public IQueryable LoadStaff()
         {
-            var loadStaff = (from st in _aHrm.Staffs
-                             from post in _aHrm.Positions
-                             from sec in _aHrm.Sections
-                             where st.PostID == post.PostID && st.SectionID == sec.SectionID
-                             select new
-                             {
-                                 st.StaffID,
-                                 st.StaffName,
-                                 Gender = st.Gender == true ? @"Nam" : @"Nữ",
-                                 st.BirthDay,
-                                 st.CardID,
-                                 st.Phone,
-                                 st.Address,
-                                 st.Education,
-                                 st.StartDate,
-                                 st.EndDate,
-                                 st.ManagerID,
-                                 st.Email,
-                                 st.DaysRemain,
-                                 post.PostName,
-                                 sec.SectionName
-                             });
+            var loadStaff = from st in _aHrm.Staffs
+                from post in _aHrm.Positions
+                from sec in _aHrm.Sections
+                where st.PostID == post.PostID && st.SectionID == sec.SectionID
+                select new
+                {
+                    st.StaffID,
+                    st.StaffName,
+                    Gender = st.Gender == true ? "Nam" : "Nữ",
+                    st.BirthDay,
+                    st.CardID,
+                    st.Phone,
+                    st.Address,
+                    st.Education,
+                    st.StartDate,
+                    st.EndDate,
+                    st.ManagerID,
+                    st.Email,
+                    st.DaysRemain,
+                    post.PostName,
+                    sec.SectionName
+                };
             return loadStaff;
         }
         //Lấy số ID phòng ban dựa vào Mã nhân viên
@@ -203,35 +203,17 @@ namespace BUS
         //kiem tra trung id
         public bool FindIdInputInTable(string idInput)
         {
-            int numberOfRecords = (from ct in _aHrm.Staffs
+            var numberOfRecords = (from ct in _aHrm.Staffs
                                    where ct.StaffID == idInput
                                    select ct).Count();
-            if (numberOfRecords == 0)
-            {
-                //idInput khong ton tai trong table contract
-                return false;
-            }
-            else
-            {
-                //idInput da ton tai trong table contract
-                return true;
-            }
+            return numberOfRecords != 0;
         }
         public bool FindPhoneInputInTable(string phoneInput)
         {
-            int numberOfRecords = (from ct in _aHrm.Staffs
+            var numberOfRecords = (from ct in _aHrm.Staffs
                                    where ct.Phone == phoneInput
                                    select ct).Count();
-            if (numberOfRecords == 0)
-            {
-                //idInput khong ton tai trong table contract
-                return false;
-            }
-            else
-            {
-                //idInput da ton tai trong table contract
-                return true;
-            }
+            return numberOfRecords != 0;
         }
         public bool FindCardIdInputInTable(string input)
         {
@@ -322,14 +304,11 @@ namespace BUS
         {
             try
             {
-                Staff aStaff = (from st in _aHrm.Staffs select st).SingleOrDefault(st => st.StaffID == idInput);
-                if (aStaff != null)
-                {
-                    _aHrm.Staffs.DeleteOnSubmit(aStaff);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                var aStaff = (from st in _aHrm.Staffs select st).SingleOrDefault(st => st.StaffID == idInput);
+                if (aStaff == null) return false;
+                _aHrm.Staffs.DeleteOnSubmit(aStaff);
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception)
             {

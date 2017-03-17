@@ -10,39 +10,31 @@ namespace BUS
     */
     public class ContractTypeBus
     {
-        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        public readonly HRMModelDataContext AHrm = new HRMModelDataContext();
 
         // Load tat ca contract
         public IQueryable LoadAll() {
-            var allContractType = from ct in _aHrm.ContractTypes select ct;
+            var allContractType = from ct in AHrm.ContractTypes select ct;
             return allContractType;
         }
 
 
         //Ham tim kiem nameInput trong table contractType
         public bool FindNameInputInTable(string nameInput) {
-            int nunberOfRecords = (from ctt in _aHrm.ContractTypes
+            var nunberOfRecords = (from ctt in AHrm.ContractTypes
                                      where ctt.ContractTypeName == nameInput
                                      select ctt.ContractTypeName).Count();
-            if (nunberOfRecords == 0) {
-                //nameInput khong ton tai trong table contractType
-                return false;
-            }
+            return nunberOfRecords != 0;
             //nameInput da ton tai trong table contractType
-            return true;
         }
 
         //Ham tim kiem idInput Trong table contractType
         public bool FindIdInputInTable(string idInput) {
-            int numberOfRecord = (from ctt in _aHrm.ContractTypes
+            var numberOfRecord = (from ctt in AHrm.ContractTypes
                                      where ctt.ContractTypeID == idInput
                                      select ctt.ContractTypeID).Count();
-            if (numberOfRecord == 0) {
-                //idInput Khong ton tai trong table contractType
-                return false;
-            }
+            return numberOfRecord != 0;
             //idInput da ton tai trong contractType
-            return true;
         }
 
         public bool CreateAContractType(string idInput, string nameInput) {
@@ -55,8 +47,8 @@ namespace BUS
                     ContractTypeID = idInput,
                     ContractTypeName = nameInput
                 };
-                _aHrm.ContractTypes.InsertOnSubmit(aContractType);
-                _aHrm.SubmitChanges();
+                AHrm.ContractTypes.InsertOnSubmit(aContractType);
+                AHrm.SubmitChanges();
                 return true;
             }
             catch (Exception) {
@@ -69,9 +61,9 @@ namespace BUS
             {
                 //kiem tra nameInput co ton tai trong database
                 if (FindNameInputInTable(nameInput)) return false;
-                var aContractType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idInput);
+                var aContractType = AHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idInput);
                 if (aContractType != null) aContractType.ContractTypeName = nameInput;
-                _aHrm.SubmitChanges();
+                AHrm.SubmitChanges();
                 return true;
             }
             catch (Exception) {
@@ -84,13 +76,11 @@ namespace BUS
             try
             {
                 //kiem tra idInput co ton tai trong database
-                if(FindIdInputInTable(idIput)) {
-                    var aContracType = _aHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idIput);
-                    if (aContracType != null) _aHrm.ContractTypes.DeleteOnSubmit(aContracType);
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                if (!FindIdInputInTable(idIput)) return false;
+                var aContracType = AHrm.ContractTypes.SingleOrDefault(ctt => ctt.ContractTypeID == idIput);
+                if (aContracType != null) AHrm.ContractTypes.DeleteOnSubmit(aContracType);
+                AHrm.SubmitChanges();
+                return true;
             }
             catch (Exception) {
                 return false;

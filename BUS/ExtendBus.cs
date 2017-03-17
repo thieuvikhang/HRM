@@ -8,7 +8,7 @@ namespace BUS
         public string FormatMoney(decimal money)
         {
             var cul = CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
-            return money.ToString("#,### VNĐ", cul.NumberFormat);
+            return money.ToString("#,###", cul.NumberFormat);
         }
     }
 }

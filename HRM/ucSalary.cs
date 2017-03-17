@@ -13,9 +13,9 @@ namespace HRM
 {
     public partial class UcSalary : XtraUserControl
     {
-        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
-        readonly SalaryBus _salaryBus = new SalaryBus();
-        readonly StaffBus _staffBus = new StaffBus();
+        public readonly HRMModelDataContext AHrm = new HRMModelDataContext();
+        public readonly SalaryBus SalaryBus = new SalaryBus();
+        public readonly StaffBus StaffBus = new StaffBus();
         public UcSalary()
         {
             InitializeComponent();
@@ -25,13 +25,13 @@ namespace HRM
         public void LoadComboboxStaff()
         {   //Load Chọn nhân viên
             var sta = new ArrayList { new { tennv = "Tất cả nhân viên", manv = "all" } };
-            sta.AddRange((from se in _aHrm.Sections
+            sta.AddRange((from se in AHrm.Sections
                           select new
                           {
                               tennv = "# Phòng " + se.SectionName,
                               manv = "#" + se.SectionID,
                           }).ToList());
-            sta.AddRange((from s in _aHrm.Staffs
+            sta.AddRange((from s in AHrm.Staffs
                           select new
                           {
                               tennv = s.StaffName,
@@ -46,7 +46,7 @@ namespace HRM
         {
             var month = new ArrayList { new { dt = "Tất cả tháng lương", monthID = "all" } };
             //Load chọn tháng định dạng MM/yyyy
-            month.AddRange((from p in _aHrm.Salaries
+            month.AddRange((from p in AHrm.Salaries
                             group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year, } into d
                             select new
                             {
@@ -62,7 +62,7 @@ namespace HRM
 
         private void ucSalary_Load(object sender, EventArgs e)
         {
-            gcSalary.DataSource = _salaryBus.LoadSalary;
+            gcSalary.DataSource = SalaryBus.LoadSalary;
             LoadComboboxStaff();
             LoadComboboxMonth();
         }
@@ -82,9 +82,9 @@ namespace HRM
             var maChonNhanVien = cbbStaffID.SelectedValue.ToString();/*Mã số chọn nhân viên*/
             var maChonThangNam = cbbMonthYear.SelectedValue.ToString();/*Mã số chọn tháng lương*/
             int month = 0, year = 0, chonPhongBan = 0;
-            if (_salaryBus.CheckTheCode(maChonNhanVien, "#"))/*Nếu maChonNhanVien có ký tự # ở đầu là phòng ban*/
+            if (SalaryBus.CheckTheCode(maChonNhanVien, "#"))/*Nếu maChonNhanVien có ký tự # ở đầu là phòng ban*/
             {
-                maChonNhanVien = _salaryBus.GetTheSectionId(maChonNhanVien, 1);/*Cắt chuổi lấy mã phòng ban gán vào maChonNhanVien*/
+                maChonNhanVien = SalaryBus.GetTheSectionId(maChonNhanVien, 1);/*Cắt chuổi lấy mã phòng ban gán vào maChonNhanVien*/
                 chonPhongBan = 1;/*Bật cờ hiệu*/
             }
             if (maChonThangNam != "all")/*Nếu maChonThangNam khác All tức đã chọn một tháng lương cụ thể*/
@@ -96,15 +96,15 @@ namespace HRM
 
             gcSalary.DataSource = maChonNhanVien != "all" && maChonThangNam != "all"
                 ? (chonPhongBan == 1
-                    ? _staffBus.LoadSalaryBySectionId(maChonNhanVien, month, year)
-                    : _staffBus.LoadSalaryByStaffId(maChonNhanVien, month, year))
+                    ? StaffBus.LoadSalaryBySectionId(maChonNhanVien, month, year)
+                    : StaffBus.LoadSalaryByStaffId(maChonNhanVien, month, year))
                 : (maChonNhanVien == "all" && maChonThangNam != "all"
-                    ? _staffBus.LoadSalaryByMonthYear(month, year)
+                    ? StaffBus.LoadSalaryByMonthYear(month, year)
                     : (maChonNhanVien != "all" && maChonThangNam == "all"
                         ? (chonPhongBan == 1
-                            ? _staffBus.LoadSalaryByAllSection(maChonNhanVien)
-                            : _staffBus.LoadSalaryByStaffIdNonMonthYear(maChonNhanVien))
-                        : _salaryBus.LoadSalary));
+                            ? StaffBus.LoadSalaryByAllSection(maChonNhanVien)
+                            : StaffBus.LoadSalaryByStaffIdNonMonthYear(maChonNhanVien))
+                        : SalaryBus.LoadSalary));
         }
         #region Sự kiện thay đổi giá trị combobox
         #endregion
