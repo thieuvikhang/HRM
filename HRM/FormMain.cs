@@ -120,5 +120,12 @@ namespace HRM
             AddTab("Nghỉ phép", new ucAbsent());
         }
         #endregion
+
+        private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Thống kê nhân viên", new UcDashEmployees());
+        }
     }
 }

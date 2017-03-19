@@ -100,12 +100,6 @@ namespace HRM
             LoadLookUpId();
         }
 
-        private void btnChange_Click(object sender, EventArgs e)
-        {
-            var f2 = new frmPayrate();
-            f2.ShowDialog(); // Shows Form2
-        }
-
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
 
