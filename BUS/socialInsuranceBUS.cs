@@ -14,7 +14,16 @@ namespace BUS
 
         // Load tat ca socialInsurance
         public IQueryable LoadAll() {
-            var allRecords = from si in AHrm.SocialInsurances select si;
+            var allRecords = from si in AHrm.SocialInsurances
+                             from sta in AHrm.Staffs
+                             where si.StaffID == sta.StaffID
+                             select new {
+                                 si.InsuranceID,
+                                 sta.StaffName,
+                                 si.SIStartDate,
+                                 si.PayRate,
+                                 si.Price
+                             };
             return allRecords;
         }
 
@@ -24,6 +33,27 @@ namespace BUS
                                          where si.StaffID == idInput
                                          select si;
             return allRecords;
+        }
+
+        public IQueryable loadAllInfoOfStaff()
+        {
+            var allInfoOfStaff = from sta in AHrm.Staffs
+                           from post in AHrm.Positions
+                           from sect in AHrm.Sections
+                           where !AHrm.SocialInsurances.Any(social => social.StaffID == sta.StaffID)
+                           && sta.PostID == post.PostID
+                           && sta.SectionID == sect.SectionID
+                           select new {
+                               sta.StaffID,
+                               sta.StaffName,
+                               post.PostName,
+                               sect.SectionName
+                           };
+
+            var allStaffHasInConTract = from st in allInfoOfStaff
+                                        where AHrm.Contracts.Any(ct => ct.StaffID == st.StaffID)
+                                        select st;
+            return allStaffHasInConTract;
         }
 
         //Check trung ky tu
@@ -88,5 +118,7 @@ namespace BUS
                 return false;
             }
         }
+
+
     }
 }
