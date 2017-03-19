@@ -18,7 +18,7 @@ namespace HRM
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new FormLogin());
+            Application.Run(new FormMain());
         }
     }
 }
