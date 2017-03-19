@@ -21,41 +21,33 @@ namespace HRM
         {
 
         }
-        private void panelControl2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         #region Các hàm xử lý Tab: Thêm, Đóng, Focus
         private void AddTab(string tabName, UserControl uc)
         {
             // Kiểm tra khi Click vào Button Nếu đã có TAb này rồi thì không Add vào nữa
             // mà nó sẽ chuyển focus tới TAb vừa click này
-            int t = 0;
-            foreach (XtraTabPage tab in xtraTabControl1.TabPages)
+            var t = 0;
+            for (var index = 0; index < xtraTabControl1.TabPages.Count; index++)
             {
-                if (tab.Text == tabName)
-                {
-                    xtraTabControl1.SelectedTabPage = tab;
-                    t = 1;
-                }
+                var tab = xtraTabControl1.TabPages[index];
+                if (tab.Text != tabName) continue;
+                xtraTabControl1.SelectedTabPage = tab;
+                t = 1;
             }
-            if (t == 1)
+            if (t != 1)
             {
-
-            }
-            else
-            {   // Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
+                // Nếu chưa có TAb này thì gọi hàm Addtab xây dựng ở trên để Add Tab con vào
                 _clsAddTab.AddTab(xtraTabControl1, "", tabName, uc);
             }
             //Đóng màn hình Loading
             SplashScreenManager.CloseForm();
         }
         private void xtraTabControl1_CloseButtonClick(object sender, EventArgs e)
-        {   // Đóng tab
-            XtraTabControl tabControl = sender as XtraTabControl;
-            ClosePageButtonEventArgs arg = e as ClosePageButtonEventArgs;
-            (arg.Page as XtraTabPage).Dispose();
+        {
+            // Đóng tab
+            var arg = e as ClosePageButtonEventArgs;
+            (arg?.Page as XtraTabPage)?.Dispose();
         }
         private void xtraTabControl1_ControlAdded(object sender, ControlEventArgs e)
         {   // Khi add vào thì Focus tới ngay Tab vừa Add
@@ -117,7 +109,7 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Nghỉ phép", new ucAbsent());
+            AddTab("Nghỉ phép", new UcAbsent());
         }
         #endregion
 
