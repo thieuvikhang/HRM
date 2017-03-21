@@ -119,5 +119,12 @@ namespace HRM
             //Mở Tab chức vụ
             AddTab("Thống kê nhân viên", new UcDashEmployees());
         }
+
+        private void barButtonItem12_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Thống kê theo độ tuổi", new AgeChart());
+        }
     }
 }

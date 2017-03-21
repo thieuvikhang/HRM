@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcPostions));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.dashboardViewer1 = new DevExpress.DashboardWin.DashboardViewer(this.components);
             this.mmDescription = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -52,7 +51,6 @@
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashboardViewer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mmDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -65,7 +63,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.dashboardViewer1);
             this.panelControl1.Controls.Add(this.mmDescription);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.groupControl2);
@@ -76,16 +73,8 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1053, 250);
+            this.panelControl1.Size = new System.Drawing.Size(727, 250);
             this.panelControl1.TabIndex = 0;
-            // 
-            // dashboardViewer1
-            // 
-            this.dashboardViewer1.DashboardSource = new System.Uri("C:\\Users\\thieu\\Documents\\HRM\\HRM\\bin\\Debug\\Post.xml", System.UriKind.Absolute);
-            this.dashboardViewer1.Location = new System.Drawing.Point(732, 5);
-            this.dashboardViewer1.Name = "dashboardViewer1";
-            this.dashboardViewer1.Size = new System.Drawing.Size(316, 245);
-            this.dashboardViewer1.TabIndex = 52;
             // 
             // mmDescription
             // 
@@ -215,10 +204,11 @@
             // 
             // gcPostions
             // 
+            this.gcPostions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcPostions.Location = new System.Drawing.Point(0, 250);
             this.gcPostions.MainView = this.gridView1;
             this.gcPostions.Name = "gcPostions";
-            this.gcPostions.Size = new System.Drawing.Size(623, 95);
+            this.gcPostions.Size = new System.Drawing.Size(727, 95);
             this.gcPostions.TabIndex = 2;
             this.gcPostions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -274,12 +264,11 @@
             this.Controls.Add(this.gcPostions);
             this.Controls.Add(this.panelControl1);
             this.Name = "UcPostions";
-            this.Size = new System.Drawing.Size(1053, 345);
+            this.Size = new System.Drawing.Size(727, 345);
             this.Load += new System.EventHandler(this.ucPostions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashboardViewer1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mmDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -313,6 +302,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcoPostID;
         private DevExpress.XtraGrid.Columns.GridColumn gcoPostName;
         private DevExpress.XtraGrid.Columns.GridColumn gcoDescription;
-        private DevExpress.DashboardWin.DashboardViewer dashboardViewer1;
     }
 }
