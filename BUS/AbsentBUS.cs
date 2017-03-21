@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using DAL;
 using System.Linq;
 using static System.Convert;
@@ -18,12 +19,10 @@ namespace BUS
         /// <returns>Trả về ngày nghỉ không lương</returns>
         public int GetAbsentDays(int month, int year, string staffId)
         {
-            var absentDays = (from ad in _aHrm.Absents
-                              where ad.StaffID == staffId
-                                && ad.ToDate.Value.Year == year
-                                && ad.ToDate.Value.Month == month
-                                && ad.AbsentType == false
-                              select ad.AbsentDay).Sum();
+            var absentDays = _aHrm.Absents.Where(ad => ad.StaffID == staffId
+                                                       && ad.ToDate.Value.Year == year
+                                                       && ad.ToDate.Value.Month == month
+                                                       && ad.AbsentType == false).Select(ad => ad.AbsentDay).Sum();
             return ToInt16(absentDays);
         }
         /// <summary>
@@ -75,33 +74,23 @@ namespace BUS
         public bool IsHoliday(DateTime ngay, string maNv)
         {
             //Ngày chủ nhật
-            if (ngay.DayOfWeek == 0) return true;
-            //var list = new List<int>();
-            foreach (var item in _aHrm.Absents.Where(ab => ab.StaffID == maNv
-                                                           && ab.FromDate.Value.Month == ngay.Month
-                                                           && ab.FromDate.Value.Year == ngay.Year).Select(ab => new
-                                                           {
-                                                               FromDate = ab.FromDate.Value.Day,
-                                                               ToDate = ab.ToDate.Value.Day
-                                                           }).ToList())
-                if (item.FromDate <= ngay.Day && item.ToDate > ngay.Day)
-                {
-                    return true;
-                }
-            return false;
+            return ngay.DayOfWeek == 0;
         }
         /// <summary>
         /// Lấy tổng số ngày chủ nhật
         /// </summary>
-        /// <param name="firstDay">Ngày bắt đầu</param>
-        /// <param name="lastDay">Ngày kết thúc</param>
+        /// <param name="endDate">Ngày kết thúc</param>
+        /// <param name="startDate">Ngày bắt đầu</param>
         /// <returns>Số ngày chủ nhật</returns>
-        public int TongNgayChuNhat(DateTime firstDay, DateTime lastDay)
+        public int TongNgayChuNhat(DateTime endDate, DateTime startDate)
         {
-            var firstSunday = firstDay.AddDays(7 - (double)firstDay.DayOfWeek); // ngày chủ nhật đầu tiên
-            var lastSunday = lastDay.AddDays(-(double)lastDay.DayOfWeek); // ngày chủ nhật cuối cùng
-            var countSunday = lastSunday.Subtract(firstSunday).Days / 7 + 1;
-            return countSunday; // tổng số ngày chủ nhật
+            var sunDayCount = 0;
+            for (var dt = startDate; dt < endDate; dt = dt.AddDays(1.0))
+            {
+                if (dt.DayOfWeek != 0) continue;
+                sunDayCount++;
+            }
+            return sunDayCount;
         }
         /// <summary>
         /// Thêm nghĩ phép
@@ -121,7 +110,7 @@ namespace BUS
                     StaffID = maNv,
                     FromDate = tuNgay,
                     ToDate = denNgay,
-                    AbsentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(tuNgay, denNgay),
+                    AbsentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay),
                     AbsentType = loaiNghi,
                     Note = note
                 };
@@ -176,7 +165,7 @@ namespace BUS
                 absent.StaffID = maNv;
                 absent.FromDate = tuNgay;
                 absent.ToDate = denNgay;
-                absent.AbsentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(tuNgay, denNgay);
+                absent.AbsentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
                 absent.Note = note;
                 absent.AbsentType = loaiNghi;
                 _aHrm.SubmitChanges();
@@ -194,17 +183,23 @@ namespace BUS
         /// <param name="maNv">Mã nhân viên</param>
         /// <param name="ngay">Ngày</param>
         /// <returns>Danh sách ngày nghĩ phép</returns>
-        public IEnumerable ListNgayNghi(string maNv, DateTime ngay)
+        public List<int> ListNgayNghi(string maNv, DateTime ngay)
         {
-            return (from ab in _aHrm.Absents
-                    where ab.StaffID == maNv
-                          && ab.FromDate.Value.Month == ngay.Month
-                          && ab.FromDate.Value.Year == ngay.Year
-                    select new
-                    {
-                        FromDate = ab.FromDate.Value.Day,
-                        ToDate = ab.ToDate.Value.Day
-                    }).ToList();
+            var list = new List<int>();
+            foreach (var item in _aHrm.Absents.Where(ab => ab.StaffID == maNv
+                                                           && ab.FromDate.Value.Month == ngay.Month
+                                                           && ab.FromDate.Value.Year == ngay.Year).Select(ab => new
+            {
+                FromDate = ab.FromDate.Value.Day,
+                ToDate = ab.ToDate.Value.Day
+            }).ToList())
+            {
+                for (var i = item.FromDate; i < item.ToDate; i++)
+                {
+                    list.Add(i);
+                }
+            }
+            return list;
         }
     }
 }

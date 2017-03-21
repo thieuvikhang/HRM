@@ -128,7 +128,8 @@
             this.dateChonBD.Size = new System.Drawing.Size(277, 20);
             this.dateChonBD.TabIndex = 67;
             this.dateChonBD.DrawItem += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.dateChonBD_DrawItem);
-            this.dateChonBD.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateChonBD_EditValueChanging);
+            this.dateChonBD.DateTimeChanged += new System.EventHandler(this.dateChonBD_DateTimeChanged);
+            this.dateChonBD.QueryCloseUp += new System.ComponentModel.CancelEventHandler(this.dateChonBD_QueryCloseUp);
             this.dateChonBD.TextChanged += new System.EventHandler(this.dateChonBD_TextChanged);
             // 
             // groupBox1
@@ -299,7 +300,8 @@
             this.dateChonKT.Size = new System.Drawing.Size(277, 20);
             this.dateChonKT.TabIndex = 33;
             this.dateChonKT.DrawItem += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.dateChonKT_DrawItem);
-            this.dateChonKT.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateChonKT_EditValueChanging);
+            this.dateChonKT.DateTimeChanged += new System.EventHandler(this.dateChonKT_DateTimeChanged);
+            this.dateChonKT.QueryCloseUp += new System.ComponentModel.CancelEventHandler(this.dateChonKT_QueryCloseUp);
             this.dateChonKT.TextChanged += new System.EventHandler(this.dateChonKT_TextChanged);
             // 
             // labelControl2
