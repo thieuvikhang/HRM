@@ -44,8 +44,8 @@
       <Column Name="AccessID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Form" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="Edit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="GroupAccess_Access" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
+      <Column Name="DescriptionAccess" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Access_DetailAccess" Member="DetailAccesses" ThisKey="AccessID" OtherKey="AccessD" Type="DetailAccess" />
     </Type>
   </Table>
   <Table Name="dbo.Account" Member="Accounts">
@@ -57,6 +57,13 @@
       <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Association Name="Staff_Account" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
       <Association Name="GroupAccess_Account" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CateAge" Member="CateAges">
+    <Type Name="CateAge">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="mount" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Contract" Member="Contracts">
@@ -83,13 +90,21 @@
       <Association Name="ContractType_Contract" Member="Contracts" ThisKey="ContractTypeID" OtherKey="ContractTypeID" Type="Contract" />
     </Type>
   </Table>
+  <Table Name="dbo.DetailAccess" Member="DetailAccesses">
+    <Type Name="DetailAccess">
+      <Column Name="AccessD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Access_DetailAccess" Member="Access" ThisKey="AccessD" OtherKey="AccessID" Type="Access" IsForeignKey="true" />
+      <Association Name="GroupAccess_DetailAccess" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.GroupAccess" Member="GroupAccesses">
     <Type Name="GroupAccess">
-      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="GroupAccessName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="GroupAccess_Access" Member="Accesses" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="Access" />
+      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GroupAccessName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="GroupAccess_Account" Member="Accounts" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="Account" />
+      <Association Name="GroupAccess_DetailAccess" Member="DetailAccesses" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="DetailAccess" />
     </Type>
   </Table>
   <Table Name="dbo.Position" Member="Positions">
@@ -142,4 +157,19 @@
       <Association Name="Staff_SocialInsurance" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.Age_Range" Method="Age_Range">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.test" Method="test">
+    <ElementType Name="testResult">
+      <Column Name="[&lt; 40]" Member="__40" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[&lt; 20]" Member="__20" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Sp_absent" Method="Sp_absent">
+    <ElementType Name="Sp_absentResult">
+      <Column Name="AbsentType" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

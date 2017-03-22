@@ -42,12 +42,18 @@ namespace DAL
     partial void InsertAccount(Account instance);
     partial void UpdateAccount(Account instance);
     partial void DeleteAccount(Account instance);
+    partial void InsertCateAge(CateAge instance);
+    partial void UpdateCateAge(CateAge instance);
+    partial void DeleteCateAge(CateAge instance);
     partial void InsertContract(Contract instance);
     partial void UpdateContract(Contract instance);
     partial void DeleteContract(Contract instance);
     partial void InsertContractType(ContractType instance);
     partial void UpdateContractType(ContractType instance);
     partial void DeleteContractType(ContractType instance);
+    partial void InsertDetailAccess(DetailAccess instance);
+    partial void UpdateDetailAccess(DetailAccess instance);
+    partial void DeleteDetailAccess(DetailAccess instance);
     partial void InsertGroupAccess(GroupAccess instance);
     partial void UpdateGroupAccess(GroupAccess instance);
     partial void DeleteGroupAccess(GroupAccess instance);
@@ -130,6 +136,14 @@ namespace DAL
 			}
 		}
 		
+		public System.Data.Linq.Table<CateAge> CateAges
+		{
+			get
+			{
+				return this.GetTable<CateAge>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Contract> Contracts
 		{
 			get
@@ -143,6 +157,14 @@ namespace DAL
 			get
 			{
 				return this.GetTable<ContractType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DetailAccess> DetailAccesses
+		{
+			get
+			{
+				return this.GetTable<DetailAccess>();
 			}
 		}
 		
@@ -192,6 +214,27 @@ namespace DAL
 			{
 				return this.GetTable<SocialInsurance>();
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Age_Range")]
+		public int Age_Range()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.test")]
+		public ISingleResult<testResult> test()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<testResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Sp_absent")]
+		public ISingleResult<Sp_absentResult> Sp_absent()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<Sp_absentResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1098,9 +1141,9 @@ namespace DAL
 		
 		private System.Nullable<bool> _Edit;
 		
-		private int _GroupAccessID;
+		private string _DescriptionAccess;
 		
-		private EntityRef<GroupAccess> _GroupAccess;
+		private EntitySet<DetailAccess> _DetailAccesses;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1112,13 +1155,13 @@ namespace DAL
     partial void OnFormChanged();
     partial void OnEditChanging(System.Nullable<bool> value);
     partial void OnEditChanged();
-    partial void OnGroupAccessIDChanging(int value);
-    partial void OnGroupAccessIDChanged();
+    partial void OnDescriptionAccessChanging(string value);
+    partial void OnDescriptionAccessChanged();
     #endregion
 		
 		public Access()
 		{
-			this._GroupAccess = default(EntityRef<GroupAccess>);
+			this._DetailAccesses = new EntitySet<DetailAccess>(new Action<DetailAccess>(this.attach_DetailAccesses), new Action<DetailAccess>(this.detach_DetailAccesses));
 			OnCreated();
 		}
 		
@@ -1182,61 +1225,36 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL")]
-		public int GroupAccessID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionAccess", DbType="NVarChar(50)")]
+		public string DescriptionAccess
 		{
 			get
 			{
-				return this._GroupAccessID;
+				return this._DescriptionAccess;
 			}
 			set
 			{
-				if ((this._GroupAccessID != value))
+				if ((this._DescriptionAccess != value))
 				{
-					if (this._GroupAccess.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGroupAccessIDChanging(value);
+					this.OnDescriptionAccessChanging(value);
 					this.SendPropertyChanging();
-					this._GroupAccessID = value;
-					this.SendPropertyChanged("GroupAccessID");
-					this.OnGroupAccessIDChanged();
+					this._DescriptionAccess = value;
+					this.SendPropertyChanged("DescriptionAccess");
+					this.OnDescriptionAccessChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Access", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
-		public GroupAccess GroupAccess
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_DetailAccesses", ThisKey="AccessID", OtherKey="AccessD")]
+		public EntitySet<DetailAccess> DetailAccesses
 		{
 			get
 			{
-				return this._GroupAccess.Entity;
+				return this._DetailAccesses;
 			}
 			set
 			{
-				GroupAccess previousValue = this._GroupAccess.Entity;
-				if (((previousValue != value) 
-							|| (this._GroupAccess.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._GroupAccess.Entity = null;
-						previousValue.Accesses.Remove(this);
-					}
-					this._GroupAccess.Entity = value;
-					if ((value != null))
-					{
-						value.Accesses.Add(this);
-						this._GroupAccessID = value.GroupAccessID;
-					}
-					else
-					{
-						this._GroupAccessID = default(int);
-					}
-					this.SendPropertyChanged("GroupAccess");
-				}
+				this._DetailAccesses.Assign(value);
 			}
 		}
 		
@@ -1258,6 +1276,18 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_DetailAccesses(DetailAccess entity)
+		{
+			this.SendPropertyChanging();
+			entity.Access = this;
+		}
+		
+		private void detach_DetailAccesses(DetailAccess entity)
+		{
+			this.SendPropertyChanging();
+			entity.Access = null;
 		}
 	}
 	
@@ -1476,6 +1506,116 @@ namespace DAL
 						this._GroupAccessID = default(int);
 					}
 					this.SendPropertyChanged("GroupAccess");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CateAge")]
+	public partial class CateAge : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private System.Nullable<int> _mount;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnmountChanging(System.Nullable<int> value);
+    partial void OnmountChanged();
+    #endregion
+		
+		public CateAge()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NChar(10)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mount", DbType="Int")]
+		public System.Nullable<int> mount
+		{
+			get
+			{
+				return this._mount;
+			}
+			set
+			{
+				if ((this._mount != value))
+				{
+					this.OnmountChanging(value);
+					this.SendPropertyChanging();
+					this._mount = value;
+					this.SendPropertyChanged("mount");
+					this.OnmountChanged();
 				}
 			}
 		}
@@ -1999,6 +2139,174 @@ namespace DAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DetailAccess")]
+	public partial class DetailAccess : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _AccessD;
+		
+		private int _GroupAccessID;
+		
+		private EntityRef<Access> _Access;
+		
+		private EntityRef<GroupAccess> _GroupAccess;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAccessDChanging(int value);
+    partial void OnAccessDChanged();
+    partial void OnGroupAccessIDChanging(int value);
+    partial void OnGroupAccessIDChanged();
+    #endregion
+		
+		public DetailAccess()
+		{
+			this._Access = default(EntityRef<Access>);
+			this._GroupAccess = default(EntityRef<GroupAccess>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessD", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int AccessD
+		{
+			get
+			{
+				return this._AccessD;
+			}
+			set
+			{
+				if ((this._AccessD != value))
+				{
+					if (this._Access.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAccessDChanging(value);
+					this.SendPropertyChanging();
+					this._AccessD = value;
+					this.SendPropertyChanged("AccessD");
+					this.OnAccessDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int GroupAccessID
+		{
+			get
+			{
+				return this._GroupAccessID;
+			}
+			set
+			{
+				if ((this._GroupAccessID != value))
+				{
+					if (this._GroupAccess.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGroupAccessIDChanging(value);
+					this.SendPropertyChanging();
+					this._GroupAccessID = value;
+					this.SendPropertyChanged("GroupAccessID");
+					this.OnGroupAccessIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_Access", ThisKey="AccessD", OtherKey="AccessID", IsForeignKey=true)]
+		public Access Access
+		{
+			get
+			{
+				return this._Access.Entity;
+			}
+			set
+			{
+				Access previousValue = this._Access.Entity;
+				if (((previousValue != value) 
+							|| (this._Access.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Access.Entity = null;
+						previousValue.DetailAccesses.Remove(this);
+					}
+					this._Access.Entity = value;
+					if ((value != null))
+					{
+						value.DetailAccesses.Add(this);
+						this._AccessD = value.AccessID;
+					}
+					else
+					{
+						this._AccessD = default(int);
+					}
+					this.SendPropertyChanged("Access");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_DetailAccess", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
+		public GroupAccess GroupAccess
+		{
+			get
+			{
+				return this._GroupAccess.Entity;
+			}
+			set
+			{
+				GroupAccess previousValue = this._GroupAccess.Entity;
+				if (((previousValue != value) 
+							|| (this._GroupAccess.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GroupAccess.Entity = null;
+						previousValue.DetailAccesses.Remove(this);
+					}
+					this._GroupAccess.Entity = value;
+					if ((value != null))
+					{
+						value.DetailAccesses.Add(this);
+						this._GroupAccessID = value.GroupAccessID;
+					}
+					else
+					{
+						this._GroupAccessID = default(int);
+					}
+					this.SendPropertyChanged("GroupAccess");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GroupAccess")]
 	public partial class GroupAccess : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2011,9 +2319,9 @@ namespace DAL
 		
 		private string _Description;
 		
-		private EntitySet<Access> _Accesses;
-		
 		private EntitySet<Account> _Accounts;
+		
+		private EntitySet<DetailAccess> _DetailAccesses;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2029,12 +2337,12 @@ namespace DAL
 		
 		public GroupAccess()
 		{
-			this._Accesses = new EntitySet<Access>(new Action<Access>(this.attach_Accesses), new Action<Access>(this.detach_Accesses));
 			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
+			this._DetailAccesses = new EntitySet<DetailAccess>(new Action<DetailAccess>(this.attach_DetailAccesses), new Action<DetailAccess>(this.detach_DetailAccesses));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int GroupAccessID
 		{
 			get
@@ -2054,7 +2362,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessName", DbType="NVarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessName", DbType="NVarChar(50)")]
 		public string GroupAccessName
 		{
 			get
@@ -2074,7 +2382,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(100)")]
 		public string Description
 		{
 			get
@@ -2094,19 +2402,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Access", Storage="_Accesses", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
-		public EntitySet<Access> Accesses
-		{
-			get
-			{
-				return this._Accesses;
-			}
-			set
-			{
-				this._Accesses.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_Accounts", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
 		public EntitySet<Account> Accounts
 		{
@@ -2117,6 +2412,19 @@ namespace DAL
 			set
 			{
 				this._Accounts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_DetailAccess", Storage="_DetailAccesses", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
+		public EntitySet<DetailAccess> DetailAccesses
+		{
+			get
+			{
+				return this._DetailAccesses;
+			}
+			set
+			{
+				this._DetailAccesses.Assign(value);
 			}
 		}
 		
@@ -2140,18 +2448,6 @@ namespace DAL
 			}
 		}
 		
-		private void attach_Accesses(Access entity)
-		{
-			this.SendPropertyChanging();
-			entity.GroupAccess = this;
-		}
-		
-		private void detach_Accesses(Access entity)
-		{
-			this.SendPropertyChanging();
-			entity.GroupAccess = null;
-		}
-		
 		private void attach_Accounts(Account entity)
 		{
 			this.SendPropertyChanging();
@@ -2159,6 +2455,18 @@ namespace DAL
 		}
 		
 		private void detach_Accounts(Account entity)
+		{
+			this.SendPropertyChanging();
+			entity.GroupAccess = null;
+		}
+		
+		private void attach_DetailAccesses(DetailAccess entity)
+		{
+			this.SendPropertyChanging();
+			entity.GroupAccess = this;
+		}
+		
+		private void detach_DetailAccesses(DetailAccess entity)
 		{
 			this.SendPropertyChanging();
 			entity.GroupAccess = null;
@@ -3113,6 +3421,94 @@ namespace DAL
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class testResult
+	{
+		
+		private System.Nullable<int> ___40;
+		
+		private System.Nullable<int> ___20;
+		
+		public testResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[< 40]", Storage="___40", DbType="Int")]
+		public System.Nullable<int> @__40
+		{
+			get
+			{
+				return this.___40;
+			}
+			set
+			{
+				if ((this.___40 != value))
+				{
+					this.___40 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[< 20]", Storage="___20", DbType="Int")]
+		public System.Nullable<int> @__20
+		{
+			get
+			{
+				return this.___20;
+			}
+			set
+			{
+				if ((this.___20 != value))
+				{
+					this.___20 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Sp_absentResult
+	{
+		
+		private System.Nullable<bool> _AbsentType;
+		
+		private string _Name;
+		
+		public Sp_absentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbsentType", DbType="Bit")]
+		public System.Nullable<bool> AbsentType
+		{
+			get
+			{
+				return this._AbsentType;
+			}
+			set
+			{
+				if ((this._AbsentType != value))
+				{
+					this._AbsentType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(14) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
 			}
 		}
 	}

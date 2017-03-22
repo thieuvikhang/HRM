@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcSocialInsurancecs));
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.grbxListBHXH = new System.Windows.Forms.GroupBox();
@@ -61,6 +62,8 @@
             this.grcoPosition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grcoSection = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grbxInfo = new System.Windows.Forms.GroupBox();
+            this.lblIDStaff = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.dateDateStart = new DevExpress.XtraEditors.DateEdit();
             this.txtPrice = new DevExpress.XtraEditors.TextEdit();
             this.txtSectionName = new DevExpress.XtraEditors.TextEdit();
@@ -74,12 +77,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblNgoaiTe2 = new System.Windows.Forms.Label();
+            this.lblNgoaiTe1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblNgoaiTe1 = new System.Windows.Forms.Label();
-            this.lblNgoaiTe2 = new System.Windows.Forms.Label();
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.grbxListBHXH.SuspendLayout();
@@ -104,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBasicPay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIDSocialIn.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl2
@@ -281,6 +285,7 @@
             this.btnSave.Size = new System.Drawing.Size(85, 34);
             this.btnSave.TabIndex = 52;
             this.btnSave.Text = "Lưu";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCheck
             // 
@@ -292,6 +297,7 @@
             this.btnCheck.Size = new System.Drawing.Size(115, 34);
             this.btnCheck.TabIndex = 1;
             this.btnCheck.Text = "Kiểm tra";
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // btnDelete
             // 
@@ -303,6 +309,7 @@
             this.btnDelete.Size = new System.Drawing.Size(85, 34);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Xóa";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
@@ -445,6 +452,7 @@
             // 
             // grbxInfo
             // 
+            this.grbxInfo.Controls.Add(this.lblIDStaff);
             this.grbxInfo.Controls.Add(this.label10);
             this.grbxInfo.Controls.Add(this.dateDateStart);
             this.grbxInfo.Controls.Add(this.txtPrice);
@@ -472,6 +480,25 @@
             this.grbxInfo.TabIndex = 0;
             this.grbxInfo.TabStop = false;
             this.grbxInfo.Text = "Thông tin:";
+            // 
+            // lblIDStaff
+            // 
+            this.lblIDStaff.AutoSize = true;
+            this.lblIDStaff.Location = new System.Drawing.Point(77, 146);
+            this.lblIDStaff.Name = "lblIDStaff";
+            this.lblIDStaff.Size = new System.Drawing.Size(53, 18);
+            this.lblIDStaff.TabIndex = 54;
+            this.lblIDStaff.Text = "label11";
+            this.lblIDStaff.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(487, 89);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 18);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "%";
             // 
             // dateDateStart
             // 
@@ -507,6 +534,8 @@
             this.txtPayRate.Name = "txtPayRate";
             this.txtPayRate.Size = new System.Drawing.Size(67, 20);
             this.txtPayRate.TabIndex = 1;
+            this.txtPayRate.TextChanged += new System.EventHandler(this.txtPayRate_TextChanged);
+            this.txtPayRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPayRate_KeyDown);
             this.txtPayRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPayRate_KeyPress);
             // 
             // txtPositionName
@@ -592,6 +621,26 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Chức vụ:";
             // 
+            // lblNgoaiTe2
+            // 
+            this.lblNgoaiTe2.AutoSize = true;
+            this.lblNgoaiTe2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNgoaiTe2.Location = new System.Drawing.Point(528, 112);
+            this.lblNgoaiTe2.Name = "lblNgoaiTe2";
+            this.lblNgoaiTe2.Size = new System.Drawing.Size(65, 18);
+            this.lblNgoaiTe2.TabIndex = 0;
+            this.lblNgoaiTe2.Text = "Ngày lập:";
+            // 
+            // lblNgoaiTe1
+            // 
+            this.lblNgoaiTe1.AutoSize = true;
+            this.lblNgoaiTe1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNgoaiTe1.Location = new System.Drawing.Point(528, 62);
+            this.lblNgoaiTe1.Name = "lblNgoaiTe1";
+            this.lblNgoaiTe1.Size = new System.Drawing.Size(65, 18);
+            this.lblNgoaiTe1.TabIndex = 0;
+            this.lblNgoaiTe1.Text = "Ngày lập:";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -622,34 +671,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã BHXH:";
             // 
-            // label10
+            // dxErrorProvider1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(487, 89);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(19, 18);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "%";
-            // 
-            // lblNgoaiTe1
-            // 
-            this.lblNgoaiTe1.AutoSize = true;
-            this.lblNgoaiTe1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNgoaiTe1.Location = new System.Drawing.Point(528, 62);
-            this.lblNgoaiTe1.Name = "lblNgoaiTe1";
-            this.lblNgoaiTe1.Size = new System.Drawing.Size(65, 18);
-            this.lblNgoaiTe1.TabIndex = 0;
-            this.lblNgoaiTe1.Text = "Ngày lập:";
-            // 
-            // lblNgoaiTe2
-            // 
-            this.lblNgoaiTe2.AutoSize = true;
-            this.lblNgoaiTe2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNgoaiTe2.Location = new System.Drawing.Point(528, 112);
-            this.lblNgoaiTe2.Name = "lblNgoaiTe2";
-            this.lblNgoaiTe2.Size = new System.Drawing.Size(65, 18);
-            this.lblNgoaiTe2.TabIndex = 0;
-            this.lblNgoaiTe2.Text = "Ngày lập:";
+            this.dxErrorProvider1.ContainerControl = this;
             // 
             // UcSocialInsurancecs
             // 
@@ -687,6 +711,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBasicPay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIDSocialIn.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -743,5 +768,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblNgoaiTe2;
         private System.Windows.Forms.Label lblNgoaiTe1;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
+        private System.Windows.Forms.Label lblIDStaff;
     }
 }

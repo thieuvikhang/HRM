@@ -55,8 +55,11 @@ namespace HRM
             string userNameInput = "";
             string passwordInput = "";
             string groupAccessName = "";
+            string groupAccessID = "";
             string staffName = "";
+
             
+
             //gán các giá trị text input vào biến
             userNameInput = txtAcc.Text;
             passwordInput = txtPass.Text;
@@ -67,13 +70,16 @@ namespace HRM
             {
                 //Đănh nhập thành công
 
+
                 //gọi các đối tượng anAccount, aStaff, aGroupAccess
                 anAccount = anAccountBus.GetInfoAccount(userNameInput, passwordInput);
                 aStaff = anAccountBus.GetInfoStaff(anAccount.StaffID);
                 aGroupAccess = anAccountBus.GetInfoGroupAccess(anAccount.GroupAccessID);
                  
+
                 //Lấy tên của các bảng từ đối tượng trên
                 groupAccessName = aGroupAccess.GroupAccessName;
+                groupAccessID = aGroupAccess.GroupAccessID.ToString();
                 staffName = aStaff.StaffName;
 
                 //Gán những thông tin cần thiết vào từng tên biến Session(aSession)
@@ -84,11 +90,11 @@ namespace HRM
                 //Gọi tới form newlogin
                 //trong form newlogin mình có tạo 1 biến sesstion getsession
                 //(form này Cường mới tạo thêm để demo về session) m.nTham khảo  
-                //frmlogin newfrmlogin = new frmlogin();
+                demoSession newfrmlogin = new demoSession();
                 //đưa tất cả biến aSession ở trên vào biến getsession ở form newfrmlogin
                 //sau đó show form lên và xem kết quả
-                //newfrmlogin.getsession = aSession;
-                //newfrmlogin.ShowDialog();
+                newfrmlogin.getsession = aSession;
+                newfrmlogin.ShowDialog();
                 //FormMain frmain = new FormMain();
                 //frmain.ShowDialog();
 
