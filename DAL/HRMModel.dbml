@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HRM" Class="HRMModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-CPSQQQU\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Absent" Member="Absents">
     <Type Name="Absent">
       <Column Name="AbsentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -159,17 +159,5 @@
   </Table>
   <Function Name="dbo.Age_Range" Method="Age_Range">
     <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.test" Method="test">
-    <ElementType Name="testResult">
-      <Column Name="[&lt; 40]" Member="__40" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="[&lt; 20]" Member="__20" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.Sp_absent" Method="Sp_absent">
-    <ElementType Name="Sp_absentResult">
-      <Column Name="AbsentType" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
-    </ElementType>
   </Function>
 </Database>
