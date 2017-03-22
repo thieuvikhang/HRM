@@ -98,6 +98,25 @@ namespace HRM
         private void UcSocialInsurancecs_Load(object sender, EventArgs e)
         {
             //LoadLookUpId();
+            int countRecordSocial = _aHrm.SocialInsurances.Count();
+            int countStaffHasNotSignSocial = socialInBus.countAllStaffHasNotsocial();
+            if (countStaffHasNotSignSocial == 0)
+            {
+                grbxStaffHasNotBHXH.Enabled = false;
+            }
+            else
+            {
+                grbxStaffHasNotBHXH.Enabled = true;
+            }
+            if (countRecordSocial == 0)
+            {
+                grbxListBHXH.Enabled = false;
+            }
+            else
+            {
+                grbxListBHXH.Enabled = true;
+            }
+
 
             grctListBHXH.DataSource = socialInBus.LoadAll();
             grctStaffHasNotBHXH.DataSource = socialInBus.loadAllInfoOfStaff();
@@ -168,8 +187,8 @@ namespace HRM
             string newIDSocial = GetNewId();
             txtIDSocialIn.Text = newIDSocial;
 
-            lblThongBao1.Text = "Điền đủ thông tin thông tin trước khi lưu.";
-            lblTrangThai.Text = "Bạn đã click vào chức năng thêm.";
+            lblThongBao1.Text = "Click vào nút (Kiểm tra) trước khi lưu.";
+            lblTrangThai.Text = "Đang thêm phiếu BHXH có mã " + txtIDSocialIn.Text + " cho nhân viên " + txtStaffName.Text + "...";
         }
 
         private string GetNewId()
@@ -204,7 +223,8 @@ namespace HRM
             {
                 checkActive = 2;
                 lblThongBao1.Text = "Điền đủ thông tin và kiểm tra trước khi lưu.";
-                lblTrangThai.Text = "Bạn đã click vào chức năng sửa.";
+                lblTrangThai.Text = "Đang sửa phiếu BHXH có mã " + txtIDSocialIn.Text + " cho nhân viên " + txtStaffName.Text + "...";
+                btnEdit.Enabled = false;
                 btnSave.Enabled = false;
                 btnDelete.Enabled = false;
                 grbxInfo.Enabled = true;
@@ -217,8 +237,26 @@ namespace HRM
         {
             grbxActive.Enabled = false;
             grbxInfo.Enabled = false;
-            grbxListBHXH.Enabled = true;
             grbxStaffHasNotBHXH.Enabled = true;
+
+            int countRecordSocial = _aHrm.SocialInsurances.Count();
+            int countStaffHasNotSignSocial = socialInBus.countAllStaffHasNotsocial();
+            if (countStaffHasNotSignSocial == 0)
+            {
+                grbxStaffHasNotBHXH.Enabled = false;
+            }
+            else
+            {
+                grbxStaffHasNotBHXH.Enabled = true;
+            }
+            if (countRecordSocial == 0)
+            {
+                grbxListBHXH.Enabled = false;
+            }
+            else
+            {
+                grbxListBHXH.Enabled = true;
+            }
 
             lblThongBao1.Text = "Công ciệc của bạn ở bên dưới.";
             lblTrangThai.Text = ". . .";
@@ -247,7 +285,7 @@ namespace HRM
                 //Lấy 1 Staff có idStaff vừa tìm duoc
                 Staff staf = _aHrm.Staffs.SingleOrDefault(sta => sta.StaffID == idStaff);
                 //Lấy 1 contract last của staffID vừa tìm dc
-                Contract cont = _aHrm.Contracts.Where(con => con.StaffID == idStaff).OrderByDescending(co => co.Date).SingleOrDefault();
+                Contract cont = _aHrm.Contracts.Where(con => con.StaffID == idStaff).OrderByDescending(co => co.Date).FirstOrDefault();
 
                 //Lấy các thông tin basicPays, positionName, sectionName
                 basicPays = cont.BasicPay.ToString();
@@ -260,13 +298,14 @@ namespace HRM
                 txtBasicPay.Text = basicPays;
                 lblNgoaiTe1.Text = cont.Currency;
                 lblNgoaiTe2.Text = cont.Currency;
+                lblIDStaff.Text = staf.StaffID;
             }
             else
             {
                 idSocialIn = gridView1.GetFocusedRowCellDisplayText(grcoIDSocial);
                 SocialInsurance social = _aHrm.SocialInsurances.SingleOrDefault(so => so.InsuranceID == idSocialIn);
                 Staff sta = _aHrm.Staffs.SingleOrDefault(st => st.StaffID == social.StaffID);
-                Contract cont = _aHrm.Contracts.Where(con => con.StaffID == sta.StaffID).OrderByDescending(co => co.Date).SingleOrDefault();
+                Contract cont = _aHrm.Contracts.Where(con => con.StaffID == sta.StaffID).OrderByDescending(co => co.Date).FirstOrDefault();
                 //Lấy các thông tin basicPays, positionName, sectionName
                 staffName = sta.StaffName;
                 basicPays = cont.BasicPay.ToString();
@@ -284,6 +323,7 @@ namespace HRM
                 txtPrice.Text = price;
                 lblNgoaiTe1.Text = cont.Currency;
                 lblNgoaiTe2.Text = cont.Currency;
+                lblIDStaff.Text = sta.StaffID;
                 if (social.SIStartDate == null)
                 {
                     dateDateStart.EditValue = null;
@@ -307,6 +347,7 @@ namespace HRM
                 e.Handled = true;
                 lblThongBao1.Text = @"Bạn không thể nhập ký tự vào ô này.";
             }
+            
         }
 
         private void txtBasicPay_Validated(object sender, EventArgs e)
@@ -318,6 +359,193 @@ namespace HRM
                 this.Text = dTmp.ToString("C");
             }
             catch { }
+        }
+
+        private void txtPayRate_TextChanged(object sender, EventArgs e)
+        {
+            double basicpay = 0;
+            int payrate = 0;
+            double price = 0;
+
+            if(txtPayRate.Text == "")
+            {
+                payrate = 0;
+                price = 0;
+            }
+            else
+            {
+                payrate = int.Parse(txtPayRate.Text);
+                basicpay = double.Parse(txtBasicPay.Text);
+            }
+            price = (basicpay * payrate) / 100;
+            txtPrice.Text = price.ToString();
+        }
+
+        private void txtPayRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                txtPayRate.Text = "";
+            }
+        }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            if (checkActive == 1)
+            {
+                lblTrangThai.Text = "Đang kiểm tra cho chức năng thêm BHXH.";
+                CheckError();
+            }
+            if (checkActive == 2)
+            {
+                lblTrangThai.Text = "Đang kiểm tra cho chức năng sửa BHXH.";
+                CheckError();
+            }
+            if (dxErrorProvider1.HasErrors)
+            {
+                lblThongBao1.Text = "[Lỗi] Click vào dấu(X) để xem lỗi";
+                btnSave.Enabled = false;
+            }
+            else
+            {
+                DialogResult dialog = MessageBox.Show("Đã hết lỗi. Bạn có muốn sửa đổi j thêm nữa không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(dialog == DialogResult.No)
+                {
+                    grbxInfo.Enabled = false;
+                    lblThongBao1.Text = "Đã không còn lỗi bạn có thể lưu lại.";
+                    btnSave.Enabled = true;
+                }
+                else
+                {
+                    btnSave.Enabled = false;
+                }
+            }
+        }
+
+        void CheckError()
+        {
+            DateTime? start = null;
+            var yearStartOfTheWord = 1;
+            var yearOfDateStart = dateDateStart.DateTime.Year;
+            //Default date sign != null 
+            if (yearOfDateStart == yearStartOfTheWord)
+            {
+                dxErrorProvider1.SetError(dateDateStart, "Chưa chọn ngày bắt đầu.");
+            }
+            else { dxErrorProvider1.SetError(dateDateStart, null); }
+
+            if (txtPayRate.Text == "")
+            {
+                dxErrorProvider1.SetError(txtPayRate, "Chưa nhập tỷ lệ đóng BHXH.");
+            }
+            else
+            {
+                dxErrorProvider1.SetError(txtPayRate, null);
+            }
+        }
+
+        void createSocial()
+        {
+            string idInput = txtIDSocialIn.Text;
+            DateTime monthInput = dateDateStart.DateTime;
+            string payrate = txtPayRate.Text;
+            int payRateInput = 0;
+            payRateInput = int.Parse(payrate);
+            string price = txtPrice.Text;
+            decimal priceInput = 0;
+            priceInput = decimal.Parse(price);
+            string staffIdInput = lblIDStaff.Text;
+            socialInBus.CreateASocialInsurances(idInput, monthInput, payRateInput, priceInput, staffIdInput);
+        }
+
+        void EditSocial()
+        {
+            string idInput = txtIDSocialIn.Text;
+            DateTime monthInput = dateDateStart.DateTime;
+            string payrate = txtPayRate.Text;
+            int payRateInput = 0;
+            payRateInput = int.Parse(payrate);
+            string price = txtPrice.Text;
+            decimal priceInput = 0;
+            priceInput = decimal.Parse(price);
+            string staffIdInput = lblIDStaff.Text;
+            socialInBus.EditASocialInsurances(idInput, monthInput, payRateInput, priceInput, staffIdInput);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(checkActive == 1)
+                {
+                    DialogResult dialog = MessageBox.Show($"Bạn có chắc muốn thêm BHXH có mã {txtIDSocialIn.Text} cho nhân viên {txtStaffName.Text}?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(dialog == DialogResult.Yes)
+                    {
+                        createSocial();
+                        grbxListBHXH.Enabled = true;
+                        grbxActive.Enabled = false;
+                        grbxInfo.Enabled = false;
+                        lblTrangThai.Text = "Vừa thêm BHXH có mã " + txtIDSocialIn.Text + " cho nhân viên " + txtStaffName.Text + ".";
+                    }
+                    else
+                    {
+                        lblTrangThai.Text = "Không thêm BHXH có mã " + txtIDSocialIn.Text + " cho nhân viên " + txtStaffName.Text+ ".";
+                    }
+                }
+                if(checkActive == 2)
+                {
+                    DialogResult dialog = MessageBox.Show($"Bạn có chắc muốn sửa BHXH có mã {txtIDSocialIn.Text} cho nhân viên {txtStaffName.Text}?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialog == DialogResult.Yes)
+                    {
+                        EditSocial();
+                        grbxListBHXH.Enabled = true;
+                        grbxActive.Enabled = false;
+                        grbxInfo.Enabled = false;
+                        lblTrangThai.Text = "Vừa sửa BHXH có mã " + txtIDSocialIn.Text + " cho nhân viên " + txtStaffName.Text + ".";
+                    }
+                    else
+                    {
+                        lblTrangThai.Text = "Không sửa BHXH có mã " + txtIDSocialIn.Text + " cho nhân viên " + txtStaffName.Text + ".";
+                    }
+                }
+                grctListBHXH.DataSource = socialInBus.LoadAll();
+                grctStaffHasNotBHXH.DataSource = socialInBus.loadAllInfoOfStaff();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string idSocial = txtIDSocialIn.Text;
+            DialogResult dialog = MessageBox.Show($"bạn thật sự muốn xóa Phiếu BHXH có mã {txtIDSocialIn.Text} của nhân viên {txtStaffName.Text} không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if(idSocial != "")
+            {
+                lblThongBao1.Text = "";
+                if (dialog == DialogResult.Yes)
+                {
+                    lblTrangThai.Text = "Đã xóa phiếu BHXH có mã " + txtIDSocialIn.Text + " của nhân viên " + txtStaffName.Text + ".";
+                    socialInBus.DeleteASociallnsurance(idSocial);
+                    grctListBHXH.DataSource = socialInBus.LoadAll();
+                    grctStaffHasNotBHXH.DataSource = socialInBus.loadAllInfoOfStaff();
+                    grbxListBHXH.Enabled = true;
+                    grbxStaffHasNotBHXH.Enabled = true;
+                    grbxActive.Enabled = false;
+                    grbxInfo.Enabled = false;
+                }
+                else
+                {
+                    lblTrangThai.Text = "Không xóa phiếu BHXH có mã " + txtIDSocialIn.Text + " của nhân viên " + txtStaffName.Text + ".";
+                }
+            }
+            else
+            {
+                lblThongBao1.Text = "bạn chưa chọn 1 phiếu BHXH nào.";
+            }
         }
     }
 }
