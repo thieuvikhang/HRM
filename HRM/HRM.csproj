@@ -64,9 +64,11 @@
     <Reference Include="DevExpress.XtraGrid.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraMap.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPivotGrid.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v16.1.Extensions, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v16.1.Extensions, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraScheduler.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -106,10 +108,19 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="HRMDataSet.cs">
+      <DependentUpon>HRMDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="HRMDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HRMDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NewEmployees.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NewEmployees.Designer.cs">
+      <DependentUpon>NewEmployees.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,6 +142,12 @@
     </Compile>
     <Compile Include="ucAbsent.Designer.cs">
       <DependentUpon>ucAbsent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcAnalytics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcAnalytics.Designer.cs">
+      <DependentUpon>UcAnalytics.cs</DependentUpon>
     </Compile>
     <Compile Include="ucContracts.cs">
       <SubType>UserControl</SubType>
@@ -161,6 +178,12 @@
     </Compile>
     <Compile Include="ucPostions.Designer.cs">
       <DependentUpon>ucPostions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcReportcs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcReportcs.Designer.cs">
+      <DependentUpon>UcReportcs.cs</DependentUpon>
     </Compile>
     <Compile Include="ucSalary.cs">
       <SubType>UserControl</SubType>
@@ -201,6 +224,9 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewEmployees.resx">
+      <DependentUpon>NewEmployees.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -221,6 +247,9 @@
     <EmbeddedResource Include="ucAbsent.resx">
       <DependentUpon>ucAbsent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UcAnalytics.resx">
+      <DependentUpon>UcAnalytics.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucContracts.resx">
       <DependentUpon>ucContracts.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucPostions.resx">
       <DependentUpon>ucPostions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcReportcs.resx">
+      <DependentUpon>UcReportcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucSalary.resx">
       <DependentUpon>ucSalary.cs</DependentUpon>

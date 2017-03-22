@@ -51,6 +51,7 @@ namespace HRM
             // 
             // chartControl1
             // 
+            this.chartControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
             this.chartControl1.DataAdapter = this.cateAgeTableAdapter;
             this.chartControl1.DataSource = this.cateAgeBindingSource;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";

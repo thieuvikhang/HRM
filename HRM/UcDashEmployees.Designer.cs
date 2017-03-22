@@ -35,7 +35,7 @@
             // 
             // dashboardViewer1
             // 
-            this.dashboardViewer1.DashboardSource = new System.Uri("C:\\Users\\thieu\\Desktop\\Custom.xml", System.UriKind.Absolute);
+            this.dashboardViewer1.DashboardSource = new System.Uri("C:\\Users\\thieu\\Documents\\HRM\\HRM\\Custom.xml", System.UriKind.Absolute);
             this.dashboardViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dashboardViewer1.Location = new System.Drawing.Point(0, 0);
             this.dashboardViewer1.Name = "dashboardViewer1";
