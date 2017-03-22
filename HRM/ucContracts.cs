@@ -49,8 +49,16 @@ namespace HRM
         private void ucContract_Load(object sender, EventArgs e)
         {
             //load data len grid
-            gcContract.DataSource = _conTractBus.LoadAll();
-
+            gcContract.DataSource = _conTractBus.LoadAll(); 
+            Session aSession = new Session();
+            if (aSession["userName"] != null)
+            {
+                lblSession.Text = aSession["userName"].ToString();
+            }
+            else
+            {
+                lblSession.Text = "Không tìm thấy session Username";
+            }
             //Load các combobox: Staffs and ContractType
             LoadComboboxContractType();
             LoadComboboxStaffs();

@@ -73,6 +73,7 @@
             this.gcoDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.lblSession = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -410,6 +411,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.lblSession);
             this.panelControl1.Controls.Add(this.grbxThongTin);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Controls.Add(this.lblThongBao2);
@@ -580,6 +582,15 @@
             // 
             this.dxErrorProvider1.ContainerControl = this;
             // 
+            // lblSession
+            // 
+            this.lblSession.AutoSize = true;
+            this.lblSession.Location = new System.Drawing.Point(594, 194);
+            this.lblSession.Name = "lblSession";
+            this.lblSession.Size = new System.Drawing.Size(35, 13);
+            this.lblSession.TabIndex = 56;
+            this.lblSession.Text = "label2";
+            // 
             // UcContract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -656,5 +667,6 @@
         private System.Windows.Forms.Label lblThongBao2;
         private System.Windows.Forms.Label lblThongBao1;
         private DevExpress.XtraEditors.LabelControl lblThucHienCN;
+        private System.Windows.Forms.Label lblSession;
     }
 }
