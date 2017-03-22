@@ -106,11 +106,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmlogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmlogin.Designer.cs">
-      <DependentUpon>frmlogin.cs</DependentUpon>
     <Compile Include="HRMDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,9 +200,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmlogin.resx">
-      <DependentUpon>frmlogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

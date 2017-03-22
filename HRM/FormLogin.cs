@@ -84,11 +84,11 @@ namespace HRM
                 //Gọi tới form newlogin
                 //trong form newlogin mình có tạo 1 biến sesstion getsession
                 //(form này Cường mới tạo thêm để demo về session) m.nTham khảo  
-                frmlogin newfrmlogin = new frmlogin();
+                //frmlogin newfrmlogin = new frmlogin();
                 //đưa tất cả biến aSession ở trên vào biến getsession ở form newfrmlogin
                 //sau đó show form lên và xem kết quả
-                newfrmlogin.getsession = aSession;
-                newfrmlogin.ShowDialog();
+                //newfrmlogin.getsession = aSession;
+                //newfrmlogin.ShowDialog();
                 //FormMain frmain = new FormMain();
                 //frmain.ShowDialog();
 
