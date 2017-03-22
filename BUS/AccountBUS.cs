@@ -46,6 +46,15 @@ namespace BUS
         {
             GroupAccess infoGroupAccess = hrm.GroupAccesses.SingleOrDefault(gra => gra.GroupAccessID == idGroupAccess);
             return infoGroupAccess;
-        } 
+        }
+
+        //Lấy tất cả acsess từ idGroupAccess truyền vào
+        //public IQueryable GetAllAccessByIdGroupAccess(int idGroupAccess)
+        //{
+        //    var allAccessByIdGroupAccess = from accses in hrm.Accesses
+        //                                   where accses.GroupAccessID == idGroupAccess
+        //                                   select accses;
+        //    return allAccessByIdGroupAccess;
+        //} 
     }
 }

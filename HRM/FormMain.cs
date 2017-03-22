@@ -122,9 +122,21 @@ namespace HRM
 
         private void barButtonItem12_ItemClick(object sender, ItemClickEventArgs e)
         {
+
+        }
+
+        private void barButtonItem2_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Thống kê theo độ tuổi", new AgeChart());
+            AddTab("Thống kê", new UcAnalytics());
+        }
+
+        private void barButtonItem3_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Báo cáo", new UcReportcs());
         }
     }
 }
