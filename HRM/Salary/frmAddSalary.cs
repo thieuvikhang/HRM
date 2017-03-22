@@ -19,7 +19,6 @@ namespace HRM.Salary
         public readonly AbsentBus AbsentBus = new AbsentBus();
         public readonly RuleBus RuleBus = new RuleBus();
         public readonly ExtendBus ExtendBus = new ExtendBus();
-        public int Month, Year;
         private string _maNhanVien, _maPhongBan, _maChonThang, _chiTietPhuCap;
         private int _absentNoSalary, _ngayCongQuyDinh;
         private decimal _basicSalary, _bhxh, _luongCoBan, _phuCap, _luongThucLanh;
@@ -42,11 +41,7 @@ namespace HRM.Salary
             switch (tag)
             {
                 case "tagSave":
-                    _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
-                    var arrListStr = _maChonThang.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
-                    Year = Parse(arrListStr[0]);
-                    Month = Parse(arrListStr[1]);/*Lấy giá trị tháng*/
-                    if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month + "/" + Year,
+                    if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
                         _ngayCongQuyDinh - _absentNoSalary, _phuCap,
                         _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
@@ -59,11 +54,7 @@ namespace HRM.Salary
                     }
                     break;
                 case "tagSaveAndClose":
-                    _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
-                    var arrListStr1 = _maChonThang.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
-                    Year = Parse(arrListStr1[0]);
-                    Month = Parse(arrListStr1[1]);/*Lấy giá trị tháng*/
-                    if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month + "/" + Year,
+                    if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
                         _ngayCongQuyDinh - _absentNoSalary, _phuCap,
                         _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
@@ -86,6 +77,20 @@ namespace HRM.Salary
         }
 
         #region Load Combobox chọn phòng ban và tháng lương
+        //Lấy tháng dựa vào tháng đã chọn
+        private int Month()
+        {
+            _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
+            var arrListStr = _maChonThang.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
+            return Parse(arrListStr[1]);/*Lấy giá trị tháng*/
+        }
+        //Lấy năm dựa vào tháng đã chọn
+        private int Year()
+        {
+            _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
+            var arrListStr = _maChonThang.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
+            return Parse(arrListStr[0]);
+        }
         //Lấy tháng trước
         private static int MonthOld()
         {
@@ -148,11 +153,7 @@ namespace HRM.Salary
         private void LoadGirdView()
         {
             var maChonPhongBan = cbbChonPB.SelectedValue.ToString();/*Mã số chọn phòng ban*/
-            _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
-            var arrListStr = _maChonThang.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
-            Year = Parse(arrListStr[0]);
-            Month = Parse(arrListStr[1]);/*Lấy giá trị tháng*/
-            gcAddSalary.DataSource = _salaryBus.LoadStaffNonSalary(maChonPhongBan, Month, Year);
+            gcAddSalary.DataSource = _salaryBus.LoadStaffNonSalary(maChonPhongBan, Month(), Year());
             ClearTextAddSalary();
         }
         private void cbbChonPB_TextChanged(object sender, EventArgs e)
@@ -184,12 +185,13 @@ namespace HRM.Salary
             if (txtSoNgayCong != null) txtSoNgayCong.Text = null;
             if (txtSoNgayNghi != null) txtSoNgayNghi.Text = null;
         }
+
         private void LoadTextEditOnAddSalary()
         {
             if (gcAddSalary.DataSource == null) return;
             _maNhanVien = gridView1.GetFocusedRowCellDisplayText(gcStaffId);
             _maPhongBan = StaffBus.GetSectionIdByStaffId(_maNhanVien);
-            _absentNoSalary = AbsentBus.GetAbsentDays(Month, Year, _maNhanVien);
+            _absentNoSalary = AbsentBus.GetAbsentDays(Month(), Year(), _maNhanVien);
             _basicSalary = ContractBus.GetBasicPayByStaffId(_maNhanVien);
             _bhxh = _salaryBus.SiPrice(RuleBus.GetBhxh(), _basicSalary);
             _ngayCongQuyDinh = SectionBus.GetStandardWorkdaysBySectionId(_maPhongBan);
@@ -221,7 +223,7 @@ namespace HRM.Salary
 
         private void gcAddSalary_Click(object sender, EventArgs e)
         {
-            if (gridView1.RowCount >0)
+            if (gridView1.RowCount > 0)
             {
                 LoadTextEditOnAddSalary();
             }

@@ -1,5 +1,6 @@
 ﻿using DAL;
 using System;
+using System.Data.Linq;
 using System.Linq;
 
 namespace BUS
