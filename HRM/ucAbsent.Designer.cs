@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcAbsent));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -37,15 +38,14 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbKhongLuong = new System.Windows.Forms.RadioButton();
+            this.rbCoLuong = new System.Windows.Forms.RadioButton();
             this.dateChonBD = new DevExpress.XtraEditors.DateEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.rbCoLuong = new System.Windows.Forms.RadioButton();
-            this.rbKhongLuong = new System.Windows.Forms.RadioButton();
             this.txtGhiChu = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtSoNgayNghi = new DevExpress.XtraEditors.TextEdit();
@@ -72,6 +72,7 @@
             this.delete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateChonBD.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateChonBD.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -88,10 +89,9 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.groupBox2);
             this.panelControl1.Controls.Add(this.dateChonBD);
             this.panelControl1.Controls.Add(this.groupBox1);
-            this.panelControl1.Controls.Add(this.rbCoLuong);
-            this.panelControl1.Controls.Add(this.rbKhongLuong);
             this.panelControl1.Controls.Add(this.txtGhiChu);
             this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.txtSoNgayNghi);
@@ -107,7 +107,40 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(975, 208);
             this.panelControl1.TabIndex = 0;
-            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbKhongLuong);
+            this.groupBox2.Controls.Add(this.rbCoLuong);
+            this.groupBox2.Location = new System.Drawing.Point(146, 159);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(277, 44);
+            this.groupBox2.TabIndex = 68;
+            this.groupBox2.TabStop = false;
+            // 
+            // rbKhongLuong
+            // 
+            this.rbKhongLuong.AutoSize = true;
+            this.rbKhongLuong.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.rbKhongLuong.Location = new System.Drawing.Point(138, 18);
+            this.rbKhongLuong.Name = "rbKhongLuong";
+            this.rbKhongLuong.Size = new System.Drawing.Size(97, 20);
+            this.rbKhongLuong.TabIndex = 3;
+            this.rbKhongLuong.Text = "Không lương";
+            this.rbKhongLuong.UseVisualStyleBackColor = true;
+            // 
+            // rbCoLuong
+            // 
+            this.rbCoLuong.AutoSize = true;
+            this.rbCoLuong.Checked = true;
+            this.rbCoLuong.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.rbCoLuong.Location = new System.Drawing.Point(26, 18);
+            this.rbCoLuong.Name = "rbCoLuong";
+            this.rbCoLuong.Size = new System.Drawing.Size(77, 20);
+            this.rbCoLuong.TabIndex = 2;
+            this.rbCoLuong.TabStop = true;
+            this.rbCoLuong.Text = "Có lương";
+            this.rbCoLuong.UseVisualStyleBackColor = true;
             // 
             // dateChonBD
             // 
@@ -134,91 +167,50 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnCancel);
-            this.groupBox1.Controls.Add(this.btnEdit);
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.btnSave);
-            this.groupBox1.Location = new System.Drawing.Point(451, 132);
+            this.groupBox1.Location = new System.Drawing.Point(526, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(498, 76);
+            this.groupBox1.Size = new System.Drawing.Size(423, 76);
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDelete.Appearance.Options.UseFont = true;
-            this.btnDelete.Location = new System.Drawing.Point(388, 22);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(85, 34);
-            this.btnDelete.TabIndex = 53;
-            this.btnDelete.Text = "Xóa";
             // 
             // btnCancel
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(297, 22);
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Location = new System.Drawing.Point(289, 27);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(85, 34);
             this.btnCancel.TabIndex = 56;
             this.btnCancel.Text = "Hủy";
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnEdit.Appearance.Options.UseFont = true;
-            this.btnEdit.Location = new System.Drawing.Point(115, 22);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(85, 34);
-            this.btnEdit.TabIndex = 54;
-            this.btnEdit.Text = "Sửa";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnAdd.Appearance.Options.UseFont = true;
-            this.btnAdd.Location = new System.Drawing.Point(24, 22);
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(29, 27);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
             this.btnAdd.TabIndex = 52;
             this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSave
             // 
             this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(206, 22);
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(155, 27);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(85, 34);
             this.btnSave.TabIndex = 55;
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // rbCoLuong
-            // 
-            this.rbCoLuong.AutoSize = true;
-            this.rbCoLuong.Checked = true;
-            this.rbCoLuong.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rbCoLuong.Location = new System.Drawing.Point(146, 168);
-            this.rbCoLuong.Name = "rbCoLuong";
-            this.rbCoLuong.Size = new System.Drawing.Size(77, 20);
-            this.rbCoLuong.TabIndex = 2;
-            this.rbCoLuong.TabStop = true;
-            this.rbCoLuong.Text = "Có lương";
-            this.rbCoLuong.UseVisualStyleBackColor = true;
-            // 
-            // rbKhongLuong
-            // 
-            this.rbKhongLuong.AutoSize = true;
-            this.rbKhongLuong.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rbKhongLuong.Location = new System.Drawing.Point(266, 168);
-            this.rbKhongLuong.Name = "rbKhongLuong";
-            this.rbKhongLuong.Size = new System.Drawing.Size(97, 20);
-            this.rbKhongLuong.TabIndex = 3;
-            this.rbKhongLuong.Text = "Không lương";
-            this.rbKhongLuong.UseVisualStyleBackColor = true;
             // 
             // txtGhiChu
             // 
@@ -335,6 +327,7 @@
             this.gcAbsent.TabIndex = 1;
             this.gcAbsent.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcAbsent.Click += new System.EventHandler(this.gcAbsent_Click);
             // 
             // gridView1
             // 
@@ -352,7 +345,6 @@
             this.Xoa});
             this.gridView1.GridControl = this.gcAbsent;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             // 
@@ -437,7 +429,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Edit", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, true)});
             this.edit.Name = "edit";
             this.edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.edit_ButtonClick);
             this.edit.Click += new System.EventHandler(this.edit_Click);
             // 
             // Xoa
@@ -457,7 +448,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Delete", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, true)});
             this.delete.Name = "delete";
             this.delete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.delete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.delete_ButtonClick);
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // UcAbsent
@@ -472,6 +462,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateChonBD.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateChonBD.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -514,9 +506,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.MemoEdit txtGhiChu;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraGrid.Columns.GridColumn Sua;
@@ -524,5 +514,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit edit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit delete;
         private DevExpress.XtraEditors.DateEdit dateChonBD;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

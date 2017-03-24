@@ -23,7 +23,8 @@ namespace HRM
         {
 
         }
-        void SetTxt(bool val)
+
+        protected virtual void SetTxt(bool val)
         {
             txtStaffID.Enabled = val;
             txtName.Enabled = val;
@@ -132,17 +133,8 @@ namespace HRM
         }
         private string GetLastIdEmployee()
         {
-            int id;
-
-            int countrecords = _aHrm.Staffs.Count();
-            if (countrecords == 0)
-            {
-                id = 0;
-            }
-            else
-            {
-                id = countrecords + 1;
-            }
+            var countrecords = _aHrm.Staffs.Count();
+            var id = countrecords == 0 ? 0 : countrecords + 1;
             var lastId = "NV" + id;
             return lastId;
         }
@@ -349,13 +341,7 @@ namespace HRM
                 if (dialog == DialogResult.Yes)
                 {
                     _staffBus.DeleteAStaff(txtStaffID.Text);
-
                 }
-                else
-                {
-
-                }
-
             }
             catch
             {
