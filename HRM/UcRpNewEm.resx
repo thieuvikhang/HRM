@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="NewEmployeesBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>138, 17</value>
+  </metadata>
+  <metadata name="HRMDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlN0YWZmIj48RmllbGQgTmFtZT0iU3RhZmZJRCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTdGFmZk5hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iSW1hZ2UiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iR2VuZGVyIiBUeXBlPSJCb29sZWFuIiAvPjxGaWVsZCBOYW1lPSJCaXJ0aERheSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IkNhcmRJRCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJQaG9uZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJBZGRyZXNzIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkVkdWNhdGlvbiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTdGFydERhdGUiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJFbmREYXRlIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iTWFuYWdlcklEIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkVtYWlsIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRheXNSZW1haW4iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJQb3N0SUQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iU2VjdGlvbklEIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlNlY3Rpb25fU2VjdGlvbklEIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlNlY3Rpb25OYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXB0aW9uIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlN0YW5kYXJkV29ya2RheXMiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJTZWN0aW9uX1Bob25lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlNhbGFyeUlEIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iQmFzaWNQYXkiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNhbGFyeU1vbnRoIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iV29ya2RheXMiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJBbGxvd2FuY2UiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkFsbG93YW5jZURlc2NyaXB0aW9uIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlNhbGFyeV9TdGFuZGFyZFdvcmtkYXlzIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iUmVhbFBheSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU2FsYXJ5X1N0YWZmSUQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iUG9zaXRpb25fUG9zdElEIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlBvc3ROYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlBvc2l0aW9uX0Rlc2NyaXB0aW9uIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
-  </data>
-  <metadata name="persistentRepository1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+  <metadata name="HRMDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="NewEmployeesTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>352, 17</value>
   </metadata>
 </root>

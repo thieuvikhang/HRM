@@ -31,7 +31,9 @@
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.xtraTabControl3 = new DevExpress.XtraTab.XtraTabControl();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl3)).BeginInit();
             this.SuspendLayout();
             // 
             // navBarControl1
@@ -62,14 +64,28 @@
             this.navBarItem1.Name = "navBarItem1";
             this.navBarItem1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem1_LinkClicked);
             // 
+            // xtraTabControl3
+            // 
+            this.xtraTabControl3.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
+            this.xtraTabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl3.HeaderButtons = DevExpress.XtraTab.TabButtons.Close;
+            this.xtraTabControl3.Location = new System.Drawing.Point(180, 0);
+            this.xtraTabControl3.Name = "xtraTabControl3";
+            this.xtraTabControl3.Size = new System.Drawing.Size(542, 350);
+            this.xtraTabControl3.TabIndex = 19;
+            this.xtraTabControl3.CloseButtonClick += new System.EventHandler(this.xtraTabControl3_CloseButtonClick);
+            this.xtraTabControl3.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl3_ControlAdded);
+            // 
             // UcReportcs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.xtraTabControl3);
             this.Controls.Add(this.navBarControl1);
             this.Name = "UcReportcs";
             this.Size = new System.Drawing.Size(722, 350);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -79,5 +95,6 @@
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl3;
     }
 }

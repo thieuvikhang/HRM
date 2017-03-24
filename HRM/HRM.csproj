@@ -75,11 +75,14 @@
     <Reference Include="DevExpress.XtraScheduler.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -122,14 +125,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HRMDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="NewEmployees.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="NewEmployees.Designer.cs">
-      <DependentUpon>NewEmployees.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Salary\frmAddSalary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +194,12 @@
     <Compile Include="UcReportcs.Designer.cs">
       <DependentUpon>UcReportcs.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcRpNewEm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcRpNewEm.Designer.cs">
+      <DependentUpon>UcRpNewEm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucSalary.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -233,9 +242,6 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewEmployees.resx">
-      <DependentUpon>NewEmployees.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -247,6 +253,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportNewEm.rdlc" />
     <EmbeddedResource Include="Salary\frmAddSalary.resx">
       <DependentUpon>frmAddSalary.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcReportcs.resx">
       <DependentUpon>UcReportcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcRpNewEm.resx">
+      <DependentUpon>UcRpNewEm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucSalary.resx">
       <DependentUpon>ucSalary.cs</DependentUpon>
