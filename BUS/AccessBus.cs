@@ -1,0 +1,23 @@
+﻿using DAL;
+
+namespace BUS
+{
+    public class AccessBus
+    {
+        private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+
+        /*        public IEnumerable<> GetList(int groupAccessId)
+                {
+                    var list = (from aHmDetailAccesses in _aHrm.DetailAccesses
+                        from aHrmAccess in _aHrm.Accesses
+                        where aHmDetailAccesses.GroupAccessID == groupAccessId
+                        && aHrmAccess.AccessID == aHmDetailAccesses.AccessD
+                               select new
+                        {
+                            aHrmAccess.Form,
+                            aHrmAccess.Edit
+                        }).ToList();
+                    return list;
+                }*/
+    }
+}

@@ -422,29 +422,19 @@ namespace HRM
             }
         }
 
-        void CheckError()
+        protected virtual void CheckError()
         {
-            DateTime? start = null;
+            //DateTime? start = null;
             var yearStartOfTheWord = 1;
             var yearOfDateStart = dateDateStart.DateTime.Year;
             //Default date sign != null 
-            if (yearOfDateStart == yearStartOfTheWord)
-            {
-                dxErrorProvider1.SetError(dateDateStart, "Chưa chọn ngày bắt đầu.");
-            }
-            else { dxErrorProvider1.SetError(dateDateStart, null); }
+            dxErrorProvider1.SetError(dateDateStart,
+                yearOfDateStart == yearStartOfTheWord ? "Chưa chọn ngày bắt đầu." : null);
 
-            if (txtPayRate.Text == "")
-            {
-                dxErrorProvider1.SetError(txtPayRate, "Chưa nhập tỷ lệ đóng BHXH.");
-            }
-            else
-            {
-                dxErrorProvider1.SetError(txtPayRate, null);
-            }
+            dxErrorProvider1.SetError(txtPayRate, txtPayRate.Text == "" ? "Chưa nhập tỷ lệ đóng BHXH." : null);
         }
 
-        void createSocial()
+        protected virtual void CreateSocial()
         {
             string idInput = txtIDSocialIn.Text;
             DateTime monthInput = dateDateStart.DateTime;
@@ -481,7 +471,7 @@ namespace HRM
                     DialogResult dialog = MessageBox.Show($"Bạn có chắc muốn thêm BHXH có mã {txtIDSocialIn.Text} cho nhân viên {txtStaffName.Text}?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if(dialog == DialogResult.Yes)
                     {
-                        createSocial();
+                        CreateSocial();
                         grbxListBHXH.Enabled = true;
                         grbxActive.Enabled = false;
                         grbxInfo.Enabled = false;
