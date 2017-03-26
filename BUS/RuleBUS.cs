@@ -13,5 +13,11 @@ namespace BUS
             var siPayRate = (from ad in _aHrm.Rules select ad.SIPayRate).FirstOrDefault();
             return Convert.ToInt16(siPayRate);
         }
+
+        public int GetSoNgayNghiQuyDinh()
+        {
+            var ngay = (from ad in _aHrm.Rules select ad.LeaveAYear).FirstOrDefault();
+            return Convert.ToInt32(ngay.ToString());
+        }
     }
 }

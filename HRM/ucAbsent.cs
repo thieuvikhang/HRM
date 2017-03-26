@@ -12,12 +12,16 @@ namespace HRM
 {
     public partial class UcAbsent : XtraUserControl
     {
+        #region Khai báo biến
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         public readonly AbsentBus AbsentBus = new AbsentBus();
+        public readonly DaysRemainBus DaysRemainBus = new DaysRemainBus();
         public bool AllowClosePopup = true;
         private readonly List<int> _list = new List<int>();
-        private int _coHieu;
-        private int _ngayBatDau, _ngayKetThuc;
+        private int _coHieu, _ngayBatDau, _ngayKetThuc;
+        #endregion
+
+        #region UcAbsent Load
         public UcAbsent()
         {
             InitializeComponent();
@@ -30,35 +34,36 @@ namespace HRM
             LoadluChonNv();
             dateChonBD.Properties.MinValue = AbsentBus.NgayDauThang(DateTime.Now);
             dateChonBD.Properties.MaxValue = AbsentBus.NgayCuoiThang(DateTime.Now).AddDays(-1);
-            dateChonKT.Properties.MinValue = AbsentBus.NgayDauThang(DateTime.Now);
-            dateChonKT.Properties.MaxValue = AbsentBus.NgayCuoiThang(DateTime.Now);
         }
-        private void Clear()
-        {
-            luChonNV.SelectedText = null;
-            dateChonBD.SelectionStart = 0;
-            dateChonKT.Enabled = false;
-            txtSoNgayNghi.Text = null;
-            txtGhiChu.Text = null;
-            rbCoLuong.Checked = true;
-            _list.Clear();
-        }
+        #endregion
+
         #region Chọn nhân viên
         private void NgayDaNghi()
         {
-            _list.AddRange(AbsentBus.ListNgayNghi(luChonNV.EditValue.ToString(), DateTime.Now));
+            if (_coHieu != 0 && luChonNV.EditValue != null)
+            {
+                var listNgayNghi = AbsentBus.ListNgayNghi(luChonNV.EditValue.ToString(), DateTime.Now);
+                _list.AddRange(listNgayNghi);
+            }
             if (_coHieu != 2) return;
-            for (var i = _ngayBatDau; i < _ngayKetThuc; i++)
+            for (var i = _ngayKetThuc; i >= _ngayBatDau; i--)
             {
                 _list.Remove(i);
             }
         }
         private void luChonNV_TextChanged(object sender, EventArgs e)
         {
+            txtSoNgayNghi.Text = @"0";
             _list.Clear();
-            NgayDaNghi();
+            if (luChonNV.EditValue != null)
+            {
+                NgayDaNghi();
+            }
             dateChonBD.EditValue = null;
             dateChonKT.EditValue = null;
+            if (_coHieu != 1) return;
+            dateChonBD.Enabled = true;
+            dateChonKT.Enabled = false;
         }
         private void LoadluChonNv()
         {
@@ -71,12 +76,15 @@ namespace HRM
             luChonNV.Properties.DisplayMember = "Name";
         }
         #endregion
+
         #region Chọn ngày bắt đầu
         private void dateChonBD_TextChanged(object sender, EventArgs e)
         {
-            dateChonKT.Properties.MinValue = dateChonBD.DateTime;
+            dateChonKT.Properties.MinValue = dateChonBD.DateTime.AddDays(1);
             dateChonKT.Properties.MaxValue = AbsentBus.NgayCuoiThang(DateTime.Now);
             dateChonKT.DateTime = dateChonBD.DateTime.AddDays(1);
+            if (_coHieu != 1) return;
+            dateChonKT.Enabled = true;
         }
         private void dateChonBD_QueryCloseUp(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -118,11 +126,23 @@ namespace HRM
             }
         }
         #endregion
+
         #region Chọn ngày kết thúc
         private void dateChonKT_TextChanged(object sender, EventArgs e)
         {
-            txtSoNgayNghi.Text = (dateChonKT.DateTime.Day - dateChonBD.DateTime.Day -
-                    AbsentBus.TongNgayChuNhat(dateChonKT.DateTime, dateChonBD.DateTime)).ToString();
+            if (_coHieu == 0 || luChonNV.EditValue == null || dateChonKT.EditValue == null || dateChonBD.EditValue == null) return;
+            var soNgayNghi = dateChonKT.DateTime.Day - dateChonBD.DateTime.Day - AbsentBus.TongNgayChuNhat(dateChonKT.DateTime, dateChonBD.DateTime);
+            txtSoNgayNghi.Text = soNgayNghi.ToString();
+            if (DaysRemainBus.GetAbsentType(luChonNV.EditValue.ToString(), dateChonKT.DateTime.Year, soNgayNghi, _coHieu))
+            {
+                rbCoLuong.Enabled = true;
+                rbCoLuong.Checked = true;
+            }
+            else
+            {
+                rbKhongLuong.Checked = true;
+                rbCoLuong.Enabled = false;
+            }
         }
         private void dateChonKT_DateTimeChanged(object sender, EventArgs e)
         {
@@ -164,19 +184,8 @@ namespace HRM
             }
         }
         #endregion
-        private void gcAbsent_Click(object sender, EventArgs e)
-        {
-            luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
-            dateChonBD.Text = gridView1.GetFocusedRowCellDisplayText(FromDate);
-            dateChonKT.Text = gridView1.GetFocusedRowCellDisplayText(ToDate);
-            txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
-            txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
-            var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
-            if (absentType == "Có lương")
-                rbCoLuong.Checked = true;
-            else
-                rbKhongLuong.Checked = true;
-        }
+
+        #region Set Button, Text, Clear
         /// <summary>
         /// Set trường Text
         /// </summary>
@@ -202,6 +211,21 @@ namespace HRM
             btnSave.Enabled = !val;
             btnCancel.Enabled = !val;
         }
+        /// <summary>
+        /// Xóa các trường text
+        /// </summary>
+        private void Clear()
+        {
+            luChonNV.EditValue = null;
+            dateChonBD.EditValue = null;
+            dateChonKT.EditValue = null;
+            txtSoNgayNghi.Text = @"0";
+            txtGhiChu.Text = null;
+            rbCoLuong.Checked = true;
+            _list.Clear();
+        }
+        #endregion
+
         #region Chức năng thêm, xóa, sửa, lưu
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -209,9 +233,12 @@ namespace HRM
             Clear();
             SetText(true);
             SetButton(false);
+            dateChonBD.Enabled = false;
+            dateChonKT.Enabled = false;
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            _coHieu = 0;
             Clear();
             SetText(false);
             SetButton(true);
@@ -219,11 +246,11 @@ namespace HRM
         private void edit_Click(object sender, EventArgs e)
         {
             _coHieu = 2;
+            _ngayBatDau = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Day;
+            _ngayKetThuc = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate)).Day;
             SetText(true);
             luChonNV.Enabled = false;
             SetButton(false);
-            _ngayBatDau = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Day;
-            _ngayKetThuc = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate)).Day;
             luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
             NgayDaNghi();
             dateChonBD.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate));
@@ -251,7 +278,7 @@ namespace HRM
             }
             catch
             {
-                // ignored
+                XtraMessageBox.Show("Lỗi xóa!");
             }
             ucAbsent_Load(sender, e);
         }
@@ -262,16 +289,13 @@ namespace HRM
                 switch (_coHieu)
                 {
                     case 1:
-                        if (!AbsentBus.SaveAbsent(luChonNV.EditValue.ToString(), dateChonBD.DateTime,
-                            dateChonKT.DateTime, rbCoLuong.Checked, txtGhiChu.Text))
+                        if (!AbsentBus.SaveAbsent(luChonNV.EditValue.ToString(), dateChonBD.DateTime, dateChonKT.DateTime, rbCoLuong.Checked, txtGhiChu.Text))
                             XtraMessageBox.Show("Có lỗi trong quá trình thêm");
                         else
                             ucAbsent_Load(sender, e);
                         break;
                     case 2:
-                        if (!AbsentBus.UpdateAbsent(int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentID)),
-                            luChonNV.EditValue.ToString(), dateChonBD.DateTime, dateChonKT.DateTime, rbCoLuong.Checked,
-                            txtGhiChu.Text))
+                        if (!AbsentBus.UpdateAbsent(int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentID)), luChonNV.EditValue.ToString(), dateChonBD.DateTime, dateChonKT.DateTime, rbCoLuong.Checked, txtGhiChu.Text))
                             XtraMessageBox.Show("Có lỗi trong quá trình sửa");
                         else
                             ucAbsent_Load(sender, e);
@@ -280,10 +304,37 @@ namespace HRM
                 Clear();
                 SetText(false);
                 SetButton(true);
+                _coHieu = 0;
             }
             else
             {
                 XtraMessageBox.Show("Vui lòng chọn đầy đủ thông tin!");
+            }
+        }
+
+        private void txtGhiChu_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            if (e.NewValue?.ToString().Length > 100)
+                e.Cancel = true;
+        }
+        #endregion
+
+        #region Xử lý trong DataGirdView
+        private void gcAbsent_Click(object sender, EventArgs e)
+        {
+            Clear();
+            if (StaffID != null) luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
+            if (FromDate != null) dateChonBD.Text = gridView1.GetFocusedRowCellDisplayText(FromDate);
+            if (ToDate != null) dateChonKT.Text = gridView1.GetFocusedRowCellDisplayText(ToDate);
+            if (Note != null) txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
+            if (AbsentDay != null) txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
+            if (AbsentType != null)
+            {
+                var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
+                if (absentType != null && absentType == "Có lương")
+                    rbCoLuong.Checked = true;
+                else
+                    rbKhongLuong.Checked = true;
             }
         }
         #endregion

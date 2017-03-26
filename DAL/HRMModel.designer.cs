@@ -51,6 +51,9 @@ namespace DAL
     partial void InsertContractType(ContractType instance);
     partial void UpdateContractType(ContractType instance);
     partial void DeleteContractType(ContractType instance);
+    partial void InsertDaysRemain(DaysRemain instance);
+    partial void UpdateDaysRemain(DaysRemain instance);
+    partial void DeleteDaysRemain(DaysRemain instance);
     partial void InsertDetailAccess(DetailAccess instance);
     partial void UpdateDetailAccess(DetailAccess instance);
     partial void DeleteDetailAccess(DetailAccess instance);
@@ -157,6 +160,14 @@ namespace DAL
 			get
 			{
 				return this.GetTable<ContractType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DaysRemain> DaysRemains
+		{
+			get
+			{
+				return this.GetTable<DaysRemain>();
 			}
 		}
 		
@@ -503,8 +514,6 @@ namespace DAL
 		
 		private string _Email;
 		
-		private System.Nullable<int> _DaysRemain;
-		
 		private string _PostID;
 		
 		private string _SectionID;
@@ -514,6 +523,8 @@ namespace DAL
 		private EntitySet<Account> _Accounts;
 		
 		private EntitySet<Contract> _Contracts;
+		
+		private EntitySet<DaysRemain> _DaysRemains;
 		
 		private EntitySet<Salary> _Salaries;
 		
@@ -553,8 +564,6 @@ namespace DAL
     partial void OnManagerIDChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
-    partial void OnDaysRemainChanging(System.Nullable<int> value);
-    partial void OnDaysRemainChanged();
     partial void OnPostIDChanging(string value);
     partial void OnPostIDChanged();
     partial void OnSectionIDChanging(string value);
@@ -566,6 +575,7 @@ namespace DAL
 			this._Absents = new EntitySet<Absent>(new Action<Absent>(this.attach_Absents), new Action<Absent>(this.detach_Absents));
 			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
+			this._DaysRemains = new EntitySet<DaysRemain>(new Action<DaysRemain>(this.attach_DaysRemains), new Action<DaysRemain>(this.detach_DaysRemains));
 			this._Salaries = new EntitySet<Salary>(new Action<Salary>(this.attach_Salaries), new Action<Salary>(this.detach_Salaries));
 			this._SocialInsurances = new EntitySet<SocialInsurance>(new Action<SocialInsurance>(this.attach_SocialInsurances), new Action<SocialInsurance>(this.detach_SocialInsurances));
 			this._Position = default(EntityRef<Position>);
@@ -833,26 +843,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysRemain", DbType="Int")]
-		public System.Nullable<int> DaysRemain
-		{
-			get
-			{
-				return this._DaysRemain;
-			}
-			set
-			{
-				if ((this._DaysRemain != value))
-				{
-					this.OnDaysRemainChanging(value);
-					this.SendPropertyChanging();
-					this._DaysRemain = value;
-					this.SendPropertyChanged("DaysRemain");
-					this.OnDaysRemainChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostID", DbType="Char(6) NOT NULL", CanBeNull=false)]
 		public string PostID
 		{
@@ -937,6 +927,19 @@ namespace DAL
 			set
 			{
 				this._Contracts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_DaysRemain", Storage="_DaysRemains", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<DaysRemain> DaysRemains
+		{
+			get
+			{
+				return this._DaysRemains;
+			}
+			set
+			{
+				this._DaysRemains.Assign(value);
 			}
 		}
 		
@@ -1085,6 +1088,18 @@ namespace DAL
 		}
 		
 		private void detach_Contracts(Contract entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_DaysRemains(DaysRemain entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_DaysRemains(DaysRemain entity)
 		{
 			this.SendPropertyChanging();
 			entity.Staff = null;
@@ -2122,6 +2137,205 @@ namespace DAL
 		{
 			this.SendPropertyChanging();
 			entity.ContractType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DaysRemain")]
+	public partial class DaysRemain : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _DaysRemainID;
+		
+		private System.Nullable<int> _LeaveAYear;
+		
+		private System.Nullable<int> _UsedInYear;
+		
+		private string _StaffID;
+		
+		private System.Nullable<int> _Year;
+		
+		private EntityRef<Staff> _Staff;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDaysRemainIDChanging(int value);
+    partial void OnDaysRemainIDChanged();
+    partial void OnLeaveAYearChanging(System.Nullable<int> value);
+    partial void OnLeaveAYearChanged();
+    partial void OnUsedInYearChanging(System.Nullable<int> value);
+    partial void OnUsedInYearChanged();
+    partial void OnStaffIDChanging(string value);
+    partial void OnStaffIDChanged();
+    partial void OnYearChanging(System.Nullable<int> value);
+    partial void OnYearChanged();
+    #endregion
+		
+		public DaysRemain()
+		{
+			this._Staff = default(EntityRef<Staff>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysRemainID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int DaysRemainID
+		{
+			get
+			{
+				return this._DaysRemainID;
+			}
+			set
+			{
+				if ((this._DaysRemainID != value))
+				{
+					this.OnDaysRemainIDChanging(value);
+					this.SendPropertyChanging();
+					this._DaysRemainID = value;
+					this.SendPropertyChanged("DaysRemainID");
+					this.OnDaysRemainIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeaveAYear", DbType="Int")]
+		public System.Nullable<int> LeaveAYear
+		{
+			get
+			{
+				return this._LeaveAYear;
+			}
+			set
+			{
+				if ((this._LeaveAYear != value))
+				{
+					this.OnLeaveAYearChanging(value);
+					this.SendPropertyChanging();
+					this._LeaveAYear = value;
+					this.SendPropertyChanged("LeaveAYear");
+					this.OnLeaveAYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsedInYear", DbType="Int")]
+		public System.Nullable<int> UsedInYear
+		{
+			get
+			{
+				return this._UsedInYear;
+			}
+			set
+			{
+				if ((this._UsedInYear != value))
+				{
+					this.OnUsedInYearChanging(value);
+					this.SendPropertyChanging();
+					this._UsedInYear = value;
+					this.SendPropertyChanged("UsedInYear");
+					this.OnUsedInYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6)")]
+		public string StaffID
+		{
+			get
+			{
+				return this._StaffID;
+			}
+			set
+			{
+				if ((this._StaffID != value))
+				{
+					if (this._Staff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStaffIDChanging(value);
+					this.SendPropertyChanging();
+					this._StaffID = value;
+					this.SendPropertyChanged("StaffID");
+					this.OnStaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_DaysRemain", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
+		public Staff Staff
+		{
+			get
+			{
+				return this._Staff.Entity;
+			}
+			set
+			{
+				Staff previousValue = this._Staff.Entity;
+				if (((previousValue != value) 
+							|| (this._Staff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Staff.Entity = null;
+						previousValue.DaysRemains.Remove(this);
+					}
+					this._Staff.Entity = value;
+					if ((value != null))
+					{
+						value.DaysRemains.Add(this);
+						this._StaffID = value.StaffID;
+					}
+					else
+					{
+						this._StaffID = default(string);
+					}
+					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

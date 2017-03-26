@@ -28,7 +28,7 @@ namespace BUS
                     st.EndDate,
                     st.ManagerID,
                     st.Email,
-                    st.DaysRemain,
+                    //st.DaysRemain,
                     post.PostName,
                     sec.SectionName
                 };
@@ -249,7 +249,7 @@ namespace BUS
                     EndDate = enddateInput,
                     ManagerID = manageridInput,
                     Email = emailInput,
-                    DaysRemain = dayremainInput,
+                    //DaysRemain = dayremainInput,
                     PostID = postidInput,
                     SectionID = sectionidInput
                 };
@@ -271,29 +271,26 @@ namespace BUS
         {
             try
             {
-                Staff aStaff = _aHrm.Staffs.SingleOrDefault(st => st.StaffID == newid);
-                if (aStaff != null)
-                {
-                    aStaff.StaffID = newid;
-                    aStaff.StaffName = nameInput;
-                    aStaff.Gender = genderInput;
-                    aStaff.BirthDay = birthdayInput;
-                    aStaff.CardID = cardidInput;
-                    aStaff.Phone = phoneInput;
-                    aStaff.Address = addressInput;
-                    aStaff.Education = eduInput;
-                    aStaff.StartDate = startdateInput;
-                    aStaff.EndDate = enddateInput;
-                    aStaff.ManagerID = manageridInput;
-                    aStaff.Email = emailInput;
-                    aStaff.DaysRemain = dayremainInput;
-                    aStaff.PostID = postidInput;
-                    aStaff.SectionID = sectionidInput;
+                var aStaff = _aHrm.Staffs.SingleOrDefault(st => st.StaffID == newid);
+                if (aStaff == null) return false;
+                aStaff.StaffID = newid;
+                aStaff.StaffName = nameInput;
+                aStaff.Gender = genderInput;
+                aStaff.BirthDay = birthdayInput;
+                aStaff.CardID = cardidInput;
+                aStaff.Phone = phoneInput;
+                aStaff.Address = addressInput;
+                aStaff.Education = eduInput;
+                aStaff.StartDate = startdateInput;
+                aStaff.EndDate = enddateInput;
+                aStaff.ManagerID = manageridInput;
+                aStaff.Email = emailInput;
+                //aStaff.DaysRemain = dayremainInput;
+                aStaff.PostID = postidInput;
+                aStaff.SectionID = sectionidInput;
                     
-                    _aHrm.SubmitChanges();
-                    return true;
-                }
-                return false;
+                _aHrm.SubmitChanges();
+                return true;
             }
             catch (Exception)
             {

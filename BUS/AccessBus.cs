@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DAL;
 
 namespace BUS
 {
@@ -6,18 +8,18 @@ namespace BUS
     {
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
 
-        /*        public IEnumerable<> GetList(int groupAccessId)
-                {
-                    var list = (from aHmDetailAccesses in _aHrm.DetailAccesses
+        public IQueryable GetList(int groupAccessId)
+        {
+            var list = (from aHmDetailAccesses in _aHrm.DetailAccesses
                         from aHrmAccess in _aHrm.Accesses
                         where aHmDetailAccesses.GroupAccessID == groupAccessId
                         && aHrmAccess.AccessID == aHmDetailAccesses.AccessD
-                               select new
+                        select new
                         {
                             aHrmAccess.Form,
                             aHrmAccess.Edit
                         }).ToList();
-                    return list;
-                }*/
+            return list.AsQueryable();
+        }
     }
 }

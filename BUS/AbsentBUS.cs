@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using DAL;
 using System.Linq;
@@ -10,6 +9,7 @@ namespace BUS
     public class AbsentBus
     {
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        public readonly DaysRemainBus DaysRemainBus = new DaysRemainBus();
         /// <summary>
         /// Lấy số ngày nghỉ không lương theo Mã nhân viên, tháng
         /// </summary>
@@ -69,9 +69,8 @@ namespace BUS
         /// Trả về ngày không được chọn
         /// </summary>
         /// <param name="ngay">Ngày truyền vào</param>
-        /// <param name="maNv">Mã nhân vi</param>
         /// <returns>true = ngày không được chọn</returns>
-        public bool IsHoliday(DateTime ngay, string maNv)
+        public bool IsHoliday(DateTime ngay)
         {
             //Ngày chủ nhật
             return ngay.DayOfWeek == 0;
@@ -103,17 +102,23 @@ namespace BUS
         /// <returns>Trả về true = thành công</returns>
         public bool SaveAbsent(string maNv, DateTime tuNgay, DateTime denNgay, bool loaiNghi, string note)
         {
+            if (maNv == null) return false;
             try
             {
+                var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
                 var absent = new Absent
                 {
                     StaffID = maNv,
                     FromDate = tuNgay,
                     ToDate = denNgay,
-                    AbsentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay),
+                    AbsentDay = absentDay,
                     AbsentType = loaiNghi,
                     Note = note
                 };
+                if (loaiNghi)
+                {
+                    return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year);
+                }
                 _aHrm.Absents.InsertOnSubmit(absent);
                 _aHrm.SubmitChanges();
                 return true;
@@ -135,6 +140,10 @@ namespace BUS
             {
                 var absent = (from st in _aHrm.Absents select st).SingleOrDefault(st => st.AbsentID == maPhep);
                 if (absent == null) return false;
+                if (absent.FromDate != null && absent.AbsentType == true)
+                {
+                    return DaysRemainBus.AddOrUpdateDaysRemain(absent.StaffID, -ToInt16(absent.AbsentDay), absent.FromDate.Value.Year);
+                }
                 _aHrm.Absents.DeleteOnSubmit(absent);
                 _aHrm.SubmitChanges();
                 return true;
@@ -159,15 +168,20 @@ namespace BUS
         {
             try
             {
+                var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
                 var absent = _aHrm.Absents.SingleOrDefault(ab => ab.AbsentID == maPhep);
                 if (absent == null) return false;
                 absent.AbsentID = maPhep;
                 absent.StaffID = maNv;
                 absent.FromDate = tuNgay;
                 absent.ToDate = denNgay;
-                absent.AbsentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
+                absent.AbsentDay = absentDay;
                 absent.Note = note;
                 absent.AbsentType = loaiNghi;
+                if (DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year))
+                {
+                    return true;
+                }
                 _aHrm.SubmitChanges();
                 return true;
             }
@@ -189,10 +203,10 @@ namespace BUS
             foreach (var item in _aHrm.Absents.Where(ab => ab.StaffID == maNv
                                                            && ab.FromDate.Value.Month == ngay.Month
                                                            && ab.FromDate.Value.Year == ngay.Year).Select(ab => new
-            {
-                FromDate = ab.FromDate.Value.Day,
-                ToDate = ab.ToDate.Value.Day
-            }).ToList())
+                                                           {
+                                                               FromDate = ab.FromDate.Value.Day,
+                                                               ToDate = ab.ToDate.Value.Day
+                                                           }).ToList())
             {
                 for (var i = item.FromDate; i < item.ToDate; i++)
                 {
