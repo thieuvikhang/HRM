@@ -230,6 +230,12 @@
     <Compile Include="XtraForm1.Designer.cs">
       <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="XtraForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraForm2.Designer.cs">
+      <DependentUpon>XtraForm2.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AgeChart.resx">
       <DependentUpon>AgeChart.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +263,7 @@
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportNewEm.rdlc" />
+    <EmbeddedResource Include="RpBirthDay.rdlc" />
     <EmbeddedResource Include="Salary\frmAddSalary.resx">
       <DependentUpon>frmAddSalary.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XtraForm1.resx">
       <DependentUpon>XtraForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraForm2.resx">
+      <DependentUpon>XtraForm2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="HRMDataSet.xsc">
