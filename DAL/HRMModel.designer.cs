@@ -226,13 +226,6 @@ namespace DAL
 				return this.GetTable<SocialInsurance>();
 			}
 		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Age_Range")]
-		public int Age_Range()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((int)(result.ReturnValue));
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Absent")]
@@ -514,6 +507,8 @@ namespace DAL
 		
 		private string _Email;
 		
+		private System.Nullable<int> _DaysRemain;
+		
 		private string _PostID;
 		
 		private string _SectionID;
@@ -564,6 +559,8 @@ namespace DAL
     partial void OnManagerIDChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
+    partial void OnDaysRemainChanging(System.Nullable<int> value);
+    partial void OnDaysRemainChanged();
     partial void OnPostIDChanging(string value);
     partial void OnPostIDChanged();
     partial void OnSectionIDChanging(string value);
@@ -839,6 +836,26 @@ namespace DAL
 					this._Email = value;
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysRemain", DbType="Int")]
+		public System.Nullable<int> DaysRemain
+		{
+			get
+			{
+				return this._DaysRemain;
+			}
+			set
+			{
+				if ((this._DaysRemain != value))
+				{
+					this.OnDaysRemainChanging(value);
+					this.SendPropertyChanging();
+					this._DaysRemain = value;
+					this.SendPropertyChanged("DaysRemain");
+					this.OnDaysRemainChanged();
 				}
 			}
 		}
@@ -2152,9 +2169,9 @@ namespace DAL
 		
 		private System.Nullable<int> _UsedInYear;
 		
-		private string _StaffID;
-		
 		private System.Nullable<int> _Year;
+		
+		private string _StaffID;
 		
 		private EntityRef<Staff> _Staff;
 		
@@ -2168,10 +2185,10 @@ namespace DAL
     partial void OnLeaveAYearChanged();
     partial void OnUsedInYearChanging(System.Nullable<int> value);
     partial void OnUsedInYearChanged();
-    partial void OnStaffIDChanging(string value);
-    partial void OnStaffIDChanged();
     partial void OnYearChanging(System.Nullable<int> value);
     partial void OnYearChanged();
+    partial void OnStaffIDChanging(string value);
+    partial void OnStaffIDChanged();
     #endregion
 		
 		public DaysRemain()
@@ -2240,7 +2257,27 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false)]
 		public string StaffID
 		{
 			get
@@ -2260,26 +2297,6 @@ namespace DAL
 					this._StaffID = value;
 					this.SendPropertyChanged("StaffID");
 					this.OnStaffIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
-		public System.Nullable<int> Year
-		{
-			get
-			{
-				return this._Year;
-			}
-			set
-			{
-				if ((this._Year != value))
-				{
-					this.OnYearChanging(value);
-					this.SendPropertyChanging();
-					this._Year = value;
-					this.SendPropertyChanged("Year");
-					this.OnYearChanged();
 				}
 			}
 		}
