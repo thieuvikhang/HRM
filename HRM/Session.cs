@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HRM
 {
@@ -31,8 +27,7 @@ namespace HRM
         {
             if (_listObject.ContainsKey(key))
                 return _listObject[key];
-            else
-                return null;
+            return null;
         }
 
         public object this[string key] { set { Add(key, value); } get { return Get(key); } }

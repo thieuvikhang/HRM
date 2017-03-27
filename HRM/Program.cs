@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using DevExpress.UserSkins;
 using DevExpress.Skins;
+using DevExpress.UserSkins;
 
 namespace HRM
 {
@@ -18,7 +18,6 @@ namespace HRM
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new XtraForm2());
-        }
+            Application.Run(new FormMain());}
     }
 }

@@ -1,11 +1,20 @@
-﻿namespace HRM.Salary
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraBars.Docking2010;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
+using ComboBox = System.Windows.Forms.ComboBox;
+
+namespace HRM.Salary
 {
     partial class FrmAddSalary
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -497,41 +506,41 @@
         }
 
         #endregion
-        private DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel windowsUIButton;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.ComboBox cbbChonThang;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbbChonPB;
-        private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraGrid.GridControl gcAddSalary;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gcStaffId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private DevExpress.XtraEditors.TextEdit txtPhongBan;
-        private DevExpress.XtraEditors.TextEdit txtNgayCongQuyDinh;
-        private System.Windows.Forms.Label label14;
-        private DevExpress.XtraEditors.TextEdit txtSoNgayNghi;
-        private System.Windows.Forms.Label label13;
-        private DevExpress.XtraEditors.TextEdit txtSoNgayCong;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private DevExpress.XtraEditors.TextEdit txtLuongThucLanh;
-        private DevExpress.XtraEditors.TextEdit txtLuongHD;
-        private DevExpress.XtraEditors.TextEdit txtLuongCoBan;
-        private DevExpress.XtraEditors.TextEdit txtBHXH;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private DevExpress.XtraEditors.MemoEdit txtGhiChu;
-        private DevExpress.XtraEditors.TextEdit txtChonNV;
-        private System.Windows.Forms.NumericUpDown txtPhuCap;
+        private WindowsUIButtonPanel windowsUIButton;
+        private GroupControl groupControl1;
+        private ComboBox cbbChonThang;
+        private Label label2;
+        private ComboBox cbbChonPB;
+        private Label label1;
+        private GroupControl groupControl2;
+        private GridControl gcAddSalary;
+        private GridView gridView1;
+        private GridColumn gcStaffId;
+        private GridColumn gridColumn2;
+        private GridColumn gridColumn3;
+        private Label label3;
+        private Label label12;
+        private Label label4;
+        private Label label5;
+        private TextEdit txtPhongBan;
+        private TextEdit txtNgayCongQuyDinh;
+        private Label label14;
+        private TextEdit txtSoNgayNghi;
+        private Label label13;
+        private TextEdit txtSoNgayCong;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private TextEdit txtLuongThucLanh;
+        private TextEdit txtLuongHD;
+        private TextEdit txtLuongCoBan;
+        private TextEdit txtBHXH;
+        private Label label7;
+        private Label label6;
+        private MemoEdit txtGhiChu;
+        private TextEdit txtChonNV;
+        private NumericUpDown txtPhuCap;
     }
 
 }

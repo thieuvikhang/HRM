@@ -1,11 +1,15 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using DevExpress.XtraNavBar;
+using DevExpress.XtraTab;
+
+namespace HRM
 {
     partial class UcAnalytics
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -108,11 +112,11 @@
 
         #endregion
 
-        private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem3;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl2;
+        private NavBarControl navBarControl1;
+        private NavBarGroup navBarGroup1;
+        private NavBarItem navBarItem2;
+        private NavBarItem navBarItem3;
+        private NavBarItem navBarItem1;
+        private XtraTabControl xtraTabControl2;
     }
 }

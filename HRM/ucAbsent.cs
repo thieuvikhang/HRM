@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 using BUS;
 using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Calendar;
-using System.Linq;
-using System.Windows.Forms;
+using DevExpress.XtraEditors.Controls;
 
 namespace HRM
 {
@@ -86,7 +88,7 @@ namespace HRM
             if (_coHieu != 1) return;
             dateChonKT.Enabled = true;
         }
-        private void dateChonBD_QueryCloseUp(object sender, System.ComponentModel.CancelEventArgs e)
+        private void dateChonBD_QueryCloseUp(object sender, CancelEventArgs e)
         {
             if (_coHieu == 0) return;
             e.Cancel = !AllowClosePopup;
@@ -158,7 +160,7 @@ namespace HRM
             if (dateEdit.DateTime.DayOfWeek != 0 && hide != 1) return;
             dateEdit.EditValue = null;
         }
-        private void dateChonKT_QueryCloseUp(object sender, System.ComponentModel.CancelEventArgs e)
+        private void dateChonKT_QueryCloseUp(object sender, CancelEventArgs e)
         {
             if (_coHieu == 0) return;
             e.Cancel = !AllowClosePopup;
@@ -312,7 +314,7 @@ namespace HRM
             }
         }
 
-        private void txtGhiChu_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        private void txtGhiChu_EditValueChanging(object sender, ChangingEventArgs e)
         {
             if (e.NewValue?.ToString().Length > 100)
                 e.Cancel = true;

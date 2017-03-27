@@ -1,11 +1,19 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.DXErrorProvider;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
+
+namespace HRM
 {
     partial class UcSection
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -358,30 +366,30 @@
         }
 
         #endregion
-        private DevExpress.XtraEditors.TextEdit txtPhone;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txtName;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TextEdit txtSectionID;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.MemoEdit mmDescription;
-        private System.Windows.Forms.NumericUpDown numStandardWorkdays;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraGrid.GridControl gcSection;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
-        private DevExpress.XtraGrid.Columns.GridColumn gCoSectionID;
-        private DevExpress.XtraGrid.Columns.GridColumn gCoSectionName;
-        private DevExpress.XtraGrid.Columns.GridColumn gCoDescription;
-        private DevExpress.XtraGrid.Columns.GridColumn gCoStandardWorkdays;
-        private DevExpress.XtraGrid.Columns.GridColumn gCoPhone;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
+        private TextEdit txtPhone;
+        private LabelControl labelControl4;
+        private LabelControl labelControl3;
+        private TextEdit txtName;
+        private LabelControl labelControl2;
+        private TextEdit txtSectionID;
+        private LabelControl labelControl1;
+        private MemoEdit mmDescription;
+        private NumericUpDown numStandardWorkdays;
+        private LabelControl labelControl5;
+        private PanelControl panelControl1;
+        private GridControl gcSection;
+        private GridView gridView1;
+        private GroupControl groupControl2;
+        private SimpleButton btnEdit;
+        private SimpleButton btnDelete;
+        private SimpleButton btnAdd;
+        private GridColumn gCoSectionID;
+        private GridColumn gCoSectionName;
+        private GridColumn gCoDescription;
+        private GridColumn gCoStandardWorkdays;
+        private GridColumn gCoPhone;
+        private SimpleButton btnCancel;
+        private SimpleButton btnSave;
+        private DXErrorProvider dxErrorProvider;
     }
 }

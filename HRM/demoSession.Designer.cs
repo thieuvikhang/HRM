@@ -1,11 +1,14 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace HRM
 {
     partial class demoSession
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -138,13 +141,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblUserNameAcc;
-        private System.Windows.Forms.Label lblAccessName;
-        private System.Windows.Forms.Label lblListAccess;
-        private System.Windows.Forms.Label lblStaffName;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label lblUserNameAcc;
+        private Label lblAccessName;
+        private Label lblListAccess;
+        private Label lblStaffName;
     }
 }

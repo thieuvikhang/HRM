@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AddTab;
 using DevExpress.XtraEditors;
+using DevExpress.XtraNavBar;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
 namespace HRM
 {
-    public partial class UcAnalytics : DevExpress.XtraEditors.XtraUserControl
+    public partial class UcAnalytics : XtraUserControl
     {
         readonly TabAdd _clsAddTab = new TabAdd();
         public UcAnalytics()
@@ -52,14 +46,14 @@ namespace HRM
         {   // Khi add vào thì Focus tới ngay Tab vừa Add
             xtraTabControl2.SelectedTabPageIndex = xtraTabControl2.TabPages.Count - 1;
         }
-        private void navBarItem3_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void navBarItem3_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
             AddTab("Thống kê theo độ tuổi", new AgeChart());
         }
 
-        private void navBarItem2_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void navBarItem2_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ

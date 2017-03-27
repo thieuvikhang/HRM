@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
 using AddTab;
-using DevExpress.LookAndFeel;
-using DevExpress.XtraReports.UI;
+using DevExpress.XtraEditors;
+using DevExpress.XtraNavBar;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
 namespace HRM
 {
-    public partial class UcReportcs : DevExpress.XtraEditors.XtraUserControl
+    public partial class UcReportcs : XtraUserControl
     {
         readonly TabAdd _clsAddTab = new TabAdd();
         private void AddTab(string tabName, UserControl uc)
@@ -46,11 +46,18 @@ namespace HRM
         {
             InitializeComponent();
         }
-        private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void navBarItem1_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
             AddTab("Danh sách nhân viên", new UcRpNewEm());
+        }
+
+        private void navBarItem2_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Danh sách sinh nhật", new UcRpBirthDay());
         }
     }
 }

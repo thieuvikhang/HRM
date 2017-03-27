@@ -1,11 +1,20 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.DXErrorProvider;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
+using ComboBox = System.Windows.Forms.ComboBox;
+
+namespace HRM
 {
     partial class UcContract
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -624,49 +633,49 @@
         }
 
         #endregion
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.TextEdit txtContractID;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.DateEdit dateSign;
-        private DevExpress.XtraEditors.DateEdit dateStart;
-        private DevExpress.XtraEditors.DateEdit dateEnd;
-        private System.Windows.Forms.ComboBox cbbStatus;
-        private System.Windows.Forms.ComboBox cbbCurrency;
-        private System.Windows.Forms.ComboBox cbbPayment;
-        private System.Windows.Forms.ComboBox cbbContractTypeID;
-        private System.Windows.Forms.ComboBox cbbStaffID;
-        private DevExpress.XtraEditors.MemoEdit mmNote;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.TextEdit txtBasicPay;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraGrid.GridControl gcContract;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
-        private System.Windows.Forms.Label lblThongBao;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoContractID;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoDateSign;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoDateStart;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoDateEnd;
-        private System.Windows.Forms.GroupBox grbxThongTin;
-        private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.SimpleButton btnKiemTraLoi;
-        private System.Windows.Forms.Label lblThongBao2;
-        private System.Windows.Forms.Label lblThongBao1;
-        private DevExpress.XtraEditors.LabelControl lblThucHienCN;
-        private System.Windows.Forms.Label lblSession;
+        private LabelControl labelControl11;
+        private LabelControl labelControl6;
+        private LabelControl labelControl7;
+        private LabelControl labelControl8;
+        private LabelControl labelControl9;
+        private LabelControl labelControl4;
+        private LabelControl labelControl5;
+        private TextEdit txtContractID;
+        private LabelControl labelControl2;
+        private LabelControl labelControl3;
+        private DateEdit dateSign;
+        private DateEdit dateStart;
+        private DateEdit dateEnd;
+        private ComboBox cbbStatus;
+        private ComboBox cbbCurrency;
+        private ComboBox cbbPayment;
+        private ComboBox cbbContractTypeID;
+        private ComboBox cbbStaffID;
+        private MemoEdit mmNote;
+        private LabelControl labelControl10;
+        private TextEdit txtBasicPay;
+        private LabelControl labelControl1;
+        private GroupControl groupControl2;
+        private SimpleButton btnEdit;
+        private SimpleButton btnDelete;
+        private SimpleButton btnAdd;
+        private PanelControl panelControl1;
+        private GridControl gcContract;
+        private GridView gridView1;
+        private SimpleButton btnCancel;
+        private SimpleButton btnSave;
+        private DXErrorProvider dxErrorProvider1;
+        private Label lblThongBao;
+        private GridColumn gcoContractID;
+        private GridColumn gcoDateSign;
+        private GridColumn gcoDateStart;
+        private GridColumn gcoDateEnd;
+        private GroupBox grbxThongTin;
+        private Label label1;
+        private SimpleButton btnKiemTraLoi;
+        private Label lblThongBao2;
+        private Label lblThongBao1;
+        private LabelControl lblThucHienCN;
+        private Label lblSession;
     }
 }

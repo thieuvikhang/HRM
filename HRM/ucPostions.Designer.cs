@@ -1,11 +1,18 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.DXErrorProvider;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
+
+namespace HRM
 {
     partial class UcPostions
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -283,24 +290,24 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txtPostName;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txtPostID;
-        private DevExpress.XtraGrid.GridControl gcPostions;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.MemoEdit mmDescription;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoPostID;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoPostName;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoDescription;
+        private PanelControl panelControl1;
+        private LabelControl labelControl1;
+        private TextEdit txtPostName;
+        private LabelControl labelControl3;
+        private TextEdit txtPostID;
+        private GridControl gcPostions;
+        private GridView gridView1;
+        private GroupControl groupControl2;
+        private SimpleButton btnDelete;
+        private SimpleButton btnCancel;
+        private SimpleButton btnEdit;
+        private SimpleButton btnAdd;
+        private SimpleButton btnSave;
+        private MemoEdit mmDescription;
+        private LabelControl labelControl2;
+        private DXErrorProvider dxErrorProvider;
+        private GridColumn gcoPostID;
+        private GridColumn gcoPostName;
+        private GridColumn gcoDescription;
     }
 }

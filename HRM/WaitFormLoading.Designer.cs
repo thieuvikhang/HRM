@@ -1,11 +1,15 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraWaitForm;
+
+namespace HRM
 {
     partial class WaitFormLoading
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -86,7 +90,7 @@
 
         #endregion
 
-        private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private ProgressPanel progressPanel1;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

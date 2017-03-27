@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using DevExpress.XtraEditors;
 using Microsoft.Reporting.WinForms;
 

@@ -1,11 +1,16 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+
+namespace HRM
 {
     partial class ucContractTypes
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -210,18 +215,18 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraGrid.GridControl gcContractTypes;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txtCTypeName;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txtContractID;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private PanelControl panelControl1;
+        private GridControl gcContractTypes;
+        private GridView gridView1;
+        private LabelControl labelControl1;
+        private TextEdit txtCTypeName;
+        private LabelControl labelControl3;
+        private TextEdit txtContractID;
+        private GroupControl groupControl2;
+        private SimpleButton btnDelete;
+        private SimpleButton btnCancel;
+        private SimpleButton btnEdit;
+        private SimpleButton btnAdd;
+        private SimpleButton btnSave;
     }
 }

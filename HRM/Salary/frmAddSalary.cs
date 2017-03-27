@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
-using DevExpress.XtraBars.Docking2010;
-using BUS;
 using System.Collections;
+using System.Linq;
+using BUS;
 using DAL;
+using DevExpress.XtraBars.Docking2010;
 using DevExpress.XtraEditors;
 using static System.Int32;
 
@@ -140,7 +140,7 @@ namespace HRM.Salary
                               select new
                               {
                                   dt = $"Tháng {d.Key.month}/{d.Key.year}",
-                                  month = $"{d.Key.year}-{d.Key.month}",
+                                  month = $"{d.Key.year}-{d.Key.month}"
                               }).Distinct().ToList().OrderByDescending(g => g.month).ToArray());
             cbbChonThang.DataSource = monthAs;
             cbbChonThang.DisplayMember = "dt";

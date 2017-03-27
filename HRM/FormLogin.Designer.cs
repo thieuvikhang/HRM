@@ -1,11 +1,15 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+
+namespace HRM
 {
     partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -162,13 +166,13 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.TextEdit txtPass;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TextEdit txtAcc;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.SimpleButton btnLogin;
-        private DevExpress.XtraEditors.LabelControl labelForgot;
-        private System.Windows.Forms.Label lblThongBao;
+        private PanelControl panelControl1;
+        private TextEdit txtPass;
+        private LabelControl labelControl2;
+        private TextEdit txtAcc;
+        private LabelControl labelControl1;
+        private SimpleButton btnLogin;
+        private LabelControl labelForgot;
+        private Label lblThongBao;
     }
 }

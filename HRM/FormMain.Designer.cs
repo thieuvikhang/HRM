@@ -1,11 +1,16 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using DevExpress.XtraBars;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraTab;
+
+namespace HRM
 {
     partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -240,7 +245,7 @@
             this.ribbonPageGroup5,
             this.ribbonPageGroup7});
             this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "Thống Kê & Báo Cáo";
+            this.ribbonPage3.Text = "Báo Cáo Thống Kê";
             // 
             // ribbonPageGroup5
             // 
@@ -286,30 +291,30 @@
 
         #endregion
 
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barEmployees;
-        private DevExpress.XtraBars.BarButtonItem barSection;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.BarButtonItem barContract;
-        private DevExpress.XtraBars.BarButtonItem barSI;
-        private DevExpress.XtraBars.BarButtonItem barSalary;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraBars.BarButtonItem barAccess;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
-        private DevExpress.XtraBars.BarButtonItem barPostion;
-        private DevExpress.XtraBars.BarButtonItem barAbsent;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem13;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
+        private RibbonControl ribbonControl1;
+        private RibbonPage ribbonPage1;
+        private RibbonPageGroup ribbonPageGroup1;
+        private BarButtonItem barButtonItem1;
+        private BarButtonItem barEmployees;
+        private BarButtonItem barSection;
+        private RibbonPage ribbonPage2;
+        private RibbonPageGroup ribbonPageGroup2;
+        private BarButtonItem barContract;
+        private BarButtonItem barSI;
+        private BarButtonItem barSalary;
+        private RibbonPageGroup ribbonPageGroup3;
+        private RibbonPageGroup ribbonPageGroup4;
+        private XtraTabControl xtraTabControl1;
+        private BarButtonItem barAccess;
+        private RibbonPage ribbonPage3;
+        private BarButtonItem barPostion;
+        private BarButtonItem barAbsent;
+        private RibbonPageGroup ribbonPageGroup5;
+        private BarButtonItem barButtonItem13;
+        private RibbonPageGroup ribbonPageGroup6;
+        private BarButtonItem barButtonItem2;
+        private BarButtonItem barButtonItem3;
+        private RibbonPageGroup ribbonPageGroup7;
     }
 }
 

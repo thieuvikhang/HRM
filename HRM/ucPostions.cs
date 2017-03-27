@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using BUS;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Localization;
 
 namespace HRM
@@ -104,11 +104,6 @@ namespace HRM
                     DelPost();
 
                 }
-                else
-                {
-
-                }
-
             }
             catch
             {

@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using BUS;
-using DevExpress.XtraEditors;
 using DAL;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
+using DevExpress.XtraEditors;
 
 namespace HRM
 {
@@ -83,7 +83,7 @@ namespace HRM
                             select new
                             {
                                 ten = st.StaffName,
-                                ma = st.StaffID,
+                                ma = st.StaffID
                             };
             cbbStaffID.DataSource = allStaffs.ToList();
             cbbStaffID.DisplayMember = "ten";
@@ -97,7 +97,7 @@ namespace HRM
                          select new
                          {
                              tenloai = loai.ContractTypeName,
-                             maloai = loai.ContractTypeID,
+                             maloai = loai.ContractTypeID
                          };
             cbbContractTypeID.DataSource = loaiCt.ToList();
             cbbContractTypeID.DisplayMember = "tenloai";
@@ -208,11 +208,8 @@ namespace HRM
                 //Ngay bat dau lon hon ngay ket thuc
                 return false;
             }
-            else
-            { 
-                //Ngay bat dau nho hon ngay ket thuc
-                return true;
-            }
+            //Ngay bat dau nho hon ngay ket thuc
+            return true;
         }
 
 
@@ -254,7 +251,7 @@ namespace HRM
             do
             {
                 var getrandom = generator.Next(1000, 10000);
-                idNew = "HD" + getrandom.ToString();
+                idNew = "HD" + getrandom;
                 var act = _aHrm.Contracts.SingleOrDefault(ct => ct.ContractID == idNew);
                 checkId = act == null;
             } while (checkId == false);

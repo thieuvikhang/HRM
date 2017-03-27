@@ -1,11 +1,11 @@
-﻿using AddTab;
+﻿using System;
+using System.Windows.Forms;
+using AddTab;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
-using System;
-using System.Windows.Forms;
 
 namespace HRM
 {

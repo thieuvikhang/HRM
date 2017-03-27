@@ -1,11 +1,14 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using DevExpress.XtraEditors;
+
+namespace HRM
 {
     partial class SplashScreenStarting
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -111,10 +114,10 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.MarqueeProgressBarControl marqueeProgressBarControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
+        private MarqueeProgressBarControl marqueeProgressBarControl1;
+        private LabelControl labelControl1;
+        private LabelControl labelControl2;
+        private PictureEdit pictureEdit1;
+        private PictureEdit pictureEdit2;
     }
 }

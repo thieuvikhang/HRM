@@ -1,4 +1,7 @@
-﻿using System.IO.Ports;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraCharts;
+using HRM.HRMDataSetTableAdapters;
 
 namespace HRM
 {
@@ -7,7 +10,7 @@ namespace HRM
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -117,9 +120,9 @@ namespace HRM
 
         #endregion
 
-        private DevExpress.XtraCharts.ChartControl chartControl1;
-        private HRMDataSetTableAdapters.CateAgeTableAdapter cateAgeTableAdapter;
-        private System.Windows.Forms.BindingSource cateAgeBindingSource;
+        private ChartControl chartControl1;
+        private CateAgeTableAdapter cateAgeTableAdapter;
+        private BindingSource cateAgeBindingSource;
         private HRMDataSet hRMDataSet;
     }
 }

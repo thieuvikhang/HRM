@@ -1,11 +1,19 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
+using ComboBox = System.Windows.Forms.ComboBox;
+
+namespace HRM
 {
     partial class UcSalary
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -247,23 +255,23 @@
         }
 
         #endregion
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraGrid.GridControl gcSalary;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.ComboBox cbbMonthYear;
-        private System.Windows.Forms.ComboBox cbbStaffID;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraEditors.SimpleButton btThemLuong;
+        private RibbonPageGroup ribbonPageGroup2;
+        private RibbonPageGroup ribbonPageGroup1;
+        private RibbonPage ribbonPage1;
+        private LabelControl labelControl8;
+        private PanelControl panelControl1;
+        private GridControl gcSalary;
+        private GridView gridView1;
+        private LabelControl labelControl1;
+        private ComboBox cbbMonthYear;
+        private ComboBox cbbStaffID;
+        private GridColumn gridColumn1;
+        private GridColumn gridColumn2;
+        private GridColumn gridColumn3;
+        private GridColumn gridColumn4;
+        private GridColumn gridColumn5;
+        private GridColumn gridColumn6;
+        private GridColumn gridColumn7;
+        private SimpleButton btThemLuong;
     }
 }

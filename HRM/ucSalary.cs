@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Windows.Forms;
-using DAL;
 using BUS;
+using DAL;
 using DevExpress.XtraEditors;
-using System.Collections;
 using DevExpress.XtraSplashScreen;
 using HRM.Salary;
 using static System.Int32;
@@ -29,13 +29,13 @@ namespace HRM
                           select new
                           {
                               tennv = "# Phòng " + se.SectionName,
-                              manv = "#" + se.SectionID,
+                              manv = "#" + se.SectionID
                           }).ToList());
             sta.AddRange((from s in AHrm.Staffs
                           select new
                           {
                               tennv = s.StaffName,
-                              manv = s.StaffID,
+                              manv = s.StaffID
                           }).ToArray());
             cbbStaffID.DataSource = sta;
             cbbStaffID.DisplayMember = "tennv";
@@ -47,11 +47,11 @@ namespace HRM
             var month = new ArrayList { new { dt = "Tất cả tháng lương", monthID = "all" } };
             //Load chọn tháng định dạng MM/yyyy
             month.AddRange((from p in AHrm.Salaries
-                            group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year, } into d
+                            group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year } into d
                             select new
                             {
                                 dt = $"Tháng {d.Key.month}, {d.Key.year}",
-                                monthID = $"{d.Key.month}-{d.Key.year}",
+                                monthID = $"{d.Key.month}-{d.Key.year}"
                             }).ToList().OrderByDescending(g => g.monthID).ToArray());
             cbbMonthYear.DataSource = month;
             cbbMonthYear.DisplayMember = "dt";

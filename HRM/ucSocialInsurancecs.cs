@@ -1,15 +1,16 @@
-﻿using DevExpress.XtraEditors;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 using BUS;
 using DAL;
+using DevExpress.XtraEditors;
+
 namespace HRM
 {
     public partial class UcSocialInsurancecs : XtraUserControl
     {
-        int checkActive = 0;
-        bool checkClickGrid = false;
+        int checkActive;
+        bool checkClickGrid;
 
         public UcSocialInsurancecs()
         {
@@ -199,7 +200,7 @@ namespace HRM
             do
             {
                 var getrandom = generator.Next(1000, 10000);
-                idNew = "BH" + getrandom.ToString();
+                idNew = "BH" + getrandom;
                 var act = _aHrm.SocialInsurances.SingleOrDefault(social => social.InsuranceID == idNew);
                 if(act == null)
                 {
@@ -272,7 +273,7 @@ namespace HRM
             string idSocialIn = "";
             string payRate = "";
             string price = "";
-            if(checkClickGrid == true)
+            if(checkClickGrid)
             {
                 txtIDSocialIn.Text = "";
                 txtPayRate.Text = "";
@@ -355,8 +356,8 @@ namespace HRM
             try
             {
                 // format the value as currency
-                Decimal dTmp = Convert.ToDecimal(this.Text);
-                this.Text = dTmp.ToString("C");
+                Decimal dTmp = Convert.ToDecimal(Text);
+                Text = dTmp.ToString("C");
             }
             catch { }
         }

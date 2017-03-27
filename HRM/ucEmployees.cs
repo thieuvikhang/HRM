@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using BUS;
 using DAL;
 using DevExpress.XtraEditors;
-using BUS;
-using System.Text.RegularExpressions;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace HRM
 {
@@ -73,7 +74,7 @@ namespace HRM
                           select new
                           {
                               tenloai = sec.SectionName,
-                              maloai = sec.SectionID,
+                              maloai = sec.SectionID
                           };
             cbbSection.DataSource = section.ToList();
             cbbSection.DisplayMember = "tenloai";
@@ -85,7 +86,7 @@ namespace HRM
                        select new
                        {
                            tenloai = po.PostName,
-                           maloai = po.PostID,
+                           maloai = po.PostID
                        };
             cbbPost.DataSource = post.ToList();
             cbbPost.DisplayMember = "tenloai";
@@ -97,14 +98,14 @@ namespace HRM
                        select new
                        {
                            tenloai = po.PostName,
-                           maloai = po.PostID,
+                           maloai = po.PostID
                        };
             var pos = from po in _aHrm.Positions
                       where po.PostName =="Trưởng phòng"
                       select new
                       {
                           tenloai = po.PostName,
-                          maloai = po.PostID,
+                          maloai = po.PostID
                       };
             cbbPost.DataSource = post.Except(pos).ToList();
             cbbPost.DisplayMember = "tenloai";
@@ -116,7 +117,7 @@ namespace HRM
                        select new
                        {
                            tenloai = ma.StaffName,
-                           maloai = ma.StaffID,
+                           maloai = ma.StaffID
                        };
             cbbManID.DataSource = mana.ToList();
             cbbManID.DisplayMember = "tenloai";
@@ -350,7 +351,7 @@ namespace HRM
             gcEmployees.DataSource = _staffBus.LoadStaff();
         }
 
-        private void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        private void gridView1_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
         {
 
         }

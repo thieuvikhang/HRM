@@ -1,11 +1,17 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using HRM.HRMDataSetTableAdapters;
+using Microsoft.Reporting.WinForms;
+
+namespace HRM
 {
     partial class UcRpNewEm
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -68,7 +74,6 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(725, 86);
             this.panelControl1.TabIndex = 0;
-            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
             // btnSummit
             // 
@@ -92,12 +97,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateTo.Size = new System.Drawing.Size(143, 20);
             this.dateTo.TabIndex = 1;
-            this.dateTo.BeforePopup += new System.EventHandler(this.dateTo_BeforePopup);
-            this.dateTo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateTo_ButtonClick);
-            this.dateTo.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateTo_EditValueChanging);
-            this.dateTo.CausesValidationChanged += new System.EventHandler(this.dateTo_CausesValidationChanged);
             this.dateTo.TextChanged += new System.EventHandler(this.dateTo_TextChanged);
-            this.dateTo.Click += new System.EventHandler(this.dateTo_Click);
+
             // 
             // dateFrom
             // 
@@ -110,13 +111,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFrom.Size = new System.Drawing.Size(143, 20);
             this.dateFrom.TabIndex = 0;
-            this.dateFrom.BeforePopup += new System.EventHandler(this.dateFrom_BeforePopup);
-            this.dateFrom.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateFrom_ButtonClick);
-            this.dateFrom.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateFrom_EditValueChanging);
-            this.dateFrom.CausesValidationChanged += new System.EventHandler(this.dateFrom_CausesValidationChanged);
-            this.dateFrom.TabIndexChanged += new System.EventHandler(this.dateFrom_TabIndexChanged);
             this.dateFrom.TextChanged += new System.EventHandler(this.dateFrom_TextChanged);
-            this.dateFrom.Click += new System.EventHandler(this.dateFrom_Click);
             // 
             // reportViewer1
             // 
@@ -157,13 +152,13 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton btnSummit;
-        private DevExpress.XtraEditors.DateEdit dateTo;
-        private DevExpress.XtraEditors.DateEdit dateFrom;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource NewEmployeesBindingSource;
+        private PanelControl panelControl1;
+        private SimpleButton btnSummit;
+        private DateEdit dateTo;
+        private DateEdit dateFrom;
+        private ReportViewer reportViewer1;
+        private BindingSource NewEmployeesBindingSource;
         private HRMDataSet HRMDataSet;
-        private HRMDataSetTableAdapters.NewEmployeesTableAdapter NewEmployeesTableAdapter;
+        private NewEmployeesTableAdapter NewEmployeesTableAdapter;
     }
 }

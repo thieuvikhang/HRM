@@ -1,11 +1,19 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.DXErrorProvider;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
+
+namespace HRM
 {
     partial class UcSocialInsurancecs
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -717,58 +725,58 @@
         }
 
         #endregion
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.GroupControl grbxActive;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.SimpleButton btnCheck;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
-        private System.Windows.Forms.GroupBox grbxListBHXH;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.GroupBox grbxStaffHasNotBHXH;
-        private System.Windows.Forms.GroupBox grbxInfo;
-        private DevExpress.XtraEditors.TextEdit txtPrice;
-        private DevExpress.XtraEditors.TextEdit txtSectionName;
-        private DevExpress.XtraEditors.TextEdit txtPayRate;
-        private DevExpress.XtraEditors.TextEdit txtPositionName;
-        private DevExpress.XtraEditors.TextEdit txtBasicPay;
-        private DevExpress.XtraEditors.TextEdit txtStaffName;
-        private System.Windows.Forms.Label label8;
-        private DevExpress.XtraEditors.TextEdit txtIDSocialIn;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private DevExpress.XtraGrid.GridControl grctListBHXH;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblThongBao3;
-        private System.Windows.Forms.Label lblThongBao2;
-        private DevExpress.XtraEditors.LabelControl lblTrangThai;
-        private DevExpress.XtraEditors.LabelControl lbltext;
-        private System.Windows.Forms.Label lblThongBao1;
-        private DevExpress.XtraGrid.GridControl grctStaffHasNotBHXH;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraEditors.DateEdit dateDateStart;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoIDSocial;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoStaffName;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoStartDate;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoPayRate;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoPrice;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoIDStaff;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoStafName;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoPosition;
-        private DevExpress.XtraGrid.Columns.GridColumn grcoSection;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblNgoaiTe2;
-        private System.Windows.Forms.Label lblNgoaiTe1;
-        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
-        private System.Windows.Forms.Label lblIDStaff;
+        private PanelControl panelControl2;
+        private PanelControl panelControl3;
+        private GroupControl grbxActive;
+        private SimpleButton btnCancel;
+        private SimpleButton btnEdit;
+        private SimpleButton btnSave;
+        private SimpleButton btnCheck;
+        private SimpleButton btnDelete;
+        private SimpleButton btnAdd;
+        private GroupBox grbxListBHXH;
+        private PanelControl panelControl1;
+        private GroupBox grbxStaffHasNotBHXH;
+        private GroupBox grbxInfo;
+        private TextEdit txtPrice;
+        private TextEdit txtSectionName;
+        private TextEdit txtPayRate;
+        private TextEdit txtPositionName;
+        private TextEdit txtBasicPay;
+        private TextEdit txtStaffName;
+        private Label label8;
+        private TextEdit txtIDSocialIn;
+        private Label label7;
+        private Label label4;
+        private Label label6;
+        private Label label3;
+        private Label label5;
+        private Label label2;
+        private Label label1;
+        private GridControl grctListBHXH;
+        private GridView gridView1;
+        private Label label9;
+        private Label lblThongBao3;
+        private Label lblThongBao2;
+        private LabelControl lblTrangThai;
+        private LabelControl lbltext;
+        private Label lblThongBao1;
+        private GridControl grctStaffHasNotBHXH;
+        private GridView gridView2;
+        private DateEdit dateDateStart;
+        private GridColumn grcoIDSocial;
+        private GridColumn grcoStaffName;
+        private GridColumn grcoStartDate;
+        private GridColumn grcoPayRate;
+        private GridColumn grcoPrice;
+        private GridColumn grcoIDStaff;
+        private GridColumn grcoStafName;
+        private GridColumn grcoPosition;
+        private GridColumn grcoSection;
+        private Label label10;
+        private Label lblNgoaiTe2;
+        private Label lblNgoaiTe1;
+        private DXErrorProvider dxErrorProvider1;
+        private Label lblIDStaff;
     }
 }

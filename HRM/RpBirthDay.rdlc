@@ -12,7 +12,7 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.18792cm</Width>
+              <Width>3.74354cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -44,7 +44,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Mã NV</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -56,6 +59,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -74,7 +78,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Họ tên</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -86,6 +93,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -104,7 +112,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Bộ phận công tác</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -116,6 +127,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -134,7 +146,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Chức vụ</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -146,6 +161,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -164,7 +180,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Giới tính</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -176,6 +195,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -194,7 +214,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Ngày sinh</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -206,6 +229,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -224,7 +248,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Điện thoại</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -236,6 +263,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -254,7 +282,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Ngày vào </Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -266,6 +297,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -289,7 +321,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!StaffID.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -319,7 +353,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!StaffName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -349,7 +385,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!SectionName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -379,7 +417,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!PostName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -409,7 +449,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=IIf(Fields!Gender.Value = "True", "Nam", "Nữ")</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -439,7 +481,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Format(Fields!BirthDay.Value,"dd/MM/yyyy")</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -469,7 +513,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Phone.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -500,6 +546,7 @@
                             <TextRun>
                               <Value>=Format(Fields!StartDate.Value,"dd/MM/yyyy")</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <Format>d</Format>
                               </Style>
                             </TextRun>
@@ -560,7 +607,7 @@
         <Top>2.11349cm</Top>
         <Left>3.48933cm</Left>
         <Height>1.2cm</Height>
-        <Width>20.68792cm</Width>
+        <Width>21.24354cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -577,6 +624,7 @@
                 <Value>Danh sách sinh nhật</Value>
                 <Style>
                   <FontSize>18pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -587,7 +635,7 @@
         <Top>0.68474cm</Top>
         <Left>10.90995cm</Left>
         <Height>0.86458cm</Height>
-        <Width>6.32167cm</Width>
+        <Width>6.69209cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -607,17 +655,25 @@
             <TextRuns>
               <TextRun>
                 <Value>Tháng </Value>
-                <Style />
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!month.Value</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox21</rd:DefaultName>
-        <Top>1.3462cm</Top>
-        <Left>5.28849cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Top>1.54932cm</Top>
+        <Left>13.44995cm</Left>
+        <Height>0.67882cm</Height>
+        <Width>2.63229cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>

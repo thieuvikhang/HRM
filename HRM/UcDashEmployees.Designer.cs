@@ -1,11 +1,14 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using DevExpress.DashboardWin;
+
+namespace HRM
 {
     partial class UcDashEmployees
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -56,6 +59,6 @@
 
         #endregion
 
-        private DevExpress.DashboardWin.DashboardViewer dashboardViewer1;
+        private DashboardViewer dashboardViewer1;
     }
 }

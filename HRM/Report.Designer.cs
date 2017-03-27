@@ -1,11 +1,17 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using HRM.HRMDataSetTableAdapters;
+using Microsoft.Reporting.WinForms;
+
+namespace HRM
 {
     partial class Report
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -142,13 +148,13 @@
         }
 
         #endregion
-        private System.Windows.Forms.BindingSource NewEmployeesBindingSource;
+        private BindingSource NewEmployeesBindingSource;
         private HRMDataSet HRMDataSet;
-        private HRMDataSetTableAdapters.NewEmployeesTableAdapter NewEmployeesTableAdapter;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
+        private NewEmployeesTableAdapter NewEmployeesTableAdapter;
+        private PanelControl panelControl1;
+        private ReportViewer reportViewer1;
+        private SimpleButton simpleButton1;
+        private DateEdit dateEdit1;
+        private DateEdit dateEdit2;
     }
 }

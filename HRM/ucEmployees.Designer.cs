@@ -1,11 +1,20 @@
-﻿namespace HRM
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.DXErrorProvider;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
+using ComboBox = System.Windows.Forms.ComboBox;
+
+namespace HRM
 {
     partial class UcEmployees
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -711,60 +720,60 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.TextEdit txtCardID;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.TextEdit txtName;
-        private DevExpress.XtraEditors.TextEdit txtStaffID;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.RadioButton rbNu;
-        private System.Windows.Forms.RadioButton rbNam;
-        private DevExpress.XtraEditors.TextEdit txtAddress;
-        private DevExpress.XtraEditors.TextEdit txtPhone;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.DateEdit dateEnd;
-        private DevExpress.XtraEditors.DateEdit dateStart;
-        private DevExpress.XtraEditors.DateEdit dateBirth;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraGrid.GridControl gcEmployees;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private System.Windows.Forms.ComboBox cbbManID;
-        private System.Windows.Forms.ComboBox cbbPost;
-        private System.Windows.Forms.ComboBox cbbSection;
-        private System.Windows.Forms.ComboBox cbbEducation;
-        private DevExpress.XtraGrid.Columns.GridColumn gcoGender;
-        private DevExpress.XtraGrid.Columns.GridColumn gcStaffID;
-        private DevExpress.XtraGrid.Columns.GridColumn gcStaffName;
-        private DevExpress.XtraGrid.Columns.GridColumn gcBirthDay;
-        private DevExpress.XtraGrid.Columns.GridColumn gcCardID;
-        private DevExpress.XtraGrid.Columns.GridColumn gcPhone;
-        private DevExpress.XtraGrid.Columns.GridColumn gcAddress;
-        private DevExpress.XtraGrid.Columns.GridColumn gcEducation;
-        private DevExpress.XtraGrid.Columns.GridColumn gcEmail;
-        private DevExpress.XtraGrid.Columns.GridColumn gcPosition;
-        private DevExpress.XtraGrid.Columns.GridColumn gcSection;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraGrid.Columns.GridColumn gcDateStart;
-        private DevExpress.XtraGrid.Columns.GridColumn gcEndDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gcManagerID;
-        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
-        private DevExpress.XtraEditors.TextEdit txtMail;
+        private PanelControl panelControl1;
+        private TextEdit txtCardID;
+        private LabelControl labelControl5;
+        private TextEdit txtName;
+        private TextEdit txtStaffID;
+        private LabelControl labelControl2;
+        private LabelControl labelControl1;
+        private RadioButton rbNu;
+        private RadioButton rbNam;
+        private TextEdit txtAddress;
+        private TextEdit txtPhone;
+        private LabelControl labelControl3;
+        private LabelControl labelControl7;
+        private PictureBox pictureBox1;
+        private LabelControl labelControl14;
+        private LabelControl labelControl15;
+        private LabelControl labelControl13;
+        private LabelControl labelControl8;
+        private LabelControl labelControl9;
+        private LabelControl labelControl10;
+        private LabelControl labelControl11;
+        private DateEdit dateEnd;
+        private DateEdit dateStart;
+        private DateEdit dateBirth;
+        private LabelControl labelControl6;
+        private GridControl gcEmployees;
+        private GridView gridView1;
+        private GroupBox groupBox1;
+        private LabelControl labelControl4;
+        private ComboBox cbbManID;
+        private ComboBox cbbPost;
+        private ComboBox cbbSection;
+        private ComboBox cbbEducation;
+        private GridColumn gcoGender;
+        private GridColumn gcStaffID;
+        private GridColumn gcStaffName;
+        private GridColumn gcBirthDay;
+        private GridColumn gcCardID;
+        private GridColumn gcPhone;
+        private GridColumn gcAddress;
+        private GridColumn gcEducation;
+        private GridColumn gcEmail;
+        private GridColumn gcPosition;
+        private GridColumn gcSection;
+        private GroupControl groupControl2;
+        private SimpleButton btnDelete;
+        private SimpleButton btnCancel;
+        private SimpleButton btnEdit;
+        private SimpleButton btnAdd;
+        private SimpleButton btnSave;
+        private GridColumn gcDateStart;
+        private GridColumn gcEndDate;
+        private GridColumn gcManagerID;
+        private DXErrorProvider dxErrorProvider;
+        private TextEdit txtMail;
     }
 }

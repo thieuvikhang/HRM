@@ -2,12 +2,13 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DAL;
 using BUS;
+using DAL;
+using DevExpress.XtraEditors;
 
 namespace HRM
 {
-    public partial class FormLogin : DevExpress.XtraEditors.XtraForm
+    public partial class FormLogin : XtraForm
     {
         readonly HRMModelDataContext hrm = new HRMModelDataContext();
         readonly AccountBus _anAccountBus = new AccountBus();
@@ -53,7 +54,7 @@ namespace HRM
             
             //gọi tới hàm checklogin vs 2 biến ở trên truyền vào để check
             var checkLogin = _anAccountBus.CheckLogin(userNameInput, passwordInput); 
-            if (checkLogin == true)
+            if (checkLogin)
             {
                 //Đănh nhập thành công
 

@@ -194,6 +194,12 @@
     <Compile Include="UcReportcs.Designer.cs">
       <DependentUpon>UcReportcs.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcRpBirthDay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcRpBirthDay.Designer.cs">
+      <DependentUpon>UcRpBirthDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcRpNewEm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -229,12 +235,6 @@
     </Compile>
     <Compile Include="XtraForm1.Designer.cs">
       <DependentUpon>XtraForm1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="XtraForm2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="XtraForm2.Designer.cs">
-      <DependentUpon>XtraForm2.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AgeChart.resx">
       <DependentUpon>AgeChart.cs</DependentUpon>
@@ -294,6 +294,9 @@
     <EmbeddedResource Include="UcReportcs.resx">
       <DependentUpon>UcReportcs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UcRpBirthDay.resx">
+      <DependentUpon>UcRpBirthDay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcRpNewEm.resx">
       <DependentUpon>UcRpNewEm.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,9 +314,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XtraForm1.resx">
       <DependentUpon>XtraForm1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XtraForm2.resx">
-      <DependentUpon>XtraForm2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="HRMDataSet.xsc">
