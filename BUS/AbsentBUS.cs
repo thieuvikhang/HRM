@@ -19,11 +19,10 @@ namespace BUS
         /// <returns>Trả về ngày nghỉ không lương</returns>
         public int GetAbsentDays(int month, int year, string staffId)
         {
-            var absentDays = _aHrm.Absents.Where(ad => ad.StaffID == staffId
-                                                       && ad.ToDate.Value.Year == year
-                                                       && ad.ToDate.Value.Month == month
-                                                       && ad.AbsentType == false).Select(ad => ad.AbsentDay).Sum();
-            return ToInt16(absentDays);
+            if (staffId == null || month == 0 || year == 0) return 0;
+            var absentDays = _aHrm.Absents.Where(ad => ad.StaffID == staffId && ad.ToDate.Value.Year == year && ad.ToDate.Value.Month == month && ad.AbsentType == false)
+                .Select(ad => ad.AbsentDay).Sum();
+            return absentDays == null ? 0 : ToInt16(absentDays);
         }
         /// <summary>
         /// Lấy ra danh sách của bảng nghĩ phép
@@ -31,18 +30,11 @@ namespace BUS
         /// <returns>Danh sách nghĩ phép</returns>
         public IQueryable GetAbsent()
         {
-            return from nv in _aHrm.Staffs
-                   from np in _aHrm.Absents
+            return from nv in _aHrm.Staffs from np in _aHrm.Absents
                    where nv.StaffID == np.StaffID
                    select new
                    {
-                       np.AbsentID,
-                       nv.StaffID,
-                       nv.StaffName,
-                       np.AbsentDay,
-                       np.FromDate,
-                       np.ToDate,
-                       np.Note,
+                       np.AbsentID, nv.StaffID, nv.StaffName, np.AbsentDay, np.FromDate, np.ToDate, np.Note,
                        AbsentType = np.AbsentType == true ? "Có lương" : "Không lương",
                    };
         }
@@ -65,16 +57,6 @@ namespace BUS
             return ngay.AddMonths(1).AddDays(-ngay.Day);
         }
 
-        /// <summary>
-        /// Trả về ngày không được chọn
-        /// </summary>
-        /// <param name="ngay">Ngày truyền vào</param>
-        /// <returns>true = ngày không được chọn</returns>
-        public bool IsHoliday(DateTime ngay)
-        {
-            //Ngày chủ nhật
-            return ngay.DayOfWeek == 0;
-        }
         /// <summary>
         /// Lấy tổng số ngày chủ nhật
         /// </summary>
@@ -108,12 +90,7 @@ namespace BUS
                 var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
                 var absent = new Absent
                 {
-                    StaffID = maNv,
-                    FromDate = tuNgay,
-                    ToDate = denNgay,
-                    AbsentDay = absentDay,
-                    AbsentType = loaiNghi,
-                    Note = note
+                    StaffID = maNv, FromDate = tuNgay, ToDate = denNgay, AbsentDay = absentDay, AbsentType = loaiNghi, Note = note
                 };
                 _aHrm.Absents.InsertOnSubmit(absent);
                 _aHrm.SubmitChanges();
@@ -188,13 +165,8 @@ namespace BUS
         public List<int> ListNgayNghi(string maNv, DateTime ngay)
         {
             var list = new List<int>();
-            foreach (var item in _aHrm.Absents.Where(ab => ab.StaffID == maNv
-                                                           && ab.FromDate.Value.Month == ngay.Month
-                                                           && ab.FromDate.Value.Year == ngay.Year).Select(ab => new
-                                                           {
-                                                               FromDate = ab.FromDate.Value.Day,
-                                                               ToDate = ab.ToDate.Value.Day
-                                                           }).ToList())
+            foreach (var item in _aHrm.Absents.Where(ab => ab.StaffID == maNv && ab.FromDate.Value.Month == ngay.Month && ab.FromDate.Value.Year == ngay.Year)
+                .Select(ab => new { FromDate = ab.FromDate.Value.Day, ToDate = ab.ToDate.Value.Day }).ToList())
             {
                 for (var i = item.FromDate; i < item.ToDate; i++)
                 {

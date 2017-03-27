@@ -6,6 +6,8 @@ using DAL;
 using DevExpress.XtraBars.Docking2010;
 using DevExpress.XtraEditors;
 using static System.Int32;
+using System.Windows.Forms;
+using DevExpress.XtraEditors.Controls;
 
 namespace HRM.Salary
 {
@@ -41,11 +43,16 @@ namespace HRM.Salary
             switch (tag)
             {
                 case "tagSave":
+                    if (txtLuongHD.Text.Length ==0)
+                    {
+                        XtraMessageBox.Show("Hợp đồng lao động chưa được tạo");
+                        return;
+                    }
                     if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
                         _ngayCongQuyDinh - _absentNoSalary, _phuCap,
                         _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
-                        XtraMessageBox.Show("Lỗi");
+                        XtraMessageBox.Show("Lỗi trong quá trình lưu");
                     }
                     else
                     {
@@ -54,11 +61,16 @@ namespace HRM.Salary
                     }
                     break;
                 case "tagSaveAndClose":
+                    if (txtLuongHD.Text.Length == 0)
+                    {
+                        XtraMessageBox.Show("Hợp đồng lao động chưa được tạo");
+                        return;
+                    }
                     if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
                         _ngayCongQuyDinh - _absentNoSalary, _phuCap,
                         _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
-                        XtraMessageBox.Show("Lỗi");
+                        XtraMessageBox.Show("Lỗi trong quá trình lưu");
                     }
                     else
                     {
@@ -80,14 +92,14 @@ namespace HRM.Salary
         //Lấy tháng dựa vào tháng đã chọn
         private int Month()
         {
-            _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
+            if (cbbChonThang != null) _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
             var arrListStr = _maChonThang.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
             return Parse(arrListStr[1]);/*Lấy giá trị tháng*/
         }
         //Lấy năm dựa vào tháng đã chọn
         private int Year()
         {
-            _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
+            if (cbbChonThang != null) _maChonThang = cbbChonThang.SelectedValue.ToString();/*Mã số chọn tháng lương*/
             var arrListStr = _maChonThang.Split('-');/*Dùng hàng cắt chuổi với đầu cắt là ký tự - */
             return Parse(arrListStr[0]);
         }
@@ -120,8 +132,7 @@ namespace HRM.Salary
             sta.AddRange((from se in _aHrm.Sections
                           select new
                           {
-                              tennv = "Phòng " + se.SectionName,
-                              manv = se.SectionID
+                              tennv = "Phòng " + se.SectionName, manv = se.SectionID
                           }).Distinct().ToList());
             cbbChonPB.DataSource = sta;
             cbbChonPB.DisplayMember = "tennv";
@@ -134,8 +145,7 @@ namespace HRM.Salary
             var monthAs = new ArrayList { new { dt = "Tháng " + MonthOld() + "/" + YearOld(), month = YearOld() + "-" + MonthOld() } };
             //Load chọn tháng định dạng MM/yyyy
             monthAs.AddRange((from p in _aHrm.Salaries
-                              where p.SalaryMonth.Value.Month != MonthOld()
-                                    && p.SalaryMonth.Value.Year != YearOld()
+                              where p.SalaryMonth.Value.Month != MonthOld() && p.SalaryMonth.Value.Year != YearOld()
                               group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year } into d
                               select new
                               {
@@ -146,6 +156,19 @@ namespace HRM.Salary
             cbbChonThang.DisplayMember = "dt";
             cbbChonThang.ValueMember = "month";
             cbbChonThang.SelectedIndex = 0;
+        }
+
+        private void txtGhiChu_EditValueChanging(object sender, ChangingEventArgs e)
+        {
+            if (e.NewValue?.ToString().Length > 50 || e.NewValue?.ToString() == "  ")
+                e.Cancel = true;
+        }
+
+        private void txtPhuCap_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (e.KeyChar < '0' || e.KeyChar > '9') e.Handled = true;
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)) return;
+            e.Handled = true;
         }
         #endregion
 
@@ -189,7 +212,7 @@ namespace HRM.Salary
         private void LoadTextEditOnAddSalary()
         {
             if (gcAddSalary.DataSource == null) return;
-            _maNhanVien = gridView1.GetFocusedRowCellDisplayText(gcStaffId);
+            if (gcStaffId != null) _maNhanVien = gridView1.GetFocusedRowCellDisplayText(gcStaffId);
             _maPhongBan = StaffBus.GetSectionIdByStaffId(_maNhanVien);
             _absentNoSalary = AbsentBus.GetAbsentDays(Month(), Year(), _maNhanVien);
             _basicSalary = ContractBus.GetBasicPayByStaffId(_maNhanVien);
@@ -212,23 +235,15 @@ namespace HRM.Salary
 
         private decimal GetPhuCap()
         {
-            var phuCap = decimal.Parse(txtPhuCap.Text);
-            if (txtPhuCap.Text.Length == 0)
-            {
-                phuCap = 0;
-            }
-            return phuCap;
+            return txtPhuCap.Text.Length == 0 ? 0 : decimal.Parse(txtPhuCap.Text);
         }
         #endregion
 
         private void gcAddSalary_Click(object sender, EventArgs e)
         {
-            if (gridView1.RowCount > 0)
-            {
-                LoadTextEditOnAddSalary();
-            }
+            if (gridView1.RowCount <= 0) return;
+            LoadTextEditOnAddSalary();
         }
-
         private void txtPhuCap_ValueChanged(object sender, EventArgs e)
         {
             LoadTextEditOnAddSalary();

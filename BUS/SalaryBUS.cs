@@ -38,8 +38,7 @@ namespace BUS
         }
         //Lấy giá trị tháng lương trong bảng lương
         public IQueryable Month => (from m in _aHrm.Salaries select m.SalaryMonth).Distinct();
-        public IQueryable LoadSalary => from sta in _aHrm.Staffs
-                                        from sala in _aHrm.Salaries
+        public IQueryable LoadSalary => from sta in _aHrm.Staffs from sala in _aHrm.Salaries
                                         where sta.StaffID == sala.StaffID
                                         group sala by new
                                         {
@@ -67,13 +66,10 @@ namespace BUS
         {
             if (maPb == "-")
             {
-                var list2 = (from pb in _aHrm.Sections
-                             from nv in _aHrm.Staffs
+                var list2 = (from pb in _aHrm.Sections from nv in _aHrm.Staffs
                              where nv.SectionID == pb.SectionID
                              select new { nv.StaffID, nv.StaffName, pb.SectionName }).ToList();
-                var list1 = (from luong in _aHrm.Salaries
-                             from pb in _aHrm.Sections
-                             from nv in _aHrm.Staffs
+                var list1 = (from luong in _aHrm.Salaries from pb in _aHrm.Sections from nv in _aHrm.Staffs
                              where nv.SectionID == pb.SectionID && nv.StaffID == luong.StaffID && luong.SalaryMonth.Value.Month == month && luong.SalaryMonth.Value.Year == year
                              select new { nv.StaffID, nv.StaffName, pb.SectionName }).ToList();
                 foreach (var item1 in list1)
@@ -90,13 +86,10 @@ namespace BUS
             }
             else
             {
-                var list2 = (from pb in _aHrm.Sections
-                             from nv in _aHrm.Staffs
+                var list2 = (from pb in _aHrm.Sections from nv in _aHrm.Staffs
                              where nv.SectionID == pb.SectionID && nv.SectionID == maPb
                              select new { nv.StaffID, nv.StaffName, pb.SectionName }).ToList();
-                var list1 = (from luong in _aHrm.Salaries
-                             from pb in _aHrm.Sections
-                             from nv in _aHrm.Staffs
+                var list1 = (from luong in _aHrm.Salaries from pb in _aHrm.Sections from nv in _aHrm.Staffs
                              where nv.SectionID == pb.SectionID && nv.StaffID == luong.StaffID && luong.SalaryMonth.Value.Month == month && luong.SalaryMonth.Value.Year == year
                              select new { nv.StaffID, nv.StaffName, pb.SectionName }).ToList();
                 foreach (var item1 in list1)
@@ -115,6 +108,7 @@ namespace BUS
         //Lưu tính lương
         public bool SaveSalary(string staffId, decimal basicPay, string monthYear, int workdays, decimal allowance, string allowanceDescription, int standardWorkdays, decimal realPay)
         {
+            if (staffId == null || monthYear == null || basicPay == 0 || workdays == 0 || allowance ==0 || realPay ==0) return false;
             IFormatProvider culture = new System.Globalization.CultureInfo("vi-VN", true);
             var date = 01 + "/" + monthYear;
             var day = DateTime.Parse(date, culture, System.Globalization.DateTimeStyles.AssumeLocal);
@@ -122,14 +116,8 @@ namespace BUS
             {
                 var salarry = new Salary
                 {
-                    StaffID = staffId,
-                    BasicPay = basicPay,
-                    SalaryMonth = day,
-                    Workdays = workdays,
-                    Allowance = allowance,
-                    AllowanceDescription = allowanceDescription,
-                    StandardWorkdays = standardWorkdays,
-                    RealPay = realPay
+                    StaffID = staffId, BasicPay = basicPay, SalaryMonth = day, Workdays = workdays, Allowance = allowance,
+                    AllowanceDescription = allowanceDescription, StandardWorkdays = standardWorkdays, RealPay = realPay
                 };
                 _aHrm.Salaries.InsertOnSubmit(salarry);
                 _aHrm.SubmitChanges();

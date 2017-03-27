@@ -277,7 +277,7 @@ namespace HRM.Salary
             // 
             this.txtPhuCap.Location = new System.Drawing.Point(96, 236);
             this.txtPhuCap.Maximum = new decimal(new int[] {
-            10000000,
+            99000000,
             0,
             0,
             0});
@@ -285,6 +285,7 @@ namespace HRM.Salary
             this.txtPhuCap.Size = new System.Drawing.Size(220, 21);
             this.txtPhuCap.TabIndex = 1;
             this.txtPhuCap.ValueChanged += new System.EventHandler(this.txtPhuCap_ValueChanged);
+            this.txtPhuCap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhuCap_KeyPress);
             // 
             // txtChonNV
             // 
@@ -416,13 +417,14 @@ namespace HRM.Salary
             // 
             // txtGhiChu
             // 
-            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGhiChu.Location = new System.Drawing.Point(96, 274);
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(548, 121);
             this.txtGhiChu.TabIndex = 2;
+            this.txtGhiChu.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtGhiChu_EditValueChanging);
             // 
             // txtNgayCongQuyDinh
             // 
