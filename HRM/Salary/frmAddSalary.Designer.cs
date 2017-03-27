@@ -51,7 +51,7 @@ namespace HRM.Salary
             this.cbbChonPB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.txtPhuCap = new System.Windows.Forms.NumericUpDown();
+            this.txtPhuCap = new DevExpress.XtraEditors.TextEdit();
             this.txtChonNV = new DevExpress.XtraEditors.TextEdit();
             this.label14 = new System.Windows.Forms.Label();
             this.txtSoNgayNghi = new DevExpress.XtraEditors.TextEdit();
@@ -79,7 +79,7 @@ namespace HRM.Salary
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChonNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayNghi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayCong.Properties)).BeginInit();
@@ -275,17 +275,14 @@ namespace HRM.Salary
             // 
             // txtPhuCap
             // 
-            this.txtPhuCap.Location = new System.Drawing.Point(96, 236);
-            this.txtPhuCap.Maximum = new decimal(new int[] {
-            99000000,
-            0,
-            0,
-            0});
+            this.txtPhuCap.Location = new System.Drawing.Point(96, 235);
             this.txtPhuCap.Name = "txtPhuCap";
-            this.txtPhuCap.Size = new System.Drawing.Size(220, 21);
-            this.txtPhuCap.TabIndex = 1;
-            this.txtPhuCap.ValueChanged += new System.EventHandler(this.txtPhuCap_ValueChanged);
+            this.txtPhuCap.Size = new System.Drawing.Size(220, 20);
+            this.txtPhuCap.TabIndex = 77;
+            this.txtPhuCap.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtPhuCap_EditValueChanging);
+            this.txtPhuCap.VisibleChanged += new System.EventHandler(this.txtPhuCap_ValueChanged);
             this.txtPhuCap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhuCap_KeyPress);
+            this.txtPhuCap.Leave += new System.EventHandler(this.txtPhuCap_Leave);
             // 
             // txtChonNV
             // 
@@ -492,7 +489,7 @@ namespace HRM.Salary
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhuCap.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChonNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayNghi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoNgayCong.Properties)).EndInit();
@@ -542,7 +539,7 @@ namespace HRM.Salary
         private Label label6;
         private MemoEdit txtGhiChu;
         private TextEdit txtChonNV;
-        private NumericUpDown txtPhuCap;
+        private TextEdit txtPhuCap;
     }
 
 }
