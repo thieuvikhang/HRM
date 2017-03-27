@@ -46,6 +46,7 @@
     <Compile Include="AccountBUS.cs" />
     <Compile Include="ContractBus.cs" />
     <Compile Include="ContractTypeBus.cs" />
+    <Compile Include="DaysRemainBus.cs" />
     <Compile Include="ExtendBus.cs" />
     <Compile Include="PostBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

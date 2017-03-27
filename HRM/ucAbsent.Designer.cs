@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcAbsent));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbKhongLuong = new System.Windows.Forms.RadioButton();
@@ -125,7 +125,7 @@
             this.rbKhongLuong.Location = new System.Drawing.Point(138, 18);
             this.rbKhongLuong.Name = "rbKhongLuong";
             this.rbKhongLuong.Size = new System.Drawing.Size(97, 20);
-            this.rbKhongLuong.TabIndex = 3;
+            this.rbKhongLuong.TabIndex = 5;
             this.rbKhongLuong.Text = "Không lương";
             this.rbKhongLuong.UseVisualStyleBackColor = true;
             // 
@@ -137,7 +137,7 @@
             this.rbCoLuong.Location = new System.Drawing.Point(26, 18);
             this.rbCoLuong.Name = "rbCoLuong";
             this.rbCoLuong.Size = new System.Drawing.Size(77, 20);
-            this.rbCoLuong.TabIndex = 2;
+            this.rbCoLuong.TabIndex = 4;
             this.rbCoLuong.TabStop = true;
             this.rbCoLuong.Text = "Có lương";
             this.rbCoLuong.UseVisualStyleBackColor = true;
@@ -159,7 +159,7 @@
             | DevExpress.XtraEditors.VistaCalendarViewStyle.CenturyView)));
             this.dateChonBD.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateChonBD.Size = new System.Drawing.Size(277, 20);
-            this.dateChonBD.TabIndex = 67;
+            this.dateChonBD.TabIndex = 1;
             this.dateChonBD.DrawItem += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.dateChonBD_DrawItem);
             this.dateChonBD.DateTimeChanged += new System.EventHandler(this.dateChonBD_DateTimeChanged);
             this.dateChonBD.QueryCloseUp += new System.ComponentModel.CancelEventHandler(this.dateChonBD_QueryCloseUp);
@@ -184,7 +184,7 @@
             this.btnCancel.Location = new System.Drawing.Point(289, 27);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(85, 34);
-            this.btnCancel.TabIndex = 56;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -196,7 +196,7 @@
             this.btnAdd.Location = new System.Drawing.Point(29, 27);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
-            this.btnAdd.TabIndex = 52;
+            this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -208,7 +208,7 @@
             this.btnSave.Location = new System.Drawing.Point(155, 27);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(85, 34);
-            this.btnSave.TabIndex = 55;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -220,7 +220,8 @@
             this.txtGhiChu.Location = new System.Drawing.Point(526, 23);
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(423, 103);
-            this.txtGhiChu.TabIndex = 65;
+            this.txtGhiChu.TabIndex = 6;
+            this.txtGhiChu.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtGhiChu_EditValueChanging);
             // 
             // labelControl5
             // 
@@ -237,7 +238,7 @@
             this.txtSoNgayNghi.Location = new System.Drawing.Point(146, 133);
             this.txtSoNgayNghi.Name = "txtSoNgayNghi";
             this.txtSoNgayNghi.Size = new System.Drawing.Size(277, 20);
-            this.txtSoNgayNghi.TabIndex = 63;
+            this.txtSoNgayNghi.TabIndex = 3;
             // 
             // luChonNV
             // 
@@ -247,7 +248,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.luChonNV.Properties.NullText = "Vui lòng chọn nhân viên";
             this.luChonNV.Size = new System.Drawing.Size(277, 20);
-            this.luChonNV.TabIndex = 40;
+            this.luChonNV.TabIndex = 0;
             this.luChonNV.TextChanged += new System.EventHandler(this.luChonNV_TextChanged);
             // 
             // labelControl4
@@ -290,7 +291,7 @@
             this.dateChonKT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
             this.dateChonKT.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateChonKT.Size = new System.Drawing.Size(277, 20);
-            this.dateChonKT.TabIndex = 33;
+            this.dateChonKT.TabIndex = 2;
             this.dateChonKT.DrawItem += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.dateChonKT_DrawItem);
             this.dateChonKT.DateTimeChanged += new System.EventHandler(this.dateChonKT_DateTimeChanged);
             this.dateChonKT.QueryCloseUp += new System.ComponentModel.CancelEventHandler(this.dateChonKT_QueryCloseUp);
@@ -426,7 +427,7 @@
             // 
             this.edit.AutoHeight = false;
             this.edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Edit", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Edit", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, true)});
             this.edit.Name = "edit";
             this.edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.edit.Click += new System.EventHandler(this.edit_Click);
@@ -445,7 +446,7 @@
             // 
             this.delete.AutoHeight = false;
             this.delete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Delete", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Delete", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, true)});
             this.delete.Name = "delete";
             this.delete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.delete.Click += new System.EventHandler(this.delete_Click);
