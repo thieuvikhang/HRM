@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
 using BUS;
 using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Calendar;
+using System.Linq;
+using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 
 namespace HRM
@@ -20,7 +20,7 @@ namespace HRM
         public readonly DaysRemainBus DaysRemainBus = new DaysRemainBus();
         public bool AllowClosePopup = true;
         private readonly List<int> _list = new List<int>();
-        private int _coHieu, _ngayBatDau, _ngayKetThuc;
+        private int _coHieu, _ngayBatDau, _ngayKetThuc, _soNgayNghiCoLuong;
         #endregion
 
         #region UcAbsent Load
@@ -135,15 +135,17 @@ namespace HRM
             if (_coHieu == 0 || luChonNV.EditValue == null || dateChonKT.EditValue == null || dateChonBD.EditValue == null) return;
             var soNgayNghi = dateChonKT.DateTime.Day - dateChonBD.DateTime.Day - AbsentBus.TongNgayChuNhat(dateChonKT.DateTime, dateChonBD.DateTime);
             txtSoNgayNghi.Text = soNgayNghi.ToString();
-            if (DaysRemainBus.GetAbsentType(luChonNV.EditValue.ToString(), dateChonKT.DateTime.Year, soNgayNghi, _coHieu))
+            if (DaysRemainBus.GetAbsentType(luChonNV.EditValue.ToString(), dateChonKT.DateTime.Year, soNgayNghi, _soNgayNghiCoLuong))
             {
                 rbCoLuong.Enabled = true;
+                rbKhongLuong.Enabled = true;
                 rbCoLuong.Checked = true;
             }
             else
             {
-                rbKhongLuong.Checked = true;
                 rbCoLuong.Enabled = false;
+                rbKhongLuong.Enabled = true;
+                rbKhongLuong.Checked = true;
             }
         }
         private void dateChonKT_DateTimeChanged(object sender, EventArgs e)
@@ -225,6 +227,7 @@ namespace HRM
             txtGhiChu.Text = null;
             rbCoLuong.Checked = true;
             _list.Clear();
+            _soNgayNghiCoLuong = 0;
         }
         #endregion
 
@@ -253,24 +256,28 @@ namespace HRM
             SetText(true);
             luChonNV.Enabled = false;
             SetButton(false);
+            var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
+            if (absentType != null && absentType != "Có lương")
+            {
+                rbKhongLuong.Checked = true;
+            }
+            else
+            {
+                rbCoLuong.Checked = true;
+                _soNgayNghiCoLuong = int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentDay));
+            }
             luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
             NgayDaNghi();
             dateChonBD.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate));
             dateChonKT.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate));
             txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
             txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
-            var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
-            if (absentType != null && absentType != "Có lương")
-                rbKhongLuong.Checked = true;
-            else
-                rbCoLuong.Checked = true;
         }
         private void delete_Click(object sender, EventArgs e)
         {
-            var dialog = XtraMessageBox.Show($"Bạn muốn xóa nghĩ phép của nhân viên: {gridView1.GetFocusedRowCellDisplayText(StaffName)}!" +
-                                             $"\nNgày bắt đầu: {gridView1.GetFocusedRowCellDisplayText(FromDate)}" +
-                                             $"\nNgày kết thúc: {gridView1.GetFocusedRowCellDisplayText(ToDate)}" +
-                                             $"\nLoại nghĩ: {gridView1.GetFocusedRowCellDisplayText(AbsentType)}", "Xóa nhân viên", MessageBoxButtons.YesNo);
+            var dialog = XtraMessageBox.Show($"Nhân viên: {gridView1.GetFocusedRowCellDisplayText(StaffName)}" +
+                                             $"\nTừ: {gridView1.GetFocusedRowCellDisplayText(FromDate)}" + $" - đến: {gridView1.GetFocusedRowCellDisplayText(ToDate)}" +
+                                             $"\nNghĩ: {gridView1.GetFocusedRowCellDisplayText(AbsentType)}", "XÓA NGHĨ PHÉP", MessageBoxButtons.YesNo);
             try
             {
                 if (dialog == DialogResult.Yes)
@@ -310,13 +317,13 @@ namespace HRM
             }
             else
             {
-                XtraMessageBox.Show("Vui lòng chọn đầy đủ thông tin!");
+                XtraMessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
             }
         }
 
         private void txtGhiChu_EditValueChanging(object sender, ChangingEventArgs e)
         {
-            if (e.NewValue?.ToString().Length > 100)
+            if (e.NewValue?.ToString().Length > 100 || e.NewValue?.ToString() == "  ")
                 e.Cancel = true;
         }
         #endregion

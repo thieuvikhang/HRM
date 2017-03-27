@@ -115,13 +115,9 @@ namespace BUS
                     AbsentType = loaiNghi,
                     Note = note
                 };
-                if (loaiNghi)
-                {
-                    return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year);
-                }
                 _aHrm.Absents.InsertOnSubmit(absent);
                 _aHrm.SubmitChanges();
-                return true;
+                return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year);
             }
             catch (Exception e)
             {
@@ -138,15 +134,11 @@ namespace BUS
         {
             try
             {
-                var absent = (from st in _aHrm.Absents select st).SingleOrDefault(st => st.AbsentID == maPhep);
+                var absent = _aHrm.Absents.Select(st => st).SingleOrDefault(st => st.AbsentID == maPhep);
                 if (absent == null) return false;
-                if (absent.FromDate != null && absent.AbsentType == true)
-                {
-                    return DaysRemainBus.AddOrUpdateDaysRemain(absent.StaffID, -ToInt16(absent.AbsentDay), absent.FromDate.Value.Year);
-                }
                 _aHrm.Absents.DeleteOnSubmit(absent);
                 _aHrm.SubmitChanges();
-                return true;
+                return absent.FromDate == null || DaysRemainBus.AddOrUpdateDaysRemain(absent.StaffID, ToInt16(absent.AbsentDay), absent.FromDate.Value.Year);
             }
             catch (Exception e)
             {
@@ -178,12 +170,8 @@ namespace BUS
                 absent.AbsentDay = absentDay;
                 absent.Note = note;
                 absent.AbsentType = loaiNghi;
-                if (DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year))
-                {
-                    return true;
-                }
                 _aHrm.SubmitChanges();
-                return true;
+                return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year);
             }
             catch (Exception e)
             {
@@ -214,6 +202,19 @@ namespace BUS
                 }
             }
             return list;
+        }
+        /// <summary>
+        /// Tổng số ngày nghĩ có phép trong năm
+        /// </summary>
+        /// <param name="staffId">Mã nhân viên</param>
+        /// <param name="year">Năm</param>
+        /// <returns>Số ngày nghĩ có phép trong năm</returns>
+        public int SumDaysRemain(string staffId, int year)
+        {
+            var day = _aHrm.Absents.Where(
+                    c => c.StaffID == staffId && c.FromDate.Value.Year == year && c.AbsentType == true)
+                .Select(c => c.AbsentDay).Sum();
+            return ToInt16(day);
         }
     }
 }

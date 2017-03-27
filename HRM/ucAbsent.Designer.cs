@@ -36,7 +36,7 @@ namespace HRM
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcAbsent));
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(UcAbsent));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -45,10 +45,10 @@ namespace HRM
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbKhongLuong = new System.Windows.Forms.RadioButton();
-            this.rbCoLuong = new System.Windows.Forms.RadioButton();
+            this.panelControl1 = new PanelControl();
+            this.groupBox2 = new GroupBox();
+            this.rbKhongLuong = new RadioButton();
+            this.rbCoLuong = new RadioButton();
             this.dateChonBD = new DevExpress.XtraEditors.DateEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();

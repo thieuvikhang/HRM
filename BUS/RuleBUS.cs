@@ -10,14 +10,17 @@ namespace BUS
         //Lấy số % bảo hiểm xã hội
         public float GetBhxh()
         {
-            var siPayRate = (from ad in _aHrm.Rules select ad.SIPayRate).FirstOrDefault();
-            return Convert.ToInt16(siPayRate);
+            var siPayRate = _aHrm.Rules.Select(ad => ad.SIPayRate).FirstOrDefault();
+            return siPayRate == null ? 0 : Convert.ToInt16(siPayRate);
         }
-
+        /// <summary>
+        /// Lấy số ngày nghỉ quy định
+        /// </summary>
+        /// <returns>số ngày nghĩ quy định, nếu không tồn tại trả về 0</returns>
         public int GetSoNgayNghiQuyDinh()
         {
-            var ngay = (from ad in _aHrm.Rules select ad.LeaveAYear).FirstOrDefault();
-            return Convert.ToInt32(ngay.ToString());
+            var ngay = _aHrm.Rules.Select(ad => ad.LeaveAYear).FirstOrDefault();
+            return ngay == null ? 0 : Convert.ToInt16(ngay.ToString());
         }
     }
 }
