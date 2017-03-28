@@ -36,19 +36,13 @@ namespace HRM
         /// </summary>
         private void InitializeComponent()
         {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(UcAbsent));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.panelControl1 = new PanelControl();
-            this.groupBox2 = new GroupBox();
-            this.rbKhongLuong = new RadioButton();
-            this.rbCoLuong = new RadioButton();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcAbsent));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbKhongLuong = new System.Windows.Forms.RadioButton();
+            this.rbCoLuong = new System.Windows.Forms.RadioButton();
             this.dateChonBD = new DevExpress.XtraEditors.DateEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -362,6 +356,7 @@ namespace HRM
             this.StaffID.Caption = "Mã nhân viên";
             this.StaffID.FieldName = "StaffID";
             this.StaffID.Name = "StaffID";
+            this.StaffID.OptionsColumn.AllowEdit = false;
             this.StaffID.Visible = true;
             this.StaffID.VisibleIndex = 0;
             // 
@@ -370,6 +365,7 @@ namespace HRM
             this.StaffName.Caption = "Tên nhân viên";
             this.StaffName.FieldName = "StaffName";
             this.StaffName.Name = "StaffName";
+            this.StaffName.OptionsColumn.AllowEdit = false;
             this.StaffName.Visible = true;
             this.StaffName.VisibleIndex = 1;
             // 
@@ -378,6 +374,7 @@ namespace HRM
             this.AbsentDay.Caption = "Số ngày nghỉ";
             this.AbsentDay.FieldName = "AbsentDay";
             this.AbsentDay.Name = "AbsentDay";
+            this.AbsentDay.OptionsColumn.AllowEdit = false;
             this.AbsentDay.Visible = true;
             this.AbsentDay.VisibleIndex = 2;
             // 
@@ -386,6 +383,7 @@ namespace HRM
             this.FromDate.Caption = "Ngày bắt đầu";
             this.FromDate.FieldName = "FromDate";
             this.FromDate.Name = "FromDate";
+            this.FromDate.OptionsColumn.AllowEdit = false;
             this.FromDate.Visible = true;
             this.FromDate.VisibleIndex = 3;
             // 
@@ -394,6 +392,7 @@ namespace HRM
             this.ToDate.Caption = "Ngày làm lại";
             this.ToDate.FieldName = "ToDate";
             this.ToDate.Name = "ToDate";
+            this.ToDate.OptionsColumn.AllowEdit = false;
             this.ToDate.Visible = true;
             this.ToDate.VisibleIndex = 4;
             // 
@@ -402,6 +401,7 @@ namespace HRM
             this.Note.Caption = "Ghi chú";
             this.Note.FieldName = "Note";
             this.Note.Name = "Note";
+            this.Note.OptionsColumn.AllowEdit = false;
             this.Note.Visible = true;
             this.Note.VisibleIndex = 5;
             // 
@@ -410,6 +410,7 @@ namespace HRM
             this.AbsentType.Caption = "Loại nghĩ phép";
             this.AbsentType.FieldName = "AbsentType";
             this.AbsentType.Name = "AbsentType";
+            this.AbsentType.OptionsColumn.AllowEdit = false;
             this.AbsentType.Visible = true;
             this.AbsentType.VisibleIndex = 6;
             // 
@@ -418,6 +419,7 @@ namespace HRM
             this.AbsentID.Caption = "Mã nghĩ phép";
             this.AbsentID.FieldName = "AbsentID";
             this.AbsentID.Name = "AbsentID";
+            this.AbsentID.OptionsColumn.AllowEdit = false;
             this.AbsentID.Visible = true;
             this.AbsentID.VisibleIndex = 7;
             // 
@@ -435,7 +437,7 @@ namespace HRM
             // 
             this.edit.AutoHeight = false;
             this.edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Edit", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("edit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.edit.Name = "edit";
             this.edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.edit.Click += new System.EventHandler(this.edit_Click);
@@ -454,7 +456,7 @@ namespace HRM
             // 
             this.delete.AutoHeight = false;
             this.delete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, "Delete", new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("delete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.delete.Name = "delete";
             this.delete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.delete.Click += new System.EventHandler(this.delete_Click);

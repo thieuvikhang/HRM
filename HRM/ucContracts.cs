@@ -48,6 +48,8 @@ namespace HRM
 
         private void ucContract_Load(object sender, EventArgs e)
         {
+            btnKiemTraLoi.Enabled = false;
+            mmNote.Properties.MaxLength = 100;
             //load data len grid
             gcContract.DataSource = _conTractBus.LoadAll(); 
             Session aSession = new Session();
@@ -57,7 +59,7 @@ namespace HRM
             }
             else
             {
-                lblSession.Text = "Không tìm thấy session Username";
+                lblSession.Text = @"Không tìm thấy session Username";
             }
             //Load các combobox: Staffs and ContractType
             LoadComboboxContractType();
@@ -224,7 +226,7 @@ namespace HRM
             dateSign.EditValue = null;
             dateStart.EditValue = null;
             dateEnd.EditValue = null;
-
+            btnKiemTraLoi.Enabled = true;
 
             SetTxt(true);
             grbxThongTin.Enabled = true;
@@ -369,7 +371,7 @@ namespace HRM
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
                 btnEdit.Enabled = false;
-
+                btnKiemTraLoi.Enabled = true;
                 SetTxt(true);
                 _flag = 2; 
                 txtContractID.Enabled = false;
@@ -409,6 +411,7 @@ namespace HRM
                         SetTxt(false);
                         SetBtn(true);
                         gcContract.Enabled = true;
+                        btnKiemTraLoi.Enabled = false;
                     }
                     else
                     {
@@ -424,6 +427,7 @@ namespace HRM
                         SetTxt(false);
                         SetBtn(true);
                         gcContract.Enabled = true;
+                        btnKiemTraLoi.Enabled = false;
                     }
                 }
                 grbxThongTin.Enabled = false;
@@ -443,7 +447,7 @@ namespace HRM
             btnAdd.Enabled = true;
             btnDelete.Enabled = true;
             btnEdit.Enabled = true;
-
+            btnKiemTraLoi.Enabled = false;
             ResetTextBox();
             SetTxt(false);
             _flag = 0;
@@ -698,11 +702,44 @@ namespace HRM
 
         private void dateSign_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void dateStart_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dateEnd_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtBasicPay_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                txtBasicPay.Text = "";
+            }
+        }
+
+        private void dateSign_QueryCloseUp(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void dateSign_SelectionChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dateSign_TextChanged(object sender, EventArgs e)
+        {
             var yearStartOftheWord = 1;
             var yearOfdateStart = dateStart.DateTime.Year;
             var yearOfDateEnd = dateEnd.DateTime.Year;
             dateSign.Properties.MaxValue = DateTime.Now;
-            if(yearOfdateStart != yearStartOftheWord)
+            if (yearOfdateStart != yearStartOftheWord)
             {
                 dateSign.Properties.MaxValue = dateStart.DateTime;
             }
@@ -712,12 +749,12 @@ namespace HRM
             }
         }
 
-        private void dateStart_Click(object sender, EventArgs e)
+        private void dateStart_TextChanged(object sender, EventArgs e)
         {
             const int yearStartOftheWord = 1;
             var yearOfDateSign = dateSign.DateTime.Year;
             var yearOfDateEnd = dateEnd.DateTime.Year;
-            if(yearOfDateSign != yearStartOftheWord)
+            if (yearOfDateSign != yearStartOftheWord)
             {
                 dateStart.Properties.MinValue = dateSign.DateTime;
                 dxErrorProvider1.SetError(dateSign, null);
@@ -726,7 +763,7 @@ namespace HRM
             {
                 dxErrorProvider1.SetError(dateSign, "Phải thiết lập ngày lập hợp đồng.");
             }
-            if(yearOfDateEnd != yearStartOftheWord)
+            if (yearOfDateEnd != yearStartOftheWord)
             {
                 dateStart.Properties.MaxValue = dateEnd.DateTime;
                 lblThongBao2.Text = "";
@@ -737,20 +774,20 @@ namespace HRM
             }
         }
 
-        private void dateEnd_Click(object sender, EventArgs e)
+        private void dateEnd_TextChanged(object sender, EventArgs e)
         {
             const int yearStartOftheWord = 1;
             var yearOfDateSign = dateSign.DateTime.Year;
             var yearOfdateStart = dateStart.DateTime.Year;
 
-            if(yearOfdateStart != yearStartOftheWord)
+            if (yearOfdateStart != yearStartOftheWord)
             {
                 dateEnd.Properties.MinValue = dateStart.DateTime;
             }
             else
             {
                 dateEnd.Properties.MinValue = dateSign.DateTime;
-                if(yearOfDateSign != yearStartOftheWord)
+                if (yearOfDateSign != yearStartOftheWord)
                 {
                     dateEnd.Properties.MinValue = dateSign.DateTime;
                     dxErrorProvider1.SetError(dateSign, null);
@@ -759,14 +796,6 @@ namespace HRM
                 {
                     dxErrorProvider1.SetError(dateSign, "Phải thiết lập ngày lập hợp đồng.");
                 }
-            }
-        }
-
-        private void txtBasicPay_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
-            {
-                txtBasicPay.Text = "";
             }
         }
     }

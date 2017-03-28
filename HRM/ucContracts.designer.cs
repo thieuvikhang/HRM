@@ -69,6 +69,7 @@ namespace HRM
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lblSession = new System.Windows.Forms.Label();
             this.grbxThongTin = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblThongBao2 = new System.Windows.Forms.Label();
@@ -82,7 +83,6 @@ namespace HRM
             this.gcoDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.lblSession = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -189,7 +189,7 @@ namespace HRM
             // 
             // dateSign
             // 
-            this.dateSign.EditValue = new System.DateTime(2017, 3, 13, 14, 37, 36, 816);
+            this.dateSign.EditValue = new System.DateTime(((long)(0)));
             this.dateSign.Location = new System.Drawing.Point(100, 98);
             this.dateSign.Name = "dateSign";
             this.dateSign.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -198,13 +198,16 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateSign.Size = new System.Drawing.Size(163, 20);
             this.dateSign.TabIndex = 39;
+            this.dateSign.SelectionChanged += new System.EventHandler(this.dateSign_SelectionChanged);
+            this.dateSign.QueryCloseUp += new System.ComponentModel.CancelEventHandler(this.dateSign_QueryCloseUp);
+            this.dateSign.TextChanged += new System.EventHandler(this.dateSign_TextChanged);
             this.dateSign.Click += new System.EventHandler(this.dateSign_Click);
             this.dateSign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateSign_KeyPress);
             this.dateSign.Leave += new System.EventHandler(this.dateSign_Leave);
             // 
             // dateStart
             // 
-            this.dateStart.EditValue = new System.DateTime(2017, 3, 13, 14, 37, 49, 941);
+            this.dateStart.EditValue = new System.DateTime(((long)(0)));
             this.dateStart.Location = new System.Drawing.Point(384, 20);
             this.dateStart.Name = "dateStart";
             this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -213,13 +216,14 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateStart.Size = new System.Drawing.Size(163, 20);
             this.dateStart.TabIndex = 38;
+            this.dateStart.TextChanged += new System.EventHandler(this.dateStart_TextChanged);
             this.dateStart.Click += new System.EventHandler(this.dateStart_Click);
             this.dateStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateStart_KeyPress);
             this.dateStart.Leave += new System.EventHandler(this.dateStart_Leave);
             // 
             // dateEnd
             // 
-            this.dateEnd.EditValue = new System.DateTime(2017, 3, 11, 1, 22, 24, 487);
+            this.dateEnd.EditValue = new System.DateTime(((long)(0)));
             this.dateEnd.Location = new System.Drawing.Point(384, 46);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -228,6 +232,7 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Size = new System.Drawing.Size(163, 20);
             this.dateEnd.TabIndex = 37;
+            this.dateEnd.TextChanged += new System.EventHandler(this.dateEnd_TextChanged);
             this.dateEnd.Click += new System.EventHandler(this.dateEnd_Click);
             this.dateEnd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateEnd_KeyPress);
             this.dateEnd.Leave += new System.EventHandler(this.dateEnd_Leave);
@@ -435,6 +440,15 @@ namespace HRM
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // lblSession
+            // 
+            this.lblSession.AutoSize = true;
+            this.lblSession.Location = new System.Drawing.Point(594, 194);
+            this.lblSession.Name = "lblSession";
+            this.lblSession.Size = new System.Drawing.Size(35, 13);
+            this.lblSession.TabIndex = 56;
+            this.lblSession.Text = "label2";
+            // 
             // grbxThongTin
             // 
             this.grbxThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -590,15 +604,6 @@ namespace HRM
             // dxErrorProvider1
             // 
             this.dxErrorProvider1.ContainerControl = this;
-            // 
-            // lblSession
-            // 
-            this.lblSession.AutoSize = true;
-            this.lblSession.Location = new System.Drawing.Point(594, 194);
-            this.lblSession.Name = "lblSession";
-            this.lblSession.Size = new System.Drawing.Size(35, 13);
-            this.lblSession.TabIndex = 56;
-            this.lblSession.Text = "label2";
             // 
             // UcContract
             // 
