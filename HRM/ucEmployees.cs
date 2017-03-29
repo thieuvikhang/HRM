@@ -27,14 +27,13 @@ namespace HRM
 
         protected virtual void SetTxt(bool val)
         {
-            txtStaffID.Enabled = val;
             txtName.Enabled = val;
             txtPhone.Enabled = val;
             txtAddress.Enabled = val;
             txtCardID.Enabled = val;
             cbbSection.Enabled = val;
             cbbPost.Enabled = val;
-            cbbManID.Enabled = val;
+            lkupManID.Enabled = val;
             cbbEducation.Enabled = val;
             dateEnd.Enabled = val;
             dateStart.Enabled = val;
@@ -50,10 +49,6 @@ namespace HRM
             txtPhone.Text = "";
             txtAddress.Text = "";
             txtCardID.Text = "";
-            //cbbSection.Text = "";
-            //cbbPost.Text = "";
-            //cbbManID.Text = "";
-            //cbbEducation.Text = "";
             dateEnd.Text = "";
             dateStart.Text = "";
             dateBirth.Text = "";
@@ -116,12 +111,12 @@ namespace HRM
             var mana = from ma in _aHrm.Staffs
                        select new
                        {
-                           tenloai = ma.StaffName,
-                           maloai = ma.StaffID
+                           Name = ma.StaffName,
+                           ID = ma.StaffID
                        };
-            cbbManID.DataSource = mana.ToList();
-            cbbManID.DisplayMember = "tenloai";
-            cbbManID.ValueMember = "maloai";
+            lkupManID.Properties.DataSource = mana.ToList();
+            lkupManID.Properties.DisplayMember = "Name";
+            lkupManID.Properties.ValueMember = "ID";
         }
         private void textEdit4_EditValueChanged(object sender, EventArgs e)
         {
@@ -132,21 +127,19 @@ namespace HRM
         {
 
         }
-        private string GetLastIdEmployee()
+        private string GetNewId()
         {
-            var countrecords = _aHrm.Staffs.Count();
-            var id = countrecords == 0 ? 0 : countrecords + 1;
-            var lastId = "NV" + id;
-            return lastId;
-        }
-        private void textEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelControl1_Paint(object sender, PaintEventArgs e)
-        {
-
+            var generator = new Random();
+            string idNew;
+            bool checkId;
+            do
+            {
+                var getrandom = generator.Next(1000, 10000);
+                idNew = "NV" + getrandom;
+                var act = _aHrm.Staffs.SingleOrDefault(staff => staff.StaffID == idNew);
+                checkId = act == null;
+            } while (checkId == false);
+            return idNew;
         }
 
         private void gridControl1_Click(object sender, EventArgs e)
@@ -162,6 +155,8 @@ namespace HRM
         private void ucEmployees_Load(object sender, EventArgs e)
         {
             SetTxt(false);
+            SetBtn(true);
+            txtStaffID.Enabled = false;
             gcEmployees.DataSource = _staffBus.LoadStaff();
             LoadComboboxSection();
             LoadComboboxManId();
@@ -182,7 +177,7 @@ namespace HRM
         {
             string section = cbbSection.SelectedValue.ToString();
             string post = cbbPost.SelectedValue.ToString();
-            string manid = cbbManID.SelectedValue.ToString();
+            string manid = lkupManID.EditValue.ToString();
             var gender = rbNam.Checked;
             DateTime? birth = null, start = null, end = null;
             if (dateBirth.SelectionLength != 0)
@@ -207,7 +202,7 @@ namespace HRM
         {
             var section = cbbSection.SelectedValue.ToString();
             var post = cbbPost.SelectedValue.ToString();
-            var manid = cbbManID.SelectedValue.ToString();
+            var manid = lkupManID.EditValue.ToString();
             DateTime? birth = null, start = null, end = null;
             var gender = rbNam.Checked;
             if (dateBirth.SelectionLength != 0)
@@ -241,7 +236,7 @@ namespace HRM
             ResettextBox();
             SetBtn(false);
             _checkAdd = 1;
-            var idInsert = GetLastIdEmployee();
+            var idInsert = GetNewId();
             txtStaffID.Text = idInsert;
             gcEmployees.Enabled = false;
             CheckPosition();
@@ -309,6 +304,7 @@ namespace HRM
         }
         public void GetInfo()
         {
+            
             txtStaffID.Text = gridView1.GetFocusedRowCellDisplayText(gcStaffID);
             txtName.Text = gridView1.GetFocusedRowCellDisplayText(gcStaffName);
             dateBirth.Text = gridView1.GetFocusedRowCellDisplayText(gcBirthDay);
@@ -318,7 +314,10 @@ namespace HRM
             cbbEducation.Text = gridView1.GetFocusedRowCellDisplayText(gcEducation);
             dateStart.Text = gridView1.GetFocusedRowCellDisplayText(gcDateStart);
             dateEnd.Text = gridView1.GetFocusedRowCellDisplayText(gcEndDate);
-            cbbManID.Text = gridView1.GetFocusedRowCellDisplayText(gcManagerID);
+            var id = gridView1.GetFocusedRowCellDisplayText(gcManagerID);
+            var singleOrDefault = _aHrm.Staffs.SingleOrDefault(staff => staff.StaffID == id);
+            if (singleOrDefault != null)
+                lkupManID.Text = singleOrDefault.StaffName;
             txtMail.Text = gridView1.GetFocusedRowCellDisplayText(gcEmail);
             cbbPost.Text = gridView1.GetFocusedRowCellDisplayText(gcPosition);
             string gender = gridView1.GetFocusedRowCellDisplayText(gcoGender);
@@ -376,8 +375,7 @@ namespace HRM
         {
             _checkAdd = 2;
             SetTxt(true);
-            SetBtn(false);
-            txtStaffID.Enabled = false;
+            SetBtn(false);          
             gcEmployees.Enabled = false;
             CheckPosition();
         }

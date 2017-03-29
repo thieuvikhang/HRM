@@ -490,27 +490,8 @@ namespace HRM
             lblThongBao.Text = @"Không thể nhập thông tin ở đây.";
         }
 
-        private void cbbContractTypeID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            lblThongBao.Text = @"Không thể nhập thông tin ở đây.";
-        }
-
-
 
         private void cbbStatus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            lblThongBao.Text = @"Không thể nhập thông tin ở đây.";
-        }
-
-        private void dateStart_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            lblThongBao.Text = @"Không thể nhập thông tin ở đây.";
-        }
-
-        private void dateEnd_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
             lblThongBao.Text = @"Không thể nhập thông tin ở đây.";
@@ -674,11 +655,6 @@ namespace HRM
         }
 
         //Ham kiem tra tinh hop ly cua 3 ngay.
-
-        private void dateEnd_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void txtBasicPay_KeyDown(object sender, KeyEventArgs e)
         {

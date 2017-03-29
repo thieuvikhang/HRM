@@ -312,7 +312,6 @@ namespace HRM
         {
             double basicpay = 0;
             int payrate;
-            double price;
 
             if(txtPayRate.Text == "")
             {
@@ -323,7 +322,7 @@ namespace HRM
                 payrate = int.Parse(txtPayRate.Text);
                 basicpay = double.Parse(txtBasicPay.Text);
             }
-            price = (basicpay * payrate) / 100;
+            var price = (basicpay * payrate) / 100;
             txtPrice.Text = price.ToString();
         }
 
@@ -387,8 +386,7 @@ namespace HRM
             string payrate = txtPayRate.Text;
             var payRateInput = int.Parse(payrate);
             string price = txtPrice.Text;
-            decimal priceInput;
-            priceInput = decimal.Parse(price);
+            var priceInput = decimal.Parse(price);
             string staffIdInput = lblIDStaff.Text;
             socialInBus.CreateASocialInsurances(idInput, monthInput, payRateInput, priceInput, staffIdInput);
         }

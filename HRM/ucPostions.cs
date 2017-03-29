@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using BUS;
+using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Localization;
 
@@ -8,6 +10,7 @@ namespace HRM
 {
     public partial class UcPostions : XtraUserControl
     {
+        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         int _checkAdd;
         public class MyGridLocalizer : GridLocalizer
         {
@@ -39,7 +42,6 @@ namespace HRM
         }
         void SetTxt(bool val)
         {
-            txtPostID.Enabled = val;
             txtPostName.Enabled = val;
             mmDescription.Enabled = val;
         }
@@ -55,6 +57,7 @@ namespace HRM
         {
             gcPostions.DataSource = _postBus.LoadAll();
             SetTxt(false);
+            txtPostID.Enabled = false;
             SetBtn(true);
             txtPostName.Properties.MaxLength = 50;
             txtPostID.Properties.MaxLength = 6;
@@ -78,6 +81,20 @@ namespace HRM
         {
             _postBus.DeleteAPost(txtPostID.Text);
         }
+        private string GetNewId()
+        {
+            var generator = new Random();
+            string idNew;
+            bool checkId;
+            do
+            {
+                var getrandom = generator.Next(1000, 10000);
+                idNew = "CV" + getrandom;
+                var act = _aHrm.Positions.SingleOrDefault(ct => ct.PostID == idNew);
+                checkId = act == null;
+            } while (checkId == false);
+            return idNew;
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             SetTxt(true);
@@ -85,6 +102,7 @@ namespace HRM
             SetBtn(false);
             _checkAdd = 1;
             gcPostions.Enabled = false;
+            txtPostID.Text = GetNewId();
             dxErrorProvider.ClearErrors();
         }
 

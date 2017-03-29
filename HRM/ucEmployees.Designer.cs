@@ -47,7 +47,6 @@ namespace HRM
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.cbbManID = new System.Windows.Forms.ComboBox();
             this.cbbPost = new System.Windows.Forms.ComboBox();
             this.cbbSection = new System.Windows.Forms.ComboBox();
             this.cbbEducation = new System.Windows.Forms.ComboBox();
@@ -94,6 +93,7 @@ namespace HRM
             this.gcEndDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcManagerID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.lkupManID = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMail.Properties)).BeginInit();
@@ -115,13 +115,14 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.lkupManID);
             this.panelControl1.Controls.Add(this.txtMail);
             this.panelControl1.Controls.Add(this.groupControl2);
-            this.panelControl1.Controls.Add(this.cbbManID);
             this.panelControl1.Controls.Add(this.cbbPost);
             this.panelControl1.Controls.Add(this.cbbSection);
             this.panelControl1.Controls.Add(this.cbbEducation);
@@ -154,7 +155,7 @@ namespace HRM
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1090, 250);
             this.panelControl1.TabIndex = 0;
-            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            
             // 
             // txtMail
             // 
@@ -237,14 +238,6 @@ namespace HRM
             this.btnSave.TabIndex = 50;
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // cbbManID
-            // 
-            this.cbbManID.FormattingEnabled = true;
-            this.cbbManID.Location = new System.Drawing.Point(699, 128);
-            this.cbbManID.Name = "cbbManID";
-            this.cbbManID.Size = new System.Drawing.Size(144, 21);
-            this.cbbManID.TabIndex = 14;
             // 
             // cbbPost
             // 
@@ -436,7 +429,7 @@ namespace HRM
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(171, 20);
             this.txtAddress.TabIndex = 5;
-            this.txtAddress.EditValueChanged += new System.EventHandler(this.textEdit3_EditValueChanged);
+           
             // 
             // txtPhone
             // 
@@ -682,6 +675,16 @@ namespace HRM
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
+            // lkupManID
+            // 
+            this.lkupManID.EditValue = "Chọn Nhân viên quản lý";
+            this.lkupManID.Location = new System.Drawing.Point(699, 128);
+            this.lkupManID.Name = "lkupManID";
+            this.lkupManID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupManID.Size = new System.Drawing.Size(144, 20);
+            this.lkupManID.TabIndex = 53;
+            // 
             // UcEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -714,6 +717,7 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -749,7 +753,6 @@ namespace HRM
         private GridView gridView1;
         private GroupBox groupBox1;
         private LabelControl labelControl4;
-        private ComboBox cbbManID;
         private ComboBox cbbPost;
         private ComboBox cbbSection;
         private ComboBox cbbEducation;
@@ -775,5 +778,6 @@ namespace HRM
         private GridColumn gcManagerID;
         private DXErrorProvider dxErrorProvider;
         private TextEdit txtMail;
+        private LookUpEdit lkupManID;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using BUS;
+using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Localization;
 
@@ -8,6 +10,7 @@ namespace HRM
 {
     public partial class UcSection : XtraUserControl
     {
+        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         int _checkAdd;
         public class MyGridLocalizer : GridLocalizer
         {
@@ -46,6 +49,7 @@ namespace HRM
         }
         private void ucSection_Load(object sender, EventArgs e)
         {
+            txtSectionID.Enabled = false;
             gcSection.DataSource = _sectionBus.LoadAll();
             SetTxt(false);
             SetBtn(true);
@@ -82,7 +86,20 @@ namespace HRM
         {
             _sectionBus.DeleteASection(txtSectionID.Text);
         }
-
+        private string GetNewId()
+        {
+            var generator = new Random();
+            string idNew;
+            bool checkId;
+            do
+            {
+                var getrandom = generator.Next(1000, 10000);
+                idNew = "PB" + getrandom;
+                var act = _aHrm.Sections.SingleOrDefault(ct => ct.SectionID == idNew);
+                checkId = act == null;
+            } while (checkId == false);
+            return idNew;
+        }
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             SetTxt(true);
@@ -90,6 +107,7 @@ namespace HRM
             SetBtn(false);
             _checkAdd = 1;
             gcSection.Enabled = false;
+            txtSectionID.Text = GetNewId();
             dxErrorProvider.ClearErrors();
             numStandardWorkdays.Value = 26;
         }
@@ -113,7 +131,6 @@ namespace HRM
         }
         void SetTxt(bool val)
         {
-            txtSectionID.Enabled = val;
             txtName.Enabled = val;
             txtPhone.Enabled = val;
             mmDescription.Enabled = val;
