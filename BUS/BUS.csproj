@@ -45,7 +45,6 @@
     <Compile Include="AccessBus.cs" />
     <Compile Include="AccountBUS.cs" />
     <Compile Include="ContractBus.cs" />
-    <Compile Include="ContractTypeBus.cs" />
     <Compile Include="DaysRemainBus.cs" />
     <Compile Include="ExtendBus.cs" />
     <Compile Include="PostBUS.cs" />

@@ -19,12 +19,6 @@ namespace BUS
         }
 
         //LoadAll contract whith contractTypeID
-        public IQueryable LoadAllWithTypeId(string idInput) {
-            var allRecord = from ct in _aHrm.Contracts
-                                  where ct.ContractTypeID == idInput
-                                  select ct;
-            return allRecord;
-        }
 
         //Ham tim kiem idInput trong table contract
         public bool FindIdInputInTable(string idInput)
@@ -38,7 +32,7 @@ namespace BUS
         //Create a contract
         public bool CreateAContract(string idInput, DateTime? dateInput, string currencyInput, DateTime? startDateInput, 
             DateTime? endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput, 
-            string staffIdInput, string contractTypeIdInput) {
+            string staffIdInput, int contractTypeIdInput) {
             try
             {
                 //Kiem tra idInput vs Id trong table contract
@@ -72,7 +66,7 @@ namespace BUS
         //Ham edit mot contract
         public bool EditContract(string idInput, DateTime? dateInput, string currencyInput, DateTime? startDateInput,
             DateTime? endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput,
-            string staffIdInput, string contractTypeIdInput) {
+            string staffIdInput, int contractTypeIdInput) {
             try {
                 var aContract = _aHrm.Contracts.SingleOrDefault(ct => ct.ContractID == idInput);
                 //kiem tra aContract co tontai

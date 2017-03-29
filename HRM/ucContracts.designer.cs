@@ -69,7 +69,6 @@ namespace HRM
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.lblSession = new System.Windows.Forms.Label();
             this.grbxThongTin = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblThongBao2 = new System.Windows.Forms.Label();
@@ -83,6 +82,7 @@ namespace HRM
             this.gcoDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.gridCoName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -198,12 +198,6 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateSign.Size = new System.Drawing.Size(163, 20);
             this.dateSign.TabIndex = 39;
-            this.dateSign.SelectionChanged += new System.EventHandler(this.dateSign_SelectionChanged);
-            this.dateSign.QueryCloseUp += new System.ComponentModel.CancelEventHandler(this.dateSign_QueryCloseUp);
-            this.dateSign.TextChanged += new System.EventHandler(this.dateSign_TextChanged);
-            this.dateSign.Click += new System.EventHandler(this.dateSign_Click);
-            this.dateSign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateSign_KeyPress);
-            this.dateSign.Leave += new System.EventHandler(this.dateSign_Leave);
             // 
             // dateStart
             // 
@@ -217,9 +211,6 @@ namespace HRM
             this.dateStart.Size = new System.Drawing.Size(163, 20);
             this.dateStart.TabIndex = 38;
             this.dateStart.TextChanged += new System.EventHandler(this.dateStart_TextChanged);
-            this.dateStart.Click += new System.EventHandler(this.dateStart_Click);
-            this.dateStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateStart_KeyPress);
-            this.dateStart.Leave += new System.EventHandler(this.dateStart_Leave);
             // 
             // dateEnd
             // 
@@ -232,10 +223,6 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Size = new System.Drawing.Size(163, 20);
             this.dateEnd.TabIndex = 37;
-            this.dateEnd.TextChanged += new System.EventHandler(this.dateEnd_TextChanged);
-            this.dateEnd.Click += new System.EventHandler(this.dateEnd_Click);
-            this.dateEnd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateEnd_KeyPress);
-            this.dateEnd.Leave += new System.EventHandler(this.dateEnd_Leave);
             // 
             // cbbStatus
             // 
@@ -252,6 +239,7 @@ namespace HRM
             // 
             // cbbCurrency
             // 
+            this.cbbCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCurrency.FormattingEnabled = true;
             this.cbbCurrency.Items.AddRange(new object[] {
             "VND",
@@ -265,6 +253,7 @@ namespace HRM
             // 
             // cbbPayment
             // 
+            this.cbbPayment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbPayment.FormattingEnabled = true;
             this.cbbPayment.Items.AddRange(new object[] {
             "Tiền mặt",
@@ -278,16 +267,17 @@ namespace HRM
             // 
             // cbbContractTypeID
             // 
+            this.cbbContractTypeID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbContractTypeID.FormattingEnabled = true;
             this.cbbContractTypeID.Location = new System.Drawing.Point(100, 71);
             this.cbbContractTypeID.Name = "cbbContractTypeID";
             this.cbbContractTypeID.Size = new System.Drawing.Size(163, 21);
             this.cbbContractTypeID.TabIndex = 32;
-            this.cbbContractTypeID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbbContractTypeID_KeyPress);
-            this.cbbContractTypeID.Leave += new System.EventHandler(this.cbbContractTypeID_Leave);
+            this.cbbContractTypeID.SelectionChangeCommitted += new System.EventHandler(this.cbbContractTypeID_SelectionChangeCommitted);
             // 
             // cbbStaffID
             // 
+            this.cbbStaffID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbStaffID.FormattingEnabled = true;
             this.cbbStaffID.Location = new System.Drawing.Point(100, 45);
             this.cbbStaffID.Name = "cbbStaffID";
@@ -425,7 +415,6 @@ namespace HRM
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.lblSession);
             this.panelControl1.Controls.Add(this.grbxThongTin);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Controls.Add(this.lblThongBao2);
@@ -439,15 +428,6 @@ namespace HRM
             this.panelControl1.Size = new System.Drawing.Size(835, 262);
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
-            // 
-            // lblSession
-            // 
-            this.lblSession.AutoSize = true;
-            this.lblSession.Location = new System.Drawing.Point(594, 194);
-            this.lblSession.Name = "lblSession";
-            this.lblSession.Size = new System.Drawing.Size(35, 13);
-            this.lblSession.TabIndex = 56;
-            this.lblSession.Text = "label2";
             // 
             // grbxThongTin
             // 
@@ -559,7 +539,8 @@ namespace HRM
             this.gcoContractID,
             this.gcoDateSign,
             this.gcoDateStart,
-            this.gcoDateEnd});
+            this.gcoDateEnd,
+            this.gridCoName});
             this.gridView1.GridControl = this.gcContract;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -583,7 +564,7 @@ namespace HRM
             this.gcoDateSign.FieldName = "Date";
             this.gcoDateSign.Name = "gcoDateSign";
             this.gcoDateSign.Visible = true;
-            this.gcoDateSign.VisibleIndex = 1;
+            this.gcoDateSign.VisibleIndex = 2;
             // 
             // gcoDateStart
             // 
@@ -591,7 +572,7 @@ namespace HRM
             this.gcoDateStart.FieldName = "StartDate";
             this.gcoDateStart.Name = "gcoDateStart";
             this.gcoDateStart.Visible = true;
-            this.gcoDateStart.VisibleIndex = 2;
+            this.gcoDateStart.VisibleIndex = 3;
             // 
             // gcoDateEnd
             // 
@@ -599,11 +580,18 @@ namespace HRM
             this.gcoDateEnd.FieldName = "EndDate";
             this.gcoDateEnd.Name = "gcoDateEnd";
             this.gcoDateEnd.Visible = true;
-            this.gcoDateEnd.VisibleIndex = 3;
+            this.gcoDateEnd.VisibleIndex = 4;
             // 
             // dxErrorProvider1
             // 
             this.dxErrorProvider1.ContainerControl = this;
+            // 
+            // gridCoName
+            // 
+            this.gridCoName.Caption = "Tên NV";
+            this.gridCoName.Name = "gridCoName";
+            this.gridCoName.Visible = true;
+            this.gridCoName.VisibleIndex = 1;
             // 
             // UcContract
             // 
@@ -681,6 +669,6 @@ namespace HRM
         private Label lblThongBao2;
         private Label lblThongBao1;
         private LabelControl lblThucHienCN;
-        private Label lblSession;
+        private GridColumn gridCoName;
     }
 }
