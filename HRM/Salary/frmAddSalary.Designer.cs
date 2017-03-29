@@ -277,9 +277,10 @@ namespace HRM.Salary
             // 
             this.txtPhuCap.Location = new System.Drawing.Point(96, 235);
             this.txtPhuCap.Name = "txtPhuCap";
+            this.txtPhuCap.Properties.MaxLength = 9;
             this.txtPhuCap.Size = new System.Drawing.Size(220, 20);
-            this.txtPhuCap.TabIndex = 77;
-            this.txtPhuCap.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtPhuCap_EditValueChanging);
+            this.txtPhuCap.TabIndex = 1;
+            this.txtPhuCap.TextChanged += new System.EventHandler(this.txtPhuCap_TextChanged);
             this.txtPhuCap.VisibleChanged += new System.EventHandler(this.txtPhuCap_ValueChanged);
             this.txtPhuCap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhuCap_KeyPress);
             this.txtPhuCap.Leave += new System.EventHandler(this.txtPhuCap_Leave);
@@ -480,6 +481,9 @@ namespace HRM.Salary
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAddSalary";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmAddSalary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);

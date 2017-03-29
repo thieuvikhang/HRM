@@ -34,7 +34,8 @@ namespace BUS
         public decimal BasicSalary(decimal basicPay, int standardWorkday, int absentDay)
         {
             if (basicPay == 0 || standardWorkday == 0 || absentDay < 0) return 0;
-            return basicPay / standardWorkday * (standardWorkday - absentDay);
+            var luong = basicPay / standardWorkday * (standardWorkday - absentDay);
+            return luong == 0 ? 0 : luong;
         }
         //Tính lương thực lãnh
         public decimal RealPay(decimal basicSalary, decimal allowance, decimal siPrice)
@@ -45,30 +46,42 @@ namespace BUS
         //Lấy giá trị tháng lương trong bảng lương
         public IQueryable Month => (from m in _aHrm.Salaries select m.SalaryMonth).Distinct();
         public IQueryable LoadSalary =>
-            _aHrm.Staffs.SelectMany(sta => _aHrm.Salaries, (sta, sala) => new {sta, sala})
+            _aHrm.Staffs.SelectMany(sta => _aHrm.Salaries, (sta, sala) => new { sta, sala })
                 .Where(t => t.sta.StaffID == t.sala.StaffID)
                 .GroupBy(t => new
                 {
-                    staffID = t.sta.StaffID, name = t.sta.StaffName, basicPay = t.sala.BasicPay, allowance = t.sala.Allowance, workdays = t.sala.Workdays,
-                    realPay = t.sala.RealPay, month = t.sala.SalaryMonth.Value.Month, year = t.sala.SalaryMonth.Value.Year }, t => t.sala)
+                    staffID = t.sta.StaffID,
+                    name = t.sta.StaffName,
+                    basicPay = t.sala.BasicPay,
+                    allowance = t.sala.Allowance,
+                    workdays = t.sala.Workdays,
+                    realPay = t.sala.RealPay,
+                    month = t.sala.SalaryMonth.Value.Month,
+                    year = t.sala.SalaryMonth.Value.Year
+                }, t => t.sala)
                 .Select(d => new
                 {
-                    StaffID = d.Key.staffID, Name = d.Key.name, SalaryMonth = $"{d.Key.month}/{d.Key.year}", BasicPay = ExtendBus.FormatMoney(d.Key.basicPay.Value),
-                    Allowance = ExtendBus.FormatMoney(d.Key.allowance.Value), Workdays = d.Key.workdays, RealPay = ExtendBus.FormatMoney(d.Key.realPay.Value)
+                    StaffID = d.Key.staffID,
+                    Name = d.Key.name,
+                    SalaryMonth = $"{d.Key.month}/{d.Key.year}",
+                    BasicPay = ExtendBus.FormatMoney(d.Key.basicPay.Value),
+                    Allowance = ExtendBus.FormatMoney(d.Key.allowance.Value),
+                    Workdays = d.Key.workdays,
+                    RealPay = ExtendBus.FormatMoney(d.Key.realPay.Value)
                 });
 
         public IQueryable LoadStaffNonSalary(string maPb, int month, int year)
         {
             if (maPb == "-")
             {
-                var list2 = _aHrm.Sections.SelectMany(pb => _aHrm.Staffs, (pb, nv) => new {pb, nv})
+                var list2 = _aHrm.Sections.SelectMany(pb => _aHrm.Staffs, (pb, nv) => new { pb, nv })
                     .Where(t => t.nv.SectionID == t.pb.SectionID)
-                    .Select(t => new {t.nv.StaffID, t.nv.StaffName, t.pb.SectionName}).ToList();
-                var list1 = (_aHrm.Salaries.SelectMany(luong => _aHrm.Sections, (luong, pb) => new {luong, pb})
-                    .SelectMany(t => _aHrm.Staffs, (t, nv) => new {t, nv})
-                    .Where( t => t.nv.SectionID == t.t.pb.SectionID && t.nv.StaffID == t.t.luong.StaffID &&
-                            t.t.luong.SalaryMonth.Value.Month == month && t.t.luong.SalaryMonth.Value.Year == year)
-                    .Select(t => new {t.nv.StaffID, t.nv.StaffName, t.t.pb.SectionName})).ToList();
+                    .Select(t => new { t.nv.StaffID, t.nv.StaffName, t.pb.SectionName }).ToList();
+                var list1 = (_aHrm.Salaries.SelectMany(luong => _aHrm.Sections, (luong, pb) => new { luong, pb })
+                    .SelectMany(t => _aHrm.Staffs, (t, nv) => new { t, nv })
+                    .Where(t => t.nv.SectionID == t.t.pb.SectionID && t.nv.StaffID == t.t.luong.StaffID &&
+                           t.t.luong.SalaryMonth.Value.Month == month && t.t.luong.SalaryMonth.Value.Year == year)
+                    .Select(t => new { t.nv.StaffID, t.nv.StaffName, t.t.pb.SectionName })).ToList();
                 foreach (var item1 in list1)
                 {
                     for (var index = 0; index < list2.Count; index++)
@@ -83,14 +96,14 @@ namespace BUS
             }
             else
             {
-                var list2 = (_aHrm.Sections.SelectMany(pb => _aHrm.Staffs, (pb, nv) => new {pb, nv})
+                var list2 = (_aHrm.Sections.SelectMany(pb => _aHrm.Staffs, (pb, nv) => new { pb, nv })
                     .Where(t => t.nv.SectionID == t.pb.SectionID && t.nv.SectionID == maPb)
-                    .Select(t => new {t.nv.StaffID, t.nv.StaffName, t.pb.SectionName})).ToList();
-                var list1 = (_aHrm.Salaries.SelectMany(luong => _aHrm.Sections, (luong, pb) => new {luong, pb})
-                    .SelectMany(t => _aHrm.Staffs, (t, nv) => new {t, nv})
-                    .Where( t => t.nv.SectionID == t.t.pb.SectionID && t.nv.StaffID == t.t.luong.StaffID &&
-                            t.t.luong.SalaryMonth.Value.Month == month && t.t.luong.SalaryMonth.Value.Year == year)
-                    .Select(t => new {t.nv.StaffID, t.nv.StaffName, t.t.pb.SectionName})).ToList();
+                    .Select(t => new { t.nv.StaffID, t.nv.StaffName, t.pb.SectionName })).ToList();
+                var list1 = (_aHrm.Salaries.SelectMany(luong => _aHrm.Sections, (luong, pb) => new { luong, pb })
+                    .SelectMany(t => _aHrm.Staffs, (t, nv) => new { t, nv })
+                    .Where(t => t.nv.SectionID == t.t.pb.SectionID && t.nv.StaffID == t.t.luong.StaffID &&
+                           t.t.luong.SalaryMonth.Value.Month == month && t.t.luong.SalaryMonth.Value.Year == year)
+                    .Select(t => new { t.nv.StaffID, t.nv.StaffName, t.t.pb.SectionName })).ToList();
                 foreach (var item1 in list1)
                 {
                     for (var index = 0; index < list2.Count; index++)
@@ -107,7 +120,7 @@ namespace BUS
         //Lưu tính lương
         public bool SaveSalary(string staffId, decimal basicPay, string monthYear, int workdays, decimal allowance, string allowanceDescription, int standardWorkdays, decimal realPay)
         {
-            if (staffId == null || monthYear == null || basicPay == 0 || workdays == 0 || allowance ==0 || realPay ==0) return false;
+            if (staffId == null || monthYear == null || basicPay == 0 || workdays == 0 || allowance == 0 || realPay == 0) return false;
             IFormatProvider culture = new CultureInfo("vi-VN", true);
             var date = 01 + "/" + monthYear;
             var day = DateTime.Parse(date, culture, DateTimeStyles.AssumeLocal);
@@ -115,8 +128,14 @@ namespace BUS
             {
                 var salarry = new Salary
                 {
-                    StaffID = staffId, BasicPay = basicPay, SalaryMonth = day, Workdays = workdays, Allowance = allowance,
-                    AllowanceDescription = allowanceDescription, StandardWorkdays = standardWorkdays, RealPay = realPay
+                    StaffID = staffId,
+                    BasicPay = basicPay,
+                    SalaryMonth = day,
+                    Workdays = workdays,
+                    Allowance = allowance,
+                    AllowanceDescription = allowanceDescription,
+                    StandardWorkdays = standardWorkdays,
+                    RealPay = realPay
                 };
                 _aHrm.Salaries.InsertOnSubmit(salarry);
                 _aHrm.SubmitChanges();

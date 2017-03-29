@@ -122,7 +122,7 @@ namespace BUS
         public decimal GetBasicPayByStaffId(string staffId)
         {
             var basicPay = (from cc in _aHrm.Contracts where cc.StaffID == staffId select cc.BasicPay).FirstOrDefault();
-            return Convert.ToDecimal(basicPay);
+            return basicPay == null ? 0 : Convert.ToDecimal(basicPay);
         }
 
         public Contract LoadContractbyId(string id)

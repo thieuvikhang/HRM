@@ -104,7 +104,6 @@ namespace HRM
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(800, 147);
             this.panelControl1.TabIndex = 43;
-            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint_1);
             // 
             // btThemLuong
             // 
@@ -161,7 +160,6 @@ namespace HRM
             this.gcSalary.TabIndex = 44;
             this.gcSalary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gcSalary.Click += new System.EventHandler(this.gcSalary_Click);
             // 
             // gridView1
             // 

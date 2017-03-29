@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using System.Windows.Forms;
 using BUS;
 using DAL;
 using DevExpress.XtraEditors;
@@ -25,18 +24,8 @@ namespace HRM
         public void LoadComboboxStaff()
         {   //Load Chọn nhân viên
             var sta = new ArrayList { new { tennv = "Tất cả nhân viên", manv = "all" } };
-            sta.AddRange((from se in AHrm.Sections
-                          select new
-                          {
-                              tennv = "# Phòng " + se.SectionName,
-                              manv = "#" + se.SectionID
-                          }).ToList());
-            sta.AddRange((from s in AHrm.Staffs
-                          select new
-                          {
-                              tennv = s.StaffName,
-                              manv = s.StaffID
-                          }).ToArray());
+            sta.AddRange(AHrm.Sections.Select(se => new { tennv = "# Phòng " + se.SectionName, manv = "#" + se.SectionID }).ToList());
+            sta.AddRange(AHrm.Staffs.Select(s => new { tennv = s.StaffName, manv = s.StaffID }).ToArray());
             cbbStaffID.DataSource = sta;
             cbbStaffID.DisplayMember = "tennv";
             cbbStaffID.ValueMember = "manv";
@@ -46,13 +35,9 @@ namespace HRM
         {
             var month = new ArrayList { new { dt = "Tất cả tháng lương", monthID = "all" } };
             //Load chọn tháng định dạng MM/yyyy
-            month.AddRange((from p in AHrm.Salaries
-                            group p by new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year } into d
-                            select new
-                            {
-                                dt = $"Tháng {d.Key.month}, {d.Key.year}",
-                                monthID = $"{d.Key.month}-{d.Key.year}"
-                            }).ToList().OrderByDescending(g => g.monthID).ToArray());
+            month.AddRange(AHrm.Salaries.GroupBy(p => new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year })
+                .Select(d => new { dt = $"Tháng {d.Key.month}, {d.Key.year}", monthID = $"{d.Key.month}-{d.Key.year}" })
+                .ToList().OrderByDescending(g => g.monthID).ToArray());
             cbbMonthYear.DataSource = month;
             cbbMonthYear.DisplayMember = "dt";
             cbbMonthYear.ValueMember = "monthID";
@@ -67,15 +52,6 @@ namespace HRM
             LoadComboboxMonth();
         }
 
-        private void panelControl1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void gcSalary_Click(object sender, EventArgs e)
-        {
-
-        }
         //Hàm Load GirdView khi thay đổi Combobox chọn nhân viên hoặc chọn Tháng
         private void LoadGridView()
         {
@@ -93,7 +69,6 @@ namespace HRM
                 month = Parse(arrListStr[0]);/*Lấy giá trị tháng*/
                 year = Parse(arrListStr[1]);/*Lấy giá trị năm*/
             }
-
             gcSalary.DataSource = maChonNhanVien != "all" && maChonThangNam != "all"
                 ? (chonPhongBan == 1
                     ? StaffBus.LoadSalaryBySectionId(maChonNhanVien, month, year)

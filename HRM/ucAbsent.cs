@@ -251,8 +251,8 @@ namespace HRM
         private void edit_Click(object sender, EventArgs e)
         {
             _coHieu = 2;
-            _ngayBatDau = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Day;
-            _ngayKetThuc = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate)).Day;
+            if (FromDate != null) _ngayBatDau = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Day;
+            if (ToDate != null) _ngayKetThuc = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate)).Day;
             SetText(true);
             luChonNV.Enabled = false;
             SetButton(false);
@@ -264,14 +264,15 @@ namespace HRM
             else
             {
                 rbCoLuong.Checked = true;
-                _soNgayNghiCoLuong = int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentDay));
+                if (AbsentDay != null)
+                    _soNgayNghiCoLuong = int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentDay));
             }
-            luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
+            if (StaffID != null) luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
             NgayDaNghi();
-            dateChonBD.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate));
-            dateChonKT.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate));
+            if (FromDate != null) dateChonBD.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate));
+            if (ToDate != null) dateChonKT.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate));
             txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
-            txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
+            if (AbsentDay != null) txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
         }
         private void delete_Click(object sender, EventArgs e)
         {
@@ -298,16 +299,19 @@ namespace HRM
                 switch (_coHieu)
                 {
                     case 1:
-                        if (!AbsentBus.SaveAbsent(luChonNV.EditValue.ToString(), dateChonBD.DateTime, dateChonKT.DateTime, rbCoLuong.Checked, txtGhiChu.Text))
-                            XtraMessageBox.Show("Có lỗi trong quá trình thêm");
-                        else
+                        if (AbsentBus.SaveAbsent(luChonNV.EditValue.ToString(), dateChonBD.DateTime, dateChonKT.DateTime,
+                            rbCoLuong.Checked, txtGhiChu.Text))
                             ucAbsent_Load(sender, e);
+                        else
+                            XtraMessageBox.Show("Có lỗi trong quá trình thêm");
                         break;
                     case 2:
-                        if (!AbsentBus.UpdateAbsent(int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentID)), luChonNV.EditValue.ToString(), dateChonBD.DateTime, dateChonKT.DateTime, rbCoLuong.Checked, txtGhiChu.Text))
-                            XtraMessageBox.Show("Có lỗi trong quá trình sửa");
-                        else
+                        if (AbsentBus.UpdateAbsent(int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentID)),
+                            luChonNV.EditValue.ToString(), dateChonBD.DateTime, dateChonKT.DateTime, rbCoLuong.Checked,
+                            txtGhiChu.Text))
                             ucAbsent_Load(sender, e);
+                        else
+                            XtraMessageBox.Show("Có lỗi trong quá trình sửa");
                         break;
                 }
                 Clear();
@@ -337,14 +341,12 @@ namespace HRM
             if (ToDate != null) dateChonKT.Text = gridView1.GetFocusedRowCellDisplayText(ToDate);
             if (Note != null) txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
             if (AbsentDay != null) txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
-            if (AbsentType != null)
-            {
-                var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
-                if (absentType != null && absentType == "Có lương")
-                    rbCoLuong.Checked = true;
-                else
-                    rbKhongLuong.Checked = true;
-            }
+            if (AbsentType == null) return;
+            var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
+            if (absentType == null || absentType != "Có lương")
+                rbKhongLuong.Checked = true;
+            else
+                rbCoLuong.Checked = true;
         }
         #endregion
     }
