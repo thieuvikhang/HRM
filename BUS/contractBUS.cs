@@ -13,8 +13,21 @@ namespace BUS
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
 
         //Load all contract
-        public IQueryable LoadAll() {
-            var allContract = _aHrm.Contracts.OrderByDescending(ct => ct.Date);
+        //public IQueryable LoadAll() {
+        //    var allContract = _aHrm.Contracts.OrderByDescending(ct => ct.Date);
+        //    return allContract;
+        //}
+
+        public IQueryable LoadAll()
+        {
+            var allContract = from ct in _aHrm.Contracts
+                              from st in _aHrm.Staffs
+                              where ct.StaffID == st.StaffID
+                              select new
+                              {
+                                  ct,
+                                  st
+                              };
             return allContract;
         }
 
