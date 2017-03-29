@@ -230,7 +230,7 @@ namespace BUS
                                    select ct).Count();
             return numberOfRecords != 0;
         }
-        public bool CreateAStaff(string idInput, string nameInput, Boolean genderInput, DateTime? birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime? enddateInput, string manageridInput, string emailInput, int dayremainInput, string postidInput, string sectionidInput)
+        public bool CreateAStaff(string idInput, string nameInput, bool genderInput, DateTime? birthdayInput, string cardidInput, string phoneInput, string addressInput, string eduInput, DateTime? startdateInput, DateTime? enddateInput, string manageridInput, string emailInput, string postidInput, string sectionidInput)
         {
             try
             {
@@ -249,7 +249,6 @@ namespace BUS
                     EndDate = enddateInput,
                     ManagerID = manageridInput,
                     Email = emailInput,
-                    //DaysRemain = dayremainInput,
                     PostID = postidInput,
                     SectionID = sectionidInput
                 };
@@ -267,7 +266,7 @@ namespace BUS
             DateTime? birthdayInput, string cardidInput, string phoneInput, 
             string addressInput, string eduInput, DateTime? startdateInput,
             DateTime? enddateInput, string manageridInput, string emailInput, 
-            int dayremainInput, string postidInput, string sectionidInput)
+            string postidInput, string sectionidInput)
         {
             try
             {
@@ -285,7 +284,6 @@ namespace BUS
                 aStaff.EndDate = enddateInput;
                 aStaff.ManagerID = manageridInput;
                 aStaff.Email = emailInput;
-                //aStaff.DaysRemain = dayremainInput;
                 aStaff.PostID = postidInput;
                 aStaff.SectionID = sectionidInput;
                     

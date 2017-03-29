@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DAL;
 using System.Linq;
+using DAL;
 using static System.Convert;
 
 namespace BUS
@@ -30,13 +30,20 @@ namespace BUS
         /// <returns>Danh sách nghĩ phép</returns>
         public IQueryable GetAbsent()
         {
-            return from nv in _aHrm.Staffs from np in _aHrm.Absents
-                   where nv.StaffID == np.StaffID
-                   select new
-                   {
-                       np.AbsentID, nv.StaffID, nv.StaffName, np.AbsentDay, np.FromDate, np.ToDate, np.Note,
-                       AbsentType = np.AbsentType == true ? "Có lương" : "Không lương",
-                   };
+            return
+                _aHrm.Staffs.SelectMany(nv => _aHrm.Absents, (nv, np) => new { nv, np })
+                    .Where(t => t.nv.StaffID == t.np.StaffID)
+                    .Select(t => new
+                    {
+                        t.np.AbsentID,
+                        t.nv.StaffID,
+                        t.nv.StaffName,
+                        t.np.AbsentDay,
+                        t.np.FromDate,
+                        t.np.ToDate,
+                        t.np.Note,
+                        AbsentType = t.np.AbsentType == true ? "Có lương" : "Không lương"
+                    });
         }
         /// <summary>
         /// Lấy ra một ngày đầu tiên với ngày truyền vào 
@@ -90,7 +97,12 @@ namespace BUS
                 var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
                 var absent = new Absent
                 {
-                    StaffID = maNv, FromDate = tuNgay, ToDate = denNgay, AbsentDay = absentDay, AbsentType = loaiNghi, Note = note
+                    StaffID = maNv,
+                    FromDate = tuNgay,
+                    ToDate = denNgay,
+                    AbsentDay = absentDay,
+                    AbsentType = loaiNghi,
+                    Note = note
                 };
                 _aHrm.Absents.InsertOnSubmit(absent);
                 _aHrm.SubmitChanges();
@@ -186,7 +198,7 @@ namespace BUS
             var day = _aHrm.Absents.Where(
                     c => c.StaffID == staffId && c.FromDate.Value.Year == year && c.AbsentType == true)
                 .Select(c => c.AbsentDay).Sum();
-            return ToInt16(day);
+            return day == null ? 0 : ToInt16(day);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace BUS
 {
@@ -10,11 +9,8 @@ namespace BUS
         /// </summary>
         /// <param name="money">số tiền</param>
         /// <returns>chuổi đã được Format</returns>
-        public string FormatMoney(decimal money)
-        {
-            var cul = CultureInfo.GetCultureInfo("vi-VN");   // try with "vi-VN"
-            return money.ToString("#,###", cul.NumberFormat);
-        }
+        public string FormatMoney(decimal money) => money.ToString("#,###");
+
         /// <summary>
         /// Mã hóa mật khẩu theo MD5
         /// </summary>

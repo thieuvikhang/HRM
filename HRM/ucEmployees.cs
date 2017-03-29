@@ -201,7 +201,7 @@ namespace HRM
             }
             _staffBus.CreateAStaff(txtStaffID.Text, txtName.Text, gender, birth,
                 txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, start, end,
-                manid, txtMail.Text, 10, post, section);
+                manid, txtMail.Text, post, section);
         }
         public void EditStaff()
         {
@@ -226,7 +226,7 @@ namespace HRM
             }
             _staffBus.EditAStaff(txtStaffID.Text, txtName.Text, gender, birth,
                 txtCardID.Text, txtPhone.Text, txtAddress.Text, cbbEducation.Text, start, end,
-                manid, txtMail.Text, 10, post, section);
+                manid, txtMail.Text, post, section);
         }
         public const string MatchEmailPattern =
             @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"

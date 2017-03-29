@@ -53,16 +53,15 @@ namespace HRM.Salary
                         XtraMessageBox.Show("Hợp đồng lao động chưa được tạo");
                         return;
                     }
-                    if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
-                        _ngayCongQuyDinh - _absentNoSalary, _phuCap,
-                        _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
-                    {
-                        XtraMessageBox.Show("Lỗi trong quá trình lưu");
-                    }
-                    else
+                    if (_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
+                        _ngayCongQuyDinh - _absentNoSalary, _phuCap, _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
                         frmAddSalary_Load(sender, e);
                         ClearTextAddSalary();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Lỗi trong quá trình lưu");
                     }
                     break;
                 case "tagSaveAndClose":
@@ -71,17 +70,16 @@ namespace HRM.Salary
                         XtraMessageBox.Show("Hợp đồng lao động chưa được tạo");
                         return;
                     }
-                    if (!_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
-                        _ngayCongQuyDinh - _absentNoSalary, _phuCap,
-                        _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
-                    {
-                        XtraMessageBox.Show("Lỗi trong quá trình lưu");
-                    }
-                    else
+                    if (_salaryBus.SaveSalary(_maNhanVien, _basicSalary, Month() + "/" + Year(),
+                        _ngayCongQuyDinh - _absentNoSalary, _phuCap, _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
                         frmAddSalary_Load(sender, e);
                         ClearTextAddSalary();
                         Close();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Lỗi trong quá trình lưu");
                     }
                     break;
                 case "tagReset":
@@ -141,7 +139,7 @@ namespace HRM.Salary
             var monthAs = new ArrayList { new { dt = "Tháng " + MonthOld() + "/" + YearOld(), month = YearOld() + "-" + MonthOld() } };
             //Load chọn tháng định dạng MM/yyyy
             monthAs.AddRange(_aHrm.Salaries.Where(p => p.SalaryMonth.Value.Month != MonthOld() && p.SalaryMonth.Value.Year != YearOld())
-                .GroupBy(p => new {month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year})
+                .GroupBy(p => new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year })
                 .Select(d => new { dt = $"Tháng {d.Key.month}/{d.Key.year}", month = $"{d.Key.year}-{d.Key.month}" })
                 .Distinct().ToList().OrderByDescending(g => g.month).ToArray());
             cbbChonThang.DataSource = monthAs;
@@ -159,12 +157,6 @@ namespace HRM.Salary
         #endregion
 
         #region Validate nhập tiền phụ cấp
-
-        private void txtPhuCap_EditValueChanging(object sender, ChangingEventArgs e)
-        {
-            if (e.NewValue?.ToString().Length > 9 || e.NewValue?.ToString() == " ")
-                e.Cancel = true;
-        }
         private void txtPhuCap_ValueChanged(object sender, EventArgs e)
         {
             LoadTextEditOnAddSalary();
@@ -174,11 +166,17 @@ namespace HRM.Salary
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || txtPhuCap.Text.Length > 9) return;
             e.Handled = true;
         }
+
+        private void txtPhuCap_TextChanged(object sender, EventArgs e)
+        {
+            LoadTextEditOnAddSalary();
+        }
+
         private void txtPhuCap_Leave(object sender, EventArgs e)
         {
             try
             {
-                if (txtPhuCap.Text.Equals("0")) return;
+                if (txtPhuCap.Text.Equals("0") || txtPhuCap.Text.Equals("")) return;
                 var temp = Convert.ToDouble(txtPhuCap.Text);
                 txtPhuCap.Text = temp.ToString("#,###");
             }
@@ -228,6 +226,7 @@ namespace HRM.Salary
             if (txtPhongBan != null) txtPhongBan.Text = null;
             if (txtSoNgayCong != null) txtSoNgayCong.Text = null;
             if (txtSoNgayNghi != null) txtSoNgayNghi.Text = null;
+            if (txtPhuCap != null) txtPhuCap.Text = null;
         }
         private void LoadTextEditOnAddSalary()
         {
@@ -242,6 +241,7 @@ namespace HRM.Salary
             _chiTietPhuCap = txtGhiChu.Text;
             _phuCap = GetPhuCap();
             _luongThucLanh = _salaryBus.RealPay(_basicSalary, _phuCap, _bhxh);
+            //Gán giá trị vào Text
             if (_maNhanVien != null) txtChonNV.Text = _maNhanVien;
             if (_maPhongBan != null) txtPhongBan.Text = SectionBus.GetSectionName(_maPhongBan);
             txtNgayCongQuyDinh.Text = _ngayCongQuyDinh.ToString();
