@@ -212,6 +212,12 @@
     <Compile Include="ucSalary.Designer.cs">
       <DependentUpon>ucSalary.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcSalaryAL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcSalaryAL.Designer.cs">
+      <DependentUpon>UcSalaryAL.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucSection.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -302,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucSalary.resx">
       <DependentUpon>ucSalary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcSalaryAL.resx">
+      <DependentUpon>UcSalaryAL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucSection.resx">
       <DependentUpon>ucSection.cs</DependentUpon>

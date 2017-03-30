@@ -25,8 +25,12 @@ namespace BUS
                               where ct.StaffID == st.StaffID
                               select new
                               {
-                                  ct,
-                                  st
+                                  ct.ContractID,
+                                  st.StaffName,
+                                  ct.Date,
+                                  ct.StartDate,
+                                  ct.EndDate,
+                                  ct.BasicPay
                               };
             return allContract;
         }

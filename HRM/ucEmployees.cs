@@ -278,6 +278,7 @@ namespace HRM
                         SetTxt(false);
                         SetBtn(true);
                         gcEmployees.Enabled = true;
+                        LoadComboboxManId();
                     }
                 }
                 if (_checkAdd == 2)
@@ -293,6 +294,7 @@ namespace HRM
                         SetTxt(false);
                         SetBtn(true);
                         gcEmployees.Enabled = true;
+                        LoadComboboxManId();
                     }
                 }
             }
@@ -447,7 +449,7 @@ namespace HRM
 
         private void dateStart_DateTimeChanged(object sender, EventArgs e)
         {
-            dateEnd.Properties.MinValue = dateStart.DateTime;
+            dateEnd.Properties.MinValue = dateStart.DateTime;           
         }
 
         private void dateEnd_DateTimeChanged(object sender, EventArgs e)

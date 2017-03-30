@@ -38,6 +38,7 @@ namespace HRM
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
+            this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +52,8 @@ namespace HRM
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
             this.navBarItem2,
-            this.navBarItem3});
+            this.navBarItem3,
+            this.navBarItem4});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 174;
@@ -64,7 +66,8 @@ namespace HRM
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
             // navBarItem2
@@ -96,6 +99,12 @@ namespace HRM
             this.xtraTabControl2.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl2.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl1_ControlAdded);
             // 
+            // navBarItem4
+            // 
+            this.navBarItem4.Caption = "Thống kê tiền lương";
+            this.navBarItem4.Name = "navBarItem4";
+            this.navBarItem4.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem4_LinkClicked);
+            // 
             // UcAnalytics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,5 +127,6 @@ namespace HRM
         private NavBarItem navBarItem3;
         private NavBarItem navBarItem1;
         private XtraTabControl xtraTabControl2;
+        private NavBarItem navBarItem4;
     }
 }

@@ -59,5 +59,12 @@ namespace HRM
             //Mở Tab chức vụ
             AddTab("Thống kê nhân viên", new UcDashEmployees());
         }
+
+        private void navBarItem4_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Thống kê tiền lương", new UcSalaryAl());
+        }
     }
 }
