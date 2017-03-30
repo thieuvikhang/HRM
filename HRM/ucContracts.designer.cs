@@ -78,11 +78,12 @@ namespace HRM
             this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcoContractID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridCoName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateSign = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.gridCoName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcoBasicPay = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -537,10 +538,11 @@ namespace HRM
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gcoContractID,
+            this.gridCoName,
             this.gcoDateSign,
             this.gcoDateStart,
             this.gcoDateEnd,
-            this.gridCoName});
+            this.gcoBasicPay});
             this.gridView1.GridControl = this.gcContract;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -557,6 +559,14 @@ namespace HRM
             this.gcoContractID.Name = "gcoContractID";
             this.gcoContractID.Visible = true;
             this.gcoContractID.VisibleIndex = 0;
+            // 
+            // gridCoName
+            // 
+            this.gridCoName.Caption = "Tên NV";
+            this.gridCoName.FieldName = "StaffName";
+            this.gridCoName.Name = "gridCoName";
+            this.gridCoName.Visible = true;
+            this.gridCoName.VisibleIndex = 1;
             // 
             // gcoDateSign
             // 
@@ -586,12 +596,13 @@ namespace HRM
             // 
             this.dxErrorProvider1.ContainerControl = this;
             // 
-            // gridCoName
+            // gcoBasicPay
             // 
-            this.gridCoName.Caption = "Tên NV";
-            this.gridCoName.Name = "gridCoName";
-            this.gridCoName.Visible = true;
-            this.gridCoName.VisibleIndex = 1;
+            this.gcoBasicPay.Caption = "Lương cơ bản";
+            this.gcoBasicPay.FieldName = "BasicPay";
+            this.gcoBasicPay.Name = "gcoBasicPay";
+            this.gcoBasicPay.Visible = true;
+            this.gcoBasicPay.VisibleIndex = 5;
             // 
             // UcContract
             // 
@@ -670,5 +681,6 @@ namespace HRM
         private Label lblThongBao1;
         private LabelControl lblThucHienCN;
         private GridColumn gridCoName;
+        private GridColumn gcoBasicPay;
     }
 }
