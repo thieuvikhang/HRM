@@ -45,7 +45,14 @@ namespace BUS
                                select ct).Count();
             return numberOfRecords != 0;
         }
-
+        //Kiem tra thoi han hop dong
+        public bool CheckIdInputInTable(string idInput)
+        {
+            var numberOfRecords = (from ct in _aHrm.Contracts
+                                   where idInput==ct.StaffID && ct.EndDate > DateTime.Now
+                                   select ct).Count();
+            return numberOfRecords != 0;
+        }
         //Create a contract
         public bool CreateAContract(string idInput, DateTime? dateInput, string currencyInput, DateTime? startDateInput, 
             DateTime? endDateInput, bool statusInput, decimal basicPayInput, string paymentInput, string noteInput, 

@@ -12,8 +12,6 @@ namespace HRM
     public partial class UcContract : XtraUserControl
     {
         private int _flag;
-        private DateTime _dStart;
-        private DateTime _dEnd;
 
         public UcContract()
         {
@@ -189,35 +187,9 @@ namespace HRM
             cbbPayment.SelectedValue = ctByid.Payment;
             cbbStaffID.SelectedValue = ctByid.StaffID;
             cbbStatus.SelectedValue = ctByid.Status;
-        } 
-
-        private static bool CheckTwoDate(DateTime dateStart, DateTime dateEnd)
-        {
-
-            //Lấy thông tin ngày tháng năm của dateStart
-            var yearStart = dateStart.Year;
-            var monthStart = dateStart.Month;
-            var dayStart = dateStart.Day;
-            DateTime fullDateStart = new DateTime(yearStart, monthStart, dayStart);
-
-            //Lấy thông tin ngày tháng năm của dateSign
-            var yearEnd = dateEnd.Year;
-            var monthEnd = dateEnd.Month;
-            var dayEnd = dateEnd.Day;
-            DateTime fullDateEnd = new DateTime(yearEnd, monthEnd, dayEnd); 
-
-            //So sánh 2 ngày dateStart vs Datesign
-            if (DateTime.Compare(fullDateStart, fullDateEnd) > 0)
-            {
-                //Ngay bat dau lon hon ngay ket thuc
-                return false;
-            }
-            //Ngay bat dau nho hon ngay ket thuc
-            return true;
         }
 
 
-        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             btnCancel.Enabled = true;
@@ -547,61 +519,56 @@ namespace HRM
 
         private void btnKiemTraLoi_Click(object sender, EventArgs e)
         {
-            _dStart = dateStart.DateTime;
-            _dEnd = dateEnd.DateTime;
-
-            const int yearStartOfTheWord = 1;
-            var yearOfDateSign = dateSign.DateTime.Year;
-            var yearOfDateStart = dateStart.DateTime.Year;
-            var yearOfDateEnd = dateEnd.DateTime.Year;
-
-
             dxErrorProvider1.SetError(txtBasicPay, txtBasicPay.Text == "" ? "Lương cơ bản hiện vẫn còn trống" : null);
-
+            lblThongBao1.Text = _conTractBus.CheckIdInputInTable(cbbStaffID.SelectedValue.ToString()) ? @"Nhân viên chưa hết hạn hợp đồng" : "";
             //Kiem tra date sign = null(chua co gia tri)
-            if (yearOfDateSign == yearStartOfTheWord) {
-                btnSave.Enabled = false;
-            }
-            else {
-                dxErrorProvider1.SetError(dateSign, null);
+            //if (yearOfDateSign == yearStartOfTheWord) {
+            //    btnSave.Enabled = false;
+            //}
+            //else {
+            //    dxErrorProvider1.SetError(dateSign, null);
 
-                //check value of date start  == null 
-                if (yearOfDateStart == yearStartOfTheWord)
-                {
+            //    //check value of date start  == null 
+            //    if (yearOfDateStart == yearStartOfTheWord)
+            //    {
                     
-                    dateEnd.EditValue = null;
-                }
-                else
-                {
-                    //When value of date start != null
-                    //check value of date end = null
-                    if(yearOfDateEnd == yearStartOfTheWord)
-                    {
-                        lblThongBao2.Text = @"[Dữ liệu trống] Chưa có ngày kết thúc.";
-                    }
-                    else
-                    {
-                        //When value of date start != nul and date end != null
-                        //Check validate 3 date 
-                        if (CheckTwoDate(_dStart, _dEnd) == false)
-                        { 
-                            lblThongBao2.Text = @"[Cảnh báo] Ngày kết thúc nhỏ hơn ngày bắt đầu.";
-                        }
-                        else
-                        {
-                            dxErrorProvider1.SetError(dateEnd, null);
-                            lblThongBao2.Text = "";
-                        }
-                    }
-                }
-            }
+            //        dateEnd.EditValue = null;
+            //    }
+            //    else
+            //    {
+            //        //When value of date start != null
+            //        //check value of date end = null
+            //        if(yearOfDateEnd == yearStartOfTheWord)
+            //        {
+            //            lblThongBao2.Text = @"[Dữ liệu trống] Chưa có ngày kết thúc.";
+            //        }
+            //        else
+            //        {
+            //            //When value of date start != nul and date end != null
+            //            //Check validate 3 date 
+            //            if (CheckTwoDate(_dStart, _dEnd) == false)
+            //            { 
+            //                lblThongBao2.Text = @"[Cảnh báo] Ngày kết thúc nhỏ hơn ngày bắt đầu.";
+            //            }
+            //            else
+            //            {
+            //                dxErrorProvider1.SetError(dateEnd, null);
+            //                lblThongBao2.Text = "";
+            //            }
+            //        }
+            //    }
+            //}
             if(dxErrorProvider1.HasErrors)
             {
                 btnSave.Enabled = false;
                 lblThongBao.Text = @"[LỖI] click vào biểu tượng (X) để xem lỗi.";
             }
-            else
+            else if(lblThongBao1.Text != "")
             {
+                btnSave.Enabled = false;
+            }
+            else
+            {             
                 lblThongBao.Text = @"Đã hết lỗi, hãy nhấn vào nút lưu để hoàn tất thủ tục";
                 btnSave.Enabled = true;
             }

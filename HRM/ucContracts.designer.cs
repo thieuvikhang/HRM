@@ -82,8 +82,8 @@ namespace HRM
             this.gcoDateSign = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.gcoBasicPay = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -308,6 +308,7 @@ namespace HRM
             // 
             // txtBasicPay
             // 
+            this.dxErrorProvider1.SetIconAlignment(this.txtBasicPay, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtBasicPay.Location = new System.Drawing.Point(384, 98);
             this.txtBasicPay.Name = "txtBasicPay";
             this.txtBasicPay.Size = new System.Drawing.Size(163, 20);
@@ -592,10 +593,6 @@ namespace HRM
             this.gcoDateEnd.Visible = true;
             this.gcoDateEnd.VisibleIndex = 4;
             // 
-            // dxErrorProvider1
-            // 
-            this.dxErrorProvider1.ContainerControl = this;
-            // 
             // gcoBasicPay
             // 
             this.gcoBasicPay.Caption = "Lương cơ bản";
@@ -603,6 +600,10 @@ namespace HRM
             this.gcoBasicPay.Name = "gcoBasicPay";
             this.gcoBasicPay.Visible = true;
             this.gcoBasicPay.VisibleIndex = 5;
+            // 
+            // dxErrorProvider1
+            // 
+            this.dxErrorProvider1.ContainerControl = this;
             // 
             // UcContract
             // 
