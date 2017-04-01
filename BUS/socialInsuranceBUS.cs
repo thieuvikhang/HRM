@@ -35,7 +35,7 @@ namespace BUS
             return allRecords;
         }
 
-        public int countAllStaffHasNotsocial()
+        public int CountAllStaffHasNotsocial()
         {
             var allInfoOfStaff = from sta in AHrm.Staffs
                                  from post in AHrm.Positions
@@ -57,7 +57,7 @@ namespace BUS
             return numbStaffHasInConTract;
         }
 
-        public IQueryable loadAllInfoOfStaff()
+        public IQueryable LoadAllInfoOfStaff()
         {
             var allInfoOfStaff = from sta in AHrm.Staffs
                            from post in AHrm.Positions

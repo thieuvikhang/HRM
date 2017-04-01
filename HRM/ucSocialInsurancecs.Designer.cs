@@ -511,6 +511,7 @@ namespace HRM
             // dateDateStart
             // 
             this.dateDateStart.EditValue = null;
+            this.dxErrorProvider1.SetIconAlignment(this.dateDateStart, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.dateDateStart.Location = new System.Drawing.Point(413, 34);
             this.dateDateStart.Name = "dateDateStart";
             this.dateDateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -538,6 +539,7 @@ namespace HRM
             // 
             // txtPayRate
             // 
+            this.dxErrorProvider1.SetIconAlignment(this.txtPayRate, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtPayRate.Location = new System.Drawing.Point(413, 87);
             this.txtPayRate.Name = "txtPayRate";
             this.txtPayRate.Size = new System.Drawing.Size(67, 20);
@@ -583,11 +585,12 @@ namespace HRM
             // 
             // txtIDSocialIn
             // 
+            this.dxErrorProvider1.SetIconAlignment(this.txtIDSocialIn, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.txtIDSocialIn.Location = new System.Drawing.Point(127, 34);
             this.txtIDSocialIn.Name = "txtIDSocialIn";
-            this.txtIDSocialIn.Properties.ReadOnly = true;
             this.txtIDSocialIn.Size = new System.Drawing.Size(133, 20);
             this.txtIDSocialIn.TabIndex = 1;
+            this.txtIDSocialIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDSocialIn_KeyPress);
             // 
             // label7
             // 
