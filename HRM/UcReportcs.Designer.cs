@@ -35,8 +35,9 @@ namespace HRM
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.xtraTabControl3 = new DevExpress.XtraTab.XtraTabControl();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
+            this.xtraTabControl3 = new DevExpress.XtraTab.XtraTabControl();
+            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl3)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +50,8 @@ namespace HRM
             this.navBarGroup1});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
-            this.navBarItem2});
+            this.navBarItem2,
+            this.navBarItem3});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 180;
@@ -62,7 +64,8 @@ namespace HRM
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
             // navBarItem1
@@ -70,6 +73,12 @@ namespace HRM
             this.navBarItem1.Caption = "Nhân viên mới";
             this.navBarItem1.Name = "navBarItem1";
             this.navBarItem1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem1_LinkClicked);
+            // 
+            // navBarItem2
+            // 
+            this.navBarItem2.Caption = "Sinh nhật trong tháng";
+            this.navBarItem2.Name = "navBarItem2";
+            this.navBarItem2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem2_LinkClicked);
             // 
             // xtraTabControl3
             // 
@@ -83,11 +92,11 @@ namespace HRM
             this.xtraTabControl3.CloseButtonClick += new System.EventHandler(this.xtraTabControl3_CloseButtonClick);
             this.xtraTabControl3.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl3_ControlAdded);
             // 
-            // navBarItem2
+            // navBarItem3
             // 
-            this.navBarItem2.Caption = "Sinh nhật trong tháng";
-            this.navBarItem2.Name = "navBarItem2";
-            this.navBarItem2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem2_LinkClicked);
+            this.navBarItem3.Caption = "Hợp đồng sắp hết hạn";
+            this.navBarItem3.Name = "navBarItem3";
+            this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem3_LinkClicked);
             // 
             // UcReportcs
             // 
@@ -110,5 +119,6 @@ namespace HRM
         private NavBarItem navBarItem1;
         private XtraTabControl xtraTabControl3;
         private NavBarItem navBarItem2;
+        private NavBarItem navBarItem3;
     }
 }

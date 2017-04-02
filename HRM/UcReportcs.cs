@@ -59,5 +59,12 @@ namespace HRM
             //Mở Tab chức vụ
             AddTab("Danh sách sinh nhật", new UcRpBirthDay());
         }
+
+        private void navBarItem3_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Danh sách hợp đồng sắp hết hạn", new UcRpContract());
+        }
     }
 }

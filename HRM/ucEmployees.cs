@@ -339,7 +339,7 @@ namespace HRM
         {
             try
             {
-                var dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo);
+                var dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialog == DialogResult.Yes)
                 {
                     _staffBus.DeleteAStaff(txtStaffID.Text);

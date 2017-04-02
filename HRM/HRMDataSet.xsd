@@ -111,6 +111,28 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ContractRpTableAdapter" GeneratorDataComponentClassName="ContractRpTableAdapter" Name="ContractRp" UserDataComponentName="ContractRpTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="HRMConnectionString (Settings)" DbObjectName="HRM.dbo.ContractRp" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ContractID, StaffName, BasicPay, Date, StartDate, EndDate, ContractTypeID FROM dbo.ContractRp</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ContractID" DataSetColumn="ContractID" />
+              <Mapping SourceColumn="StaffName" DataSetColumn="StaffName" />
+              <Mapping SourceColumn="BasicPay" DataSetColumn="BasicPay" />
+              <Mapping SourceColumn="Date" DataSetColumn="Date" />
+              <Mapping SourceColumn="StartDate" DataSetColumn="StartDate" />
+              <Mapping SourceColumn="EndDate" DataSetColumn="EndDate" />
+              <Mapping SourceColumn="ContractTypeID" DataSetColumn="ContractTypeID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources>
           <DbSource ConnectionRef="HRMConnectionString (Settings)" DbObjectName="HRM.dbo.Age_Range" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Age_Range" MethodsParameterType="CLR" Modifier="Public" Name="Age_Range" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Age_Range">
@@ -130,7 +152,7 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
   <xs:element name="HRMDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="HRMDataSet" msprop:Generator_UserDSName="HRMDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CateAge" msprop:Generator_TableClassName="CateAgeDataTable" msprop:Generator_TableVarName="tableCateAge" msprop:Generator_RowChangedName="CateAgeRowChanged" msprop:Generator_TablePropName="CateAge" msprop:Generator_RowDeletingName="CateAgeRowDeleting" msprop:Generator_RowChangingName="CateAgeRowChanging" msprop:Generator_RowEvHandlerName="CateAgeRowChangeEventHandler" msprop:Generator_RowDeletedName="CateAgeRowDeleted" msprop:Generator_RowClassName="CateAgeRow" msprop:Generator_UserTableName="CateAge" msprop:Generator_RowEvArgName="CateAgeRowChangeEvent">
+        <xs:element name="CateAge" msprop:Generator_TableClassName="CateAgeDataTable" msprop:Generator_TableVarName="tableCateAge" msprop:Generator_TablePropName="CateAge" msprop:Generator_RowDeletingName="CateAgeRowDeleting" msprop:Generator_RowChangingName="CateAgeRowChanging" msprop:Generator_RowEvHandlerName="CateAgeRowChangeEventHandler" msprop:Generator_RowDeletedName="CateAgeRowDeleted" msprop:Generator_UserTableName="CateAge" msprop:Generator_RowChangedName="CateAgeRowChanged" msprop:Generator_RowEvArgName="CateAgeRowChangeEvent" msprop:Generator_RowClassName="CateAgeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -145,7 +167,7 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="NewEmployees" msprop:Generator_TableClassName="NewEmployeesDataTable" msprop:Generator_TableVarName="tableNewEmployees" msprop:Generator_RowChangedName="NewEmployeesRowChanged" msprop:Generator_TablePropName="NewEmployees" msprop:Generator_RowDeletingName="NewEmployeesRowDeleting" msprop:Generator_RowChangingName="NewEmployeesRowChanging" msprop:Generator_RowEvHandlerName="NewEmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="NewEmployeesRowDeleted" msprop:Generator_RowClassName="NewEmployeesRow" msprop:Generator_UserTableName="NewEmployees" msprop:Generator_RowEvArgName="NewEmployeesRowChangeEvent">
+        <xs:element name="NewEmployees" msprop:Generator_TableClassName="NewEmployeesDataTable" msprop:Generator_TableVarName="tableNewEmployees" msprop:Generator_TablePropName="NewEmployees" msprop:Generator_RowDeletingName="NewEmployeesRowDeleting" msprop:Generator_RowChangingName="NewEmployeesRowChanging" msprop:Generator_RowEvHandlerName="NewEmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="NewEmployeesRowDeleted" msprop:Generator_UserTableName="NewEmployees" msprop:Generator_RowChangedName="NewEmployeesRowChanged" msprop:Generator_RowEvArgName="NewEmployeesRowChangeEvent" msprop:Generator_RowClassName="NewEmployeesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="StaffID" msprop:Generator_ColumnVarNameInTable="columnStaffID" msprop:Generator_ColumnPropNameInRow="StaffID" msprop:Generator_ColumnPropNameInTable="StaffIDColumn" msprop:Generator_UserColumnName="StaffID">
@@ -196,7 +218,7 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Pivot" msprop:Generator_TableClassName="PivotDataTable" msprop:Generator_TableVarName="tablePivot" msprop:Generator_TablePropName="Pivot" msprop:Generator_RowDeletingName="PivotRowDeleting" msprop:Generator_RowChangingName="PivotRowChanging" msprop:Generator_RowEvHandlerName="PivotRowChangeEventHandler" msprop:Generator_RowDeletedName="PivotRowDeleted" msprop:Generator_UserTableName="Pivot" msprop:Generator_RowChangedName="PivotRowChanged" msprop:Generator_RowEvArgName="PivotRowChangeEvent" msprop:Generator_RowClassName="PivotRow">
+        <xs:element name="Pivot" msprop:Generator_TableClassName="PivotDataTable" msprop:Generator_TableVarName="tablePivot" msprop:Generator_RowChangedName="PivotRowChanged" msprop:Generator_TablePropName="Pivot" msprop:Generator_RowDeletingName="PivotRowDeleting" msprop:Generator_RowChangingName="PivotRowChanging" msprop:Generator_RowEvHandlerName="PivotRowChangeEventHandler" msprop:Generator_RowDeletedName="PivotRowDeleted" msprop:Generator_RowClassName="PivotRow" msprop:Generator_UserTableName="Pivot" msprop:Generator_RowEvArgName="PivotRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="StaffName" msprop:Generator_ColumnVarNameInTable="columnStaffName" msprop:Generator_ColumnPropNameInRow="StaffName" msprop:Generator_ColumnPropNameInTable="StaffNameColumn" msprop:Generator_UserColumnName="StaffName" minOccurs="0">
@@ -221,6 +243,31 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="ContractRp" msprop:Generator_TableClassName="ContractRpDataTable" msprop:Generator_TableVarName="tableContractRp" msprop:Generator_TablePropName="ContractRp" msprop:Generator_RowDeletingName="ContractRpRowDeleting" msprop:Generator_RowChangingName="ContractRpRowChanging" msprop:Generator_RowEvHandlerName="ContractRpRowChangeEventHandler" msprop:Generator_RowDeletedName="ContractRpRowDeleted" msprop:Generator_UserTableName="ContractRp" msprop:Generator_RowChangedName="ContractRpRowChanged" msprop:Generator_RowEvArgName="ContractRpRowChangeEvent" msprop:Generator_RowClassName="ContractRpRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ContractID" msprop:Generator_ColumnVarNameInTable="columnContractID" msprop:Generator_ColumnPropNameInRow="ContractID" msprop:Generator_ColumnPropNameInTable="ContractIDColumn" msprop:Generator_UserColumnName="ContractID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StaffName" msprop:Generator_ColumnVarNameInTable="columnStaffName" msprop:Generator_ColumnPropNameInRow="StaffName" msprop:Generator_ColumnPropNameInTable="StaffNameColumn" msprop:Generator_UserColumnName="StaffName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BasicPay" msprop:Generator_ColumnVarNameInTable="columnBasicPay" msprop:Generator_ColumnPropNameInRow="BasicPay" msprop:Generator_ColumnPropNameInTable="BasicPayColumn" msprop:Generator_UserColumnName="BasicPay" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="StartDate" msprop:Generator_ColumnVarNameInTable="columnStartDate" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_UserColumnName="StartDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_UserColumnName="EndDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ContractTypeID" msprop:Generator_ColumnVarNameInTable="columnContractTypeID" msprop:Generator_ColumnPropNameInRow="ContractTypeID" msprop:Generator_ColumnPropNameInTable="ContractTypeIDColumn" msprop:Generator_UserColumnName="ContractTypeID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -230,6 +277,10 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
     <xs:unique name="NewEmployees_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:NewEmployees" />
       <xs:field xpath="mstns:StaffID" />
+    </xs:unique>
+    <xs:unique name="ContractRp_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ContractRp" />
+      <xs:field xpath="mstns:ContractID" />
     </xs:unique>
   </xs:element>
 </xs:schema>
