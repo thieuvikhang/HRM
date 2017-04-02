@@ -18,6 +18,7 @@ namespace HRM
         GroupAccess _aGroupAccess = new GroupAccess();
         Access _anAccess = new Access();
         Staff _aStaff = new Staff();
+        ExtendBus newExtendBus = new ExtendBus();
 
         public FormLogin()
         {
@@ -52,16 +53,18 @@ namespace HRM
             //gán các giá trị text input vào biến
             var userNameInput = txtAcc.Text;
             var passwordInput = txtPass.Text;
-            
+            string passwordInputEncrypt = "";
+            passwordInputEncrypt = newExtendBus.GetMd5(passwordInput.ToString());
+            passwordInputEncrypt = passwordInputEncrypt.Substring(0, 26);
             //gọi tới hàm checklogin vs 2 biến ở trên truyền vào để check
-            var checkLogin = _anAccountBus.CheckLogin(userNameInput, passwordInput); 
+            var checkLogin = _anAccountBus.CheckLogin(userNameInput, passwordInputEncrypt); 
             if (checkLogin)
             {
                 //Đănh nhập thành công
 
 
                 //gọi các đối tượng anAccount, aStaff, aGroupAccess
-                _anAccount = _anAccountBus.GetInfoAccount(userNameInput, passwordInput);
+                _anAccount = _anAccountBus.GetInfoAccount(userNameInput, passwordInputEncrypt);
                 _aStaff = _anAccountBus.GetInfoStaff(_anAccount.StaffID);
                 _aGroupAccess = _anAccountBus.GetInfoGroupAccess(_anAccount.GroupAccessID);
                  

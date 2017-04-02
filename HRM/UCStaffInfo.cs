@@ -19,6 +19,7 @@ namespace HRM
         HRMModelDataContext _HRM = new HRMModelDataContext();
         public Session _aSession = new Session();
         ExtendBus newExtend = new ExtendBus();
+        AccountBus newAccountBus = new AccountBus();
         bool checkChooseChangePass = false;
 
         public UCStaffInfo()
@@ -29,30 +30,19 @@ namespace HRM
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
             string chon = btnChangePassword.Text;
+            lblThongBao.Text = "";
             switch (chon)
             {
                 case "Đổi mật khẩu":
-                    {
-                        checkChooseChangePass = true;
-                        panChangePassword.Enabled = true;
-                        txtOldPassword.Text = "";
-                        txtNewpassword.Text = "";
-                        txtAgainPassword.Text = "";
-                        btnCheckError.Enabled = false;
-                        btnSaveNewPasswoed.Enabled = false;
-                        btnChangePassword.Text = "Hủy đổi mật khẩu";
-                        btnChangePassword.ForeColor = Color.Red;
-                        lblTrangThai.Text = "Đang điền thông tin đổi mật khẩu.";
-                        break;
-                    }
+                { 
+                    btnChangePassword.Text = "Hủy đổi mật khẩu"; 
+                    break;
+                }
                 case "Hủy đổi mật khẩu":
                 {
-                        checkChooseChangePass = false;
-                        panChangePassword.Enabled = false;
-                        btnChangePassword.Text = "Đổi mật khẩu";
-                        btnChangePassword.ForeColor = Color.Black;
-                        lblTrangThai.Text = "Đã hủy đỏi mật khẩu.";
-                        break;
+                    setTextbox(); 
+                    btnChangePassword.Text = "Đổi mật khẩu"; 
+                    break;
                 }
                 default:
                 {
@@ -71,60 +61,87 @@ namespace HRM
 
         private void btnSaveNewPasswoed_Click(object sender, EventArgs e)
         {
-            lblTrangThai.Text = "bạn vừa đổi mật khẩu cho nhân viên....";
+            //khai bao cac bien can dùng
+            string passwordInput = txtAgainPassword.Text;
+            string passwordEncrypt = newExtend.GetMd5(passwordInput);
+            bool checkChangepass = false;
+            string idStaff = _aSession["staffID"].ToString();
+            int accountID = 0;
+            Account AccountOnline = _HRM.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
+
+            accountID = AccountOnline.AccID;
+            passwordEncrypt = passwordEncrypt.Substring(0, 26);
+
+            checkChangepass = newAccountBus.EditPassword(accountID, passwordEncrypt);
+
+            if (checkChangepass == true)
+            { 
+                MessageBox.Show("Bạn đã đổi mật khẩu thành công.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblTrangThai.Text = "Bạn vừa đổi mật khẩu cho nhân viên....";
+                setTextbox();
+                btnChangePassword.Text = "Đổi mật khẩu"; 
+            }
+            else
+            {
+                lblThongBao.Text = "Đổi mật khẩu thất bại.";
+            }
+            lblPassEncrypt.Text = passwordEncrypt;
         }
 
         private void btnChangePassword_TextChanged(object sender, EventArgs e)
         {
-            
+            string chon = btnChangePassword.Text;
+            lblThongBao.Text = "";
+            if (chon == "Đổi mật khẩu") {
+                checkChooseChangePass = false;
+                panChangePassword.Enabled = false;
+                btnChangePassword.ForeColor = Color.Black;
+                lblTrangThai.Text = "Đã hủy đỏi mật khẩu.";
+            } 
+            if(chon == "Hủy đổi mật khẩu")
+            { 
+                checkChooseChangePass = true;
+                panChangePassword.Enabled = true;
+                setTextbox();
+                btnCheckError.Enabled = false;
+                btnSaveNewPassword.Enabled = false;
+                btnChangePassword.ForeColor = Color.Red;
+                lblTrangThai.Text = "Đang điền thông tin đổi mật khẩu.";
+            }    
         }
 
         private void btnCheckError_Click(object sender, EventArgs e)
         {
-            string oldPassword = txtOldPassword.Text;
-            string newPassword = txtNewpassword.Text;
-            string againPassword = txtAgainPassword.Text;
-            string idStaff = _aSession["staffID"].ToString();
-            Account AccountOnline = _HRM.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
-            string passworddAccout = AccountOnline.Password;
+            CheckInputError();
 
-
-            if (oldPassword != passworddAccout)
+            if (lblNoteAdainPassword.ForeColor == Color.Orange && lblNoteOldPassword.ForeColor == Color.Orange && lblNoteNewPassword.ForeColor == Color.Orange)
             {
-                lblNoteOldPassword.ForeColor = Color.Red;
-                lblNoteOldPassword.Text = "Mặt khẩu hiện tại ko đúng";
+                MessageBox.Show("Đã không còn lỗi nữa. Click vào \"Xác nhận đổi\" để hoàn tất đổi mật khẩu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnSaveNewPassword.Enabled = true;
             }
-            else { 
-                lblNoteOldPassword.ForeColor = Color.Yellow;
-                lblNoteOldPassword.Text = "Hợp lý";
-                if(newPassword != againPassword)
-                {
-                    lblNoteAdainPassword.ForeColor = Color.Red;
-                    lblNoteAdainPassword.Text = "Mật khẩu xác nhận ko khớp vs mật khẩu mới.";
-                }
-                else
-                {
-
-                }
-            }    
+            else
+            {
+                btnSaveNewPassword.Enabled = false;
+                lblThongBao.Text = "Vẫn còn lỗi không thể đổi mật khẩu.";
+            }
         }
 
         private void txtOldPassword_TextChanged(object sender, EventArgs e)
         {
-            if(txtOldPassword.Text == "")
+            if (txtOldPassword.Text == "")
             {
-                txtNewpassword.Text = ""; 
+                txtNewpassword.Text = "";
                 txtNewpassword.Enabled = false;
             }
             else
-            { 
+            {
                 txtNewpassword.Enabled = true;
             }
         }
 
         private void txtNewpassword_TextChanged(object sender, EventArgs e)
         {
-           if(txtNewpassword.Text == "")
+            if (txtNewpassword.Text == "")
             {
                 txtAgainPassword.Text = "";
                 txtAgainPassword.Enabled = false;
@@ -137,7 +154,7 @@ namespace HRM
 
         private void txtAgainPassword_TextChanged(object sender, EventArgs e)
         {
-            if(txtAgainPassword.Text == "")
+            if (txtAgainPassword.Text == "")
             {
                 lblThongBao.Text = "Chưa điền đủ thông tn không thể kiểm tra để dổi mật khẩu.";
                 btnCheckError.Enabled = false;
@@ -148,5 +165,62 @@ namespace HRM
                 lblThongBao.Text = "Bạn hãy kiểm tra trước khi lưu mật khẩu mới.";
             }
         }
+
+        void setTextbox()
+        {
+            txtOldPassword.Text = "";
+            txtNewpassword.Text = "";
+            txtAgainPassword.Text = "";
+            lblNoteOldPassword.Text = "";
+            lblNoteNewPassword.Text = "";
+            lblNoteAdainPassword.Text = "";
+            lblThongBao.Text = "";
+        }
+
+        void CheckInputError()
+        {
+            string oldPassword = txtOldPassword.EditValue.ToString();
+            string oldPasswordEncrypt = newExtend.GetMd5(oldPassword);
+            oldPasswordEncrypt = oldPasswordEncrypt.Substring(0, 26);
+            string newPassword = txtNewpassword.EditValue.ToString();
+            string againPassword = txtAgainPassword.EditValue.ToString();
+            string idStaff = _aSession["staffID"].ToString();
+            Account acc = new Account();
+            acc = newAccountBus.getpass(idStaff);
+            string passworddAccout = acc.Password;
+            passworddAccout = passworddAccout.Trim();
+            lblShowPassStaff.Text = passworddAccout;
+
+            if (String.Compare(oldPasswordEncrypt, passworddAccout) != 0)
+            {
+                lblNoteOldPassword.ForeColor = Color.Red;
+                lblNoteOldPassword.Text = "Mặt khẩu hiện tại ko đúng";
+            }
+            else
+            {
+                lblNoteOldPassword.ForeColor = Color.Orange;
+                lblNoteOldPassword.Text = "Hợp lý";
+                if (String.Compare(newPassword, oldPassword) == 0)
+                {
+                    lblNoteNewPassword.ForeColor = Color.Red;
+                    lblNoteNewPassword.Text = "Mật khẩu mới trùng với mật khẩu cũ.";
+                }
+                else
+                {
+                    lblNoteNewPassword.ForeColor = Color.Orange;
+                    lblNoteNewPassword.Text = "Hợp lý.";
+                    if (String.Compare(newPassword, againPassword) != 0)
+                    {
+                        lblNoteAdainPassword.ForeColor = Color.Red;
+                        lblNoteAdainPassword.Text = "Mật khẩu xác nhận ko khớp vs mật khẩu mới.";
+                    }
+                    else
+                    {
+                        lblNoteAdainPassword.ForeColor = Color.Orange;
+                        lblNoteAdainPassword.Text = "Hợp lý.";
+                    }
+                }
+            }
+        } 
     }
 }

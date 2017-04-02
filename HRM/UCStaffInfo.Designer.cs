@@ -31,13 +31,20 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
+            this.lblShowIDStaff = new System.Windows.Forms.Label();
             this.panChangePassword = new DevExpress.XtraEditors.PanelControl();
             this.txtAgainPassword = new DevExpress.XtraEditors.TextEdit();
-            this.btnSaveNewPasswoed = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCheckError = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSaveNewPassword = new DevExpress.XtraEditors.SimpleButton();
             this.txtNewpassword = new DevExpress.XtraEditors.TextEdit();
             this.txtOldPassword = new DevExpress.XtraEditors.TextEdit();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblThongBao = new System.Windows.Forms.Label();
+            this.lblNoteAdainPassword = new System.Windows.Forms.Label();
+            this.lblNoteOldPassword = new System.Windows.Forms.Label();
+            this.lblNoteNewPassword = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTrangThai = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -65,13 +72,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblShowIDStaff = new System.Windows.Forms.Label();
-            this.btnCheckError = new DevExpress.XtraEditors.SimpleButton();
-            this.lblNoteNewPassword = new System.Windows.Forms.Label();
-            this.lblThongBao = new System.Windows.Forms.Label();
-            this.lblNoteAdainPassword = new System.Windows.Forms.Label();
-            this.lblNoteOldPassword = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblShowPassStaff = new System.Windows.Forms.Label();
+            this.lblPassEncrypt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -101,6 +103,8 @@
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.btnChangePassword);
+            this.groupControl2.Controls.Add(this.lblPassEncrypt);
+            this.groupControl2.Controls.Add(this.lblShowPassStaff);
             this.groupControl2.Controls.Add(this.lblShowIDStaff);
             this.groupControl2.Controls.Add(this.panChangePassword);
             this.groupControl2.Location = new System.Drawing.Point(5, 5);
@@ -121,11 +125,20 @@
             this.btnChangePassword.TextChanged += new System.EventHandler(this.btnChangePassword_TextChanged);
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
+            // lblShowIDStaff
+            // 
+            this.lblShowIDStaff.AutoSize = true;
+            this.lblShowIDStaff.Location = new System.Drawing.Point(11, 99);
+            this.lblShowIDStaff.Name = "lblShowIDStaff";
+            this.lblShowIDStaff.Size = new System.Drawing.Size(72, 13);
+            this.lblShowIDStaff.TabIndex = 0;
+            this.lblShowIDStaff.Text = "Mã Nhân viên";
+            // 
             // panChangePassword
             // 
             this.panChangePassword.Controls.Add(this.txtAgainPassword);
             this.panChangePassword.Controls.Add(this.btnCheckError);
-            this.panChangePassword.Controls.Add(this.btnSaveNewPasswoed);
+            this.panChangePassword.Controls.Add(this.btnSaveNewPassword);
             this.panChangePassword.Controls.Add(this.txtNewpassword);
             this.panChangePassword.Controls.Add(this.txtOldPassword);
             this.panChangePassword.Controls.Add(this.label3);
@@ -149,16 +162,27 @@
             this.txtAgainPassword.TabIndex = 3;
             this.txtAgainPassword.TextChanged += new System.EventHandler(this.txtAgainPassword_TextChanged);
             // 
-            // btnSaveNewPasswoed
+            // btnCheckError
             // 
-            this.btnSaveNewPasswoed.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveNewPasswoed.Appearance.Options.UseFont = true;
-            this.btnSaveNewPasswoed.Location = new System.Drawing.Point(362, 89);
-            this.btnSaveNewPasswoed.Name = "btnSaveNewPasswoed";
-            this.btnSaveNewPasswoed.Size = new System.Drawing.Size(129, 44);
-            this.btnSaveNewPasswoed.TabIndex = 5;
-            this.btnSaveNewPasswoed.Text = "Xác nhận đổi";
-            this.btnSaveNewPasswoed.Click += new System.EventHandler(this.btnSaveNewPasswoed_Click);
+            this.btnCheckError.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckError.Appearance.Options.UseFont = true;
+            this.btnCheckError.Location = new System.Drawing.Point(262, 89);
+            this.btnCheckError.Name = "btnCheckError";
+            this.btnCheckError.Size = new System.Drawing.Size(91, 45);
+            this.btnCheckError.TabIndex = 4;
+            this.btnCheckError.Text = "Kiểm tra";
+            this.btnCheckError.Click += new System.EventHandler(this.btnCheckError_Click);
+            // 
+            // btnSaveNewPassword
+            // 
+            this.btnSaveNewPassword.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveNewPassword.Appearance.Options.UseFont = true;
+            this.btnSaveNewPassword.Location = new System.Drawing.Point(362, 89);
+            this.btnSaveNewPassword.Name = "btnSaveNewPassword";
+            this.btnSaveNewPassword.Size = new System.Drawing.Size(129, 44);
+            this.btnSaveNewPassword.TabIndex = 5;
+            this.btnSaveNewPassword.Text = "Xác nhận đổi";
+            this.btnSaveNewPassword.Click += new System.EventHandler(this.btnSaveNewPasswoed_Click);
             // 
             // txtNewpassword
             // 
@@ -195,6 +219,55 @@
             this.label2.Size = new System.Drawing.Size(99, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mật khẩu mới:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Blue;
+            this.label5.Location = new System.Drawing.Point(19, 139);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 16);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Thông báo:";
+            // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lblThongBao.Location = new System.Drawing.Point(105, 139);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(74, 16);
+            this.lblThongBao.TabIndex = 0;
+            this.lblThongBao.Text = "Thông báo:";
+            // 
+            // lblNoteAdainPassword
+            // 
+            this.lblNoteAdainPassword.AutoSize = true;
+            this.lblNoteAdainPassword.Location = new System.Drawing.Point(359, 67);
+            this.lblNoteAdainPassword.Name = "lblNoteAdainPassword";
+            this.lblNoteAdainPassword.Size = new System.Drawing.Size(165, 13);
+            this.lblNoteAdainPassword.TabIndex = 0;
+            this.lblNoteAdainPassword.Text = "Thông báo lỗi xác nhận mật khẩu";
+            // 
+            // lblNoteOldPassword
+            // 
+            this.lblNoteOldPassword.AutoSize = true;
+            this.lblNoteOldPassword.Location = new System.Drawing.Point(359, 15);
+            this.lblNoteOldPassword.Name = "lblNoteOldPassword";
+            this.lblNoteOldPassword.Size = new System.Drawing.Size(132, 13);
+            this.lblNoteOldPassword.TabIndex = 0;
+            this.lblNoteOldPassword.Text = "Thông báo lỗi mật khẩu cũ";
+            // 
+            // lblNoteNewPassword
+            // 
+            this.lblNoteNewPassword.AutoSize = true;
+            this.lblNoteNewPassword.Location = new System.Drawing.Point(359, 41);
+            this.lblNoteNewPassword.Name = "lblNoteNewPassword";
+            this.lblNoteNewPassword.Size = new System.Drawing.Size(137, 13);
+            this.lblNoteNewPassword.TabIndex = 0;
+            this.lblNoteNewPassword.Text = "Thông báo lỗi mật khẩu mới";
             // 
             // label1
             // 
@@ -465,74 +538,23 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "label1";
             // 
-            // lblShowIDStaff
+            // lblShowPassStaff
             // 
-            this.lblShowIDStaff.AutoSize = true;
-            this.lblShowIDStaff.Location = new System.Drawing.Point(11, 116);
-            this.lblShowIDStaff.Name = "lblShowIDStaff";
-            this.lblShowIDStaff.Size = new System.Drawing.Size(72, 13);
-            this.lblShowIDStaff.TabIndex = 0;
-            this.lblShowIDStaff.Text = "Mã Nhân viên";
+            this.lblShowPassStaff.AutoSize = true;
+            this.lblShowPassStaff.Location = new System.Drawing.Point(11, 134);
+            this.lblShowPassStaff.Name = "lblShowPassStaff";
+            this.lblShowPassStaff.Size = new System.Drawing.Size(65, 13);
+            this.lblShowPassStaff.TabIndex = 0;
+            this.lblShowPassStaff.Text = "Mật khẩu cũ";
             // 
-            // btnCheckError
+            // lblPassEncrypt
             // 
-            this.btnCheckError.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckError.Appearance.Options.UseFont = true;
-            this.btnCheckError.Location = new System.Drawing.Point(262, 89);
-            this.btnCheckError.Name = "btnCheckError";
-            this.btnCheckError.Size = new System.Drawing.Size(91, 45);
-            this.btnCheckError.TabIndex = 4;
-            this.btnCheckError.Text = "Kiểm tra";
-            this.btnCheckError.Click += new System.EventHandler(this.btnCheckError_Click);
-            // 
-            // lblNoteNewPassword
-            // 
-            this.lblNoteNewPassword.AutoSize = true;
-            this.lblNoteNewPassword.Location = new System.Drawing.Point(359, 41);
-            this.lblNoteNewPassword.Name = "lblNoteNewPassword";
-            this.lblNoteNewPassword.Size = new System.Drawing.Size(137, 13);
-            this.lblNoteNewPassword.TabIndex = 0;
-            this.lblNoteNewPassword.Text = "Thông báo lỗi mật khẩu mới";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.AutoSize = true;
-            this.lblThongBao.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(105, 139);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(74, 16);
-            this.lblThongBao.TabIndex = 0;
-            this.lblThongBao.Text = "Thông báo:";
-            // 
-            // lblNoteAdainPassword
-            // 
-            this.lblNoteAdainPassword.AutoSize = true;
-            this.lblNoteAdainPassword.Location = new System.Drawing.Point(359, 67);
-            this.lblNoteAdainPassword.Name = "lblNoteAdainPassword";
-            this.lblNoteAdainPassword.Size = new System.Drawing.Size(165, 13);
-            this.lblNoteAdainPassword.TabIndex = 0;
-            this.lblNoteAdainPassword.Text = "Thông báo lỗi xác nhận mật khẩu";
-            // 
-            // lblNoteOldPassword
-            // 
-            this.lblNoteOldPassword.AutoSize = true;
-            this.lblNoteOldPassword.Location = new System.Drawing.Point(359, 15);
-            this.lblNoteOldPassword.Name = "lblNoteOldPassword";
-            this.lblNoteOldPassword.Size = new System.Drawing.Size(132, 13);
-            this.lblNoteOldPassword.TabIndex = 0;
-            this.lblNoteOldPassword.Text = "Thông báo lỗi mật khẩu cũ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(19, 139);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 16);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Thông báo:";
+            this.lblPassEncrypt.AutoSize = true;
+            this.lblPassEncrypt.Location = new System.Drawing.Point(11, 166);
+            this.lblPassEncrypt.Name = "lblPassEncrypt";
+            this.lblPassEncrypt.Size = new System.Drawing.Size(70, 13);
+            this.lblPassEncrypt.TabIndex = 0;
+            this.lblPassEncrypt.Text = "Mật khẩu mới";
             // 
             // UCStaffInfo
             // 
@@ -569,7 +591,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panChangePassword;
         private DevExpress.XtraEditors.TextEdit txtAgainPassword;
-        private DevExpress.XtraEditors.SimpleButton btnSaveNewPasswoed;
+        private DevExpress.XtraEditors.SimpleButton btnSaveNewPassword;
         private DevExpress.XtraEditors.TextEdit txtNewpassword;
         private DevExpress.XtraEditors.TextEdit txtOldPassword;
         private System.Windows.Forms.Label label3;
@@ -610,5 +632,7 @@
         private System.Windows.Forms.Label lblNoteAdainPassword;
         private System.Windows.Forms.Label lblNoteOldPassword;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblShowPassStaff;
+        private System.Windows.Forms.Label lblPassEncrypt;
     }
 }

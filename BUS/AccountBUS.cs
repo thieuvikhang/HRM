@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using DAL;
+using System;
 
 namespace BUS
 {
@@ -36,14 +37,30 @@ namespace BUS
             var infoGroupAccess = _hrm.GroupAccesses.SingleOrDefault(gra => gra.GroupAccessID == idGroupAccess);
             return infoGroupAccess;
         }
+         
+        public Account getpass(string idstaff)
+        {
+            Account AccountOnline = _hrm.Accounts.FirstOrDefault(ac => ac.StaffID == idstaff);
+            return AccountOnline;
+        }
 
-        //Lấy tất cả acsess từ idGroupAccess truyền vào
-        //public IQueryable GetAllAccessByIdGroupAccess(int idGroupAccess)
-        //{
-        //    var allAccessByIdGroupAccess = from accses in hrm.Accesses
-        //                                   where accses.GroupAccessID == idGroupAccess
-        //                                   select accses;
-        //    return allAccessByIdGroupAccess;
-        //} 
+        //Ham edit mot contract
+        public bool EditPassword(int acID, string pass)
+        {
+            try
+            {
+                var aAccount = _hrm.Accounts.SingleOrDefault(ac => ac.AccID == acID);
+                //kiem tra aAccount co tontai
+                if (aAccount == null) return false;
+                aAccount.Password = pass;
+                //thay doi csdl trong SQL
+                _hrm.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

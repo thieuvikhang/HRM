@@ -48,9 +48,11 @@ namespace HRM
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -59,8 +61,7 @@ namespace HRM
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            this.ribbonGalleryBarItem1 = new DevExpress.XtraBars.RibbonGalleryBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.SuspendLayout();
@@ -84,9 +85,10 @@ namespace HRM
             this.barButtonItem13,
             this.barButtonItem2,
             this.barButtonItem3,
-            this.skinRibbonGalleryBarItem1});
+            this.skinRibbonGalleryBarItem1,
+            this.ribbonGalleryBarItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 19;
+            this.ribbonControl1.MaxItemId = 20;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -190,6 +192,12 @@ namespace HRM
             this.barButtonItem3.Name = "barButtonItem3";
             this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick_1);
             // 
+            // skinRibbonGalleryBarItem1
+            // 
+            this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
+            this.skinRibbonGalleryBarItem1.Id = 18;
+            this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -208,6 +216,12 @@ namespace HRM
             // 
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem13);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Text = "ribbonPageGroup8";
             // 
             // ribbonPage2
             // 
@@ -268,17 +282,11 @@ namespace HRM
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl1_ControlAdded);
             // 
-            // ribbonPageGroup8
+            // ribbonGalleryBarItem1
             // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "ribbonPageGroup8";
-            // 
-            // skinRibbonGalleryBarItem1
-            // 
-            this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
-            this.skinRibbonGalleryBarItem1.Id = 18;
-            this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
+            this.ribbonGalleryBarItem1.Caption = "ribbonGalleryBarItem1";
+            this.ribbonGalleryBarItem1.Id = 19;
+            this.ribbonGalleryBarItem1.Name = "ribbonGalleryBarItem1";
             // 
             // FormMain
             // 
@@ -329,6 +337,7 @@ namespace HRM
         private RibbonPageGroup ribbonPageGroup7;
         private SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private RibbonPageGroup ribbonPageGroup8;
+        private RibbonGalleryBarItem ribbonGalleryBarItem1;
     }
 }
 
