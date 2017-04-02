@@ -236,6 +236,12 @@
     <Compile Include="ucSocialInsurancecs.Designer.cs">
       <DependentUpon>ucSocialInsurancecs.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCStaffInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCStaffInfo.Designer.cs">
+      <DependentUpon>UCStaffInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="WaitFormLoading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +334,9 @@
     <EmbeddedResource Include="ucSocialInsurancecs.resx">
       <DependentUpon>ucSocialInsurancecs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCStaffInfo.resx">
+      <DependentUpon>UCStaffInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitFormLoading.resx">
       <DependentUpon>WaitFormLoading.cs</DependentUpon>
     </EmbeddedResource>
@@ -371,6 +380,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\addgroupheader_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon\1491161269_teddy_bear_toy_5.png" />
+    <Content Include="icon\1491161598_teddy_bear_toy_5.ico" />
+    <Content Include="icon\Custom-Icon-Design-Flatastic-10-Bear.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -11,12 +11,15 @@ namespace HRM
 {
     public partial class FormMain : RibbonForm
     {
+
         readonly TabAdd _clsAddTab = new TabAdd();
+        public Session _aSession = new Session();
+
         public FormMain()
         {
             InitializeComponent();
         }
-
+        
         private void FormMain_Load(object sender, EventArgs e)
         {
 
@@ -131,7 +134,13 @@ namespace HRM
             //Mở Tab chức vụ
             AddTab("Báo cáo", new UcReportcs());
         }
-        #endregion
 
+        private void barButtonItem13_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Thông tin nhân viên", new UCStaffInfo{ _aSession = _aSession });
+        }
+        #endregion
     }
 }

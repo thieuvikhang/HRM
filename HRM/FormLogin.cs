@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using BUS;
 using DAL;
 using DevExpress.XtraEditors;
+using DevExpress.Xpo;
 
 namespace HRM
 {
@@ -69,10 +70,12 @@ namespace HRM
                 var groupAccessName = _aGroupAccess.GroupAccessName;
                 var groupAccessId = _aGroupAccess.GroupAccessID.ToString();
                 var staffName = _aStaff.StaffName;
+                var staffID = _aStaff.StaffID;
 
                 //Gán những thông tin cần thiết vào từng tên biến Session(aSession)
                 _aSession["userName"] = userNameInput;
                 _aSession["staffName"] = staffName;
+                _aSession["staffID"] = staffID;
                 _aSession["groupAccessName"] = groupAccessName;
                 _aSession["ListGroupAccess"] = (from aHmDetailAccesses in hrm.DetailAccesses
                                                 from aHrmAccess in hrm.Accesses
@@ -86,12 +89,12 @@ namespace HRM
                 //Gọi tới form newlogin
                 //trong form newlogin mình có tạo 1 biến sesstion getsession
                 //(form này Cường mới tạo thêm để demo về session) m.nTham khảo  
-                var newfrmlogin = new demoSession {getsession = _aSession};
+                //var newfrmlogin = new demoSession {getsession = _aSession};
                 //đưa tất cả biến aSession ở trên vào biến getsession ở form newfrmlogin
                 //sau đó show form lên và xem kết quả
-                newfrmlogin.ShowDialog();
-                //FormMain frmain = new FormMain();
-                //frmain.ShowDialog();
+                //newfrmlogin.ShowDialog();
+                FormMain frmain = new FormMain { _aSession = _aSession };
+                frmain.ShowDialog();
 
                 //test thử sau khi đã gửi session bên form này qua form kia rồi
                 //ta clear session ở form này
