@@ -133,5 +133,11 @@ namespace HRM
         }
         #endregion
 
+        private void barAccess_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab phân quyền
+            AddTab("Phân quyền", new UcAccess());
+        }
     }
 }

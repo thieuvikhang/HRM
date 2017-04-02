@@ -34,6 +34,7 @@ namespace HRM
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::HRM.SplashScreenStarting), true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -60,6 +61,7 @@ namespace HRM
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.SuspendLayout();
@@ -94,7 +96,6 @@ namespace HRM
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPage3});
-            this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.ribbonControl1.Size = new System.Drawing.Size(758, 143);
             // 
             // barButtonItem1
@@ -152,6 +153,7 @@ namespace HRM
             this.barAccess.Id = 8;
             this.barAccess.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barAccess.LargeGlyph")));
             this.barAccess.Name = "barAccess";
+            this.barAccess.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barAccess_ItemClick);
             // 
             // barPostion
             // 
@@ -315,6 +317,7 @@ namespace HRM
         private BarButtonItem barButtonItem2;
         private BarButtonItem barButtonItem3;
         private RibbonPageGroup ribbonPageGroup7;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
     }
 }
 

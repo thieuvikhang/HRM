@@ -21,5 +21,14 @@ namespace BUS
                         }).ToList();
             return list.AsQueryable();
         }
+        public IQueryable LoadAll()
+        {
+            var all = (from ct in _aHrm.Accesses
+                              select new
+                              {
+                                  form = ct.Form,
+                              }).Distinct();
+            return all;
+        }
     }
 }
