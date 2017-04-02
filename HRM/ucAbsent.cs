@@ -33,10 +33,42 @@ namespace HRM
         private void ucAbsent_Load(object sender, EventArgs e)
         {
             gcAbsent.DataSource = AbsentBus.GetAbsent();
+
+            /*            foreach (var item in _aHrm.Staffs.SelectMany(nv => _aHrm.Absents, (nv, np) => new { nv, np })
+                                .Where(t => t.nv.StaffID == t.np.StaffID && t.np.ToDate.Value.Year == DateTime.Now.Year)
+                                .Select(t => new
+                                {
+                                    t.np.AbsentID, t.nv.StaffID, t.nv.StaffName, t.np.AbsentDay, t.np.FromDate,
+                                    t.np.ToDate, t.np.Note, AbsentType = t.np.AbsentType == true ? "Có lương" : "Không lương"
+                                }).ToList())
+                        {
+                            gridView1.AddNewRow();
+                            var rowHandler = gridView1.GetRowHandle(gridView1.DataRowCount);
+                            if (!gridView1.IsNewItemRow(rowHandler)) continue;
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[0], item.StaffID);
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[1], item.StaffName);
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[2], item.AbsentDay);
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[3], item.ToDate);
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[4], item.FromDate);
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[5], item.Note);
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[6], item.AbsentType);
+                            gridView1.SetRowCellValue(rowHandler, gridView1.Columns[7], item.AbsentID);
+                            if (item.ToDate.Value.Month == DateTime.Now.Month && item.ToDate.Value.Year == DateTime.Now.Year)
+                            {
+                                gridView1.SetRowCellValue(rowHandler, gridView1.Columns[8], edit.Enabled = true);
+                                gridView1.SetRowCellValue(rowHandler, gridView1.Columns[9], delete.Enabled = true);
+                            }
+                            else
+                            {
+                                gridView1.SetRowCellValue(rowHandler, gridView1.Columns[8], edit.Enabled = false);
+                                gridView1.SetRowCellValue(rowHandler, gridView1.Columns[9], delete.Enabled = false);
+                            }
+                        }*/
             LoadluChonNv();
             dateChonBD.Properties.MinValue = AbsentBus.NgayDauThang(DateTime.Now);
             dateChonBD.Properties.MaxValue = AbsentBus.NgayCuoiThang(DateTime.Now).AddDays(-1);
         }
+
         #endregion
 
         #region Chọn nhân viên
@@ -248,49 +280,72 @@ namespace HRM
             SetText(false);
             SetButton(true);
         }
-        private void edit_Click(object sender, EventArgs e)
+
+        private void edit_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
-            _coHieu = 2;
-            if (FromDate != null) _ngayBatDau = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Day;
-            if (ToDate != null) _ngayKetThuc = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate)).Day;
-            SetText(true);
-            luChonNV.Enabled = false;
-            SetButton(false);
-            var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
-            if (absentType != null && absentType != "Có lương")
+            if (DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Month != DateTime.Now.Month ||
+                DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Year != DateTime.Now.Year)
             {
-                rbKhongLuong.Checked = true;
+                XtraMessageBox.Show("Bạn không được sửa nghĩ phép này!");
             }
             else
             {
-                rbCoLuong.Checked = true;
-                if (AbsentDay != null)
-                    _soNgayNghiCoLuong = int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentDay));
-            }
-            if (StaffID != null) luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
-            NgayDaNghi();
-            if (FromDate != null) dateChonBD.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate));
-            if (ToDate != null) dateChonKT.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate));
-            txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
-            if (AbsentDay != null) txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
-        }
-        private void delete_Click(object sender, EventArgs e)
-        {
-            var dialog = XtraMessageBox.Show($"Nhân viên: {gridView1.GetFocusedRowCellDisplayText(StaffName)}" +
-                                             $"\nTừ: {gridView1.GetFocusedRowCellDisplayText(FromDate)}" + $" - đến: {gridView1.GetFocusedRowCellDisplayText(ToDate)}" +
-                                             $"\nNghĩ: {gridView1.GetFocusedRowCellDisplayText(AbsentType)}", "XÓA NGHĨ PHÉP", MessageBoxButtons.YesNo);
-            try
-            {
-                if (dialog == DialogResult.Yes)
+                _coHieu = 2;
+                if (FromDate != null)
+                    _ngayBatDau = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Day;
+                if (ToDate != null) _ngayKetThuc = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate)).Day;
+                SetText(true);
+                luChonNV.Enabled = false;
+                SetButton(false);
+                var absentType = gridView1.GetFocusedRowCellDisplayText(AbsentType);
+                if (absentType != null && absentType != "Có lương")
                 {
-                    AbsentBus.DeleteAbsent(int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentID)));
+                    rbKhongLuong.Checked = true;
                 }
+                else
+                {
+                    rbCoLuong.Checked = true;
+                    if (AbsentDay != null)
+                        _soNgayNghiCoLuong = int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentDay));
+                }
+                if (StaffID != null) luChonNV.EditValue = gridView1.GetFocusedRowCellDisplayText(StaffID);
+                NgayDaNghi();
+                if (FromDate != null)
+                    dateChonBD.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate));
+                if (ToDate != null)
+                    dateChonKT.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate));
+                txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
+                if (AbsentDay != null) txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
             }
-            catch
+        }
+
+        private void delete_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            if (DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Month != DateTime.Now.Month ||
+                DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Year != DateTime.Now.Year)
             {
-                XtraMessageBox.Show("Lỗi xóa!");
+                XtraMessageBox.Show("Bạn không được xóa nghĩ phép này!");
             }
-            ucAbsent_Load(sender, e);
+            else
+            {
+                var dialog = XtraMessageBox.Show($"Nhân viên: {gridView1.GetFocusedRowCellDisplayText(StaffName)}" +
+                                                 $"\nTừ: {gridView1.GetFocusedRowCellDisplayText(FromDate)}" +
+                                                 $" - đến: {gridView1.GetFocusedRowCellDisplayText(ToDate)}" +
+                                                 $"\nNghĩ: {gridView1.GetFocusedRowCellDisplayText(AbsentType)}",
+                    "XÓA NGHĨ PHÉP", MessageBoxButtons.YesNo);
+                try
+                {
+                    if (dialog == DialogResult.Yes)
+                    {
+                        AbsentBus.DeleteAbsent(int.Parse(gridView1.GetFocusedRowCellDisplayText(AbsentID)));
+                    }
+                }
+                catch
+                {
+                    XtraMessageBox.Show("Lỗi xóa!");
+                }
+                ucAbsent_Load(sender, e);
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {

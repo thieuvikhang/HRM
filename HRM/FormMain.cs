@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using AddTab;
+using DAL;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraSplashScreen;
@@ -12,18 +15,46 @@ namespace HRM
     public partial class FormMain : RibbonForm
     {
 
-        readonly TabAdd _clsAddTab = new TabAdd();
+        private readonly TabAdd _clsAddTab = new TabAdd();
+        public static HRMModelDataContext Hrm = new HRMModelDataContext();
         public Session _aSession = new Session();
 
+        #region DEMO
+        public List<ListGroupAccess> ListGroupAcces()
+        {
+            var list = new List<ListGroupAccess>();
+            foreach (var item in Hrm.DetailAccesses.SelectMany(aHmDetailAccesses => Hrm.Accesses,
+                    (aHmDetailAccesses, aHrmAccess) => new { aHmDetailAccesses, aHrmAccess })
+                .Where(t => t.aHmDetailAccesses.GroupAccessID == /*int.Parse(_aSession["groupAccessID"].ToString())*/ 1
+                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessD).Select(t => new
+                             {
+                                 t.aHrmAccess.Form,
+                                 Edit = t.aHrmAccess.Edit == true ? 1 : 0
+                             }))
+            {
+                list.Add(new ListGroupAccess { Form = item.Form, Edit = item.Edit });
+            }
+            return list;
+        }
+        public class ListGroupAccess
+        {
+            public string Form { get; set; }
+            public int Edit { get; set; }
+        }
+
+        #endregion
+
+        #region From Main Load
         public FormMain()
         {
             InitializeComponent();
         }
-        
+
         private void FormMain_Load(object sender, EventArgs e)
         {
 
         }
+        #endregion
 
         #region Các hàm xử lý Tab: Thêm, Đóng, Focus
         private void AddTab(string tabName, UserControl uc)

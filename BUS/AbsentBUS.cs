@@ -32,7 +32,7 @@ namespace BUS
         {
             return
                 _aHrm.Staffs.SelectMany(nv => _aHrm.Absents, (nv, np) => new { nv, np })
-                    .Where(t => t.nv.StaffID == t.np.StaffID)
+                    .Where(t => t.nv.StaffID == t.np.StaffID && t.np.ToDate.Value.Year == DateTime.Now.Year)
                     .Select(t => new
                     {
                         t.np.AbsentID,
@@ -50,20 +50,13 @@ namespace BUS
         /// </summary>
         /// <param name="ngay">Một ngày bất kỳ</param>
         /// <returns>Một ngày đầu của tháng</returns>
-        public DateTime NgayDauThang(DateTime ngay)
-        {
-            return new DateTime(ngay.Year, ngay.Month, 1);
-        }
+        public DateTime NgayDauThang(DateTime ngay) => new DateTime(ngay.Year, ngay.Month, 1);
         /// <summary>
         /// Lấy ra ngày cuối của ngày truyền vào
         /// </summary>
         /// <param name="ngay">Ngày truyền vào</param>
         /// <returns>Ngày cuối tháng</returns>
-        public DateTime NgayCuoiThang(DateTime ngay)
-        {
-            return ngay.AddMonths(1).AddDays(-ngay.Day);
-        }
-
+        public DateTime NgayCuoiThang(DateTime ngay) => ngay.AddMonths(1).AddDays(-ngay.Day);
         /// <summary>
         /// Lấy tổng số ngày chủ nhật
         /// </summary>
