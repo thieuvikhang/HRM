@@ -160,4 +160,19 @@
       <Association Name="Staff_SocialInsurance" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.Age_Range" Method="Age_Range">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.test" Method="test">
+    <ElementType Name="testResult">
+      <Column Name="[&lt; 40]" Member="__40" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[&lt; 20]" Member="__20" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Sp_absent" Method="Sp_absent">
+    <ElementType Name="Sp_absentResult">
+      <Column Name="AbsentType" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

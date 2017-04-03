@@ -215,6 +215,27 @@ namespace DAL
 				return this.GetTable<SocialInsurance>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Age_Range")]
+		public int Age_Range()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.test")]
+		public ISingleResult<testResult> test()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<testResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Sp_absent")]
+		public ISingleResult<Sp_absentResult> Sp_absent()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<Sp_absentResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Absent")]
@@ -3472,6 +3493,94 @@ namespace DAL
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class testResult
+	{
+		
+		private System.Nullable<int> ___40;
+		
+		private System.Nullable<int> ___20;
+		
+		public testResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[< 40]", Storage="___40", DbType="Int")]
+		public System.Nullable<int> @__40
+		{
+			get
+			{
+				return this.___40;
+			}
+			set
+			{
+				if ((this.___40 != value))
+				{
+					this.___40 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[< 20]", Storage="___20", DbType="Int")]
+		public System.Nullable<int> @__20
+		{
+			get
+			{
+				return this.___20;
+			}
+			set
+			{
+				if ((this.___20 != value))
+				{
+					this.___20 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Sp_absentResult
+	{
+		
+		private System.Nullable<bool> _AbsentType;
+		
+		private string _Name;
+		
+		public Sp_absentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbsentType", DbType="Bit")]
+		public System.Nullable<bool> AbsentType
+		{
+			get
+			{
+				return this._AbsentType;
+			}
+			set
+			{
+				if ((this._AbsentType != value))
+				{
+					this._AbsentType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(14) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
 			}
 		}
 	}

@@ -155,9 +155,9 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateChonBD.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
             this.dateChonBD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
-            this.dateChonBD.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)(((((DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearView) 
-            | DevExpress.XtraEditors.VistaCalendarViewStyle.QuarterView) 
-            | DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView) 
+            this.dateChonBD.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)(((((DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearView)
+            | DevExpress.XtraEditors.VistaCalendarViewStyle.QuarterView)
+            | DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView)
             | DevExpress.XtraEditors.VistaCalendarViewStyle.CenturyView)));
             this.dateChonBD.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateChonBD.Size = new System.Drawing.Size(277, 20);
@@ -216,8 +216,8 @@ namespace HRM
             // 
             // txtGhiChu
             // 
-            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGhiChu.Location = new System.Drawing.Point(526, 23);
             this.txtGhiChu.Name = "txtGhiChu";
@@ -350,6 +350,8 @@ namespace HRM
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.FromDate, DevExpress.Data.ColumnSortOrder.Descending)});
             // 
             // StaffID
             // 
@@ -440,7 +442,7 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("edit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.edit.Name = "edit";
             this.edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.edit.Click += new System.EventHandler(this.edit_Click);
+            this.edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.edit_ButtonClick);
             // 
             // Xoa
             // 
@@ -459,7 +461,7 @@ namespace HRM
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("delete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.delete.Name = "delete";
             this.delete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
+            this.delete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.delete_ButtonClick);
             // 
             // UcAbsent
             // 
