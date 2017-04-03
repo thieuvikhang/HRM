@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HRM" Class="HRMModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-CPSQQQU\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Absent" Member="Absents">
     <Type Name="Absent">
       <Column Name="AbsentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -27,6 +27,7 @@
       <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ManagerID" Type="System.String" DbType="Char(6)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="DaysRemain" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PostID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Column Name="SectionID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Association Name="Staff_Absent" Member="Absents" ThisKey="StaffID" OtherKey="StaffID" Type="Absent" />
@@ -78,16 +79,8 @@
       <Column Name="Payment" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="Note" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Column Name="ContractTypeID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="ContractTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Staff_Contract" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
-      <Association Name="ContractType_Contract" Member="ContractType" ThisKey="ContractTypeID" OtherKey="ContractTypeID" Type="ContractType" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ContractType" Member="ContractTypes">
-    <Type Name="ContractType">
-      <Column Name="ContractTypeID" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ContractTypeName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Association Name="ContractType_Contract" Member="Contracts" ThisKey="ContractTypeID" OtherKey="ContractTypeID" Type="Contract" />
     </Type>
   </Table>
   <Table Name="dbo.DaysRemain" Member="DaysRemains">
@@ -95,8 +88,8 @@
       <Column Name="DaysRemainID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="LeaveAYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UsedInYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="StaffID" Type="System.String" DbType="Char(6)" CanBeNull="true" />
       <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Association Name="Staff_DaysRemain" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
     </Type>
   </Table>

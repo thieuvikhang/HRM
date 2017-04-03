@@ -48,9 +48,6 @@ namespace DAL
     partial void InsertContract(Contract instance);
     partial void UpdateContract(Contract instance);
     partial void DeleteContract(Contract instance);
-    partial void InsertContractType(ContractType instance);
-    partial void UpdateContractType(ContractType instance);
-    partial void DeleteContractType(ContractType instance);
     partial void InsertDaysRemain(DaysRemain instance);
     partial void UpdateDaysRemain(DaysRemain instance);
     partial void DeleteDaysRemain(DaysRemain instance);
@@ -78,7 +75,7 @@ namespace DAL
     #endregion
 		
 		public HRMModelDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HRMConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HRMConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -152,14 +149,6 @@ namespace DAL
 			get
 			{
 				return this.GetTable<Contract>();
-			}
-		}
-		
-		public System.Data.Linq.Table<ContractType> ContractTypes
-		{
-			get
-			{
-				return this.GetTable<ContractType>();
 			}
 		}
 		
@@ -507,6 +496,8 @@ namespace DAL
 		
 		private string _Email;
 		
+		private System.Nullable<int> _DaysRemain;
+		
 		private string _PostID;
 		
 		private string _SectionID;
@@ -557,6 +548,8 @@ namespace DAL
     partial void OnManagerIDChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
+    partial void OnDaysRemainChanging(System.Nullable<int> value);
+    partial void OnDaysRemainChanged();
     partial void OnPostIDChanging(string value);
     partial void OnPostIDChanged();
     partial void OnSectionIDChanging(string value);
@@ -832,6 +825,26 @@ namespace DAL
 					this._Email = value;
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysRemain", DbType="Int")]
+		public System.Nullable<int> DaysRemain
+		{
+			get
+			{
+				return this._DaysRemain;
+			}
+			set
+			{
+				if ((this._DaysRemain != value))
+				{
+					this.OnDaysRemainChanging(value);
+					this.SendPropertyChanging();
+					this._DaysRemain = value;
+					this.SendPropertyChanged("DaysRemain");
+					this.OnDaysRemainChanged();
 				}
 			}
 		}
@@ -1661,11 +1674,9 @@ namespace DAL
 		
 		private string _StaffID;
 		
-		private string _ContractTypeID;
+		private int _ContractTypeID;
 		
 		private EntityRef<Staff> _Staff;
-		
-		private EntityRef<ContractType> _ContractType;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1691,14 +1702,13 @@ namespace DAL
     partial void OnNoteChanged();
     partial void OnStaffIDChanging(string value);
     partial void OnStaffIDChanged();
-    partial void OnContractTypeIDChanging(string value);
+    partial void OnContractTypeIDChanging(int value);
     partial void OnContractTypeIDChanged();
     #endregion
 		
 		public Contract()
 		{
 			this._Staff = default(EntityRef<Staff>);
-			this._ContractType = default(EntityRef<ContractType>);
 			OnCreated();
 		}
 		
@@ -1906,8 +1916,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContractTypeID", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string ContractTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContractTypeID", DbType="Int NOT NULL")]
+		public int ContractTypeID
 		{
 			get
 			{
@@ -1917,10 +1927,6 @@ namespace DAL
 			{
 				if ((this._ContractTypeID != value))
 				{
-					if (this._ContractType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnContractTypeIDChanging(value);
 					this.SendPropertyChanging();
 					this._ContractTypeID = value;
@@ -1964,40 +1970,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContractType_Contract", Storage="_ContractType", ThisKey="ContractTypeID", OtherKey="ContractTypeID", IsForeignKey=true)]
-		public ContractType ContractType
-		{
-			get
-			{
-				return this._ContractType.Entity;
-			}
-			set
-			{
-				ContractType previousValue = this._ContractType.Entity;
-				if (((previousValue != value) 
-							|| (this._ContractType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ContractType.Entity = null;
-						previousValue.Contracts.Remove(this);
-					}
-					this._ContractType.Entity = value;
-					if ((value != null))
-					{
-						value.Contracts.Add(this);
-						this._ContractTypeID = value.ContractTypeID;
-					}
-					else
-					{
-						this._ContractTypeID = default(string);
-					}
-					this.SendPropertyChanged("ContractType");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2016,120 +1988,6 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ContractType")]
-	public partial class ContractType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _ContractTypeID;
-		
-		private string _ContractTypeName;
-		
-		private EntitySet<Contract> _Contracts;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnContractTypeIDChanging(string value);
-    partial void OnContractTypeIDChanged();
-    partial void OnContractTypeNameChanging(string value);
-    partial void OnContractTypeNameChanged();
-    #endregion
-		
-		public ContractType()
-		{
-			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContractTypeID", DbType="Char(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ContractTypeID
-		{
-			get
-			{
-				return this._ContractTypeID;
-			}
-			set
-			{
-				if ((this._ContractTypeID != value))
-				{
-					this.OnContractTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._ContractTypeID = value;
-					this.SendPropertyChanged("ContractTypeID");
-					this.OnContractTypeIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContractTypeName", DbType="NVarChar(20)")]
-		public string ContractTypeName
-		{
-			get
-			{
-				return this._ContractTypeName;
-			}
-			set
-			{
-				if ((this._ContractTypeName != value))
-				{
-					this.OnContractTypeNameChanging(value);
-					this.SendPropertyChanging();
-					this._ContractTypeName = value;
-					this.SendPropertyChanged("ContractTypeName");
-					this.OnContractTypeNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContractType_Contract", Storage="_Contracts", ThisKey="ContractTypeID", OtherKey="ContractTypeID")]
-		public EntitySet<Contract> Contracts
-		{
-			get
-			{
-				return this._Contracts;
-			}
-			set
-			{
-				this._Contracts.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.ContractType = this;
-		}
-		
-		private void detach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.ContractType = null;
 		}
 	}
 	
@@ -2145,9 +2003,9 @@ namespace DAL
 		
 		private System.Nullable<int> _UsedInYear;
 		
-		private string _StaffID;
-		
 		private System.Nullable<int> _Year;
+		
+		private string _StaffID;
 		
 		private EntityRef<Staff> _Staff;
 		
@@ -2161,10 +2019,10 @@ namespace DAL
     partial void OnLeaveAYearChanged();
     partial void OnUsedInYearChanging(System.Nullable<int> value);
     partial void OnUsedInYearChanged();
-    partial void OnStaffIDChanging(string value);
-    partial void OnStaffIDChanged();
     partial void OnYearChanging(System.Nullable<int> value);
     partial void OnYearChanged();
+    partial void OnStaffIDChanging(string value);
+    partial void OnStaffIDChanged();
     #endregion
 		
 		public DaysRemain()
@@ -2233,7 +2091,27 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false)]
 		public string StaffID
 		{
 			get
@@ -2253,26 +2131,6 @@ namespace DAL
 					this._StaffID = value;
 					this.SendPropertyChanged("StaffID");
 					this.OnStaffIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
-		public System.Nullable<int> Year
-		{
-			get
-			{
-				return this._Year;
-			}
-			set
-			{
-				if ((this._Year != value))
-				{
-					this.OnYearChanging(value);
-					this.SendPropertyChanging();
-					this._Year = value;
-					this.SendPropertyChanged("Year");
-					this.OnYearChanged();
 				}
 			}
 		}
