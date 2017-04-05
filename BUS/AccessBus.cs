@@ -13,7 +13,7 @@ namespace BUS
             var list = (from aHmDetailAccesses in _aHrm.DetailAccesses
                         from aHrmAccess in _aHrm.Accesses
                         where aHmDetailAccesses.GroupAccessID == groupAccessId
-                        && aHrmAccess.AccessID == aHmDetailAccesses.AccessD
+                        && aHrmAccess.AccessID == aHmDetailAccesses.AccessID
                         select new
                         {
                             aHrmAccess.Form,

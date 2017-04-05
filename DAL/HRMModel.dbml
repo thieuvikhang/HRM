@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HRM" Class="HRMModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-CPSQQQU\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-PK221FL\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Absent" Member="Absents">
     <Type Name="Absent">
       <Column Name="AbsentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -46,7 +46,6 @@
       <Column Name="Form" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="Edit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DescriptionAccess" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Access_DetailAccess" Member="DetailAccesses" ThisKey="AccessID" OtherKey="AccessD" Type="DetailAccess" />
     </Type>
   </Table>
   <Table Name="dbo.Account" Member="Accounts">
@@ -95,9 +94,8 @@
   </Table>
   <Table Name="dbo.DetailAccess" Member="DetailAccesses">
     <Type Name="DetailAccess">
-      <Column Name="AccessD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccessID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Access_DetailAccess" Member="Access" ThisKey="AccessD" OtherKey="AccessID" Type="Access" IsForeignKey="true" />
       <Association Name="GroupAccess_DetailAccess" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
     </Type>
   </Table>

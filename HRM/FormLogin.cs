@@ -83,7 +83,7 @@ namespace HRM
                 _aSession["ListGroupAccess"] = (from aHmDetailAccesses in hrm.DetailAccesses
                                                 from aHrmAccess in hrm.Accesses
                                                 where aHmDetailAccesses.GroupAccessID == _anAccount.GroupAccessID
-                                                      && aHrmAccess.AccessID == aHmDetailAccesses.AccessD
+                                                      && aHrmAccess.AccessID == aHmDetailAccesses.AccessID
                                                 select new
                                                 {
                                                     aHrmAccess.Form,
@@ -96,9 +96,10 @@ namespace HRM
                 //đưa tất cả biến aSession ở trên vào biến getsession ở form newfrmlogin
                 //sau đó show form lên và xem kết quả
                 //newfrmlogin.ShowDialog();
+                Hide();
                 FormMain frmain = new FormMain { _aSession = _aSession };
                 frmain.ShowDialog();
-
+                
                 //test thử sau khi đã gửi session bên form này qua form kia rồi
                 //ta clear session ở form này
                 //xem thử nó sẽ thế nào nha
