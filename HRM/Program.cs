@@ -18,6 +18,20 @@ namespace HRM
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new FormLogin());}
+            //Application.Run(new FormLogin());
+
+
+            FormLogin fLogin = new FormLogin();
+            if (fLogin.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new FormMain());
+            }
+            else
+            {
+                Application.Exit();
+            }
+
+
+        }
     }
 }

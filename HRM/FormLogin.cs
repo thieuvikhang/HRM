@@ -6,6 +6,7 @@ using BUS;
 using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.Xpo;
+using System.Collections.Generic;
 
 namespace HRM
 {
@@ -13,12 +14,13 @@ namespace HRM
     {
         readonly HRMModelDataContext hrm = new HRMModelDataContext();
         readonly AccountBus _anAccountBus = new AccountBus();
-        readonly Session _aSession = new Session(); 
+        public Session _aSession = new Session(); 
         Account _anAccount = new Account();
         GroupAccess _aGroupAccess = new GroupAccess();
         Access _anAccess = new Access();
         Staff _aStaff = new Staff();
         ExtendBus newExtendBus = new ExtendBus();
+        
 
         public FormLogin()
         {
@@ -89,21 +91,9 @@ namespace HRM
                                                     aHrmAccess.Form,
                                                     aHrmAccess.Edit
                                                 }).ToList();
-                //Gọi tới form newlogin
-                //trong form newlogin mình có tạo 1 biến sesstion getsession
-                //(form này Cường mới tạo thêm để demo về session) m.nTham khảo  
-                //var newfrmlogin = new demoSession {getsession = _aSession};
-                //đưa tất cả biến aSession ở trên vào biến getsession ở form newfrmlogin
-                //sau đó show form lên và xem kết quả
-                //newfrmlogin.ShowDialog();
-                FormMain frmain = new FormMain { _aSession = _aSession };
-                frmain.ShowDialog();
-
-                //test thử sau khi đã gửi session bên form này qua form kia rồi
-                //ta clear session ở form này
-                //xem thử nó sẽ thế nào nha
-                _aSession.Clear();
-                lblThongBao.Text = "";
+                this.Dispose();
+                FormMain frmain = new FormMain{ _aSessionfrmmain = _aSession };
+                frmain.ShowDialog(); 
             }
             else
             {
@@ -113,7 +103,12 @@ namespace HRM
 
         private void FormLogin_Load(object sender, EventArgs e)
         { 
-            //gsf
+            
+        }
+
+        private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

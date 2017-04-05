@@ -17,8 +17,9 @@ namespace HRM
 
         private readonly TabAdd _clsAddTab = new TabAdd();
         public static HRMModelDataContext Hrm = new HRMModelDataContext();
-        public Session _aSession = new Session();
-
+        public Session _aSessionfrmmain = new Session();
+        FormLogin frmlogin = new FormLogin();
+        List<Form> openForms = new List<Form>();
         #region DEMO
         public List<ListGroupAccess> ListGroupAcces()
         {
@@ -52,7 +53,7 @@ namespace HRM
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
+            label1.Text = _aSessionfrmmain["staffName"].ToString();
         }
         #endregion
 
@@ -170,8 +171,24 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Thông tin nhân viên", new UCStaffInfo{ _aSession = _aSession });
+            AddTab("Thông tin nhân viên", new UCStaffInfo{ _aSession = _aSessionfrmmain });
         }
         #endregion
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //show form login
+           
+            FormLogin frmlogin = new FormLogin();
+            frmlogin.Show();
+            this.Close();
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            FormLogin frmlogin = new FormLogin();
+            frmlogin.ShowDialog(); 
+        }
     }
 }
