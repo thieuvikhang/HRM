@@ -102,11 +102,13 @@ namespace HRM
             // 
             // txtPass
             // 
+            this.txtPass.EditValue = "";
             this.txtPass.Location = new System.Drawing.Point(117, 79);
             this.txtPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPass.Name = "txtPass";
             this.txtPass.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtPass.Properties.Appearance.Options.UseFont = true;
+            this.txtPass.Properties.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(239, 24);
             this.txtPass.TabIndex = 3;
             // 
