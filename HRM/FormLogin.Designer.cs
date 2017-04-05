@@ -64,14 +64,14 @@ namespace HRM
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(411, 184);
+            this.panelControl1.Size = new System.Drawing.Size(377, 190);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
             // lblThongBaoNhapMatKhau
             // 
             this.lblThongBaoNhapMatKhau.AutoSize = true;
-            this.lblThongBaoNhapMatKhau.Location = new System.Drawing.Point(117, 137);
+            this.lblThongBaoNhapMatKhau.Location = new System.Drawing.Point(121, 137);
             this.lblThongBaoNhapMatKhau.Name = "lblThongBaoNhapMatKhau";
             this.lblThongBaoNhapMatKhau.Size = new System.Drawing.Size(25, 13);
             this.lblThongBaoNhapMatKhau.TabIndex = 7;
@@ -80,7 +80,7 @@ namespace HRM
             // lblThongBaoNhapTaiKhoan
             // 
             this.lblThongBaoNhapTaiKhoan.AutoSize = true;
-            this.lblThongBaoNhapTaiKhoan.Location = new System.Drawing.Point(120, 67);
+            this.lblThongBaoNhapTaiKhoan.Location = new System.Drawing.Point(124, 67);
             this.lblThongBaoNhapTaiKhoan.Name = "lblThongBaoNhapTaiKhoan";
             this.lblThongBaoNhapTaiKhoan.Size = new System.Drawing.Size(22, 13);
             this.lblThongBaoNhapTaiKhoan.TabIndex = 7;
@@ -91,7 +91,7 @@ namespace HRM
             this.labelForgot.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelForgot.Appearance.ForeColor = System.Drawing.SystemColors.GrayText;
             this.labelForgot.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelForgot.Location = new System.Drawing.Point(117, 154);
+            this.labelForgot.Location = new System.Drawing.Point(117, 159);
             this.labelForgot.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelForgot.Name = "labelForgot";
             this.labelForgot.Size = new System.Drawing.Size(109, 18);
@@ -107,7 +107,7 @@ namespace HRM
             this.btnLogin.Appearance.Options.UseFont = true;
             this.btnLogin.Location = new System.Drawing.Point(246, 143);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(110, 29);
+            this.btnLogin.Size = new System.Drawing.Size(110, 42);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -115,7 +115,7 @@ namespace HRM
             // txtPass
             // 
             this.txtPass.EditValue = "";
-            this.txtPass.Location = new System.Drawing.Point(117, 109);
+            this.txtPass.Location = new System.Drawing.Point(121, 109);
             this.txtPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPass.Name = "txtPass";
             this.txtPass.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -129,7 +129,7 @@ namespace HRM
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl2.Location = new System.Drawing.Point(117, 83);
+            this.labelControl2.Location = new System.Drawing.Point(121, 83);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(61, 18);
@@ -151,7 +151,7 @@ namespace HRM
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl1.Location = new System.Drawing.Point(117, 13);
+            this.labelControl1.Location = new System.Drawing.Point(121, 13);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(64, 18);
@@ -177,7 +177,7 @@ namespace HRM
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 184);
+            this.ClientSize = new System.Drawing.Size(377, 190);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
