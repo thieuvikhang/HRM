@@ -36,9 +36,11 @@ namespace BUS
         /// <param name="staffId">Mã nhân viên</param>
         /// <param name="dayRemain">Số ngày nghĩ</param>
         /// <param name="year">Năm</param>
+        /// <param name="loai"></param>
         /// <returns>True là thành công</returns>
-        public bool AddOrUpdateDaysRemain(string staffId, int dayRemain, int year)
+        public bool AddOrUpdateDaysRemain(string staffId, int dayRemain, int year, bool loai)
         {
+            if (loai == false) return true;
             if (staffId == null || dayRemain <= 0 || year < 2000 || dayRemain > _soNgayNghiQuyDinh) return false;
             try
             {

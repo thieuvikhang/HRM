@@ -13,16 +13,15 @@ using BUS;
 
 namespace HRM
 {
-    public partial class UCStaffInfo : UserControl
+    public partial class UcStaffInfo : UserControl
     {
+        private readonly HRMModelDataContext _hrm = new HRMModelDataContext();
+        public Session ASession = new Session();
+        private readonly ExtendBus _newExtend = new ExtendBus();
+        private readonly AccountBus _newAccountBus = new AccountBus();
+        public bool CheckChooseChangePass;
 
-        HRMModelDataContext _HRM = new HRMModelDataContext();
-        public Session _aSession = new Session();
-        ExtendBus newExtend = new ExtendBus();
-        AccountBus newAccountBus = new AccountBus();
-        bool checkChooseChangePass = false;
-
-        public UCStaffInfo()
+        public UcStaffInfo()
         {
             InitializeComponent();
         }
@@ -53,7 +52,7 @@ namespace HRM
 
         private void UCStaffInfo_Load(object sender, EventArgs e)
         {
-            string idStaff = _aSession["staffID"].ToString();
+            string idStaff = ASession["staffID"].ToString();
             lblShowIDStaff.Text = idStaff;
 
             panChangePassword.Enabled = false;
@@ -63,16 +62,16 @@ namespace HRM
         {
             //khai bao cac bien can dùng
             string passwordInput = txtAgainPassword.Text;
-            string passwordEncrypt = newExtend.GetMd5(passwordInput);
+            string passwordEncrypt = _newExtend.GetMd5(passwordInput);
             bool checkChangepass = false;
-            string idStaff = _aSession["staffID"].ToString();
+            string idStaff = ASession["staffID"].ToString();
             int accountID = 0;
-            Account AccountOnline = _HRM.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
+            Account AccountOnline = _hrm.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
 
             accountID = AccountOnline.AccID;
             passwordEncrypt = passwordEncrypt.Substring(0, 26);
 
-            checkChangepass = newAccountBus.EditPassword(accountID, passwordEncrypt);
+            checkChangepass = _newAccountBus.EditPassword(accountID, passwordEncrypt);
 
             if (checkChangepass == true)
             { 
@@ -93,14 +92,14 @@ namespace HRM
             string chon = btnChangePassword.Text;
             lblThongBao.Text = "";
             if (chon == "Đổi mật khẩu") {
-                checkChooseChangePass = false;
+                CheckChooseChangePass = false;
                 panChangePassword.Enabled = false;
                 btnChangePassword.ForeColor = Color.Black;
                 lblTrangThai.Text = "Đã hủy đỏi mật khẩu.";
             } 
             if(chon == "Hủy đổi mật khẩu")
             { 
-                checkChooseChangePass = true;
+                CheckChooseChangePass = true;
                 panChangePassword.Enabled = true;
                 setTextbox();
                 btnCheckError.Enabled = false;
@@ -180,13 +179,13 @@ namespace HRM
         void CheckInputError()
         {
             string oldPassword = txtOldPassword.EditValue.ToString();
-            string oldPasswordEncrypt = newExtend.GetMd5(oldPassword);
+            string oldPasswordEncrypt = _newExtend.GetMd5(oldPassword);
             oldPasswordEncrypt = oldPasswordEncrypt.Substring(0, 26);
             string newPassword = txtNewpassword.EditValue.ToString();
             string againPassword = txtAgainPassword.EditValue.ToString();
-            string idStaff = _aSession["staffID"].ToString();
+            string idStaff = ASession["staffID"].ToString();
             Account acc = new Account();
-            acc = newAccountBus.getpass(idStaff);
+            acc = _newAccountBus.getpass(idStaff);
             string passworddAccout = acc.Password;
             passworddAccout = passworddAccout.Trim();
             lblShowPassStaff.Text = passworddAccout;

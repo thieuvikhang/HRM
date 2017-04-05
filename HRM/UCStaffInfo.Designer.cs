@@ -1,6 +1,6 @@
 ﻿namespace HRM
 {
-    partial class UCStaffInfo
+    partial class UcStaffInfo
     {
         /// <summary> 
         /// Required designer variable.
@@ -562,7 +562,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
-            this.Name = "UCStaffInfo";
+            this.Name = "UcStaffInfo";
             this.Size = new System.Drawing.Size(992, 515);
             this.Load += new System.EventHandler(this.UCStaffInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
