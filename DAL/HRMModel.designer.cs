@@ -75,7 +75,7 @@ namespace DAL
     #endregion
 		
 		public HRMModelDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HRMConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HRMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1171,8 +1171,6 @@ namespace DAL
 		
 		private string _DescriptionAccess;
 		
-		private EntitySet<DetailAccess> _DetailAccesses;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1189,7 +1187,6 @@ namespace DAL
 		
 		public Access()
 		{
-			this._DetailAccesses = new EntitySet<DetailAccess>(new Action<DetailAccess>(this.attach_DetailAccesses), new Action<DetailAccess>(this.detach_DetailAccesses));
 			OnCreated();
 		}
 		
@@ -1273,19 +1270,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_DetailAccesses", ThisKey="AccessID", OtherKey="AccessID")]
-		public EntitySet<DetailAccess> DetailAccesses
-		{
-			get
-			{
-				return this._DetailAccesses;
-			}
-			set
-			{
-				this._DetailAccesses.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1304,18 +1288,6 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_DetailAccesses(DetailAccess entity)
-		{
-			this.SendPropertyChanging();
-			entity.Access = this;
-		}
-		
-		private void detach_DetailAccesses(DetailAccess entity)
-		{
-			this.SendPropertyChanging();
-			entity.Access = null;
 		}
 	}
 	
@@ -2221,8 +2193,6 @@ namespace DAL
 		
 		private int _GroupAccessID;
 		
-		private EntityRef<Access> _Access;
-		
 		private EntityRef<GroupAccess> _GroupAccess;
 		
     #region Extensibility Method Definitions
@@ -2237,7 +2207,6 @@ namespace DAL
 		
 		public DetailAccess()
 		{
-			this._Access = default(EntityRef<Access>);
 			this._GroupAccess = default(EntityRef<GroupAccess>);
 			OnCreated();
 		}
@@ -2253,10 +2222,6 @@ namespace DAL
 			{
 				if ((this._AccessID != value))
 				{
-					if (this._Access.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAccessIDChanging(value);
 					this.SendPropertyChanging();
 					this._AccessID = value;
@@ -2286,40 +2251,6 @@ namespace DAL
 					this._GroupAccessID = value;
 					this.SendPropertyChanged("GroupAccessID");
 					this.OnGroupAccessIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_Access", ThisKey="AccessID", OtherKey="AccessID", IsForeignKey=true)]
-		public Access Access
-		{
-			get
-			{
-				return this._Access.Entity;
-			}
-			set
-			{
-				Access previousValue = this._Access.Entity;
-				if (((previousValue != value) 
-							|| (this._Access.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Access.Entity = null;
-						previousValue.DetailAccesses.Remove(this);
-					}
-					this._Access.Entity = value;
-					if ((value != null))
-					{
-						value.DetailAccesses.Add(this);
-						this._AccessID = value.AccessID;
-					}
-					else
-					{
-						this._AccessID = default(int);
-					}
-					this.SendPropertyChanged("Access");
 				}
 			}
 		}

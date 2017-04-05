@@ -69,7 +69,6 @@ namespace HRM
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.ApplicationIcon = global::HRM.Properties.Resources._1491161269_teddy_bear_toy_5;
             this.ribbonControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {

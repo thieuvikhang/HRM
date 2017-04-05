@@ -2,15 +2,122 @@
 <xs:schema id="HRMDataSet" targetNamespace="http://tempuri.org/HRMDataSet.xsd" xmlns:mstns="http://tempuri.org/HRMDataSet.xsd" xmlns="http://tempuri.org/HRMDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="HRMConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="HRMConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HRM.Properties.Settings.GlobalReference.Default.HRMConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="HRMConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="HRMConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HRM.Properties.Settings.GlobalReference.Default.HRMConnectionString1" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="HRMConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="HRMConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HRM.Properties.Settings.GlobalReference.Default.HRMConnectionString2" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PivotTableAdapter" GeneratorDataComponentClassName="PivotTableAdapter" Name="Pivot" UserDataComponentName="PivotTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="HRMConnectionString2 (Settings)" DbObjectName="HRM.dbo.[Pivot]" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT StaffName, BasicPay, SalaryMonth, Workdays, Allowance, RealPay, SectionName FROM dbo.[Pivot]</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StaffName" DataSetColumn="StaffName" />
+              <Mapping SourceColumn="BasicPay" DataSetColumn="BasicPay" />
+              <Mapping SourceColumn="SalaryMonth" DataSetColumn="SalaryMonth" />
+              <Mapping SourceColumn="Workdays" DataSetColumn="Workdays" />
+              <Mapping SourceColumn="Allowance" DataSetColumn="Allowance" />
+              <Mapping SourceColumn="RealPay" DataSetColumn="RealPay" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ContractRpTableAdapter" GeneratorDataComponentClassName="ContractRpTableAdapter" Name="ContractRp" UserDataComponentName="ContractRpTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="HRMConnectionString2 (Settings)" DbObjectName="HRM.dbo.ContractRp" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ContractID, StaffName, BasicPay, Date, StartDate, EndDate, ContractTypeID FROM dbo.ContractRp</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ContractID" DataSetColumn="ContractID" />
+              <Mapping SourceColumn="StaffName" DataSetColumn="StaffName" />
+              <Mapping SourceColumn="BasicPay" DataSetColumn="BasicPay" />
+              <Mapping SourceColumn="Date" DataSetColumn="Date" />
+              <Mapping SourceColumn="StartDate" DataSetColumn="StartDate" />
+              <Mapping SourceColumn="EndDate" DataSetColumn="EndDate" />
+              <Mapping SourceColumn="ContractTypeID" DataSetColumn="ContractTypeID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NewEmployeesTableAdapter" GeneratorDataComponentClassName="NewEmployeesTableAdapter" Name="NewEmployees" UserDataComponentName="NewEmployeesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="HRMConnectionString2 (Settings)" DbObjectName="HRM.dbo.NewEmployees" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT StaffID, StaffName, Gender, BirthDay, SectionName, PostName, Education, StartDate, Phone FROM dbo.NewEmployees</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StaffID" DataSetColumn="StaffID" />
+              <Mapping SourceColumn="StaffName" DataSetColumn="StaffName" />
+              <Mapping SourceColumn="Gender" DataSetColumn="Gender" />
+              <Mapping SourceColumn="BirthDay" DataSetColumn="BirthDay" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+              <Mapping SourceColumn="PostName" DataSetColumn="PostName" />
+              <Mapping SourceColumn="Education" DataSetColumn="Education" />
+              <Mapping SourceColumn="StartDate" DataSetColumn="StartDate" />
+              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="testTableAdapter" GeneratorDataComponentClassName="testTableAdapter" Name="test" UserDataComponentName="testTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="HRMConnectionString2 (Settings)" DbObjectName="HRM.dbo.test" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.test</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="&lt; 40" DataSetColumn="&lt; 40" />
+              <Mapping SourceColumn="&lt; 20" DataSetColumn="&lt; 20" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Sp_absentTableAdapter" GeneratorDataComponentClassName="Sp_absentTableAdapter" Name="Sp_absent" UserDataComponentName="Sp_absentTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="HRMConnectionString2 (Settings)" DbObjectName="HRM.dbo.Sp_absent" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.Sp_absent</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="AbsentType" DataSetColumn="AbsentType" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CateAgeTableAdapter" GeneratorDataComponentClassName="CateAgeTableAdapter" Name="CateAge" UserDataComponentName="CateAgeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HRMConnectionString (Settings)" DbObjectName="HRM.dbo.CateAge" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="HRMConnectionString2 (Settings)" DbObjectName="HRM.dbo.CateAge" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[CateAge] WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_mount = 1 AND [mount] IS NULL) OR ([mount] = @Original_mount)))</CommandText>
@@ -65,77 +172,9 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NewEmployeesTableAdapter" GeneratorDataComponentClassName="NewEmployeesTableAdapter" Name="NewEmployees" UserDataComponentName="NewEmployeesTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="HRMConnectionString (Settings)" DbObjectName="HRM.dbo.NewEmployees" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT StaffID, StaffName, Gender, BirthDay, SectionName, PostName, Education, StartDate, Phone FROM dbo.NewEmployees</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="StaffID" DataSetColumn="StaffID" />
-              <Mapping SourceColumn="StaffName" DataSetColumn="StaffName" />
-              <Mapping SourceColumn="Gender" DataSetColumn="Gender" />
-              <Mapping SourceColumn="BirthDay" DataSetColumn="BirthDay" />
-              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
-              <Mapping SourceColumn="PostName" DataSetColumn="PostName" />
-              <Mapping SourceColumn="Education" DataSetColumn="Education" />
-              <Mapping SourceColumn="StartDate" DataSetColumn="StartDate" />
-              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PivotTableAdapter" GeneratorDataComponentClassName="PivotTableAdapter" Name="Pivot" UserDataComponentName="PivotTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="HRMConnectionString (Settings)" DbObjectName="HRM.dbo.[Pivot]" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT StaffName, BasicPay, SalaryMonth, Workdays, Allowance, RealPay, SectionName FROM dbo.[Pivot]</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="StaffName" DataSetColumn="StaffName" />
-              <Mapping SourceColumn="BasicPay" DataSetColumn="BasicPay" />
-              <Mapping SourceColumn="SalaryMonth" DataSetColumn="SalaryMonth" />
-              <Mapping SourceColumn="Workdays" DataSetColumn="Workdays" />
-              <Mapping SourceColumn="Allowance" DataSetColumn="Allowance" />
-              <Mapping SourceColumn="RealPay" DataSetColumn="RealPay" />
-              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ContractRpTableAdapter" GeneratorDataComponentClassName="ContractRpTableAdapter" Name="ContractRp" UserDataComponentName="ContractRpTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="HRMConnectionString (Settings)" DbObjectName="HRM.dbo.ContractRp" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ContractID, StaffName, BasicPay, Date, StartDate, EndDate, ContractTypeID FROM dbo.ContractRp</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ContractID" DataSetColumn="ContractID" />
-              <Mapping SourceColumn="StaffName" DataSetColumn="StaffName" />
-              <Mapping SourceColumn="BasicPay" DataSetColumn="BasicPay" />
-              <Mapping SourceColumn="Date" DataSetColumn="Date" />
-              <Mapping SourceColumn="StartDate" DataSetColumn="StartDate" />
-              <Mapping SourceColumn="EndDate" DataSetColumn="EndDate" />
-              <Mapping SourceColumn="ContractTypeID" DataSetColumn="ContractTypeID" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
         </Tables>
         <Sources>
-          <DbSource ConnectionRef="HRMConnectionString (Settings)" DbObjectName="HRM.dbo.Age_Range" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Age_Range" MethodsParameterType="CLR" Modifier="Public" Name="Age_Range" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Age_Range">
+          <DbSource ConnectionRef="HRMConnectionString2 (Settings)" DbObjectName="HRM.dbo.Age_Range" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Age_Range" MethodsParameterType="CLR" Modifier="Public" Name="Age_Range" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Age_Range">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.Age_Range</CommandText>
@@ -152,18 +191,53 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
   <xs:element name="HRMDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="HRMDataSet" msprop:Generator_UserDSName="HRMDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CateAge" msprop:Generator_TableClassName="CateAgeDataTable" msprop:Generator_TableVarName="tableCateAge" msprop:Generator_TablePropName="CateAge" msprop:Generator_RowDeletingName="CateAgeRowDeleting" msprop:Generator_RowChangingName="CateAgeRowChanging" msprop:Generator_RowEvHandlerName="CateAgeRowChangeEventHandler" msprop:Generator_RowDeletedName="CateAgeRowDeleted" msprop:Generator_UserTableName="CateAge" msprop:Generator_RowChangedName="CateAgeRowChanged" msprop:Generator_RowEvArgName="CateAgeRowChangeEvent" msprop:Generator_RowClassName="CateAgeRow">
+        <xs:element name="Pivot" msprop:Generator_TableClassName="PivotDataTable" msprop:Generator_TableVarName="tablePivot" msprop:Generator_TablePropName="Pivot" msprop:Generator_RowDeletingName="PivotRowDeleting" msprop:Generator_RowChangingName="PivotRowChanging" msprop:Generator_RowEvHandlerName="PivotRowChangeEventHandler" msprop:Generator_RowDeletedName="PivotRowDeleted" msprop:Generator_UserTableName="Pivot" msprop:Generator_RowChangedName="PivotRowChanged" msprop:Generator_RowEvArgName="PivotRowChangeEvent" msprop:Generator_RowClassName="PivotRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
-              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+              <xs:element name="StaffName" msprop:Generator_ColumnVarNameInTable="columnStaffName" msprop:Generator_ColumnPropNameInRow="StaffName" msprop:Generator_ColumnPropNameInTable="StaffNameColumn" msprop:Generator_UserColumnName="StaffName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
+                    <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="mount" msprop:Generator_ColumnVarNameInTable="columnmount" msprop:Generator_ColumnPropNameInRow="mount" msprop:Generator_ColumnPropNameInTable="mountColumn" msprop:Generator_UserColumnName="mount" type="xs:int" minOccurs="0" />
+              <xs:element name="BasicPay" msprop:Generator_ColumnVarNameInTable="columnBasicPay" msprop:Generator_ColumnPropNameInRow="BasicPay" msprop:Generator_ColumnPropNameInTable="BasicPayColumn" msprop:Generator_UserColumnName="BasicPay" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SalaryMonth" msprop:Generator_ColumnVarNameInTable="columnSalaryMonth" msprop:Generator_ColumnPropNameInRow="SalaryMonth" msprop:Generator_ColumnPropNameInTable="SalaryMonthColumn" msprop:Generator_UserColumnName="SalaryMonth" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Workdays" msprop:Generator_ColumnVarNameInTable="columnWorkdays" msprop:Generator_ColumnPropNameInRow="Workdays" msprop:Generator_ColumnPropNameInTable="WorkdaysColumn" msprop:Generator_UserColumnName="Workdays" type="xs:int" minOccurs="0" />
+              <xs:element name="Allowance" msprop:Generator_ColumnVarNameInTable="columnAllowance" msprop:Generator_ColumnPropNameInRow="Allowance" msprop:Generator_ColumnPropNameInTable="AllowanceColumn" msprop:Generator_UserColumnName="Allowance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RealPay" msprop:Generator_ColumnVarNameInTable="columnRealPay" msprop:Generator_ColumnPropNameInRow="RealPay" msprop:Generator_ColumnPropNameInTable="RealPayColumn" msprop:Generator_UserColumnName="RealPay" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ContractRp" msprop:Generator_TableClassName="ContractRpDataTable" msprop:Generator_TableVarName="tableContractRp" msprop:Generator_TablePropName="ContractRp" msprop:Generator_RowDeletingName="ContractRpRowDeleting" msprop:Generator_RowChangingName="ContractRpRowChanging" msprop:Generator_RowEvHandlerName="ContractRpRowChangeEventHandler" msprop:Generator_RowDeletedName="ContractRpRowDeleted" msprop:Generator_UserTableName="ContractRp" msprop:Generator_RowChangedName="ContractRpRowChanged" msprop:Generator_RowEvArgName="ContractRpRowChangeEvent" msprop:Generator_RowClassName="ContractRpRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ContractID" msprop:Generator_ColumnVarNameInTable="columnContractID" msprop:Generator_ColumnPropNameInRow="ContractID" msprop:Generator_ColumnPropNameInTable="ContractIDColumn" msprop:Generator_UserColumnName="ContractID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StaffName" msprop:Generator_ColumnVarNameInTable="columnStaffName" msprop:Generator_ColumnPropNameInRow="StaffName" msprop:Generator_ColumnPropNameInTable="StaffNameColumn" msprop:Generator_UserColumnName="StaffName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BasicPay" msprop:Generator_ColumnVarNameInTable="columnBasicPay" msprop:Generator_ColumnPropNameInRow="BasicPay" msprop:Generator_ColumnPropNameInTable="BasicPayColumn" msprop:Generator_UserColumnName="BasicPay" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="StartDate" msprop:Generator_ColumnVarNameInTable="columnStartDate" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_UserColumnName="StartDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_UserColumnName="EndDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ContractTypeID" msprop:Generator_ColumnVarNameInTable="columnContractTypeID" msprop:Generator_ColumnPropNameInRow="ContractTypeID" msprop:Generator_ColumnPropNameInTable="ContractTypeIDColumn" msprop:Generator_UserColumnName="ContractTypeID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -218,69 +292,56 @@ SELECT id, name, mount FROM CateAge WHERE (id = @id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Pivot" msprop:Generator_TableClassName="PivotDataTable" msprop:Generator_TableVarName="tablePivot" msprop:Generator_RowChangedName="PivotRowChanged" msprop:Generator_TablePropName="Pivot" msprop:Generator_RowDeletingName="PivotRowDeleting" msprop:Generator_RowChangingName="PivotRowChanging" msprop:Generator_RowEvHandlerName="PivotRowChangeEventHandler" msprop:Generator_RowDeletedName="PivotRowDeleted" msprop:Generator_RowClassName="PivotRow" msprop:Generator_UserTableName="Pivot" msprop:Generator_RowEvArgName="PivotRowChangeEvent">
+        <xs:element name="test" msprop:Generator_TableClassName="testDataTable" msprop:Generator_TableVarName="tabletest" msprop:Generator_TablePropName="test" msprop:Generator_RowDeletingName="testRowDeleting" msprop:Generator_RowChangingName="testRowChanging" msprop:Generator_RowEvHandlerName="testRowChangeEventHandler" msprop:Generator_RowDeletedName="testRowDeleted" msprop:Generator_UserTableName="test" msprop:Generator_RowChangedName="testRowChanged" msprop:Generator_RowEvArgName="testRowChangeEvent" msprop:Generator_RowClassName="testRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="StaffName" msprop:Generator_ColumnVarNameInTable="columnStaffName" msprop:Generator_ColumnPropNameInRow="StaffName" msprop:Generator_ColumnPropNameInTable="StaffNameColumn" msprop:Generator_UserColumnName="StaffName" minOccurs="0">
+              <xs:element name="_x003C__x0020_40" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="_column__40" msprop:Generator_ColumnPropNameInRow="___40" msprop:Generator_ColumnPropNameInTable="___40Column" msprop:Generator_UserColumnName="&lt; 40" type="xs:int" minOccurs="0" />
+              <xs:element name="_x003C__x0020_20" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="_column__20" msprop:Generator_ColumnPropNameInRow="___20" msprop:Generator_ColumnPropNameInTable="___20Column" msprop:Generator_UserColumnName="&lt; 20" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Sp_absent" msprop:Generator_TableClassName="Sp_absentDataTable" msprop:Generator_TableVarName="tableSp_absent" msprop:Generator_TablePropName="Sp_absent" msprop:Generator_RowDeletingName="Sp_absentRowDeleting" msprop:Generator_RowChangingName="Sp_absentRowChanging" msprop:Generator_RowEvHandlerName="Sp_absentRowChangeEventHandler" msprop:Generator_RowDeletedName="Sp_absentRowDeleted" msprop:Generator_UserTableName="Sp_absent" msprop:Generator_RowChangedName="Sp_absentRowChanged" msprop:Generator_RowEvArgName="Sp_absentRowChangeEvent" msprop:Generator_RowClassName="Sp_absentRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AbsentType" msprop:Generator_ColumnVarNameInTable="columnAbsentType" msprop:Generator_ColumnPropNameInRow="AbsentType" msprop:Generator_ColumnPropNameInTable="AbsentTypeColumn" msprop:Generator_UserColumnName="AbsentType" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="BasicPay" msprop:Generator_ColumnVarNameInTable="columnBasicPay" msprop:Generator_ColumnPropNameInRow="BasicPay" msprop:Generator_ColumnPropNameInTable="BasicPayColumn" msprop:Generator_UserColumnName="BasicPay" type="xs:decimal" minOccurs="0" />
-              <xs:element name="SalaryMonth" msprop:Generator_ColumnVarNameInTable="columnSalaryMonth" msprop:Generator_ColumnPropNameInRow="SalaryMonth" msprop:Generator_ColumnPropNameInTable="SalaryMonthColumn" msprop:Generator_UserColumnName="SalaryMonth" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Workdays" msprop:Generator_ColumnVarNameInTable="columnWorkdays" msprop:Generator_ColumnPropNameInRow="Workdays" msprop:Generator_ColumnPropNameInTable="WorkdaysColumn" msprop:Generator_UserColumnName="Workdays" type="xs:int" minOccurs="0" />
-              <xs:element name="Allowance" msprop:Generator_ColumnVarNameInTable="columnAllowance" msprop:Generator_ColumnPropNameInRow="Allowance" msprop:Generator_ColumnPropNameInTable="AllowanceColumn" msprop:Generator_UserColumnName="Allowance" type="xs:decimal" minOccurs="0" />
-              <xs:element name="RealPay" msprop:Generator_ColumnVarNameInTable="columnRealPay" msprop:Generator_ColumnPropNameInRow="RealPay" msprop:Generator_ColumnPropNameInTable="RealPayColumn" msprop:Generator_UserColumnName="RealPay" type="xs:decimal" minOccurs="0" />
-              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
+                    <xs:maxLength value="14" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ContractRp" msprop:Generator_TableClassName="ContractRpDataTable" msprop:Generator_TableVarName="tableContractRp" msprop:Generator_TablePropName="ContractRp" msprop:Generator_RowDeletingName="ContractRpRowDeleting" msprop:Generator_RowChangingName="ContractRpRowChanging" msprop:Generator_RowEvHandlerName="ContractRpRowChangeEventHandler" msprop:Generator_RowDeletedName="ContractRpRowDeleted" msprop:Generator_UserTableName="ContractRp" msprop:Generator_RowChangedName="ContractRpRowChanged" msprop:Generator_RowEvArgName="ContractRpRowChangeEvent" msprop:Generator_RowClassName="ContractRpRow">
+        <xs:element name="CateAge" msprop:Generator_TableClassName="CateAgeDataTable" msprop:Generator_TableVarName="tableCateAge" msprop:Generator_TablePropName="CateAge" msprop:Generator_RowDeletingName="CateAgeRowDeleting" msprop:Generator_RowChangingName="CateAgeRowChanging" msprop:Generator_RowEvHandlerName="CateAgeRowChangeEventHandler" msprop:Generator_RowDeletedName="CateAgeRowDeleted" msprop:Generator_UserTableName="CateAge" msprop:Generator_RowChangedName="CateAgeRowChanged" msprop:Generator_RowEvArgName="CateAgeRowChangeEvent" msprop:Generator_RowClassName="CateAgeRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ContractID" msprop:Generator_ColumnVarNameInTable="columnContractID" msprop:Generator_ColumnPropNameInRow="ContractID" msprop:Generator_ColumnPropNameInTable="ContractIDColumn" msprop:Generator_UserColumnName="ContractID">
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="6" />
+                    <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="StaffName" msprop:Generator_ColumnVarNameInTable="columnStaffName" msprop:Generator_ColumnPropNameInRow="StaffName" msprop:Generator_ColumnPropNameInTable="StaffNameColumn" msprop:Generator_UserColumnName="StaffName" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="BasicPay" msprop:Generator_ColumnVarNameInTable="columnBasicPay" msprop:Generator_ColumnPropNameInRow="BasicPay" msprop:Generator_ColumnPropNameInTable="BasicPayColumn" msprop:Generator_UserColumnName="BasicPay" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="StartDate" msprop:Generator_ColumnVarNameInTable="columnStartDate" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_UserColumnName="StartDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_UserColumnName="EndDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="ContractTypeID" msprop:Generator_ColumnVarNameInTable="columnContractTypeID" msprop:Generator_ColumnPropNameInRow="ContractTypeID" msprop:Generator_ColumnPropNameInTable="ContractTypeIDColumn" msprop:Generator_UserColumnName="ContractTypeID" type="xs:int" />
+              <xs:element name="mount" msprop:Generator_ColumnVarNameInTable="columnmount" msprop:Generator_ColumnPropNameInRow="mount" msprop:Generator_ColumnPropNameInTable="mountColumn" msprop:Generator_UserColumnName="mount" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:CateAge" />
-      <xs:field xpath="mstns:id" />
+      <xs:selector xpath=".//mstns:ContractRp" />
+      <xs:field xpath="mstns:ContractID" />
     </xs:unique>
     <xs:unique name="NewEmployees_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:NewEmployees" />
       <xs:field xpath="mstns:StaffID" />
     </xs:unique>
-    <xs:unique name="ContractRp_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:ContractRp" />
-      <xs:field xpath="mstns:ContractID" />
+    <xs:unique name="CateAge_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CateAge" />
+      <xs:field xpath="mstns:id" />
     </xs:unique>
   </xs:element>
 </xs:schema>

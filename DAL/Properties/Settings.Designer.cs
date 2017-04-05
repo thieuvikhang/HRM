@@ -43,5 +43,16 @@ namespace DAL.Properties {
                 return ((string)(this["HRMConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-PK221FL\\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=Tr" +
+            "ue")]
+        public string HRMConnectionString2 {
+            get {
+                return ((string)(this["HRMConnectionString2"]));
+            }
+        }
     }
 }
