@@ -18,9 +18,7 @@ namespace HRM
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            //Application.Run(new FormLogin());
-
-
+            //Application.Run(new FormLogin()); 
             FormLogin fLogin = new FormLogin();
             if (fLogin.ShowDialog() == DialogResult.OK)
             {
@@ -29,9 +27,7 @@ namespace HRM
             else
             {
                 Application.Exit();
-            }
-
-
+            } 
         }
     }
 }

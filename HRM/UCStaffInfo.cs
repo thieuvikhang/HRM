@@ -19,6 +19,7 @@ namespace HRM
         public Session _aSession = new Session();
         private readonly ExtendBus _newExtend = new ExtendBus();
         private readonly AccountBus _newAccountBus = new AccountBus();
+        StaffBus newStaffBus = new StaffBus();
         public bool CheckChooseChangePass;
 
         public UcStaffInfo()
@@ -56,6 +57,32 @@ namespace HRM
             lblShowIDStaff.Text = idStaff;
 
             panChangePassword.Enabled = false;
+
+            string genderStaff = "";
+            Staff astaff = newStaffBus.LoadStaffByIDStaff(idStaff);
+            Staff astaffManager = newStaffBus.LoadStaffByIDStaff(astaff.ManagerID);
+            Position aPosition = _hrm.Positions.SingleOrDefault(pst => pst.PostID == astaff.PostID);
+            Section aSection = _hrm.Sections.SingleOrDefault(st => st.SectionID == astaff.SectionID);
+
+            if (astaff.Gender == true) {
+                genderStaff = "Nam";
+            }
+            else {
+                genderStaff = "Nữ";
+            }
+
+            lblStaffGender.Text = genderStaff;
+            lblStaffName.Text = astaff.StaffName;
+            lblStaffBirth.Text = String.Format("{0:dd/mm/yy}", astaff.BirthDay);
+            lblStaffAddress.Text = astaff.Address;
+            lblStaffPhone.Text = astaff.Phone;
+            lblStaffEmail.Text = astaff.Email;
+            lblStaffCard.Text = astaff.CardID;
+            lblStaffEducation.Text = astaff.Education;
+            lblDateStard.Text = String.Format("{0:dd/mm/yy}", astaff.StartDate);
+            lblManager.Text = astaffManager.StaffName;
+            lblPosition.Text = aPosition.PostName;
+            lblSection.Text = aSection.SectionName;
         }
 
         private void btnSaveNewPasswoed_Click(object sender, EventArgs e)
@@ -220,6 +247,11 @@ namespace HRM
                     }
                 }
             }
-        } 
+        }
+
+        private void textEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

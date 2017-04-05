@@ -33,6 +33,13 @@ namespace BUS
                 };
             return loadStaff;
         }
+
+        public Staff LoadStaffByIDStaff(string IDStaff)
+        {
+            Staff loadStaff = _aHrm.Staffs.SingleOrDefault(st => st.StaffID == IDStaff);
+            return loadStaff;
+        }
+
         //Lấy số ID phòng ban dựa vào Mã nhân viên
         public string GetSectionIdByStaffId(string staffId)
         {

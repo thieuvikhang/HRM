@@ -394,6 +394,12 @@
     <Content Include="icon\1491161269_teddy_bear_toy_5.png" />
     <Content Include="icon\1491161598_teddy_bear_toy_5.ico" />
     <Content Include="icon\Custom-Icon-Design-Flatastic-10-Bear.ico" />
+    <None Include="Resources\admin.png" />
+    <None Include="Resources\manager-icon-54657.png" />
+    <None Include="Resources\Apps-preferences-desktop-user-password-icon1.png" />
+    <None Include="Resources\Apps-preferences-desktop-user-password-icon.png" />
+    <None Include="Resources\password1.png" />
+    <None Include="Resources\password.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -28,9 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcStaffInfo));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lblTrangThai = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lblStaffName = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblManager = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.lblSection = new System.Windows.Forms.Label();
+            this.lblStaffGender = new System.Windows.Forms.Label();
+            this.lblPosition = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblStaffEducation = new System.Windows.Forms.Label();
+            this.lblStaffBirth = new System.Windows.Forms.Label();
+            this.lblDateStard = new System.Windows.Forms.Label();
+            this.lblStaffAddress = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblStaffPhone = new System.Windows.Forms.Label();
+            this.lblStaffEmail = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblStaffCard = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
+            this.lblPassEncrypt = new System.Windows.Forms.Label();
+            this.lblShowPassStaff = new System.Windows.Forms.Label();
             this.lblShowIDStaff = new System.Windows.Forms.Label();
             this.panChangePassword = new DevExpress.XtraEditors.PanelControl();
             this.txtAgainPassword = new DevExpress.XtraEditors.TextEdit();
@@ -46,36 +77,13 @@
             this.lblNoteOldPassword = new System.Windows.Forms.Label();
             this.lblNoteNewPassword = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblTrangThai = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblShowPassStaff = new System.Windows.Forms.Label();
-            this.lblPassEncrypt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panChangePassword)).BeginInit();
@@ -83,10 +91,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAgainPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewpassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOldPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -97,19 +101,323 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(992, 234);
+            this.panelControl1.Size = new System.Drawing.Size(992, 251);
             this.panelControl1.TabIndex = 0;
+            // 
+            // lblTrangThai
+            // 
+            this.lblTrangThai.AutoSize = true;
+            this.lblTrangThai.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrangThai.ForeColor = System.Drawing.Color.Red;
+            this.lblTrangThai.Location = new System.Drawing.Point(94, 232);
+            this.lblTrangThai.Name = "lblTrangThai";
+            this.lblTrangThai.Size = new System.Drawing.Size(32, 16);
+            this.lblTrangThai.TabIndex = 0;
+            this.lblTrangThai.Text = "......";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Blue;
+            this.label4.Location = new System.Drawing.Point(9, 232);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 16);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Trạng thái:";
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.groupControl1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 251);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(992, 264);
+            this.panelControl2.TabIndex = 0;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 14.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.FontSizeDelta = 1;
+            this.groupControl1.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl1.AppearanceCaption.Image")));
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.AppearanceCaption.Options.UseImage = true;
+            this.groupControl1.CaptionImage = ((System.Drawing.Image)(resources.GetObject("groupControl1.CaptionImage")));
+            this.groupControl1.Controls.Add(this.label10);
+            this.groupControl1.Controls.Add(this.label6);
+            this.groupControl1.Controls.Add(this.label8);
+            this.groupControl1.Controls.Add(this.lblShowIDStaff);
+            this.groupControl1.Controls.Add(this.label27);
+            this.groupControl1.Controls.Add(this.label19);
+            this.groupControl1.Controls.Add(this.label26);
+            this.groupControl1.Controls.Add(this.lblStaffName);
+            this.groupControl1.Controls.Add(this.label25);
+            this.groupControl1.Controls.Add(this.label17);
+            this.groupControl1.Controls.Add(this.lblManager);
+            this.groupControl1.Controls.Add(this.label24);
+            this.groupControl1.Controls.Add(this.lblSection);
+            this.groupControl1.Controls.Add(this.lblStaffGender);
+            this.groupControl1.Controls.Add(this.lblPosition);
+            this.groupControl1.Controls.Add(this.label15);
+            this.groupControl1.Controls.Add(this.lblStaffEducation);
+            this.groupControl1.Controls.Add(this.lblStaffBirth);
+            this.groupControl1.Controls.Add(this.lblDateStard);
+            this.groupControl1.Controls.Add(this.lblStaffAddress);
+            this.groupControl1.Controls.Add(this.label13);
+            this.groupControl1.Controls.Add(this.lblStaffPhone);
+            this.groupControl1.Controls.Add(this.lblStaffEmail);
+            this.groupControl1.Controls.Add(this.label11);
+            this.groupControl1.Controls.Add(this.lblStaffCard);
+            this.groupControl1.Controls.Add(this.label9);
+            this.groupControl1.Location = new System.Drawing.Point(8, 6);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(526, 232);
+            this.groupControl1.TabIndex = 1;
+            this.groupControl1.Text = "Thông tin nhân viên";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(14, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Tên nhân viên:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(241, 146);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(109, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Nhân viên quản lý:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(241, 120);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(114, 13);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "Phòng ban hiện tại:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(241, 42);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(59, 13);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Số CMND:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(241, 94);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(100, 13);
+            this.label26.TabIndex = 0;
+            this.label26.Text = "Chức vụ hiện tại:";
+            // 
+            // lblStaffName
+            // 
+            this.lblStaffName.AutoSize = true;
+            this.lblStaffName.Location = new System.Drawing.Point(126, 68);
+            this.lblStaffName.Name = "lblStaffName";
+            this.lblStaffName.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffName.TabIndex = 0;
+            this.lblStaffName.Text = "label1";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(241, 172);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(103, 13);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "Trình độ học vấn:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(14, 172);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(40, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Email:";
+            // 
+            // lblManager
+            // 
+            this.lblManager.AutoSize = true;
+            this.lblManager.Location = new System.Drawing.Point(371, 146);
+            this.lblManager.Name = "lblManager";
+            this.lblManager.Size = new System.Drawing.Size(35, 13);
+            this.lblManager.TabIndex = 0;
+            this.lblManager.Text = "label1";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(241, 68);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(84, 13);
+            this.label24.TabIndex = 0;
+            this.label24.Text = "Ngày bắt đầu:";
+            // 
+            // lblSection
+            // 
+            this.lblSection.AutoSize = true;
+            this.lblSection.Location = new System.Drawing.Point(371, 120);
+            this.lblSection.Name = "lblSection";
+            this.lblSection.Size = new System.Drawing.Size(35, 13);
+            this.lblSection.TabIndex = 0;
+            this.lblSection.Text = "label1";
+            // 
+            // lblStaffGender
+            // 
+            this.lblStaffGender.AutoSize = true;
+            this.lblStaffGender.Location = new System.Drawing.Point(126, 94);
+            this.lblStaffGender.Name = "lblStaffGender";
+            this.lblStaffGender.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffGender.TabIndex = 0;
+            this.lblStaffGender.Text = "label1";
+            // 
+            // lblPosition
+            // 
+            this.lblPosition.AutoSize = true;
+            this.lblPosition.Location = new System.Drawing.Point(371, 94);
+            this.lblPosition.Name = "lblPosition";
+            this.lblPosition.Size = new System.Drawing.Size(35, 13);
+            this.lblPosition.TabIndex = 0;
+            this.lblPosition.Text = "label1";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(14, 146);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(68, 13);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Điện thoại:";
+            // 
+            // lblStaffEducation
+            // 
+            this.lblStaffEducation.AutoSize = true;
+            this.lblStaffEducation.Location = new System.Drawing.Point(371, 172);
+            this.lblStaffEducation.Name = "lblStaffEducation";
+            this.lblStaffEducation.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffEducation.TabIndex = 0;
+            this.lblStaffEducation.Text = "label1";
+            // 
+            // lblStaffBirth
+            // 
+            this.lblStaffBirth.AutoSize = true;
+            this.lblStaffBirth.Location = new System.Drawing.Point(126, 120);
+            this.lblStaffBirth.Name = "lblStaffBirth";
+            this.lblStaffBirth.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffBirth.TabIndex = 0;
+            this.lblStaffBirth.Text = "label1";
+            // 
+            // lblDateStard
+            // 
+            this.lblDateStard.AutoSize = true;
+            this.lblDateStard.Location = new System.Drawing.Point(371, 68);
+            this.lblDateStard.Name = "lblDateStard";
+            this.lblDateStard.Size = new System.Drawing.Size(35, 13);
+            this.lblDateStard.TabIndex = 0;
+            this.lblDateStard.Text = "label1";
+            // 
+            // lblStaffAddress
+            // 
+            this.lblStaffAddress.AutoSize = true;
+            this.lblStaffAddress.Location = new System.Drawing.Point(126, 198);
+            this.lblStaffAddress.Name = "lblStaffAddress";
+            this.lblStaffAddress.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffAddress.TabIndex = 0;
+            this.lblStaffAddress.Text = "label1";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(14, 198);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Địa chỉ:";
+            // 
+            // lblStaffPhone
+            // 
+            this.lblStaffPhone.AutoSize = true;
+            this.lblStaffPhone.Location = new System.Drawing.Point(126, 146);
+            this.lblStaffPhone.Name = "lblStaffPhone";
+            this.lblStaffPhone.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffPhone.TabIndex = 0;
+            this.lblStaffPhone.Text = "label1";
+            // 
+            // lblStaffEmail
+            // 
+            this.lblStaffEmail.AutoSize = true;
+            this.lblStaffEmail.Location = new System.Drawing.Point(126, 172);
+            this.lblStaffEmail.Name = "lblStaffEmail";
+            this.lblStaffEmail.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffEmail.TabIndex = 0;
+            this.lblStaffEmail.Text = "label1";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(14, 120);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Ngày sinh:";
+            // 
+            // lblStaffCard
+            // 
+            this.lblStaffCard.AutoSize = true;
+            this.lblStaffCard.Location = new System.Drawing.Point(371, 42);
+            this.lblStaffCard.Name = "lblStaffCard";
+            this.lblStaffCard.Size = new System.Drawing.Size(35, 13);
+            this.lblStaffCard.TabIndex = 0;
+            this.lblStaffCard.Text = "label1";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(14, 94);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Giới Tính:";
             // 
             // groupControl2
             // 
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 14.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl2.AppearanceCaption.FontSizeDelta = 1;
+            this.groupControl2.AppearanceCaption.Image = global::HRM.Properties.Resources.Apps_preferences_desktop_user_password_icon;
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.AppearanceCaption.Options.UseImage = true;
+            this.groupControl2.CaptionImage = global::HRM.Properties.Resources.Apps_preferences_desktop_user_password_icon;
             this.groupControl2.Controls.Add(this.btnChangePassword);
             this.groupControl2.Controls.Add(this.lblPassEncrypt);
             this.groupControl2.Controls.Add(this.lblShowPassStaff);
-            this.groupControl2.Controls.Add(this.lblShowIDStaff);
             this.groupControl2.Controls.Add(this.panChangePassword);
             this.groupControl2.Location = new System.Drawing.Point(5, 5);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(905, 192);
+            this.groupControl2.Size = new System.Drawing.Size(905, 224);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Đổi mật khẩu";
             // 
@@ -117,18 +425,36 @@
             // 
             this.btnChangePassword.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangePassword.Appearance.Options.UseFont = true;
-            this.btnChangePassword.Location = new System.Drawing.Point(5, 27);
+            this.btnChangePassword.Location = new System.Drawing.Point(5, 61);
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(159, 69);
+            this.btnChangePassword.Size = new System.Drawing.Size(159, 55);
             this.btnChangePassword.TabIndex = 0;
             this.btnChangePassword.Text = "Đổi mật khẩu";
             this.btnChangePassword.TextChanged += new System.EventHandler(this.btnChangePassword_TextChanged);
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
+            // lblPassEncrypt
+            // 
+            this.lblPassEncrypt.AutoSize = true;
+            this.lblPassEncrypt.Location = new System.Drawing.Point(11, 181);
+            this.lblPassEncrypt.Name = "lblPassEncrypt";
+            this.lblPassEncrypt.Size = new System.Drawing.Size(70, 13);
+            this.lblPassEncrypt.TabIndex = 0;
+            this.lblPassEncrypt.Text = "Mật khẩu mới";
+            // 
+            // lblShowPassStaff
+            // 
+            this.lblShowPassStaff.AutoSize = true;
+            this.lblShowPassStaff.Location = new System.Drawing.Point(11, 149);
+            this.lblShowPassStaff.Name = "lblShowPassStaff";
+            this.lblShowPassStaff.Size = new System.Drawing.Size(65, 13);
+            this.lblShowPassStaff.TabIndex = 0;
+            this.lblShowPassStaff.Text = "Mật khẩu cũ";
+            // 
             // lblShowIDStaff
             // 
             this.lblShowIDStaff.AutoSize = true;
-            this.lblShowIDStaff.Location = new System.Drawing.Point(11, 99);
+            this.lblShowIDStaff.Location = new System.Drawing.Point(126, 42);
             this.lblShowIDStaff.Name = "lblShowIDStaff";
             this.lblShowIDStaff.Size = new System.Drawing.Size(72, 13);
             this.lblShowIDStaff.TabIndex = 0;
@@ -149,9 +475,9 @@
             this.panChangePassword.Controls.Add(this.lblNoteOldPassword);
             this.panChangePassword.Controls.Add(this.lblNoteNewPassword);
             this.panChangePassword.Controls.Add(this.label1);
-            this.panChangePassword.Location = new System.Drawing.Point(176, 27);
+            this.panChangePassword.Location = new System.Drawing.Point(176, 58);
             this.panChangePassword.Name = "panChangePassword";
-            this.panChangePassword.Size = new System.Drawing.Size(634, 160);
+            this.panChangePassword.Size = new System.Drawing.Size(532, 152);
             this.panChangePassword.TabIndex = 1;
             // 
             // txtAgainPassword
@@ -166,9 +492,9 @@
             // 
             this.btnCheckError.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheckError.Appearance.Options.UseFont = true;
-            this.btnCheckError.Location = new System.Drawing.Point(262, 89);
+            this.btnCheckError.Location = new System.Drawing.Point(262, 91);
             this.btnCheckError.Name = "btnCheckError";
-            this.btnCheckError.Size = new System.Drawing.Size(91, 45);
+            this.btnCheckError.Size = new System.Drawing.Size(91, 29);
             this.btnCheckError.TabIndex = 4;
             this.btnCheckError.Text = "Kiểm tra";
             this.btnCheckError.Click += new System.EventHandler(this.btnCheckError_Click);
@@ -177,9 +503,9 @@
             // 
             this.btnSaveNewPassword.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveNewPassword.Appearance.Options.UseFont = true;
-            this.btnSaveNewPassword.Location = new System.Drawing.Point(362, 89);
+            this.btnSaveNewPassword.Location = new System.Drawing.Point(367, 91);
             this.btnSaveNewPassword.Name = "btnSaveNewPassword";
-            this.btnSaveNewPassword.Size = new System.Drawing.Size(129, 44);
+            this.btnSaveNewPassword.Size = new System.Drawing.Size(129, 28);
             this.btnSaveNewPassword.TabIndex = 5;
             this.btnSaveNewPassword.Text = "Xác nhận đổi";
             this.btnSaveNewPassword.Click += new System.EventHandler(this.btnSaveNewPasswoed_Click);
@@ -225,7 +551,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(19, 139);
+            this.label5.Location = new System.Drawing.Point(19, 124);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 16);
             this.label5.TabIndex = 0;
@@ -236,38 +562,38 @@
             this.lblThongBao.AutoSize = true;
             this.lblThongBao.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThongBao.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(105, 139);
+            this.lblThongBao.Location = new System.Drawing.Point(105, 124);
             this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(74, 16);
+            this.lblThongBao.Size = new System.Drawing.Size(28, 16);
             this.lblThongBao.TabIndex = 0;
-            this.lblThongBao.Text = "Thông báo:";
+            this.lblThongBao.Text = ".....";
             // 
             // lblNoteAdainPassword
             // 
             this.lblNoteAdainPassword.AutoSize = true;
             this.lblNoteAdainPassword.Location = new System.Drawing.Point(359, 67);
             this.lblNoteAdainPassword.Name = "lblNoteAdainPassword";
-            this.lblNoteAdainPassword.Size = new System.Drawing.Size(165, 13);
+            this.lblNoteAdainPassword.Size = new System.Drawing.Size(23, 13);
             this.lblNoteAdainPassword.TabIndex = 0;
-            this.lblNoteAdainPassword.Text = "Thông báo lỗi xác nhận mật khẩu";
+            this.lblNoteAdainPassword.Text = "....";
             // 
             // lblNoteOldPassword
             // 
             this.lblNoteOldPassword.AutoSize = true;
             this.lblNoteOldPassword.Location = new System.Drawing.Point(359, 15);
             this.lblNoteOldPassword.Name = "lblNoteOldPassword";
-            this.lblNoteOldPassword.Size = new System.Drawing.Size(132, 13);
+            this.lblNoteOldPassword.Size = new System.Drawing.Size(23, 13);
             this.lblNoteOldPassword.TabIndex = 0;
-            this.lblNoteOldPassword.Text = "Thông báo lỗi mật khẩu cũ";
+            this.lblNoteOldPassword.Text = "....";
             // 
             // lblNoteNewPassword
             // 
             this.lblNoteNewPassword.AutoSize = true;
             this.lblNoteNewPassword.Location = new System.Drawing.Point(359, 41);
             this.lblNoteNewPassword.Name = "lblNoteNewPassword";
-            this.lblNoteNewPassword.Size = new System.Drawing.Size(137, 13);
+            this.lblNoteNewPassword.Size = new System.Drawing.Size(23, 13);
             this.lblNoteNewPassword.TabIndex = 0;
-            this.lblNoteNewPassword.Text = "Thông báo lỗi mật khẩu mới";
+            this.lblNoteNewPassword.Text = "....";
             // 
             // label1
             // 
@@ -279,284 +605,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mật khẩu hiện tại:";
             // 
-            // lblTrangThai
-            // 
-            this.lblTrangThai.AutoSize = true;
-            this.lblTrangThai.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrangThai.ForeColor = System.Drawing.Color.Red;
-            this.lblTrangThai.Location = new System.Drawing.Point(91, 200);
-            this.lblTrangThai.Name = "lblTrangThai";
-            this.lblTrangThai.Size = new System.Drawing.Size(42, 16);
-            this.lblTrangThai.TabIndex = 0;
-            this.lblTrangThai.Text = "label1";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(6, 200);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 16);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Trạng thái:";
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.groupControl1);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 234);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(992, 281);
-            this.panelControl2.TabIndex = 0;
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.label6);
-            this.groupControl1.Controls.Add(this.label27);
-            this.groupControl1.Controls.Add(this.label19);
-            this.groupControl1.Controls.Add(this.label26);
-            this.groupControl1.Controls.Add(this.label7);
-            this.groupControl1.Controls.Add(this.label25);
-            this.groupControl1.Controls.Add(this.label17);
-            this.groupControl1.Controls.Add(this.label24);
-            this.groupControl1.Controls.Add(this.label23);
-            this.groupControl1.Controls.Add(this.label8);
-            this.groupControl1.Controls.Add(this.label22);
-            this.groupControl1.Controls.Add(this.label15);
-            this.groupControl1.Controls.Add(this.label21);
-            this.groupControl1.Controls.Add(this.label10);
-            this.groupControl1.Controls.Add(this.label20);
-            this.groupControl1.Controls.Add(this.label12);
-            this.groupControl1.Controls.Add(this.label13);
-            this.groupControl1.Controls.Add(this.label14);
-            this.groupControl1.Controls.Add(this.label16);
-            this.groupControl1.Controls.Add(this.label11);
-            this.groupControl1.Controls.Add(this.label18);
-            this.groupControl1.Controls.Add(this.label9);
-            this.groupControl1.Location = new System.Drawing.Point(8, 6);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(491, 335);
-            this.groupControl1.TabIndex = 1;
-            this.groupControl1.Text = "Thông tin nhân viên";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 37);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "label1";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(297, 144);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(35, 13);
-            this.label27.TabIndex = 0;
-            this.label27.Text = "label1";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(8, 263);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(35, 13);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "label1";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(297, 109);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(35, 13);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "label1";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(105, 37);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "label1";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(297, 74);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(35, 13);
-            this.label25.TabIndex = 0;
-            this.label25.Text = "label1";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(8, 227);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(35, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "label1";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(297, 37);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(35, 13);
-            this.label24.TabIndex = 0;
-            this.label24.Text = "label1";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(400, 144);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(35, 13);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "label1";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(105, 74);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "label1";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(400, 109);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(35, 13);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "label1";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 183);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 13);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "label1";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(400, 74);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(35, 13);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "label1";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(105, 109);
+            this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(14, 42);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.Size = new System.Drawing.Size(85, 13);
             this.label10.TabIndex = 0;
-            this.label10.Text = "label1";
+            this.label10.Text = "Mã nhân viên:";
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(400, 37);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(35, 13);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "label1";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(105, 144);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "label1";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 144);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "label1";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(105, 183);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(35, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "label1";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(105, 227);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(35, 13);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "label1";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 109);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "label1";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(105, 263);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "label1";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 74);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "label1";
-            // 
-            // lblShowPassStaff
-            // 
-            this.lblShowPassStaff.AutoSize = true;
-            this.lblShowPassStaff.Location = new System.Drawing.Point(11, 134);
-            this.lblShowPassStaff.Name = "lblShowPassStaff";
-            this.lblShowPassStaff.Size = new System.Drawing.Size(65, 13);
-            this.lblShowPassStaff.TabIndex = 0;
-            this.lblShowPassStaff.Text = "Mật khẩu cũ";
-            // 
-            // lblPassEncrypt
-            // 
-            this.lblPassEncrypt.AutoSize = true;
-            this.lblPassEncrypt.Location = new System.Drawing.Point(11, 166);
-            this.lblPassEncrypt.Name = "lblPassEncrypt";
-            this.lblPassEncrypt.Size = new System.Drawing.Size(70, 13);
-            this.lblPassEncrypt.TabIndex = 0;
-            this.lblPassEncrypt.Text = "Mật khẩu mới";
-            // 
-            // UCStaffInfo
+            // UcStaffInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -568,6 +627,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
@@ -577,11 +641,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAgainPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewpassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOldPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -606,23 +665,23 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblStaffName;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblSection;
+        private System.Windows.Forms.Label lblStaffGender;
+        private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblStaffEducation;
+        private System.Windows.Forms.Label lblStaffBirth;
+        private System.Windows.Forms.Label lblDateStard;
+        private System.Windows.Forms.Label lblStaffAddress;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblStaffPhone;
+        private System.Windows.Forms.Label lblStaffEmail;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblStaffCard;
         private System.Windows.Forms.Label label9;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.Label lblShowIDStaff;
@@ -634,5 +693,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblShowPassStaff;
         private System.Windows.Forms.Label lblPassEncrypt;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblManager;
+        private System.Windows.Forms.Label label10;
     }
 }

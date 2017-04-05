@@ -14,6 +14,7 @@ namespace HRM
     {
         readonly HRMModelDataContext hrm = new HRMModelDataContext();
         readonly AccountBus _anAccountBus = new AccountBus();
+        StaffBus _StaffBus = new StaffBus();
         public Session _aSession = new Session(); 
         Account _anAccount = new Account();
         GroupAccess _aGroupAccess = new GroupAccess();
@@ -97,18 +98,88 @@ namespace HRM
             }
             else
             {
-                lblThongBao.Text = @"Nhập sai tên đăng nhập hoặc mật khẩu";
+                MessageBox.Show("Tài khoản hoặc mật khẩu không đúng.", "ThÔNG BÁO.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
-        { 
-            
+        {
+            txtAcc.Properties.MaxLength = 20;
+            txtPass.Properties.MaxLength = 30;
+            txtAcc.Enabled = true;
+            txtPass.Enabled = false;
+            btnLogin.Enabled = false;
         }
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+            if (txtPass.Text.Length <= 3)
+            {
+                lblThongBaoNhapMatKhau.ForeColor = Color.Red;
+                lblThongBaoNhapMatKhau.Text = "Tên tài khoản quá ngắn.";
+            }
+            else if (txtPass.Text.Length > 19)
+            {
+                lblThongBaoNhapMatKhau.ForeColor = Color.Red;
+                lblThongBaoNhapMatKhau.Text = "Tên tài khoản dài quá 19 ký tự.";
+                e.Handled = false;
+            }
+            else
+            {
+                lblThongBaoNhapMatKhau.ForeColor = Color.Blue;
+                lblThongBaoNhapMatKhau.Text = "Độ dài hợp lý.";
+            }
+        }
+
+        private void txtAcc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+            if(txtAcc.Text.Length <= 3)
+            {
+                lblThongBaoNhapTaiKhoan.ForeColor = Color.Red;
+                lblThongBaoNhapTaiKhoan.Text = "Tên tài khoản quá ngắn.";
+            }
+            else if(txtAcc.Text.Length > 19)
+            {
+                lblThongBaoNhapTaiKhoan.ForeColor = Color.Red;
+                lblThongBaoNhapTaiKhoan.Text = "Tên tài khoản dài quá 19 ký tự.";
+                e.Handled = false;
+            }
+            else
+            {
+                lblThongBaoNhapTaiKhoan.ForeColor = Color.Blue;
+                lblThongBaoNhapTaiKhoan.Text = "Độ dài hợp lý.";
+            }
+        }
+
+        private void txtAcc_TextChanged(object sender, EventArgs e)
+        {
+            if(txtAcc.Text.Length <= 4 )
+            {
+                txtPass.Enabled = false;
+            }
+            else
+            {
+                txtPass.Enabled = true;
+            }
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPass.Text.Length <= 4)
+            {
+                btnLogin.Enabled = false;
+            }
+            else
+            {
+                btnLogin.Enabled = true;
+            }
         }
     }
 }
