@@ -87,7 +87,7 @@ namespace BUS
             if (maNv == null) return false;
             try
             {
-                var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
+                var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay) + 1;
                 var absent = new Absent
                 {
                     StaffID = maNv,
@@ -99,7 +99,7 @@ namespace BUS
                 };
                 _aHrm.Absents.InsertOnSubmit(absent);
                 _aHrm.SubmitChanges();
-                return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year);
+                return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year, loaiNghi);
             }
             catch (Exception e)
             {
@@ -120,7 +120,7 @@ namespace BUS
                 if (absent == null) return false;
                 _aHrm.Absents.DeleteOnSubmit(absent);
                 _aHrm.SubmitChanges();
-                return absent.FromDate == null || DaysRemainBus.AddOrUpdateDaysRemain(absent.StaffID, ToInt16(absent.AbsentDay), absent.FromDate.Value.Year);
+                return absent.AbsentType != null && (absent.FromDate == null || DaysRemainBus.AddOrUpdateDaysRemain(absent.StaffID, ToInt16(absent.AbsentDay), absent.FromDate.Value.Year, absent.AbsentType.Value));
             }
             catch (Exception e)
             {
@@ -142,7 +142,7 @@ namespace BUS
         {
             try
             {
-                var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay);
+                var absentDay = (denNgay - tuNgay).Days - TongNgayChuNhat(denNgay, tuNgay) + 1;
                 var absent = _aHrm.Absents.SingleOrDefault(ab => ab.AbsentID == maPhep);
                 if (absent == null) return false;
                 absent.AbsentID = maPhep;
@@ -153,7 +153,7 @@ namespace BUS
                 absent.Note = note;
                 absent.AbsentType = loaiNghi;
                 _aHrm.SubmitChanges();
-                return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year);
+                return DaysRemainBus.AddOrUpdateDaysRemain(maNv, absentDay, denNgay.Year, loaiNghi);
             }
             catch (Exception e)
             {
@@ -173,7 +173,7 @@ namespace BUS
             foreach (var item in _aHrm.Absents.Where(ab => ab.StaffID == maNv && ab.FromDate.Value.Month == ngay.Month && ab.FromDate.Value.Year == ngay.Year)
                 .Select(ab => new { FromDate = ab.FromDate.Value.Day, ToDate = ab.ToDate.Value.Day }).ToList())
             {
-                for (var i = item.FromDate; i < item.ToDate; i++)
+                for (var i = item.FromDate; i <= item.ToDate; i++)
                 {
                     list.Add(i);
                 }

@@ -13,7 +13,7 @@ namespace BUS
             var list = (from aHmDetailAccesses in _aHrm.DetailAccesses
                         from aHrmAccess in _aHrm.Accesses
                         where aHmDetailAccesses.GroupAccessID == groupAccessId
-                        && aHrmAccess.AccessID == aHmDetailAccesses.AccessD
+                        && aHrmAccess.AccessID == aHmDetailAccesses.AccessID
                         select new
                         {
                             aHrmAccess.Form,
@@ -26,7 +26,8 @@ namespace BUS
             var all = (from ct in _aHrm.Accesses
                               select new
                               {
-                                  form = ct.Form,
+                                  ct.Form,
+                                  ct.DescriptionAccess
                               }).Distinct();
             return all;
         }

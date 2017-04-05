@@ -1273,7 +1273,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_DetailAccesses", ThisKey="AccessID", OtherKey="AccessD")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_DetailAccesses", ThisKey="AccessID", OtherKey="AccessID")]
 		public EntitySet<DetailAccess> DetailAccesses
 		{
 			get
@@ -2217,7 +2217,7 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _AccessD;
+		private int _AccessID;
 		
 		private int _GroupAccessID;
 		
@@ -2229,8 +2229,8 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnAccessDChanging(int value);
-    partial void OnAccessDChanged();
+    partial void OnAccessIDChanging(int value);
+    partial void OnAccessIDChanged();
     partial void OnGroupAccessIDChanging(int value);
     partial void OnGroupAccessIDChanged();
     #endregion
@@ -2242,26 +2242,26 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessD", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int AccessD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int AccessID
 		{
 			get
 			{
-				return this._AccessD;
+				return this._AccessID;
 			}
 			set
 			{
-				if ((this._AccessD != value))
+				if ((this._AccessID != value))
 				{
 					if (this._Access.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnAccessDChanging(value);
+					this.OnAccessIDChanging(value);
 					this.SendPropertyChanging();
-					this._AccessD = value;
-					this.SendPropertyChanged("AccessD");
-					this.OnAccessDChanged();
+					this._AccessID = value;
+					this.SendPropertyChanged("AccessID");
+					this.OnAccessIDChanged();
 				}
 			}
 		}
@@ -2290,7 +2290,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_Access", ThisKey="AccessD", OtherKey="AccessID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_Access", ThisKey="AccessID", OtherKey="AccessID", IsForeignKey=true)]
 		public Access Access
 		{
 			get
@@ -2313,11 +2313,11 @@ namespace DAL
 					if ((value != null))
 					{
 						value.DetailAccesses.Add(this);
-						this._AccessD = value.AccessID;
+						this._AccessID = value.AccessID;
 					}
 					else
 					{
-						this._AccessD = default(int);
+						this._AccessID = default(int);
 					}
 					this.SendPropertyChanged("Access");
 				}
