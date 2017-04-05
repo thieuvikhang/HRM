@@ -150,6 +150,7 @@ namespace HRM
             this.barAccess.Id = 8;
             this.barAccess.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barAccess.LargeGlyph")));
             this.barAccess.Name = "barAccess";
+            this.barAccess.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barAccess_ItemClick);
             // 
             // barPostion
             // 

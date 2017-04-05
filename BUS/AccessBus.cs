@@ -26,7 +26,8 @@ namespace BUS
             var all = (from ct in _aHrm.Accesses
                               select new
                               {
-                                  form = ct.Form,
+                                  ct.Form,
+                                  ct.DescriptionAccess
                               }).Distinct();
             return all;
         }

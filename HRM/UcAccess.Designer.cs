@@ -32,8 +32,8 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gridAccess = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcform = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcdescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Form = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescriptionAccess = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Edit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.CheckForm = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -77,7 +77,7 @@
             this.groupControl1.Controls.Add(this.gridAccess);
             this.groupControl1.Location = new System.Drawing.Point(404, 25);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(316, 247);
+            this.groupControl1.Size = new System.Drawing.Size(389, 247);
             this.groupControl1.TabIndex = 22;
             this.groupControl1.Text = "Chi tiết quyền";
             // 
@@ -91,7 +91,7 @@
             this.CheckForm,
             this.CheckEdit,
             this.repositoryItemCheckedComboBoxEdit1});
-            this.gridAccess.Size = new System.Drawing.Size(312, 225);
+            this.gridAccess.Size = new System.Drawing.Size(385, 225);
             this.gridAccess.TabIndex = 0;
             this.gridAccess.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -100,32 +100,35 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcform,
-            this.gcdescription,
+            this.Form,
+            this.DescriptionAccess,
             this.Edit});
             this.gridView1.GridControl = this.gridAccess;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             this.gridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridView1_CustomRowCellEdit);
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
+            this.gridView1.Click += new System.EventHandler(this.gridView1_Click);
             // 
-            // gcform
+            // Form
             // 
-            this.gcform.Caption = "Tên form";
-            this.gcform.FieldName = "form";
-            this.gcform.Name = "gcform";
-            this.gcform.Visible = true;
-            this.gcform.VisibleIndex = 0;
+            this.Form.Caption = "Tên form";
+            this.Form.FieldName = "Form";
+            this.Form.Name = "Form";
+            this.Form.Visible = true;
+            this.Form.VisibleIndex = 1;
             // 
-            // gcdescription
+            // DescriptionAccess
             // 
-            this.gcdescription.Caption = "Mô tả";
-            this.gcdescription.FieldName = "DescriptionAccess";
-            this.gcdescription.Name = "gcdescription";
-            this.gcdescription.Visible = true;
-            this.gcdescription.VisibleIndex = 1;
+            this.DescriptionAccess.Caption = "Mô tả";
+            this.DescriptionAccess.FieldName = "DescriptionAccess";
+            this.DescriptionAccess.Name = "DescriptionAccess";
+            this.DescriptionAccess.Visible = true;
+            this.DescriptionAccess.VisibleIndex = 2;
             // 
             // Edit
             // 
@@ -193,7 +196,7 @@
             this.gridControl2.Location = new System.Drawing.Point(0, 341);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(798, 130);
+            this.gridControl2.Size = new System.Drawing.Size(798, 217);
             this.gridControl2.TabIndex = 1;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -211,7 +214,7 @@
             this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.panelControl1);
             this.Name = "UcAccess";
-            this.Size = new System.Drawing.Size(798, 471);
+            this.Size = new System.Drawing.Size(798, 558);
             this.Load += new System.EventHandler(this.UcAccess_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -244,8 +247,8 @@
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit CheckForm;
-        private DevExpress.XtraGrid.Columns.GridColumn gcform;
-        private DevExpress.XtraGrid.Columns.GridColumn gcdescription;
+        private DevExpress.XtraGrid.Columns.GridColumn Form;
+        private DevExpress.XtraGrid.Columns.GridColumn DescriptionAccess;
         private DevExpress.XtraGrid.Columns.GridColumn Edit;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit CheckEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;

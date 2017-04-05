@@ -41,7 +41,6 @@ namespace HRM
             public string Form { get; set; }
             public int Edit { get; set; }
         }
-
         #endregion
 
         #region From Main Load
@@ -170,7 +169,13 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Thông tin nhân viên", new UCStaffInfo{ _aSession = _aSession });
+            AddTab("Thông tin nhân viên", new UcStaffInfo{ ASession = _aSession });
+        }
+        private void barAccess_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab chức vụ
+            AddTab("Phân quyền", new UcAccess());
         }
         #endregion
     }
