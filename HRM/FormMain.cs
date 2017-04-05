@@ -17,8 +17,9 @@ namespace HRM
 
         private readonly TabAdd _clsAddTab = new TabAdd();
         public static HRMModelDataContext Hrm = new HRMModelDataContext();
-        public Session _aSession = new Session();
-
+        public Session _aSessionfrmmain = new Session();
+        FormLogin frmlogin = new FormLogin();
+        List<Form> openForms = new List<Form>();
         #region DEMO
         public List<ListGroupAccess> ListGroupAcces()
         {
@@ -26,7 +27,7 @@ namespace HRM
             foreach (var item in Hrm.DetailAccesses.SelectMany(aHmDetailAccesses => Hrm.Accesses,
                     (aHmDetailAccesses, aHrmAccess) => new { aHmDetailAccesses, aHrmAccess })
                 .Where(t => t.aHmDetailAccesses.GroupAccessID == /*int.Parse(_aSession["groupAccessID"].ToString())*/ 1
-                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessID).Select(t => new
+                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessD).Select(t => new
                              {
                                  t.aHrmAccess.Form,
                                  Edit = t.aHrmAccess.Edit == true ? 1 : 0
@@ -41,6 +42,7 @@ namespace HRM
             public string Form { get; set; }
             public int Edit { get; set; }
         }
+
         #endregion
 
         #region From Main Load
@@ -51,7 +53,7 @@ namespace HRM
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
+            label1.Text = _aSessionfrmmain["staffName"].ToString();
         }
         #endregion
 
@@ -169,14 +171,24 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Thông tin nhân viên", new UcStaffInfo{ ASession = _aSession });
-        }
-        private void barAccess_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
-            //Mở Tab chức vụ
-            AddTab("Phân quyền", new UcAccess());
+            AddTab("Thông tin nhân viên", new UCStaffInfo{ _aSession = _aSessionfrmmain });
         }
         #endregion
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //show form login
+           
+            FormLogin frmlogin = new FormLogin();
+            frmlogin.Show();
+            this.Close();
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            FormLogin frmlogin = new FormLogin();
+            frmlogin.ShowDialog(); 
+        }
     }
 }
