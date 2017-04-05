@@ -85,13 +85,13 @@ namespace HRM
                 _aSession["ListGroupAccess"] = (from aHmDetailAccesses in hrm.DetailAccesses
                                                 from aHrmAccess in hrm.Accesses
                                                 where aHmDetailAccesses.GroupAccessID == _anAccount.GroupAccessID
-                                                      && aHrmAccess.AccessID == aHmDetailAccesses.AccessD
+                                                      && aHrmAccess.AccessID == aHmDetailAccesses.AccessID
                                                 select new
                                                 {
                                                     aHrmAccess.Form,
                                                     aHrmAccess.Edit
                                                 }).ToList();
-                this.Dispose();
+                this.Hide();
                 FormMain frmain = new FormMain{ _aSessionfrmmain = _aSession };
                 frmain.ShowDialog(); 
             }

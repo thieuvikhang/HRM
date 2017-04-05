@@ -16,7 +16,7 @@ namespace HRM
     public partial class UcStaffInfo : UserControl
     {
         private readonly HRMModelDataContext _hrm = new HRMModelDataContext();
-        public Session ASession = new Session();
+        public Session _aSession = new Session();
         private readonly ExtendBus _newExtend = new ExtendBus();
         private readonly AccountBus _newAccountBus = new AccountBus();
         public bool CheckChooseChangePass;
@@ -52,7 +52,7 @@ namespace HRM
 
         private void UCStaffInfo_Load(object sender, EventArgs e)
         {
-            string idStaff = ASession["staffID"].ToString();
+            string idStaff = _aSession["staffID"].ToString();
             lblShowIDStaff.Text = idStaff;
 
             panChangePassword.Enabled = false;
@@ -64,7 +64,7 @@ namespace HRM
             string passwordInput = txtAgainPassword.Text;
             string passwordEncrypt = _newExtend.GetMd5(passwordInput);
             bool checkChangepass = false;
-            string idStaff = ASession["staffID"].ToString();
+            string idStaff = _aSession["staffID"].ToString();
             int accountID = 0;
             Account AccountOnline = _hrm.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
 
@@ -183,7 +183,7 @@ namespace HRM
             oldPasswordEncrypt = oldPasswordEncrypt.Substring(0, 26);
             string newPassword = txtNewpassword.EditValue.ToString();
             string againPassword = txtAgainPassword.EditValue.ToString();
-            string idStaff = ASession["staffID"].ToString();
+            string idStaff = _aSession["staffID"].ToString();
             Account acc = new Account();
             acc = _newAccountBus.getpass(idStaff);
             string passworddAccout = acc.Password;

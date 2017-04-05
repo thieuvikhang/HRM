@@ -27,7 +27,7 @@ namespace HRM
             foreach (var item in Hrm.DetailAccesses.SelectMany(aHmDetailAccesses => Hrm.Accesses,
                     (aHmDetailAccesses, aHrmAccess) => new { aHmDetailAccesses, aHrmAccess })
                 .Where(t => t.aHmDetailAccesses.GroupAccessID == /*int.Parse(_aSession["groupAccessID"].ToString())*/ 1
-                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessD).Select(t => new
+                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessID).Select(t => new
                              {
                                  t.aHrmAccess.Form,
                                  Edit = t.aHrmAccess.Edit == true ? 1 : 0
@@ -171,7 +171,7 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Thông tin nhân viên", new UCStaffInfo{ _aSession = _aSessionfrmmain });
+            AddTab("Thông tin nhân viên", new UcStaffInfo{ _aSession = _aSessionfrmmain });
         }
         #endregion
 
