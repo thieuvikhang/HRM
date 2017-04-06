@@ -38,18 +38,18 @@ namespace BUS
             return infoGroupAccess;
         }
          
-        public Account getpass(string idstaff)
+        public Account GetPass(string idstaff)
         {
-            Account AccountOnline = _hrm.Accounts.FirstOrDefault(ac => ac.StaffID == idstaff);
-            return AccountOnline;
+            var accountOnline = _hrm.Accounts.FirstOrDefault(ac => ac.StaffID == idstaff);
+            return accountOnline;
         }
 
         //Ham edit mot contract
-        public bool EditPassword(int acID, string pass)
+        public bool EditPassword(int acId, string pass)
         {
             try
             {
-                var aAccount = _hrm.Accounts.SingleOrDefault(ac => ac.AccID == acID);
+                var aAccount = _hrm.Accounts.SingleOrDefault(ac => ac.AccID == acId);
                 //kiem tra aAccount co tontai
                 if (aAccount == null) return false;
                 aAccount.Password = pass;
@@ -57,7 +57,7 @@ namespace BUS
                 _hrm.SubmitChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

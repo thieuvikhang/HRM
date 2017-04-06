@@ -352,6 +352,7 @@ namespace HRM
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.FromDate, DevExpress.Data.ColumnSortOrder.Descending)});
+            this.gridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridView1_CustomRowCellEdit);
             // 
             // StaffID
             // 
@@ -429,7 +430,7 @@ namespace HRM
             // 
             this.Sua.Caption = "Sửa";
             this.Sua.ColumnEdit = this.edit;
-            this.Sua.FieldName = "btSua";
+            this.Sua.FieldName = "edit";
             this.Sua.Name = "Sua";
             this.Sua.Tag = "tagSua";
             this.Sua.Visible = true;
@@ -448,7 +449,7 @@ namespace HRM
             // 
             this.Xoa.Caption = "Xóa";
             this.Xoa.ColumnEdit = this.delete;
-            this.Xoa.FieldName = "btXoa";
+            this.Xoa.FieldName = "delete";
             this.Xoa.Name = "Xoa";
             this.Xoa.Tag = "tagXoa";
             this.Xoa.Visible = true;
