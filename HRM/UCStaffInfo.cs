@@ -96,7 +96,7 @@ namespace HRM
             Account AccountOnline = _hrm.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
 
             accountID = AccountOnline.AccID;
-            passwordEncrypt = passwordEncrypt.Substring(0, 26);
+            //passwordEncrypt = passwordEncrypt.Substring(0, 26);
 
             checkChangepass = _newAccountBus.EditPassword(accountID, passwordEncrypt);
 
@@ -207,7 +207,7 @@ namespace HRM
         {
             string oldPassword = txtOldPassword.EditValue.ToString();
             string oldPasswordEncrypt = _newExtend.GetMd5(oldPassword);
-            oldPasswordEncrypt = oldPasswordEncrypt.Substring(0, 26);
+            //oldPasswordEncrypt = oldPasswordEncrypt.Substring(0, 26);
             string newPassword = txtNewpassword.EditValue.ToString();
             string againPassword = txtAgainPassword.EditValue.ToString();
             string idStaff = _aSession["staffID"].ToString();

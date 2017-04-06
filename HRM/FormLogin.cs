@@ -58,7 +58,7 @@ namespace HRM
             var passwordInput = txtPass.Text;
             string passwordInputEncrypt = "";
             passwordInputEncrypt = newExtendBus.GetMd5(passwordInput.ToString());
-            passwordInputEncrypt = passwordInputEncrypt.Substring(0, 26);
+            //passwordInputEncrypt = passwordInputEncrypt.Substring(0, 26);
             //gọi tới hàm checklogin vs 2 biến ở trên truyền vào để check
             var checkLogin = _anAccountBus.CheckLogin(userNameInput, passwordInputEncrypt); 
             if (checkLogin)
