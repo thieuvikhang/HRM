@@ -53,7 +53,7 @@
             // 
             this.chartControl1.DataAdapter = this.pivotTableAdapter;
             this.chartControl1.DataSource = this.pivotGridControl1;
-            xyDiagram1.AxisX.Title.Text = "Tên NV Bộ phận";
+            xyDiagram1.AxisX.Title.Text = "Tên Nhân viên Bộ phận";
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.Label.TextPattern = "{V:c}";
             xyDiagram1.AxisY.Title.Text = "Lương cơ bản Phụ cấp Ngày công Lương thực lãnh";
@@ -90,6 +90,8 @@
             this.fieldSectionName1});
             this.pivotGridControl1.Location = new System.Drawing.Point(0, 0);
             this.pivotGridControl1.Name = "pivotGridControl1";
+            this.pivotGridControl1.OptionsView.ShowColumnGrandTotalHeader = false;
+            this.pivotGridControl1.OptionsView.ShowFilterHeaders = false;
             this.pivotGridControl1.Size = new System.Drawing.Size(690, 268);
             this.pivotGridControl1.TabIndex = 2;
             this.pivotGridControl1.FieldValueDisplayText += new DevExpress.XtraPivotGrid.PivotFieldDisplayTextEventHandler(this.pivotGridControl1_FieldValueDisplayText);
@@ -108,10 +110,11 @@
             // 
             this.fieldStaffName1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.fieldStaffName1.AreaIndex = 0;
-            this.fieldStaffName1.Caption = "Tên NV";
+            this.fieldStaffName1.Caption = "Tên Nhân viên";
             this.fieldStaffName1.FieldName = "StaffName";
             this.fieldStaffName1.Name = "fieldStaffName1";
-            this.fieldStaffName1.Width = 125;
+            this.fieldStaffName1.Options.ShowInCustomizationForm = false;
+            this.fieldStaffName1.Width = 253;
             // 
             // fieldBasicPay1
             // 

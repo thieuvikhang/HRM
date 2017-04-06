@@ -53,7 +53,7 @@ namespace HRM
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            label1.Text = _aSessionfrmmain["staffName"].ToString();
+            //label1.Text = _aSessionfrmmain["staffName"].ToString();
         }
         #endregion
 
@@ -189,6 +189,13 @@ namespace HRM
             this.Dispose();
             FormLogin frmlogin = new FormLogin();
             frmlogin.ShowDialog(); 
+        }
+
+        private void barAccess_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab Nhân viên
+            AddTab("Phân quyền", new UcAccess());
         }
     }
 }

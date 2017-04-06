@@ -62,7 +62,7 @@ namespace HRM
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.label1 = new System.Windows.Forms.Label();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.SuspendLayout();
@@ -86,15 +86,18 @@ namespace HRM
             this.barButtonItem2,
             this.barButtonItem3,
             this.skinRibbonGalleryBarItem1,
-            this.ribbonGalleryBarItem1});
+            this.ribbonGalleryBarItem1,
+            this.barButtonItem4});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 20;
+            this.ribbonControl1.MaxItemId = 21;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPage3});
+            this.ribbonControl1.ShowToolbarCustomizeItem = false;
             this.ribbonControl1.Size = new System.Drawing.Size(758, 143);
+            this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             // 
             // barButtonItem1
             // 
@@ -152,6 +155,7 @@ namespace HRM
             this.barAccess.Id = 8;
             this.barAccess.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barAccess.LargeGlyph")));
             this.barAccess.Name = "barAccess";
+            this.barAccess.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barAccess_ItemClick);
             // 
             // barPostion
             // 
@@ -257,6 +261,7 @@ namespace HRM
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.barAccess);
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem4);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
             // ribbonPage3
@@ -284,27 +289,24 @@ namespace HRM
             this.xtraTabControl1.HeaderButtons = DevExpress.XtraTab.TabButtons.Close;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 143);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(758, 382);
+            this.xtraTabControl1.Size = new System.Drawing.Size(758, 378);
             this.xtraTabControl1.TabIndex = 18;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl1_ControlAdded);
             // 
-            // label1
+            // barButtonItem4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(384, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "label1";
+            this.barButtonItem4.Caption = "Quản lý tài khoản";
+            this.barButtonItem4.Id = 20;
+            this.barButtonItem4.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.LargeGlyph")));
+            this.barButtonItem4.Name = "barButtonItem4";
             // 
             // FormMain
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 525);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(758, 521);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -351,7 +353,7 @@ namespace HRM
         private SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private RibbonPageGroup ribbonPageGroup8;
         private RibbonGalleryBarItem ribbonGalleryBarItem1;
-        private System.Windows.Forms.Label label1;
+        private BarButtonItem barButtonItem4;
     }
 }
 

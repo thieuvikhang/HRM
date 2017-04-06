@@ -160,7 +160,7 @@ namespace HRM
 
         private void txtAcc_TextChanged(object sender, EventArgs e)
         {
-            if(txtAcc.Text.Length <= 4 )
+            if(txtAcc.Text.Length < 4 )
             {
                 txtPass.Enabled = false;
             }
@@ -172,7 +172,7 @@ namespace HRM
 
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
-            if (txtPass.Text.Length <= 4)
+            if (txtPass.Text.Length < 4)
             {
                 btnLogin.Enabled = false;
             }
