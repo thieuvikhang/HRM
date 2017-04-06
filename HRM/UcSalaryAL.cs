@@ -13,7 +13,7 @@ namespace HRM
 
         private void pivotGridControl1_FieldValueDisplayText(object sender, PivotFieldDisplayTextEventArgs e)
         {
-            if (e.ValueType == PivotGridValueType.GrandTotal)
+            if (e.ValueType == PivotGridValueType.GrandTotal && !e.IsColumn)
             {
                 e.DisplayText = "Tổng cộng";
             }

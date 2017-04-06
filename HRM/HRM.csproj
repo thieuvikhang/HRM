@@ -158,6 +158,12 @@
     <Compile Include="UcAccess.Designer.cs">
       <DependentUpon>UcAccess.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcAccounts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcAccounts.Designer.cs">
+      <DependentUpon>UcAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcAnalytics.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -300,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcAccess.resx">
       <DependentUpon>UcAccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcAccounts.resx">
+      <DependentUpon>UcAccounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcAnalytics.resx">
       <DependentUpon>UcAnalytics.cs</DependentUpon>
