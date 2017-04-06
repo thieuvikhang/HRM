@@ -1,5 +1,6 @@
 ﻿using DAL;
 using System;
+using System.Data.Linq;
 using System.Linq;
 
 namespace BUS
@@ -300,6 +301,15 @@ namespace BUS
             {
                 return false;
             }
+        }
+
+        public bool EditImageStaff(string newid, Binary ImageStaff)
+        {
+            var newStaff = _aHrm.Staffs.SingleOrDefault(st => st.StaffID == newid);
+            if (newStaff == null) return false;
+            newStaff.Image = ImageStaff;
+            _aHrm.SubmitChanges();
+            return true;
         }
 
         public bool DeleteAStaff(string idInput)
