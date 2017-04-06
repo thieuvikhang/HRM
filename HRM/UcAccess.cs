@@ -1,78 +1,62 @@
 ﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
+using System.Collections.Generic;
 using BUS;
-using DAL;
+using DevExpress.Data;
 using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraEditors.Controls;
 
 namespace HRM
 {
     public partial class UcAccess : XtraUserControl
     {
-        readonly AccessBus _accessBus = new AccessBus();
-        readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        private readonly AccessBus _accessBus = new AccessBus();
+        // Create an empty list.
+        public readonly List<int> Rows = new List<int>();
         public UcAccess()
         {
             InitializeComponent();
         }
 
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-            //LogInternal_RowItem  selectedLogItem = (LogInternal_RowItem)GridControl_ListLogItem.SelectedItem);
-        }
-
         private void UcAccess_Load(object sender, EventArgs e)
         {
             gridAccess.DataSource = _accessBus.LoadAll();
-            CheckEdit.ReadOnly = true;
+            gridControl2.DataSource = _accessBus.GetAllGroupAccess();
         }
 
-        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        private void gridView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-        }
-
-        private void gridView1_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
-        {
-        }
-
-        private void gridView1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
-        {
-            // Create an empty list.
-            var rows = new ArrayList();
-            // Add the selected rows to the list.
-            for (var i = 0; i < gridView1.SelectedRowsCount; i++)
+            Rows.Clear();
+            foreach (var i in gridView1.GetSelectedRows())
             {
-                if (gridView1.GetSelectedRows()[i] >= 0)
-                    rows.Add(gridView1.GetDataRow(gridView1.GetSelectedRows()[i]));
-            }
-            try
-            {
-                gridView1.BeginUpdate();
-                foreach (var t in rows)
-                {
-                    //var row = t as DataRow;
-                    // Change the field value.
-/*                    if (row != null)
-                        row["Discontinued"] = true;*/
-                    if (t != null)
-                        XtraMessageBox.Show(t.ToString());
-                }
-            }
-            finally
-            {
-                gridView1.EndUpdate();
+                var d = (int)gridView1.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                Rows.Add(d);
             }
         }
 
-        private void gridView1_RowClick(object sender, RowClickEventArgs e)
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var ten = txtTenNhom.Text;
+            var mota = txtTenNhom.Text;
+            if (!_accessBus.AddAccesses(ten, mota, Rows))
+            {
+                XtraMessageBox.Show("Lỗi thêm!");
+            }
+            UcAccess_Load(sender, e);
+        }
+
+        private void btnEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+
         }
     }
 }

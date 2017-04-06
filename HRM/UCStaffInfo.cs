@@ -212,7 +212,7 @@ namespace HRM
             string againPassword = txtAgainPassword.EditValue.ToString();
             string idStaff = _aSession["staffID"].ToString();
             Account acc = new Account();
-            acc = _newAccountBus.getpass(idStaff);
+            acc = _newAccountBus.GetPass(idStaff);
             string passworddAccout = acc.Password;
             passworddAccout = passworddAccout.Trim();
             lblShowPassStaff.Text = passworddAccout;
