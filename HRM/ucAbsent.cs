@@ -19,6 +19,7 @@ namespace HRM
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         public readonly AbsentBus AbsentBus = new AbsentBus();
         public readonly DaysRemainBus DaysRemainBus = new DaysRemainBus();
+        public Session Session = new Session();
         public bool AllowClosePopup = true;
         private readonly List<int> _list = new List<int>();
         private int _coHieu, _ngayBatDau, _ngayKetThuc, _soNgayNghiCoLuong;
@@ -34,6 +35,16 @@ namespace HRM
         }
         private void ucAbsent_Load(object sender, EventArgs e)
         {
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                groupBox1.Visible = false;
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                gridView1.Columns[8].Visible = false;
+                gridView1.Columns[9].Visible = false;
+            }
             gcAbsent.DataSource = AbsentBus.GetAbsent();
             LoadluChonNv();
             dateChonBD.Properties.MaxValue = AbsentBus.NgayCuoiThang(DateTime.Now);

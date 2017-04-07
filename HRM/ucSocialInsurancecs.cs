@@ -9,6 +9,7 @@ namespace HRM
 {
     public partial class UcSocialInsurancecs : XtraUserControl
     {
+        public Session Session = new Session();
         int _checkActive;
         bool _checkClickGrid;
 
@@ -21,7 +22,16 @@ namespace HRM
 
         private void UcSocialInsurancecs_Load(object sender, EventArgs e)
         {
-            
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                grbxActive.Visible = false;
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+            }
             //LoadLookUpId();
             int countRecordSocial = _aHrm.SocialInsurances.Count();
             int countStaffHasNotSignSocial = _socialInBus.CountAllStaffHasNotsocial();

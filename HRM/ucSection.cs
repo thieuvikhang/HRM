@@ -11,6 +11,7 @@ namespace HRM
     public partial class UcSection : XtraUserControl
     {
         readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        public Session Session = new Session();
         int _checkAdd;
         public class MyGridLocalizer : GridLocalizer
         {
@@ -49,6 +50,16 @@ namespace HRM
         }
         private void ucSection_Load(object sender, EventArgs e)
         {
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                groupControl2.Visible = false;
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+            }
             txtSectionID.Enabled = false;
             gcSection.DataSource = _sectionBus.LoadAll();
             SetTxt(false);

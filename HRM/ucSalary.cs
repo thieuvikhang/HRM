@@ -15,6 +15,7 @@ namespace HRM
         public readonly HRMModelDataContext AHrm = new HRMModelDataContext();
         public readonly SalaryBus SalaryBus = new SalaryBus();
         public readonly StaffBus StaffBus = new StaffBus();
+        public Session Session = new Session();
         public UcSalary()
         {
             InitializeComponent();
@@ -47,6 +48,11 @@ namespace HRM
 
         private void ucSalary_Load(object sender, EventArgs e)
         {
+            var access = Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                btThemLuong.Visible = false;
+            }
             gcSalary.DataSource = SalaryBus.LoadSalary;
             LoadComboboxStaff();
             LoadComboboxMonth();

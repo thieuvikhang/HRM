@@ -12,6 +12,7 @@ namespace HRM
     public partial class UcContract : XtraUserControl
     {
         private int _flag;
+        public Session Session = new Session();
 
         public UcContract()
         {
@@ -45,7 +46,18 @@ namespace HRM
         }
 
         private void ucContract_Load(object sender, EventArgs e)
-        {          
+        {
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                groupControl2.Visible = false;
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+                btnKiemTraLoi.Visible = false;
+            }
             dateSign.Enabled = false;
             dateEnd.Enabled = false;
             btnKiemTraLoi.Enabled = false;

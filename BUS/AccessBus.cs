@@ -209,19 +209,25 @@ namespace BUS
         /// <returns>danh sách quyền</returns>
         public List<ListGroupAccess> ListGroupAcces(int groupAccesId)
         {
-            var list = new List<ListGroupAccess>();
-            foreach (var item in _aHrm.DetailAccesses.SelectMany(aHmDetailAccesses => _aHrm.Accesses,
-                    (aHmDetailAccesses, aHrmAccess) => new { aHmDetailAccesses, aHrmAccess })
-                .Where(t => t.aHmDetailAccesses.GroupAccessID == groupAccesId
-                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessID).Select(t => new
-                             {
-                                 t.aHrmAccess.Form,
-                                 Edit = t.aHrmAccess.Edit == true ? 1 : 0
-                             }))
+            var listInPut = _aHrm.DetailAccesses.SelectMany(aHmDetailAccesses => _aHrm.Accesses, (aHmDetailAccesses, aHrmAccess) => new {aHmDetailAccesses, aHrmAccess})
+                .Where(t => t.aHmDetailAccesses.GroupAccessID == groupAccesId && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessID).Select(t => new
+                { t.aHrmAccess.Form, Edit = t.aHrmAccess.Edit == true ? 1 : 0 }).ToList();
+            if (listInPut.Count == 0) return null;
+            var list0 = new List<ListGroupAccess>();
+            var list1 = new List<ListGroupAccess>();
+            foreach (var intPut in listInPut)
             {
-                list.Add(new ListGroupAccess { Form = item.Form, Edit = item.Edit });
+                if (intPut.Edit != 1)
+                    list0.Add(new ListGroupAccess {Form = intPut.Form, Edit = intPut.Edit});
+                else
+                    list1.Add(new ListGroupAccess {Form = intPut.Form, Edit = intPut.Edit});
             }
-            return list;
+            if (list1.Count ==0) return list0;
+            if (list0.Count == 0) return list1;
+            var listOutPut = new List<ListGroupAccess>();
+            listOutPut.AddRange(list0);
+            listOutPut.AddRange(list1);
+            return listOutPut;
         }
     }
 }

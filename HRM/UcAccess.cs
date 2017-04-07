@@ -17,6 +17,7 @@ namespace HRM
         public int CoHieu, MaGroupAccess;
         public readonly List<int> Rows = new List<int>();
         public string TenNhomQuyen;
+        public Session Session = new Session();
         #endregion
 
         #region Load Form
@@ -28,6 +29,16 @@ namespace HRM
 
         private void UcAccess_Load(object sender, EventArgs e)
         {
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                groupBox2.Visible = false;
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                gridView2.Columns[3].Visible = false;
+                gridView2.Columns[4].Visible = false;
+            }
             gridAccess.DataSource = null;
             gridControl2.DataSource = _accessBus.GetAllGroupAccess();
             SetText(false);
