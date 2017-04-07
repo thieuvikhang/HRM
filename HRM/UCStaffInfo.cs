@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 using DAL;
 using BUS;
+using System.IO;
+using DevExpress.XtraEditors;
+using System.Data.Linq;
 
 namespace HRM
 {
@@ -21,6 +24,7 @@ namespace HRM
         private readonly AccountBus _newAccountBus = new AccountBus();
         StaffBus newStaffBus = new StaffBus();
         public bool CheckChooseChangePass;
+        string fileNameimage = "";
 
         public UcStaffInfo()
         {
@@ -83,6 +87,8 @@ namespace HRM
             lblManager.Text = astaffManager.StaffName;
             lblPosition.Text = aPosition.PostName;
             lblSection.Text = aSection.SectionName;
+            //Load hinhAnh:
+            kiemtraAnhNhanVien();
         }
 
         private void btnSaveNewPasswoed_Click(object sender, EventArgs e)
@@ -252,6 +258,114 @@ namespace HRM
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // Hàm kiểm tra ảnh Nhan Vien đã có chưa.
+        public void kiemtraAnhNhanVien()
+        {
+            try
+            {
+                string idStaff = _aSession["staffID"].ToString();
+                var staff = (from sp in _hrm.Staffs
+                               where sp.StaffID == idStaff
+                               select sp).SingleOrDefault();
+                picStaffImage.Image = ByteArrayToImage(staff.Image.ToArray());
+            }
+            catch
+            {
+                lblThongBao.Text =  "Nhân viên vẫn chưa có hình ảnh. bạn hãy thêm ảnh cho nhân viên này.";
+            }
+        }
+
+        //Hàm để chuyển byte[] => image
+        private Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image image = Image.FromStream(ms);
+            return image;
+        }
+
+        // Hàm dùng để chuyển image => byte[]
+        private byte[] ImageToByteArray(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return ms.ToArray();
+        }
+
+        // Hàm mở HÌnh ảnh
+        private void moHinhAnh()
+        {
+            OpenFileDialog openfile = new OpenFileDialog() { Filter = "JPEG|*.jpg", ValidateNames = true, Multiselect = false };
+            try
+            {
+                if (openfile.ShowDialog() == DialogResult.OK)
+                {
+                    fileNameimage = openfile.FileName;
+                    //lbFilename.Text = filename;
+                    picStaffImage.Image = Image.FromFile(fileNameimage);
+                    Image image = Image.FromFile(fileNameimage);
+                    if (image.Width < picStaffImage.Width && image.Height < picStaffImage.Height)
+                    {
+                        picStaffImage.SizeMode = PictureBoxSizeMode.Normal;
+                    }
+                    else
+                    {
+                        picStaffImage.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                }
+            }
+            // File chọn ko phải là file ảnh (jpg, ....)
+            catch
+            {
+                XtraMessageBox.Show(string.Format("File : {0} Không phải là file hình ảnh, hãy chọn file khác(.ipg)", fileNameimage), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Hàm sửa sản phẩm
+        public void suaSanPham()
+        { 
+
+            DialogResult suaAnh = XtraMessageBox.Show("Bạn vẫn muốn giữ ảnh này lại", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (suaAnh == DialogResult.Yes)
+            {
+                string idStaff = _aSession["staffID"].ToString();
+                //Chuyển image thành binary thông qua byte[]
+                byte[] file_Byte = ImageToByteArray(picStaffImage.Image);
+                Binary file_Binary = new Binary(file_Byte);
+
+                if(newStaffBus.EditImageStaff(idStaff, file_Binary))
+                {
+                    lblTrangThai.Text = "Bạn đã đổi ảnh thành công.";
+                }
+                else
+                {
+                    lblTrangThai.Text = "Bạn đã đổi ảnh thất bại.";
+                }
+            }
+            else
+            {
+                lblTrangThai.Text = "Bạn đã không đổi ảnh.";
+            }
+        }
+
+        private void btnChooseImageStaff_Click(object sender, EventArgs e)
+        {
+            moHinhAnh();
+            btnChooseImageStaff.Enabled = false;
+
+        }
+
+        private void btnSaveImageStaffChange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                suaSanPham();
+            }
+            catch(Exception ex)
+            {
+                XtraMessageBox.Show("Chưa có hình ảnh.");
+            }
         }
     }
 }

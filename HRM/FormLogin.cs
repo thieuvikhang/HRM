@@ -125,11 +125,11 @@ namespace HRM
                 lblThongBaoNhapMatKhau.ForeColor = Color.Red;
                 lblThongBaoNhapMatKhau.Text = "Tên tài khoản quá ngắn.";
             }
-            else if (txtPass.Text.Length > 19)
+            else if (txtPass.Text.Length >= 19)
             {
                 lblThongBaoNhapMatKhau.ForeColor = Color.Red;
                 lblThongBaoNhapMatKhau.Text = "Tên tài khoản dài quá 19 ký tự.";
-                e.Handled = false;
+                e.Handled = true;
             }
             else
             {
@@ -146,11 +146,11 @@ namespace HRM
                 lblThongBaoNhapTaiKhoan.ForeColor = Color.Red;
                 lblThongBaoNhapTaiKhoan.Text = "Tên tài khoản quá ngắn.";
             }
-            else if(txtAcc.Text.Length > 19)
+            else if(txtAcc.Text.Length >= 19)
             {
                 lblThongBaoNhapTaiKhoan.ForeColor = Color.Red;
                 lblThongBaoNhapTaiKhoan.Text = "Tên tài khoản dài quá 19 ký tự.";
-                e.Handled = false;
+                e.Handled = true;
             }
             else
             {

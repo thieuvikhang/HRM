@@ -75,7 +75,7 @@ namespace DAL
     #endregion
 		
 		public HRMModelDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HRMConnectionString2, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HRMConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -495,7 +495,7 @@ namespace DAL
 		
 		private string _StaffName;
 		
-		private string _Image;
+		private System.Data.Linq.Binary _Image;
 		
 		private System.Nullable<bool> _Gender;
 		
@@ -547,7 +547,7 @@ namespace DAL
     partial void OnStaffIDChanged();
     partial void OnStaffNameChanging(string value);
     partial void OnStaffNameChanged();
-    partial void OnImageChanging(string value);
+    partial void OnImageChanging(System.Data.Linq.Binary value);
     partial void OnImageChanged();
     partial void OnGenderChanging(System.Nullable<bool> value);
     partial void OnGenderChanged();
@@ -630,8 +630,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(50)")]
-		public string Image
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Image
 		{
 			get
 			{
@@ -1402,7 +1402,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(30)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(32)")]
 		public string Password
 		{
 			get
@@ -2414,7 +2414,7 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int GroupAccessID
 		{
 			get
