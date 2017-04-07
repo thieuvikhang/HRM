@@ -69,6 +69,7 @@ namespace HRM
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.ApplicationIcon = ((System.Drawing.Bitmap)(resources.GetObject("ribbonControl1.ApplicationIcon")));
             this.ribbonControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
@@ -89,7 +90,7 @@ namespace HRM
             this.ribbonGalleryBarItem1,
             this.barButtonItem4});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 21;
+            this.ribbonControl1.MaxItemId = 1;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,

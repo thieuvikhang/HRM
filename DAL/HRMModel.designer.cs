@@ -75,7 +75,7 @@ namespace DAL
     #endregion
 		
 		public HRMModelDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HRMConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HRMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1402,7 +1402,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(32)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(33)")]
 		public string Password
 		{
 			get
@@ -2414,7 +2414,7 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int GroupAccessID
 		{
 			get

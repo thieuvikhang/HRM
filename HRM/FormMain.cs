@@ -9,6 +9,8 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
+using DevExpress.Skins;
+using System.Drawing;
 
 namespace HRM
 {
@@ -49,6 +51,10 @@ namespace HRM
         public FormMain()
         {
             InitializeComponent();
+            Skin skin = RibbonSkins.GetSkin(DevExpress.LookAndFeel.UserLookAndFeel.Default);
+            SkinElement elem = skin[RibbonSkins.SkinFormApplicationButton];
+            elem.Image.SetImage((Image)null, Color.Empty);
+            elem.Size.MinSize = new Size(44, 42);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -203,18 +209,7 @@ namespace HRM
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (e.CloseReason == CloseReason.UserClosing)
-            //{
-            //    if (MessageBox.Show(this, "Really?", "Closing...",
-            //         MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
-            //        == DialogResult.Cancel) e.Cancel = true;
-            //}
-            if (string.Equals((sender as Button).Name, @"CloseButton"))
-            { }
-        // Do something proper to CloseButton.
-            else
-                Application.Exit();
-        // Then assume that X has been clicked and act accordingly.
+           
         }
     }
 }
