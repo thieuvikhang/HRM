@@ -193,5 +193,17 @@ namespace BUS
                 .Select(c => c.AbsentDay).Sum();
             return day == null ? 0 : ToInt16(day);
         }
+        /// <summary>
+        /// Lấy ngày nghỉ phép lớn nhất
+        /// </summary>
+        /// <param name="staffId">mã nhân viên</param>
+        /// <returns>Ngày nghỉ phép lớn nhất</returns>
+        public int MaxValue(string staffId)
+        {
+            var max = (from ab in _aHrm.Absents
+                       where ab.StaffID == staffId && ab.ToDate.Value.Month == DateTime.Now.Month
+                       select ab.ToDate.Value.Day).Distinct().ToList();
+            return max.Concat(new[] { 0 }).Max();
+        }
     }
 }

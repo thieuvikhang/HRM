@@ -33,6 +33,9 @@ namespace DAL
     partial void InsertAbsent(Absent instance);
     partial void UpdateAbsent(Absent instance);
     partial void DeleteAbsent(Absent instance);
+    partial void InsertStaff(Staff instance);
+    partial void UpdateStaff(Staff instance);
+    partial void DeleteStaff(Staff instance);
     partial void InsertAccess(Access instance);
     partial void UpdateAccess(Access instance);
     partial void DeleteAccess(Access instance);
@@ -69,9 +72,6 @@ namespace DAL
     partial void InsertSocialInsurance(SocialInsurance instance);
     partial void UpdateSocialInsurance(SocialInsurance instance);
     partial void DeleteSocialInsurance(SocialInsurance instance);
-    partial void InsertStaff(Staff instance);
-    partial void UpdateStaff(Staff instance);
-    partial void DeleteStaff(Staff instance);
     #endregion
 		
 		public HRMModelDataContext() : 
@@ -109,6 +109,14 @@ namespace DAL
 			get
 			{
 				return this.GetTable<Absent>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Staff> Staffs
+		{
+			get
+			{
+				return this.GetTable<Staff>();
 			}
 		}
 		
@@ -205,14 +213,6 @@ namespace DAL
 			get
 			{
 				return this.GetTable<SocialInsurance>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Staff> Staffs
-		{
-			get
-			{
-				return this.GetTable<Staff>();
 			}
 		}
 		
@@ -485,6 +485,678 @@ namespace DAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Staff")]
+	public partial class Staff : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _StaffID;
+		
+		private string _StaffName;
+		
+		private System.Data.Linq.Binary _Image;
+		
+		private System.Nullable<bool> _Gender;
+		
+		private System.Nullable<System.DateTime> _BirthDay;
+		
+		private string _CardID;
+		
+		private string _Phone;
+		
+		private string _Address;
+		
+		private string _Education;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private string _ManagerID;
+		
+		private string _Email;
+		
+		private System.Nullable<int> _DaysRemain;
+		
+		private string _PostID;
+		
+		private string _SectionID;
+		
+		private EntitySet<Absent> _Absents;
+		
+		private EntitySet<Account> _Accounts;
+		
+		private EntitySet<Contract> _Contracts;
+		
+		private EntitySet<DaysRemain> _DaysRemains;
+		
+		private EntitySet<Salary> _Salaries;
+		
+		private EntitySet<SocialInsurance> _SocialInsurances;
+		
+		private EntityRef<Position> _Position;
+		
+		private EntityRef<Section> _Section;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStaffIDChanging(string value);
+    partial void OnStaffIDChanged();
+    partial void OnStaffNameChanging(string value);
+    partial void OnStaffNameChanged();
+    partial void OnImageChanging(System.Data.Linq.Binary value);
+    partial void OnImageChanged();
+    partial void OnGenderChanging(System.Nullable<bool> value);
+    partial void OnGenderChanged();
+    partial void OnBirthDayChanging(System.Nullable<System.DateTime> value);
+    partial void OnBirthDayChanged();
+    partial void OnCardIDChanging(string value);
+    partial void OnCardIDChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnEducationChanging(string value);
+    partial void OnEducationChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
+    partial void OnManagerIDChanging(string value);
+    partial void OnManagerIDChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnDaysRemainChanging(System.Nullable<int> value);
+    partial void OnDaysRemainChanged();
+    partial void OnPostIDChanging(string value);
+    partial void OnPostIDChanged();
+    partial void OnSectionIDChanging(string value);
+    partial void OnSectionIDChanged();
+    #endregion
+		
+		public Staff()
+		{
+			this._Absents = new EntitySet<Absent>(new Action<Absent>(this.attach_Absents), new Action<Absent>(this.detach_Absents));
+			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
+			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
+			this._DaysRemains = new EntitySet<DaysRemain>(new Action<DaysRemain>(this.attach_DaysRemains), new Action<DaysRemain>(this.detach_DaysRemains));
+			this._Salaries = new EntitySet<Salary>(new Action<Salary>(this.attach_Salaries), new Action<Salary>(this.detach_Salaries));
+			this._SocialInsurances = new EntitySet<SocialInsurance>(new Action<SocialInsurance>(this.attach_SocialInsurances), new Action<SocialInsurance>(this.detach_SocialInsurances));
+			this._Position = default(EntityRef<Position>);
+			this._Section = default(EntityRef<Section>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string StaffID
+		{
+			get
+			{
+				return this._StaffID;
+			}
+			set
+			{
+				if ((this._StaffID != value))
+				{
+					this.OnStaffIDChanging(value);
+					this.SendPropertyChanging();
+					this._StaffID = value;
+					this.SendPropertyChanged("StaffID");
+					this.OnStaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffName", DbType="NVarChar(30)")]
+		public string StaffName
+		{
+			get
+			{
+				return this._StaffName;
+			}
+			set
+			{
+				if ((this._StaffName != value))
+				{
+					this.OnStaffNameChanging(value);
+					this.SendPropertyChanging();
+					this._StaffName = value;
+					this.SendPropertyChanged("StaffName");
+					this.OnStaffNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
+		public System.Nullable<bool> Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this.OnGenderChanging(value);
+					this.SendPropertyChanging();
+					this._Gender = value;
+					this.SendPropertyChanged("Gender");
+					this.OnGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDay", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BirthDay
+		{
+			get
+			{
+				return this._BirthDay;
+			}
+			set
+			{
+				if ((this._BirthDay != value))
+				{
+					this.OnBirthDayChanging(value);
+					this.SendPropertyChanging();
+					this._BirthDay = value;
+					this.SendPropertyChanged("BirthDay");
+					this.OnBirthDayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CardID", DbType="VarChar(12)")]
+		public string CardID
+		{
+			get
+			{
+				return this._CardID;
+			}
+			set
+			{
+				if ((this._CardID != value))
+				{
+					this.OnCardIDChanging(value);
+					this.SendPropertyChanging();
+					this._CardID = value;
+					this.SendPropertyChanged("CardID");
+					this.OnCardIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="VarChar(11)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(100)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Education", DbType="NVarChar(30)")]
+		public string Education
+		{
+			get
+			{
+				return this._Education;
+			}
+			set
+			{
+				if ((this._Education != value))
+				{
+					this.OnEducationChanging(value);
+					this.SendPropertyChanging();
+					this._Education = value;
+					this.SendPropertyChanged("Education");
+					this.OnEducationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManagerID", DbType="Char(6)")]
+		public string ManagerID
+		{
+			get
+			{
+				return this._ManagerID;
+			}
+			set
+			{
+				if ((this._ManagerID != value))
+				{
+					this.OnManagerIDChanging(value);
+					this.SendPropertyChanging();
+					this._ManagerID = value;
+					this.SendPropertyChanged("ManagerID");
+					this.OnManagerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="Char(20)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysRemain", DbType="Int")]
+		public System.Nullable<int> DaysRemain
+		{
+			get
+			{
+				return this._DaysRemain;
+			}
+			set
+			{
+				if ((this._DaysRemain != value))
+				{
+					this.OnDaysRemainChanging(value);
+					this.SendPropertyChanging();
+					this._DaysRemain = value;
+					this.SendPropertyChanged("DaysRemain");
+					this.OnDaysRemainChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostID", DbType="Char(6) NOT NULL", CanBeNull=false)]
+		public string PostID
+		{
+			get
+			{
+				return this._PostID;
+			}
+			set
+			{
+				if ((this._PostID != value))
+				{
+					if (this._Position.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPostIDChanging(value);
+					this.SendPropertyChanging();
+					this._PostID = value;
+					this.SendPropertyChanged("PostID");
+					this.OnPostIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionID", DbType="Char(6) NOT NULL", CanBeNull=false)]
+		public string SectionID
+		{
+			get
+			{
+				return this._SectionID;
+			}
+			set
+			{
+				if ((this._SectionID != value))
+				{
+					if (this._Section.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSectionIDChanging(value);
+					this.SendPropertyChanging();
+					this._SectionID = value;
+					this.SendPropertyChanged("SectionID");
+					this.OnSectionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Absent", Storage="_Absents", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<Absent> Absents
+		{
+			get
+			{
+				return this._Absents;
+			}
+			set
+			{
+				this._Absents.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Accounts", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<Account> Accounts
+		{
+			get
+			{
+				return this._Accounts;
+			}
+			set
+			{
+				this._Accounts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Contract", Storage="_Contracts", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<Contract> Contracts
+		{
+			get
+			{
+				return this._Contracts;
+			}
+			set
+			{
+				this._Contracts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_DaysRemain", Storage="_DaysRemains", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<DaysRemain> DaysRemains
+		{
+			get
+			{
+				return this._DaysRemains;
+			}
+			set
+			{
+				this._DaysRemains.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Salary", Storage="_Salaries", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<Salary> Salaries
+		{
+			get
+			{
+				return this._Salaries;
+			}
+			set
+			{
+				this._Salaries.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_SocialInsurance", Storage="_SocialInsurances", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<SocialInsurance> SocialInsurances
+		{
+			get
+			{
+				return this._SocialInsurances;
+			}
+			set
+			{
+				this._SocialInsurances.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Position_Staff", Storage="_Position", ThisKey="PostID", OtherKey="PostID", IsForeignKey=true)]
+		public Position Position
+		{
+			get
+			{
+				return this._Position.Entity;
+			}
+			set
+			{
+				Position previousValue = this._Position.Entity;
+				if (((previousValue != value) 
+							|| (this._Position.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Position.Entity = null;
+						previousValue.Staffs.Remove(this);
+					}
+					this._Position.Entity = value;
+					if ((value != null))
+					{
+						value.Staffs.Add(this);
+						this._PostID = value.PostID;
+					}
+					else
+					{
+						this._PostID = default(string);
+					}
+					this.SendPropertyChanged("Position");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Section_Staff", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
+		public Section Section
+		{
+			get
+			{
+				return this._Section.Entity;
+			}
+			set
+			{
+				Section previousValue = this._Section.Entity;
+				if (((previousValue != value) 
+							|| (this._Section.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Section.Entity = null;
+						previousValue.Staffs.Remove(this);
+					}
+					this._Section.Entity = value;
+					if ((value != null))
+					{
+						value.Staffs.Add(this);
+						this._SectionID = value.SectionID;
+					}
+					else
+					{
+						this._SectionID = default(string);
+					}
+					this.SendPropertyChanged("Section");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Absents(Absent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Absents(Absent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_Accounts(Account entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Accounts(Account entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_Contracts(Contract entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Contracts(Contract entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_DaysRemains(DaysRemain entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_DaysRemains(DaysRemain entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_Salaries(Salary entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Salaries(Salary entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_SocialInsurances(SocialInsurance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_SocialInsurances(SocialInsurance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Access")]
 	public partial class Access : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -498,6 +1170,8 @@ namespace DAL
 		private System.Nullable<bool> _Edit;
 		
 		private string _DescriptionAccess;
+		
+		private EntitySet<DetailAccess> _DetailAccesses;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -515,6 +1189,7 @@ namespace DAL
 		
 		public Access()
 		{
+			this._DetailAccesses = new EntitySet<DetailAccess>(new Action<DetailAccess>(this.attach_DetailAccesses), new Action<DetailAccess>(this.detach_DetailAccesses));
 			OnCreated();
 		}
 		
@@ -598,6 +1273,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_DetailAccesses", ThisKey="AccessID", OtherKey="AccessID")]
+		public EntitySet<DetailAccess> DetailAccesses
+		{
+			get
+			{
+				return this._DetailAccesses;
+			}
+			set
+			{
+				this._DetailAccesses.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -617,6 +1305,18 @@ namespace DAL
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_DetailAccesses(DetailAccess entity)
+		{
+			this.SendPropertyChanging();
+			entity.Access = this;
+		}
+		
+		private void detach_DetailAccesses(DetailAccess entity)
+		{
+			this.SendPropertyChanging();
+			entity.Access = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Account")]
@@ -635,9 +1335,9 @@ namespace DAL
 		
 		private string _StaffID;
 		
-		private EntityRef<GroupAccess> _GroupAccess;
-		
 		private EntityRef<Staff> _Staff;
+		
+		private EntityRef<GroupAccess> _GroupAccess;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -657,8 +1357,8 @@ namespace DAL
 		
 		public Account()
 		{
-			this._GroupAccess = default(EntityRef<GroupAccess>);
 			this._Staff = default(EntityRef<Staff>);
+			this._GroupAccess = default(EntityRef<GroupAccess>);
 			OnCreated();
 		}
 		
@@ -702,7 +1402,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(30)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(32)")]
 		public string Password
 		{
 			get
@@ -770,40 +1470,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
-		public GroupAccess GroupAccess
-		{
-			get
-			{
-				return this._GroupAccess.Entity;
-			}
-			set
-			{
-				GroupAccess previousValue = this._GroupAccess.Entity;
-				if (((previousValue != value) 
-							|| (this._GroupAccess.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._GroupAccess.Entity = null;
-						previousValue.Accounts.Remove(this);
-					}
-					this._GroupAccess.Entity = value;
-					if ((value != null))
-					{
-						value.Accounts.Add(this);
-						this._GroupAccessID = value.GroupAccessID;
-					}
-					else
-					{
-						this._GroupAccessID = default(int);
-					}
-					this.SendPropertyChanged("GroupAccess");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
 		public Staff Staff
 		{
@@ -834,6 +1500,40 @@ namespace DAL
 						this._StaffID = default(string);
 					}
 					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
+		public GroupAccess GroupAccess
+		{
+			get
+			{
+				return this._GroupAccess.Entity;
+			}
+			set
+			{
+				GroupAccess previousValue = this._GroupAccess.Entity;
+				if (((previousValue != value) 
+							|| (this._GroupAccess.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GroupAccess.Entity = null;
+						previousValue.Accounts.Remove(this);
+					}
+					this._GroupAccess.Entity = value;
+					if ((value != null))
+					{
+						value.Accounts.Add(this);
+						this._GroupAccessID = value.GroupAccessID;
+					}
+					else
+					{
+						this._GroupAccessID = default(int);
+					}
+					this.SendPropertyChanged("GroupAccess");
 				}
 			}
 		}
@@ -1521,6 +2221,8 @@ namespace DAL
 		
 		private int _GroupAccessID;
 		
+		private EntityRef<Access> _Access;
+		
 		private EntityRef<GroupAccess> _GroupAccess;
 		
     #region Extensibility Method Definitions
@@ -1535,6 +2237,7 @@ namespace DAL
 		
 		public DetailAccess()
 		{
+			this._Access = default(EntityRef<Access>);
 			this._GroupAccess = default(EntityRef<GroupAccess>);
 			OnCreated();
 		}
@@ -1550,6 +2253,10 @@ namespace DAL
 			{
 				if ((this._AccessID != value))
 				{
+					if (this._Access.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnAccessIDChanging(value);
 					this.SendPropertyChanging();
 					this._AccessID = value;
@@ -1579,6 +2286,40 @@ namespace DAL
 					this._GroupAccessID = value;
 					this.SendPropertyChanged("GroupAccessID");
 					this.OnGroupAccessIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_Access", ThisKey="AccessID", OtherKey="AccessID", IsForeignKey=true)]
+		public Access Access
+		{
+			get
+			{
+				return this._Access.Entity;
+			}
+			set
+			{
+				Access previousValue = this._Access.Entity;
+				if (((previousValue != value) 
+							|| (this._Access.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Access.Entity = null;
+						previousValue.DetailAccesses.Remove(this);
+					}
+					this._Access.Entity = value;
+					if ((value != null))
+					{
+						value.DetailAccesses.Add(this);
+						this._AccessID = value.AccessID;
+					}
+					else
+					{
+						this._AccessID = default(int);
+					}
+					this.SendPropertyChanged("Access");
 				}
 			}
 		}
@@ -1673,7 +2414,7 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int GroupAccessID
 		{
 			get
@@ -2753,678 +3494,6 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Staff")]
-	public partial class Staff : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _StaffID;
-		
-		private string _StaffName;
-		
-		private System.Data.Linq.Binary _Image;
-		
-		private System.Nullable<bool> _Gender;
-		
-		private System.Nullable<System.DateTime> _BirthDay;
-		
-		private string _CardID;
-		
-		private string _Phone;
-		
-		private string _Address;
-		
-		private string _Education;
-		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
-		
-		private string _ManagerID;
-		
-		private string _Email;
-		
-		private System.Nullable<int> _DaysRemain;
-		
-		private string _PostID;
-		
-		private string _SectionID;
-		
-		private EntitySet<Absent> _Absents;
-		
-		private EntitySet<Account> _Accounts;
-		
-		private EntitySet<Contract> _Contracts;
-		
-		private EntitySet<DaysRemain> _DaysRemains;
-		
-		private EntitySet<Salary> _Salaries;
-		
-		private EntitySet<SocialInsurance> _SocialInsurances;
-		
-		private EntityRef<Position> _Position;
-		
-		private EntityRef<Section> _Section;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnStaffIDChanging(string value);
-    partial void OnStaffIDChanged();
-    partial void OnStaffNameChanging(string value);
-    partial void OnStaffNameChanged();
-    partial void OnImageChanging(System.Data.Linq.Binary value);
-    partial void OnImageChanged();
-    partial void OnGenderChanging(System.Nullable<bool> value);
-    partial void OnGenderChanged();
-    partial void OnBirthDayChanging(System.Nullable<System.DateTime> value);
-    partial void OnBirthDayChanged();
-    partial void OnCardIDChanging(string value);
-    partial void OnCardIDChanged();
-    partial void OnPhoneChanging(string value);
-    partial void OnPhoneChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnEducationChanging(string value);
-    partial void OnEducationChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
-    partial void OnManagerIDChanging(string value);
-    partial void OnManagerIDChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnDaysRemainChanging(System.Nullable<int> value);
-    partial void OnDaysRemainChanged();
-    partial void OnPostIDChanging(string value);
-    partial void OnPostIDChanged();
-    partial void OnSectionIDChanging(string value);
-    partial void OnSectionIDChanged();
-    #endregion
-		
-		public Staff()
-		{
-			this._Absents = new EntitySet<Absent>(new Action<Absent>(this.attach_Absents), new Action<Absent>(this.detach_Absents));
-			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
-			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
-			this._DaysRemains = new EntitySet<DaysRemain>(new Action<DaysRemain>(this.attach_DaysRemains), new Action<DaysRemain>(this.detach_DaysRemains));
-			this._Salaries = new EntitySet<Salary>(new Action<Salary>(this.attach_Salaries), new Action<Salary>(this.detach_Salaries));
-			this._SocialInsurances = new EntitySet<SocialInsurance>(new Action<SocialInsurance>(this.attach_SocialInsurances), new Action<SocialInsurance>(this.detach_SocialInsurances));
-			this._Position = default(EntityRef<Position>);
-			this._Section = default(EntityRef<Section>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string StaffID
-		{
-			get
-			{
-				return this._StaffID;
-			}
-			set
-			{
-				if ((this._StaffID != value))
-				{
-					this.OnStaffIDChanging(value);
-					this.SendPropertyChanging();
-					this._StaffID = value;
-					this.SendPropertyChanged("StaffID");
-					this.OnStaffIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffName", DbType="NVarChar(30)")]
-		public string StaffName
-		{
-			get
-			{
-				return this._StaffName;
-			}
-			set
-			{
-				if ((this._StaffName != value))
-				{
-					this.OnStaffNameChanging(value);
-					this.SendPropertyChanging();
-					this._StaffName = value;
-					this.SendPropertyChanged("StaffName");
-					this.OnStaffNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
-		public System.Nullable<bool> Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this.OnGenderChanging(value);
-					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDay", DbType="DateTime")]
-		public System.Nullable<System.DateTime> BirthDay
-		{
-			get
-			{
-				return this._BirthDay;
-			}
-			set
-			{
-				if ((this._BirthDay != value))
-				{
-					this.OnBirthDayChanging(value);
-					this.SendPropertyChanging();
-					this._BirthDay = value;
-					this.SendPropertyChanged("BirthDay");
-					this.OnBirthDayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CardID", DbType="VarChar(12)")]
-		public string CardID
-		{
-			get
-			{
-				return this._CardID;
-			}
-			set
-			{
-				if ((this._CardID != value))
-				{
-					this.OnCardIDChanging(value);
-					this.SendPropertyChanging();
-					this._CardID = value;
-					this.SendPropertyChanged("CardID");
-					this.OnCardIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="VarChar(11)")]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this.OnPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Phone = value;
-					this.SendPropertyChanged("Phone");
-					this.OnPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(100)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Education", DbType="NVarChar(30)")]
-		public string Education
-		{
-			get
-			{
-				return this._Education;
-			}
-			set
-			{
-				if ((this._Education != value))
-				{
-					this.OnEducationChanging(value);
-					this.SendPropertyChanging();
-					this._Education = value;
-					this.SendPropertyChanged("Education");
-					this.OnEducationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> StartDate
-		{
-			get
-			{
-				return this._StartDate;
-			}
-			set
-			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManagerID", DbType="Char(6)")]
-		public string ManagerID
-		{
-			get
-			{
-				return this._ManagerID;
-			}
-			set
-			{
-				if ((this._ManagerID != value))
-				{
-					this.OnManagerIDChanging(value);
-					this.SendPropertyChanging();
-					this._ManagerID = value;
-					this.SendPropertyChanged("ManagerID");
-					this.OnManagerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="Char(20)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysRemain", DbType="Int")]
-		public System.Nullable<int> DaysRemain
-		{
-			get
-			{
-				return this._DaysRemain;
-			}
-			set
-			{
-				if ((this._DaysRemain != value))
-				{
-					this.OnDaysRemainChanging(value);
-					this.SendPropertyChanging();
-					this._DaysRemain = value;
-					this.SendPropertyChanged("DaysRemain");
-					this.OnDaysRemainChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostID", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string PostID
-		{
-			get
-			{
-				return this._PostID;
-			}
-			set
-			{
-				if ((this._PostID != value))
-				{
-					if (this._Position.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPostIDChanging(value);
-					this.SendPropertyChanging();
-					this._PostID = value;
-					this.SendPropertyChanged("PostID");
-					this.OnPostIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionID", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string SectionID
-		{
-			get
-			{
-				return this._SectionID;
-			}
-			set
-			{
-				if ((this._SectionID != value))
-				{
-					if (this._Section.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSectionIDChanging(value);
-					this.SendPropertyChanging();
-					this._SectionID = value;
-					this.SendPropertyChanged("SectionID");
-					this.OnSectionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Absent", Storage="_Absents", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Absent> Absents
-		{
-			get
-			{
-				return this._Absents;
-			}
-			set
-			{
-				this._Absents.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Accounts", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Account> Accounts
-		{
-			get
-			{
-				return this._Accounts;
-			}
-			set
-			{
-				this._Accounts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Contract", Storage="_Contracts", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Contract> Contracts
-		{
-			get
-			{
-				return this._Contracts;
-			}
-			set
-			{
-				this._Contracts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_DaysRemain", Storage="_DaysRemains", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<DaysRemain> DaysRemains
-		{
-			get
-			{
-				return this._DaysRemains;
-			}
-			set
-			{
-				this._DaysRemains.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Salary", Storage="_Salaries", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Salary> Salaries
-		{
-			get
-			{
-				return this._Salaries;
-			}
-			set
-			{
-				this._Salaries.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_SocialInsurance", Storage="_SocialInsurances", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<SocialInsurance> SocialInsurances
-		{
-			get
-			{
-				return this._SocialInsurances;
-			}
-			set
-			{
-				this._SocialInsurances.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Position_Staff", Storage="_Position", ThisKey="PostID", OtherKey="PostID", IsForeignKey=true)]
-		public Position Position
-		{
-			get
-			{
-				return this._Position.Entity;
-			}
-			set
-			{
-				Position previousValue = this._Position.Entity;
-				if (((previousValue != value) 
-							|| (this._Position.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Position.Entity = null;
-						previousValue.Staffs.Remove(this);
-					}
-					this._Position.Entity = value;
-					if ((value != null))
-					{
-						value.Staffs.Add(this);
-						this._PostID = value.PostID;
-					}
-					else
-					{
-						this._PostID = default(string);
-					}
-					this.SendPropertyChanged("Position");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Section_Staff", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
-		public Section Section
-		{
-			get
-			{
-				return this._Section.Entity;
-			}
-			set
-			{
-				Section previousValue = this._Section.Entity;
-				if (((previousValue != value) 
-							|| (this._Section.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Section.Entity = null;
-						previousValue.Staffs.Remove(this);
-					}
-					this._Section.Entity = value;
-					if ((value != null))
-					{
-						value.Staffs.Add(this);
-						this._SectionID = value.SectionID;
-					}
-					else
-					{
-						this._SectionID = default(string);
-					}
-					this.SendPropertyChanged("Section");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Absents(Absent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Absents(Absent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_DaysRemains(DaysRemain entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_DaysRemains(DaysRemain entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_Salaries(Salary entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Salaries(Salary entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_SocialInsurances(SocialInsurance entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_SocialInsurances(SocialInsurance entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
 		}
 	}
 	
