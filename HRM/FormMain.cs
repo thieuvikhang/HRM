@@ -97,7 +97,19 @@ namespace HRM
             //Mở Tab Nhân viên
             AddTab("Nhân viên",new UcEmployees());
         }
+        private void barAccess_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab Nhân viên
+            AddTab("Phân quyền", new UcAccess());
+        }
 
+        private void barButtonItem4_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
+            //Mở Tab Nhân viên
+            AddTab("Quản lý tài khoản", new UcAccounts());
+        }
         private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
@@ -179,23 +191,30 @@ namespace HRM
         {
             //show form login
            
-            FormLogin frmlogin = new FormLogin();
-            frmlogin.Show();
+            
+
             this.Close();
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Dispose();
-            FormLogin frmlogin = new FormLogin();
-            frmlogin.ShowDialog(); 
+            //Application.Exit()
         }
 
-        private void barAccess_ItemClick(object sender, ItemClickEventArgs e)
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
-            //Mở Tab Nhân viên
-            AddTab("Phân quyền", new UcAccess());
+            //if (e.CloseReason == CloseReason.UserClosing)
+            //{
+            //    if (MessageBox.Show(this, "Really?", "Closing...",
+            //         MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+            //        == DialogResult.Cancel) e.Cancel = true;
+            //}
+            if (string.Equals((sender as Button).Name, @"CloseButton"))
+            { }
+        // Do something proper to CloseButton.
+            else
+                Application.Exit();
+        // Then assume that X has been clicked and act accordingly.
         }
     }
 }

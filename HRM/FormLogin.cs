@@ -94,7 +94,8 @@ namespace HRM
                                                 }).ToList();
                 this.Hide();
                 FormMain frmain = new FormMain{ _aSessionfrmmain = _aSession };
-                frmain.ShowDialog(); 
+                frmain.ShowDialog();
+                Show();
             }
             else
             {
