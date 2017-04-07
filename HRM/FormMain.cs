@@ -11,46 +11,32 @@ using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.Skins;
 using System.Drawing;
+using BUS;
 
 namespace HRM
 {
     public partial class FormMain : RibbonForm
     {
-
+        #region Khai báo biến
         private readonly TabAdd _clsAddTab = new TabAdd();
         public static HRMModelDataContext Hrm = new HRMModelDataContext();
-        public Session _aSessionfrmmain = new Session();
+        public Session Sessionfrmmain = new Session();
+        private readonly AccessBus _accessBus = new AccessBus();
         FormLogin frmlogin = new FormLogin();
-        List<Form> openForms = new List<Form>();
-        #region DEMO
-        public List<ListGroupAccess> ListGroupAcces()
-        {
-            var list = new List<ListGroupAccess>();
-            foreach (var item in Hrm.DetailAccesses.SelectMany(aHmDetailAccesses => Hrm.Accesses,
-                    (aHmDetailAccesses, aHrmAccess) => new { aHmDetailAccesses, aHrmAccess })
-                .Where(t => t.aHmDetailAccesses.GroupAccessID == /*int.Parse(_aSession["groupAccessID"].ToString())*/ 1
-                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessID).Select(t => new
-                             {
-                                 t.aHrmAccess.Form,
-                                 Edit = t.aHrmAccess.Edit == true ? 1 : 0
-                             }))
-            {
-                list.Add(new ListGroupAccess { Form = item.Form, Edit = item.Edit });
-            }
-            return list;
-        }
-        public class ListGroupAccess
-        {
-            public string Form { get; set; }
-            public int Edit { get; set; }
-        }
-
+        public List<AccessBus.ListGroupAccess> List;
+        private readonly List<BarButtonItem> _barButtonItem = new List<BarButtonItem>();
         #endregion
 
         #region From Main Load
         public FormMain()
         {
             InitializeComponent();
+            _barButtonItem.AddRange(new[] { barEmployees, barSection, barPostion, barContract, barSI, barAbsent, barSalary, barAccess });
+            foreach (var bar in _barButtonItem)
+            {
+                //Ẩn các item
+                bar.Enabled = false;
+            }
             Skin skin = RibbonSkins.GetSkin(DevExpress.LookAndFeel.UserLookAndFeel.Default);
             SkinElement elem = skin[RibbonSkins.SkinFormApplicationButton];
             elem.Image.SetImage((Image)null, Color.Empty);
@@ -60,6 +46,17 @@ namespace HRM
         private void FormMain_Load(object sender, EventArgs e)
         {
             //label1.Text = _aSessionfrmmain["staffName"].ToString();
+            var groupAccesId = int.Parse(Sessionfrmmain["sessionGroupAccessId"].ToString());
+            List = _accessBus.ListGroupAcces(groupAccesId);
+            foreach (var item in List)
+            {
+                foreach (var bar in _barButtonItem)
+                {
+                    if (!item.Form.Equals(bar.Name)) continue;
+                    //Hiện item khi có quyền
+                    bar.Enabled = true;
+                }
+            }
         }
         #endregion
 
@@ -109,7 +106,6 @@ namespace HRM
             //Mở Tab Nhân viên
             AddTab("Phân quyền", new UcAccess());
         }
-
         private void barButtonItem4_ItemClick_1(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
@@ -122,14 +118,12 @@ namespace HRM
             //Mở Tab Quản lý lương
             AddTab("Quản lý lương", new UcSalary());
         }
-
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Phòng ban
             AddTab("Phòng ban", new UcSection());
         }
-
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
@@ -143,21 +137,18 @@ namespace HRM
             //Mở Tab BHXH
             AddTab("BHXH", new UcSocialInsurancecs());
         }
-        
         private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab loại hợp đồng
             AddTab("Loại hợp đồng", new ucContractTypes());
         }
-        
         private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
             AddTab("Chức vụ", new UcPostions());
         }
-        
         private void barButtonItem10_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
@@ -170,35 +161,29 @@ namespace HRM
             //Mở Tab chức vụ
             AddTab("Thống kê nhân viên", new UcDashEmployees());
         }
-
         private void barButtonItem2_ItemClick_1(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
             AddTab("Thống kê", new UcAnalytics());
         }
-
         private void barButtonItem3_ItemClick_1(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
             AddTab("Báo cáo", new UcReportcs());
         }
-
         private void barButtonItem13_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Thông tin nhân viên", new UcStaffInfo{ _aSession = _aSessionfrmmain });
+            AddTab("Thông tin nhân viên", new UcStaffInfo{ _aSession = Sessionfrmmain });
         }
         #endregion
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             //show form login
-           
-            
-
             this.Close();
         }
 

@@ -8,6 +8,11 @@ namespace BUS
     public class AccessBus
     {
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        public class ListGroupAccess
+        {
+            public string Form { get; set; }
+            public int Edit { get; set; }
+        }
         /// <summary>
         /// lấy danh sách nhóm quyền
         /// </summary>
@@ -196,6 +201,27 @@ namespace BUS
         {
             if (coHieu == 2 && tenNhom.Equals(text)) return true;
             return list.All(item => !text.Equals(item));
+        }
+        /// <summary>
+        /// Lấy danh sách quyền
+        /// </summary>
+        /// <param name="groupAccesId">mã nhóm quyền</param>
+        /// <returns>danh sách quyền</returns>
+        public List<ListGroupAccess> ListGroupAcces(int groupAccesId)
+        {
+            var list = new List<ListGroupAccess>();
+            foreach (var item in _aHrm.DetailAccesses.SelectMany(aHmDetailAccesses => _aHrm.Accesses,
+                    (aHmDetailAccesses, aHrmAccess) => new { aHmDetailAccesses, aHrmAccess })
+                .Where(t => t.aHmDetailAccesses.GroupAccessID == groupAccesId
+                             && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessID).Select(t => new
+                             {
+                                 t.aHrmAccess.Form,
+                                 Edit = t.aHrmAccess.Edit == true ? 1 : 0
+                             }))
+            {
+                list.Add(new ListGroupAccess { Form = item.Form, Edit = item.Edit });
+            }
+            return list;
         }
     }
 }
