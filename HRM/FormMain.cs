@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using AddTab;
-using DAL;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraSplashScreen;
@@ -18,12 +17,11 @@ namespace HRM
     {
         #region Khai báo biến
         private readonly TabAdd _clsAddTab = new TabAdd();
-        public static HRMModelDataContext Hrm = new HRMModelDataContext();
-        public Session Sessionfrmmain = new Session();
-        public Session SessionUc = new Session();
+        public Session SessionFrmmain = new Session();
+        private readonly Session _sessionUc = new Session();
         private readonly AccessBus _accessBus = new AccessBus();
-        public List<AccessBus.ListGroupAccess> List;
         private readonly List<BarButtonItem> _barButtonItem = new List<BarButtonItem>();
+        private List<AccessBus.ListGroupAccess> _list;
         #endregion
 
         #region Demo
@@ -32,11 +30,11 @@ namespace HRM
             foreach (var item in list)
             {
                 if (!item.Form.Equals(form) || item.Edit != 1) continue;
-                SessionUc["Access"] = item.Edit;
-                return SessionUc;
+                _sessionUc["Access"] = item.Edit;
+                return _sessionUc;
             }
-            SessionUc["Access"] = 0;
-            return SessionUc;
+            _sessionUc["Access"] = 0;
+            return _sessionUc;
         }
         #endregion
 
@@ -58,9 +56,9 @@ namespace HRM
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var groupAccesId = int.Parse(Sessionfrmmain["sessionGroupAccessId"].ToString());
-            List = _accessBus.ListGroupAcces(groupAccesId);
-            foreach (var item in List)
+            var groupAccesId = int.Parse(SessionFrmmain["sessionGroupAccessId"].ToString());
+            _list = _accessBus.ListGroupAcces(groupAccesId);
+            foreach (var item in _list)
             {
                 foreach (var bar in _barButtonItem)
                 {
@@ -110,13 +108,13 @@ namespace HRM
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Nhân viên
-            AddTab("Nhân viên",new UcEmployees { Session = SetSession("barEmployees", List) });
+            AddTab("Nhân viên",new UcEmployees { Session = SetSession("barEmployees", _list) });
         }
         private void barAccess_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Nhân viên
-            AddTab("Phân quyền", new UcAccess { Session = SetSession("barAccess", List) });
+            AddTab("Phân quyền", new UcAccess { Session = SetSession("barAccess", _list) });
         }
         private void barButtonItem4_ItemClick_1(object sender, ItemClickEventArgs e)
         {
@@ -128,26 +126,26 @@ namespace HRM
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Quản lý lương
-            AddTab("Quản lý lương", new UcSalary { Session = SetSession("barSalary", List) });
+            AddTab("Quản lý lương", new UcSalary { Session = SetSession("barSalary", _list) });
         }
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Phòng ban
-            AddTab("Phòng ban", new UcSection { Session = SetSession("barSection", List) });
+            AddTab("Phòng ban", new UcSection { Session = SetSession("barSection", _list) });
         }
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Hợp đồng
-            AddTab("Hợp đồng", new UcContract { Session = SetSession("barContract", List) });
+            AddTab("Hợp đồng", new UcContract { Session = SetSession("barContract", _list) });
         }
 
         private void barButtonItem5_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab BHXH
-            AddTab("BHXH", new UcSocialInsurancecs { Session = SetSession("barSI", List) });
+            AddTab("BHXH", new UcSocialInsurancecs { Session = SetSession("barSI", _list) });
         }
         private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -159,13 +157,13 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Chức vụ", new UcPostions { Session = SetSession("barPostions", List) });
+            AddTab("Chức vụ", new UcPostions { Session = SetSession("barPostions", _list) });
         }
         private void barButtonItem10_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Nghỉ phép", new UcAbsent {Session = SetSession("barAbsent", List)});
+            AddTab("Nghỉ phép", new UcAbsent {Session = SetSession("barAbsent", _list)});
         }
         private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -189,7 +187,7 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Thông tin nhân viên", new UcStaffInfo{ _aSession = Sessionfrmmain });
+            AddTab("Thông tin nhân viên", new UcStaffInfo{ _aSession = SessionFrmmain });
         }
         #endregion
 

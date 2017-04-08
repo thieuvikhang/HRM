@@ -85,7 +85,7 @@ namespace HRM
                 _aSession["groupAccessName"] = groupAccessName;
                 _aSession["sessionGroupAccessId"] = groupAccessId;
                 this.Hide();
-                FormMain frmain = new FormMain{ Sessionfrmmain = _aSession };
+                FormMain frmain = new FormMain{ SessionFrmmain = _aSession };
                 frmain.ShowDialog();
                 Show();
             }

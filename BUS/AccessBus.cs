@@ -13,19 +13,24 @@ namespace BUS
             public string Form { get; set; }
             public int Edit { get; set; }
         }
+
+        public int CountAccess(int ma) => _aHrm.DetailAccesses.Where(g => g.GroupAccessID == ma).GroupBy(da => da.AccessID).Count();
+        public int CountAccessEdit(int ma) => _aHrm.DetailAccesses.Where(g => g.GroupAccessID == ma && g.Access.Edit == true).GroupBy(da => da.AccessID).Count();
+
         /// <summary>
         /// lấy danh sách nhóm quyền
         /// </summary>
         /// <returns>danh sách nhóm quyền</returns>
         public IQueryable GetAllGroupAccess()
         {
-            return from ga in _aHrm.GroupAccesses
-                   select new
-                   {
-                       ga.GroupAccessID,
-                       ga.Description,
-                       ga.GroupAccessName
-                   };
+            return _aHrm.GroupAccesses.Select(ga => new
+            {
+                ga.GroupAccessID,
+                ga.Description,
+                ga.GroupAccessName,
+                Count = CountAccess(ga.GroupAccessID),
+                CountEdit = CountAccessEdit(ga.GroupAccessID)
+            });
         }
         /// <summary>
         /// Lấy danh sách quyền
@@ -42,6 +47,13 @@ namespace BUS
                            Edit = ct.Edit == true ? "Sửa" : "Xem"
                        }).Distinct();
             return all;
+        }
+        public IQueryable LoadAllAccess(bool key)
+        {
+            return _aHrm.Accesses.Where(ct => ct.Edit == key).Select(ct => new
+            {
+                ct.AccessID, ct.Form, ct.DescriptionAccess
+            }).Distinct();
         }
         /// <summary>
         /// Thêm mới nhóm quyền
@@ -144,6 +156,7 @@ namespace BUS
             if (groupAccesses == null) return;
             foreach (var item in list)
             {
+                if(!CheckTorF(ma,item)) continue;
                 var detailAccess = new DetailAccess();
                 {
                     detailAccess.GroupAccessID = ma;
@@ -152,6 +165,13 @@ namespace BUS
                 _aHrm.DetailAccesses.InsertOnSubmit(detailAccess);
                 _aHrm.SubmitChanges();
             }
+        }
+
+        public bool CheckTorF(int ma, int quyen)
+        {
+            var list = _aHrm.DetailAccesses.SingleOrDefault(ab => ab.GroupAccessID == ma && ab.AccessID == quyen);
+            if (list == null) return true;
+            return false;
         }
         /// <summary>
         /// Kiểm tra nhóm quyền đã được sử dụng chưa
@@ -163,23 +183,23 @@ namespace BUS
             var accesses = _aHrm.Accounts.SingleOrDefault(ab => ab.GroupAccessID == gaId);
             return accesses != null;
         }
-        /// <summary>
-        /// danh sách quyền theo nhóm quyền
-        /// </summary>
-        /// <param name="ma">mã nhóm quyền</param>
-        /// <returns>danh sách mã quyền</returns>
-        public List<int> ListAccesses(int ma) => _aHrm.DetailAccesses.Where(da => da.GroupAccessID == ma).Select(da => da.AccessID).Distinct().ToList();
-
-        public IQueryable ListAccessesByGroupAccesses(int ma)
+        public List<int> ListAccesses(int ma, bool key)
+        {
+            var list = _aHrm.DetailAccesses.SelectMany(da => _aHrm.Accesses, (da, ac) => new {da, ac})
+                .Where(t => t.da.AccessID == t.ac.AccessID
+                            && t.da.GroupAccessID == ma
+                            && t.ac.Edit == key).Select(t => t.ac.AccessID).Distinct().ToList();
+            return list;
+        }
+        public IQueryable ListAccessesByGroupAccesses(int ma, bool key)
         {
             var list = _aHrm.DetailAccesses.SelectMany(ga => _aHrm.Accesses, (ga, ct) => new { ga, ct })
                 .Where(t => t.ga.AccessID == t.ct.AccessID
-                            && t.ga.GroupAccessID == ma).Select(t => new
+                            && t.ga.GroupAccessID == ma && t.ct.Edit == key).Select(t => new
                             {
                                 t.ct.AccessID,
                                 t.ct.Form,
-                                t.ct.DescriptionAccess,
-                                Edit = t.ct.Edit == true ? "Sửa" : "Xem"
+                                t.ct.DescriptionAccess
                             }).Distinct();
             return list;
         }
@@ -222,7 +242,7 @@ namespace BUS
                 else
                     list1.Add(new ListGroupAccess {Form = intPut.Form, Edit = intPut.Edit});
             }
-            if (list1.Count ==0) return list0;
+            if (list1.Count == 0) return list0;
             if (list0.Count == 0) return list1;
             var listOutPut = new List<ListGroupAccess>();
             listOutPut.AddRange(list0);

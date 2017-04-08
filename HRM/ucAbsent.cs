@@ -39,9 +39,9 @@ namespace HRM
             if (access != 1)
             {
                 groupBox1.Visible = false;
-                btnAdd.Visible = false;
+/*                btnAdd.Visible = false;
                 btnSave.Visible = false;
-                btnCancel.Visible = false;
+                btnCancel.Visible = false;*/
                 gridView1.Columns[8].Visible = false;
                 gridView1.Columns[9].Visible = false;
             }
@@ -331,7 +331,7 @@ namespace HRM
             if (kpm.Month == DateTime.Now.Month && kpm.Day == maxValue) return;
             using (var hide = new RepositoryItemButtonEdit())
             {
-                hide.Buttons[0].Enabled = true;
+                hide.Buttons[0].Visible = true;
                 e.RepositoryItem = hide;
             }
         }

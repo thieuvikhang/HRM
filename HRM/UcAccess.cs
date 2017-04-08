@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using BUS;
 using DevExpress.Data;
@@ -18,6 +19,8 @@ namespace HRM
         public readonly List<int> Rows = new List<int>();
         public string TenNhomQuyen;
         public Session Session = new Session();
+        private int _i;
+
         #endregion
 
         #region Load Form
@@ -39,11 +42,10 @@ namespace HRM
                 gridView2.Columns[3].Visible = false;
                 gridView2.Columns[4].Visible = false;
             }
-            gridAccess.DataSource = null;
+            gridAccessEdit.DataSource = null;
             gridControl2.DataSource = _accessBus.GetAllGroupAccess();
             SetText(false);
             SetButton(true);
-
         }
         #endregion
 
@@ -52,12 +54,43 @@ namespace HRM
         {
             if (CoHieu == 0) return;
             Rows.Clear();
-            foreach (var i in gridView1.GetSelectedRows())
+            for (var index = 0; index < gridViewEdit.GetSelectedRows().Length; index++)
             {
-                var d = (int)gridView1.GetRowCellValue(Convert.ToInt32(i), "AccessID");
-                Rows.Add(d);
+                var i = gridViewEdit.GetSelectedRows()[index];
+                var accessId = (int) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                Rows.Add(accessId);
+                var accessName = (string) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "Form");
+                var rowHandle = gridViewView.LocateByValue("Form", accessName);
+                gridViewView.UnselectRow(rowHandle);
+            }
+            for (var index = 0; index < gridViewView.GetSelectedRows().Length; index++)
+            {
+                var i = gridViewView.GetSelectedRows()[index];
+                var accessId = (int) gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                Rows.Add(accessId);
             }
         }
+        private void gridViewView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CoHieu == 0) return;
+            Rows.Clear();
+            for (var index = 0; index < gridViewView.GetSelectedRows().Length; index++)
+            {
+                var i = gridViewView.GetSelectedRows()[index];
+                var accessId = (int) gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                Rows.Add(accessId);
+                var accessName = (string) gridViewView.GetRowCellValue(Convert.ToInt32(i), "Form");
+                var rowHandle = gridViewEdit.LocateByValue("Form", accessName);
+                gridViewEdit.UnselectRow(rowHandle);
+            }
+            for (var index = 0; index < gridViewEdit.GetSelectedRows().Length; index++)
+            {
+                var i = gridViewEdit.GetSelectedRows()[index];
+                var accessId = (int) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                Rows.Add(accessId);
+            }
+        }
+
         #endregion
 
         #region Grid View Danh sách nhóm quyền
@@ -66,8 +99,10 @@ namespace HRM
             Clear();
             txtTenNhom.Text = gridView2.GetFocusedRowCellDisplayText(GroupAccessName);
             txtMoTa.Text = gridView2.GetFocusedRowCellDisplayText(Description);
-            gridAccess.DataSource = _accessBus.ListAccessesByGroupAccesses(int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID)));
-            gridView1.SelectAll();
+            gridAccessEdit.DataSource = _accessBus.ListAccessesByGroupAccesses(int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID)), true);
+            gridAccessView.DataSource = _accessBus.ListAccessesByGroupAccesses(int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID)), false);
+            gridViewEdit.SelectAll();
+            gridViewView.SelectAll();
         }
         private void gridView2_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
         {
@@ -76,25 +111,32 @@ namespace HRM
             if (!_accessBus.CheckGroupAccessesUsing(kpm)) return;
             using (var hide = new RepositoryItemButtonEdit())
             {
-                hide.Buttons[0].Enabled = true;
+                hide.Buttons[0].Visible = true;
                 e.RepositoryItem = hide;
             }
         }
         #endregion
 
         #region Set Text, Button
-        private void SetCheck(IEnumerable<int> list)
+        private void SetCheck(int ma)
         {
-            gridAccess.DataSource = _accessBus.LoadAllAccess();
-            foreach (var item in list)
+            gridAccessEdit.DataSource = _accessBus.LoadAllAccess(true);
+            gridAccessView.DataSource = _accessBus.LoadAllAccess(false);
+            foreach (var item in _accessBus.ListAccesses(ma, true))
             {
-                var rowHandle = gridView1.LocateByValue("AccessID", item);
-                gridView1.SelectRow(rowHandle);
+                var rowHandle = gridViewEdit.LocateByValue("AccessID", item);
+                gridViewEdit.SelectRow(rowHandle);
+            }
+            foreach (var item in _accessBus.ListAccesses(ma, false))
+            {
+                var rowHandle = gridViewView.LocateByValue("AccessID", item);
+                gridViewView.SelectRow(rowHandle);
             }
         }
         private void SetText(bool val)
         {
-            gridAccess.Enabled = val;
+            gridAccessEdit.Enabled = val;
+            gridAccessView.Enabled = val;
             txtMoTa.Enabled = val;
             txtTenNhom.Enabled = val;
             gridControl2.Enabled = !val;
@@ -110,7 +152,8 @@ namespace HRM
             txtTenNhom.Text = null;
             txtMoTa.Text = null;
             Rows.Clear();
-            gridView1.ClearSelection();
+            gridViewEdit.ClearSelection();
+            gridViewView.ClearSelection();
             MaGroupAccess = 0;
             TenNhomQuyen = null;
             lbThongBao.Text = null;
@@ -122,7 +165,9 @@ namespace HRM
         {
             TenNhomQuyen = null;
             CoHieu = 1;
-            gridAccess.DataSource = _accessBus.LoadAllAccess();
+            gridAccessEdit.DataSource = _accessBus.LoadAllAccess(true);
+            gridAccessView.DataSource = _accessBus.LoadAllAccess(false);
+            Clear();
             Clear();
             SetButton(false);
             SetText(true);
@@ -137,7 +182,7 @@ namespace HRM
             SetText(true);
             txtTenNhom.Text = gridView2.GetFocusedRowCellDisplayText(GroupAccessName);
             txtMoTa.Text = gridView2.GetFocusedRowCellDisplayText(Description);
-            SetCheck(_accessBus.ListAccesses(MaGroupAccess));
+            SetCheck(MaGroupAccess);
         }
         private void btnDelete_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
@@ -189,6 +234,7 @@ namespace HRM
             if (e.NewValue?.ToString().Length > 50 || e.NewValue?.ToString() == "  ")
                 e.Cancel = true;
         }
+
         private void txtTenNhom_TextChanged(object sender, EventArgs e)
         {
             if (CoHieu == 0) return;
