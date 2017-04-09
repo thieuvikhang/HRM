@@ -173,6 +173,7 @@ namespace HRM
             LoadComboboxManId();
             rbNam.Checked = true;
             cbbEducation.SelectedItem = "Đại học";
+            lkupManID.ItemIndex = 0;
             txtStaffID.Properties.MaxLength = 6;
             txtName.Properties.MaxLength = 30;
             txtCardID.Properties.MaxLength = 12;
