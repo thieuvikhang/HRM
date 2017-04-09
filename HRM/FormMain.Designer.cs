@@ -50,7 +50,7 @@ namespace HRM
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.ribbonGalleryBarItem1 = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barAccount = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -90,7 +90,7 @@ namespace HRM
             this.barButtonItem3,
             this.skinRibbonGalleryBarItem1,
             this.ribbonGalleryBarItem1,
-            this.barButtonItem4});
+            this.barAccount});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.MaxItemId = 21;
             this.ribbonControl1.Name = "ribbonControl1";
@@ -212,12 +212,13 @@ namespace HRM
             this.ribbonGalleryBarItem1.Id = 19;
             this.ribbonGalleryBarItem1.Name = "ribbonGalleryBarItem1";
             // 
-            // barButtonItem4
+            // barAccount
             // 
-            this.barButtonItem4.Caption = "Quản lý Tài khoản";
-            this.barButtonItem4.Id = 20;
-            this.barButtonItem4.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.LargeGlyph")));
-            this.barButtonItem4.Name = "barButtonItem4";
+            this.barAccount.Caption = "Quản lý Tài khoản";
+            this.barAccount.Id = 20;
+            this.barAccount.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barAccount.LargeGlyph")));
+            this.barAccount.Name = "barAccount";
+            this.barAccount.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick_1);
             // 
             // ribbonPage1
             // 
@@ -270,7 +271,7 @@ namespace HRM
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.barAccess);
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem4);
+            this.ribbonPageGroup4.ItemLinks.Add(this.barAccount);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
             // ribbonPage3
@@ -369,7 +370,7 @@ namespace HRM
         private SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private RibbonPageGroup ribbonPageGroup8;
         private RibbonGalleryBarItem ribbonGalleryBarItem1;
-        private BarButtonItem barButtonItem4;
+        private BarButtonItem barAccount;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
     }
 }

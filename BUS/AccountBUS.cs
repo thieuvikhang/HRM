@@ -1,12 +1,14 @@
 ﻿using System.Linq;
 using DAL;
 using System;
+using System.Collections.Generic;
 
 namespace BUS
 {
     public class AccountBus
     {
         private readonly HRMModelDataContext _hrm = new HRMModelDataContext();
+        private readonly ExtendBus _extendBus = new ExtendBus();
         // Kiem tra dang nhap tai khoan 
         public bool CheckLogin(string tendangnhap, string matkhau)
         {
@@ -56,7 +58,7 @@ namespace BUS
                 _hrm.SubmitChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -81,15 +83,15 @@ namespace BUS
             }
         }
 
-        public bool check1AccByAccNameAndIdStaff(string staffPhone, string staffEmail, string AccName)
+        public bool Check1AccByAccNameAndIdStaff(string staffPhone, string staffEmail, string AccName)
         {
             try
             {
                 Staff newStaff = _hrm.Staffs.SingleOrDefault(st => st.Phone == staffPhone & st.Email == staffEmail);
-                var numbAccByNameAccAndIDStaff = (from ac in _hrm.Accounts
+                var numbAccByNameAccAndIdStaff = (from ac in _hrm.Accounts
                                                   where ac.UserName == AccName & ac.StaffID == newStaff.StaffID
                                                   select ac).Count();
-                return numbAccByNameAccAndIDStaff == 1;
+                return numbAccByNameAccAndIdStaff == 1;
             }
             catch
             {
@@ -105,10 +107,124 @@ namespace BUS
                 Account newAccount = _hrm.Accounts.SingleOrDefault(ac => ac.UserName == AccName & ac.StaffID == newStaff.StaffID);
                 return newAccount;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return null;
             }
         }
+
+        #region Quản Lý Tai Khoản
+        public IQueryable GetAllAccount()
+        {
+            return from a in _hrm.Accounts
+                   from ga in _hrm.GroupAccesses
+                   where a.GroupAccessID == ga.GroupAccessID
+                   select new
+                   {
+                       a.AccID,
+                       a.UserName,
+                       StaffName1 = a.StaffID == null ? null : a.Staff.StaffName,
+                       GroupAccessName1 = ga.GroupAccessName,
+                       AccountStatusOnline = a.AccountStatusOnline == true ? "Online" : "Offline"
+                   };
+        }
+
+        public string GetStaffNameByStaffId(string maNv)
+        {
+            return maNv == null ? null : _hrm.Staffs.Where(s => s.StaffID == maNv).Select(a => a.StaffName).ToString();
+        }
+        public IQueryable GetAllStaff()
+        {
+            return
+                _hrm.Staffs.SelectMany(st => _hrm.Sections, (st, se) => new { st, se })
+                    .Where(t => t.st.SectionID == t.se.SectionID)
+                    .Select(t => new
+                    {
+                        t.st.StaffID,
+                        t.st.StaffName,
+                        t.se.SectionName
+                    });
+        }
+        public IQueryable GetStaffByAccountId(int accId)
+        {
+            return from st in _hrm.Staffs
+                   from se in _hrm.Sections
+                   from ac in _hrm.Accounts
+                   where st.SectionID == se.SectionID && ac.StaffID == st.StaffID && ac.AccID == accId
+                   select new
+                   {
+                       st.StaffID,
+                       st.StaffName,
+                       se.SectionName
+                   };
+        }
+        public bool AddAccountNew(string user, string pass, int nhomQuyen, string maNv)
+        {
+            if (user == null || pass == null || nhomQuyen < 1) return false;
+            try
+            {
+                var acc = new Account();
+                {
+                    acc.UserName = user;
+                    acc.Password = _extendBus.GetMd5(pass);
+                    acc.GroupAccessID = nhomQuyen;
+                    acc.StaffID = maNv;
+                    acc.AccountStatusOnline = false;
+                }
+                _hrm.Accounts.InsertOnSubmit(acc);
+                _hrm.SubmitChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public bool UpdateAccount(int maTk, int nhomQuyen, string maNv)
+        {
+            try
+            {
+                var acc = _hrm.Accounts.Select(st => st).SingleOrDefault(st => st.AccID == maTk /*&& st.AccountStatusOnline.Value == false*/);
+                if (acc == null) return false;
+                acc.GroupAccessID = nhomQuyen;
+                acc.StaffID = maNv;
+                _hrm.SubmitChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public bool DeleteAccount(int maTk)
+        {
+            try
+            {
+                var acc = _hrm.Accounts.Select(st => st).SingleOrDefault(st => st.AccID == maTk && st.AccountStatusOnline.Value == false);
+                if (acc == null) return false;
+                _hrm.Accounts.DeleteOnSubmit(acc);
+                _hrm.SubmitChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        public List<string> ListUserName()
+        {
+            var check = _hrm.Accounts.Select(ga => ga.UserName).Distinct().ToList();
+            return check;
+        }
+        public bool CheckUserName(string text, List<string> list)
+        {
+            return list.All(item => !text.Equals(item));
+        }
+        #endregion
     }
 }

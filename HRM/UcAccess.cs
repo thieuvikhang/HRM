@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using BUS;
 using DevExpress.Data;
@@ -19,8 +18,6 @@ namespace HRM
         public readonly List<int> Rows = new List<int>();
         public string TenNhomQuyen;
         public Session Session = new Session();
-        private int _i;
-
         #endregion
 
         #region Load Form
@@ -43,6 +40,7 @@ namespace HRM
                 gridView2.Columns[4].Visible = false;
             }
             gridAccessEdit.DataSource = null;
+            gridAccessView.DataSource = null;
             gridControl2.DataSource = _accessBus.GetAllGroupAccess();
             SetText(false);
             SetButton(true);
@@ -57,16 +55,16 @@ namespace HRM
             for (var index = 0; index < gridViewEdit.GetSelectedRows().Length; index++)
             {
                 var i = gridViewEdit.GetSelectedRows()[index];
-                var accessId = (int) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                var accessId = (int)gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
                 Rows.Add(accessId);
-                var accessName = (string) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "Form");
+                var accessName = (string)gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "Form");
                 var rowHandle = gridViewView.LocateByValue("Form", accessName);
                 gridViewView.UnselectRow(rowHandle);
             }
             for (var index = 0; index < gridViewView.GetSelectedRows().Length; index++)
             {
                 var i = gridViewView.GetSelectedRows()[index];
-                var accessId = (int) gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                var accessId = (int)gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
                 Rows.Add(accessId);
             }
         }
@@ -77,16 +75,16 @@ namespace HRM
             for (var index = 0; index < gridViewView.GetSelectedRows().Length; index++)
             {
                 var i = gridViewView.GetSelectedRows()[index];
-                var accessId = (int) gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                var accessId = (int)gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
                 Rows.Add(accessId);
-                var accessName = (string) gridViewView.GetRowCellValue(Convert.ToInt32(i), "Form");
+                var accessName = (string)gridViewView.GetRowCellValue(Convert.ToInt32(i), "Form");
                 var rowHandle = gridViewEdit.LocateByValue("Form", accessName);
                 gridViewEdit.UnselectRow(rowHandle);
             }
             for (var index = 0; index < gridViewEdit.GetSelectedRows().Length; index++)
             {
                 var i = gridViewEdit.GetSelectedRows()[index];
-                var accessId = (int) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                var accessId = (int)gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
                 Rows.Add(accessId);
             }
         }
@@ -167,7 +165,6 @@ namespace HRM
             CoHieu = 1;
             gridAccessEdit.DataSource = _accessBus.LoadAllAccess(true);
             gridAccessView.DataSource = _accessBus.LoadAllAccess(false);
-            Clear();
             Clear();
             SetButton(false);
             SetText(true);

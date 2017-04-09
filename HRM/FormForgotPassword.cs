@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
 using DAL;
@@ -29,7 +24,7 @@ namespace HRM
 
         private void btnForgotPassword_Click(object sender, EventArgs e)
         {
-            if(newAccountBus.check1AccByAccNameAndIdStaff(txtPhoneStaff.Text, txtEmailStaff.Text, txtAccName.Text))
+            if(newAccountBus.Check1AccByAccNameAndIdStaff(txtPhoneStaff.Text, txtEmailStaff.Text, txtAccName.Text))
             {
                 newAccount = newAccountBus.GetAccByAccNameAndIdStaff(txtPhoneStaff.Text, txtEmailStaff.Text, txtAccName.Text);
 
