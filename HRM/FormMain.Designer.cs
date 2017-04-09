@@ -63,8 +63,10 @@ namespace HRM
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -97,7 +99,7 @@ namespace HRM
             this.ribbonPage2,
             this.ribbonPage3});
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(758, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(762, 143);
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             // 
             // barButtonItem1
@@ -144,7 +146,7 @@ namespace HRM
             // 
             // barSalary
             // 
-            this.barSalary.Caption = "Quản lý lương";
+            this.barSalary.Caption = "Quản lý Lương";
             this.barSalary.Id = 6;
             this.barSalary.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barSalary.LargeGlyph")));
             this.barSalary.Name = "barSalary";
@@ -168,7 +170,7 @@ namespace HRM
             // 
             // barAbsent
             // 
-            this.barAbsent.Caption = "Quản lý nghỉ phép";
+            this.barAbsent.Caption = "Quản lý Nghỉ phép";
             this.barAbsent.Id = 11;
             this.barAbsent.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barAbsent.LargeGlyph")));
             this.barAbsent.Name = "barAbsent";
@@ -212,7 +214,7 @@ namespace HRM
             // 
             // barButtonItem4
             // 
-            this.barButtonItem4.Caption = "Quản lý tài khoản";
+            this.barButtonItem4.Caption = "Quản lý Tài khoản";
             this.barButtonItem4.Id = 20;
             this.barButtonItem4.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.LargeGlyph")));
             this.barButtonItem4.Name = "barButtonItem4";
@@ -241,7 +243,6 @@ namespace HRM
             // 
             this.ribbonPageGroup8.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "ribbonPageGroup8";
             // 
             // ribbonPage2
             // 
@@ -298,17 +299,31 @@ namespace HRM
             this.xtraTabControl1.HeaderButtons = DevExpress.XtraTab.TabButtons.Close;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 143);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(758, 378);
+            this.xtraTabControl1.Size = new System.Drawing.Size(762, 317);
             this.xtraTabControl1.TabIndex = 18;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl1_ControlAdded);
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
+            this.pictureEdit1.Location = new System.Drawing.Point(0, 143);
+            this.pictureEdit1.MenuManager = this.ribbonControl1;
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit1.Properties.ZoomAccelerationFactor = 1D;
+            this.pictureEdit1.Size = new System.Drawing.Size(762, 317);
+            this.pictureEdit1.TabIndex = 20;
             // 
             // FormMain
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 521);
+            this.ClientSize = new System.Drawing.Size(762, 460);
+            this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -322,6 +337,7 @@ namespace HRM
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,6 +373,7 @@ namespace HRM
         private RibbonPageGroup ribbonPageGroup8;
         private RibbonGalleryBarItem ribbonGalleryBarItem1;
         private BarButtonItem barButtonItem4;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
     }
 }
 

@@ -42,6 +42,7 @@ namespace HRM
         public FormMain()
         {
             InitializeComponent();
+
             _barButtonItem.AddRange(new[] { barEmployees, barSection, barPostion, barContract, barSI, barAbsent, barSalary, barAccess });
             foreach (var bar in _barButtonItem)
             {
@@ -53,6 +54,7 @@ namespace HRM
             elem.Image.SetImage((Image)null, Color.Empty);
             elem.Size.MinSize = new Size(44, 42);
         }
+        
 
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -67,6 +69,7 @@ namespace HRM
                     bar.Enabled = true;
                 }
             }
+            xtraTabControl1.Hide();
         }
         #endregion
 
@@ -75,7 +78,9 @@ namespace HRM
         {
             // Kiểm tra khi Click vào Button Nếu đã có TAb này rồi thì không Add vào nữa
             // mà nó sẽ chuyển focus tới TAb vừa click này
-            var t = 0;
+            pictureEdit1.Hide();
+            xtraTabControl1.Show();
+            var t = 0;           
             for (var index = 0; index < xtraTabControl1.TabPages.Count; index++)
             {
                 var tab = xtraTabControl1.TabPages[index];
@@ -96,6 +101,11 @@ namespace HRM
             // Đóng tab
             var arg = e as ClosePageButtonEventArgs;
             (arg?.Page as XtraTabPage)?.Dispose();
+            if(xtraTabControl1.TabPages.Count == 0)
+            {
+                xtraTabControl1.Hide();
+                pictureEdit1.Show();
+            }            
         }
         private void xtraTabControl1_ControlAdded(object sender, ControlEventArgs e)
         {   // Khi add vào thì Focus tới ngay Tab vừa Add
