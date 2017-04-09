@@ -71,6 +71,7 @@ namespace HRM
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.ApplicationIcon = ((System.Drawing.Bitmap)(resources.GetObject("ribbonControl1.ApplicationIcon")));
             this.ribbonControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
