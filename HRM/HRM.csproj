@@ -140,6 +140,7 @@
       <DependentUpon>frmAddSalary.cs</DependentUpon>
     </Compile>
     <Compile Include="Session.cs" />
+    <Compile Include="showMessageBox.cs" />
     <Compile Include="SplashScreenStarting.cs">
       <SubType>Form</SubType>
     </Compile>

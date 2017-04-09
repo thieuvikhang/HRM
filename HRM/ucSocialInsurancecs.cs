@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using BUS;
 using DAL;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 
 namespace HRM
 {
@@ -49,6 +50,8 @@ namespace HRM
             lblThongBao2.Text = @"1. Click 1 nhân viên ở trên để thêm BHXH cho họ.";
             lblThongBao3.Text = @"2. Click 1 phiếu BHXH để sửa hoặc xóa.";
             lblTrangThai.Text = @". . .";
+            //việt hóa messagebox
+            Localizer.Active = new showMessageBox("&hủy bỏ", "&Hủy", "&Chấp nhận", "&Không", "&Được", "&Thử lại", "&Đồng ý");
         }
 
         private void grctStaffHasNotBHXH_Click(object sender, EventArgs e)

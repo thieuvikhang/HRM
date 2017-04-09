@@ -33,6 +33,7 @@ namespace HRM
         private void InitializeComponent()
         {
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.lblThongBaoNhapMatKhau = new System.Windows.Forms.Label();
             this.lblThongBaoNhapTaiKhoan = new System.Windows.Forms.Label();
             this.labelForgot = new DevExpress.XtraEditors.LabelControl();
@@ -41,12 +42,11 @@ namespace HRM
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtAcc = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAcc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -67,6 +67,20 @@ namespace HRM
             this.panelControl1.Size = new System.Drawing.Size(377, 190);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureEdit1.EditValue = global::HRM.Properties.Resources.admin;
+            this.pictureEdit1.Location = new System.Drawing.Point(13, 13);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit1.Properties.ZoomAccelerationFactor = 1D;
+            this.pictureEdit1.Size = new System.Drawing.Size(98, 134);
+            this.pictureEdit1.TabIndex = 8;
             // 
             // lblThongBaoNhapMatKhau
             // 
@@ -146,7 +160,7 @@ namespace HRM
             this.txtAcc.Size = new System.Drawing.Size(239, 24);
             this.txtAcc.TabIndex = 1;
             this.txtAcc.TextChanged += new System.EventHandler(this.txtAcc_TextChanged);
-            this.txtAcc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc_KeyPress);
+            this.txtAcc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc_KeyPress_1);
             // 
             // labelControl1
             // 
@@ -157,20 +171,6 @@ namespace HRM
             this.labelControl1.Size = new System.Drawing.Size(64, 18);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Tài khoản";
-            // 
-            // pictureEdit1
-            // 
-            this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureEdit1.EditValue = global::HRM.Properties.Resources.admin;
-            this.pictureEdit1.Location = new System.Drawing.Point(13, 13);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Properties.ZoomAccelerationFactor = 1D;
-            this.pictureEdit1.Size = new System.Drawing.Size(98, 134);
-            this.pictureEdit1.TabIndex = 8;
             // 
             // FormLogin
             // 
@@ -191,9 +191,9 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAcc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

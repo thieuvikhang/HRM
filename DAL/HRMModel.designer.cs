@@ -75,7 +75,7 @@ namespace DAL
     #endregion
 		
 		public HRMModelDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HRMConnectionString2, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HRMConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1335,6 +1335,8 @@ namespace DAL
 		
 		private string _StaffID;
 		
+		private bool _AccountStatusOnline;
+		
 		private EntityRef<Staff> _Staff;
 		
 		private EntityRef<GroupAccess> _GroupAccess;
@@ -1353,6 +1355,8 @@ namespace DAL
     partial void OnGroupAccessIDChanged();
     partial void OnStaffIDChanging(string value);
     partial void OnStaffIDChanged();
+    partial void OnAccountStatusOnlineChanging(bool value);
+    partial void OnAccountStatusOnlineChanged();
     #endregion
 		
 		public Account()
@@ -1466,6 +1470,26 @@ namespace DAL
 					this._StaffID = value;
 					this.SendPropertyChanged("StaffID");
 					this.OnStaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountStatusOnline", DbType="Bit NOT NULL")]
+		public bool AccountStatusOnline
+		{
+			get
+			{
+				return this._AccountStatusOnline;
+			}
+			set
+			{
+				if ((this._AccountStatusOnline != value))
+				{
+					this.OnAccountStatusOnlineChanging(value);
+					this.SendPropertyChanging();
+					this._AccountStatusOnline = value;
+					this.SendPropertyChanged("AccountStatusOnline");
+					this.OnAccountStatusOnlineChanged();
 				}
 			}
 		}
