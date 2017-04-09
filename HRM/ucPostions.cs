@@ -12,6 +12,7 @@ namespace HRM
     {
         readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         int _checkAdd;
+        public Session Session = new Session();
         public class MyGridLocalizer : GridLocalizer
         {
             public override string GetLocalizedString(GridStringId id)
@@ -55,6 +56,16 @@ namespace HRM
         }
         private void ucPostions_Load(object sender, EventArgs e)
         {
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                groupControl2.Visible = false;
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+            }
             gcPostions.DataSource = _postBus.LoadAll();
             SetTxt(false);
             txtPostID.Enabled = false;

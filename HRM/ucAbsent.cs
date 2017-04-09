@@ -19,6 +19,7 @@ namespace HRM
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         public readonly AbsentBus AbsentBus = new AbsentBus();
         public readonly DaysRemainBus DaysRemainBus = new DaysRemainBus();
+        public Session Session = new Session();
         public bool AllowClosePopup = true;
         private readonly List<int> _list = new List<int>();
         private int _coHieu, _ngayBatDau, _ngayKetThuc, _soNgayNghiCoLuong;
@@ -34,6 +35,16 @@ namespace HRM
         }
         private void ucAbsent_Load(object sender, EventArgs e)
         {
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                groupBox1.Visible = false;
+/*                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;*/
+                gridView1.Columns[8].Visible = false;
+                gridView1.Columns[9].Visible = false;
+            }
             gcAbsent.DataSource = AbsentBus.GetAbsent();
             LoadluChonNv();
             dateChonBD.Properties.MaxValue = AbsentBus.NgayCuoiThang(DateTime.Now);
@@ -256,11 +267,6 @@ namespace HRM
 
         private void edit_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
-            /*            var listNgayNghi = AbsentBus.ListNgayNghi(gridView1.GetFocusedRowCellDisplayText(StaffID), DateTime.Now);
-                        if (listNgayNghi != null) _list.AddRange(listNgayNghi);
-                        _maxValue = _list.Concat(new[] { 0 }).Max();
-                        if (DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate)).Day == _maxValue)
-                        {*/
             _coHieu = 2;
             if (FromDate != null)
                 _ngayBatDau = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(FromDate)).Day;
@@ -287,11 +293,6 @@ namespace HRM
                 dateChonKT.DateTime = DateTime.Parse(gridView1.GetFocusedRowCellDisplayText(ToDate));
             txtGhiChu.Text = gridView1.GetFocusedRowCellDisplayText(Note);
             if (AbsentDay != null) txtSoNgayNghi.Text = gridView1.GetFocusedRowCellDisplayText(AbsentDay);
-            /*            }
-                        else
-                        {
-                            XtraMessageBox.Show("Không được sửa phép củ!");
-                        }*/
         }
 
         private void delete_ButtonClick(object sender, ButtonPressedEventArgs e)
@@ -326,10 +327,11 @@ namespace HRM
         {
             if (e.Column.FieldName != "edit" && e.Column.FieldName != "delete") return;
             var kpm = (DateTime)gridView1.GetRowCellValue(Convert.ToInt32(e.RowHandle), "ToDate");
-            if (kpm.Month == DateTime.Now.Month) return;
+            var maxValue = AbsentBus.MaxValue((string)gridView1.GetRowCellValue(Convert.ToInt32(e.RowHandle), "StaffID"));
+            if (kpm.Month == DateTime.Now.Month && kpm.Day == maxValue) return;
             using (var hide = new RepositoryItemButtonEdit())
             {
-                hide.Buttons[0].Enabled = true;
+                hide.Buttons[0].Visible = true;
                 e.RepositoryItem = hide;
             }
         }

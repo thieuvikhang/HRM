@@ -11,6 +11,7 @@ namespace HRM
 {
     public partial class UcEmployees : XtraUserControl
     {
+        public Session Session = new Session();
         public UcEmployees()
         {
             InitializeComponent();
@@ -154,6 +155,16 @@ namespace HRM
         }
         private void ucEmployees_Load(object sender, EventArgs e)
         {
+            var access = int.Parse(Session["Access"].ToString());
+            if (access != 1)
+            {
+                groupControl2.Visible = false;
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+            }
             SetTxt(false);
             SetBtn(true);
             txtStaffID.Enabled = false;
