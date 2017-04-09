@@ -177,18 +177,12 @@ namespace HRM
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //show form login
-           
-            FormLogin frmlogin = new FormLogin();
-            frmlogin.Show();
             this.Close();
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Dispose();
-            FormLogin frmlogin = new FormLogin();
-            frmlogin.ShowDialog(); 
+
         }
 
         private void barAccess_ItemClick(object sender, ItemClickEventArgs e)

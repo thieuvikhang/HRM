@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using BUS;
 using DAL;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 
 namespace HRM
 {
@@ -67,6 +68,9 @@ namespace HRM
             dateSign.Properties.MaxValue = DateTime.Now;
 
             lblThongBao.Text = @"- - - CHÚC BẠN CÓ 1 NGÀY LÀM VIỆC VUI VẺ - - -";
+
+            //việt hóa messagebox
+            Localizer.Active = new showMessageBox("&hủy bỏ", "&Hủy", "&Chấp nhận", "&Không", "&Được", "&Thử lại", "&Đồng ý");
         }
          
         #region load combodox Staffs and ContractType

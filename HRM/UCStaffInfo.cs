@@ -89,6 +89,8 @@ namespace HRM
             lblSection.Text = aSection.SectionName;
             //Load hinhAnh:
             kiemtraAnhNhanVien();
+            btnSaveImageStaffChange.Enabled = false;
+            btnCancelChangeImage.Enabled = false;
         }
 
         private void btnSaveNewPasswoed_Click(object sender, EventArgs e)
@@ -269,7 +271,7 @@ namespace HRM
                 var staff = (from sp in _hrm.Staffs
                                where sp.StaffID == idStaff
                                select sp).SingleOrDefault();
-                picStaffImage.Image = ByteArrayToImage(staff.Image.ToArray());
+                picImageChange.Image = ByteArrayToImage(staff.Image.ToArray());
             }
             catch
             {
@@ -303,16 +305,19 @@ namespace HRM
                 {
                     fileNameimage = openfile.FileName;
                     //lbFilename.Text = filename;
-                    picStaffImage.Image = Image.FromFile(fileNameimage);
+                    picImageChange.Image = Image.FromFile(fileNameimage);
                     Image image = Image.FromFile(fileNameimage);
-                    if (image.Width < picStaffImage.Width && image.Height < picStaffImage.Height)
+                    if (image.Width < picImageChange.Width && image.Height < picImageChange.Height)
                     {
-                        picStaffImage.SizeMode = PictureBoxSizeMode.Normal;
+                        picImageChange.SizeMode = PictureBoxSizeMode.Normal;
                     }
                     else
                     {
-                        picStaffImage.SizeMode = PictureBoxSizeMode.Zoom;
+                        picImageChange.SizeMode = PictureBoxSizeMode.Zoom;
                     }
+                    
+                    btnSaveImageStaffChange.Enabled = true;
+                    btnCancelChangeImage.Enabled = true;
                 }
             }
             // File chọn ko phải là file ảnh (jpg, ....)
@@ -331,7 +336,7 @@ namespace HRM
             {
                 string idStaff = _aSession["staffID"].ToString();
                 //Chuyển image thành binary thông qua byte[]
-                byte[] file_Byte = ImageToByteArray(picStaffImage.Image);
+                byte[] file_Byte = ImageToByteArray(picImageChange.Image);
                 Binary file_Binary = new Binary(file_Byte);
 
                 if(newStaffBus.EditImageStaff(idStaff, file_Binary))
@@ -351,9 +356,7 @@ namespace HRM
 
         private void btnChooseImageStaff_Click(object sender, EventArgs e)
         {
-            moHinhAnh();
-            btnChooseImageStaff.Enabled = false;
-
+            moHinhAnh(); 
         }
 
         private void btnSaveImageStaffChange_Click(object sender, EventArgs e)
@@ -361,11 +364,30 @@ namespace HRM
             try
             {
                 suaSanPham();
+                btnSaveImageStaffChange.Enabled = false;
+                btnCancelChangeImage.Enabled = false;
             }
             catch(Exception ex)
             {
                 XtraMessageBox.Show("Chưa có hình ảnh.");
             }
+        }
+
+        private void btnCancelChangeImage_Click(object sender, EventArgs e)
+        {
+            kiemtraAnhNhanVien();
+            btnSaveImageStaffChange.Enabled = false;
+            btnCancelChangeImage.Enabled = false;
+        }
+
+        private void picImageChange_Click(object sender, EventArgs e)
+        {
+            moHinhAnh();
+        }
+
+        private void picImageChange_MouseHover(object sender, EventArgs e)
+        {
+            lblTrangThai.Text = "Click vào hỉnh ảnh để thay đổi ảnh đại diện.";
         }
     }
 }

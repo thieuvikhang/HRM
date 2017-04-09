@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HRM" Class="HRMModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-PK221FL\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Absent" Member="Absents">
     <Type Name="Absent">
       <Column Name="AbsentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -19,17 +19,6 @@
       <Column Name="Edit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DescriptionAccess" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Access_DetailAccess" Member="DetailAccesses" ThisKey="AccessID" OtherKey="AccessID" Type="DetailAccess" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Account" Member="Accounts">
-    <Type Name="Account">
-      <Column Name="AccID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="Char(20)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="Char(30)" CanBeNull="true" />
-      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Association Name="GroupAccess_Account" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
-      <Association Name="Staff_Account" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CateAge" Member="CateAges">
@@ -78,8 +67,8 @@
       <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="GroupAccessName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="GroupAccess_Account" Member="Accounts" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="Account" />
       <Association Name="GroupAccess_DetailAccess" Member="DetailAccesses" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="DetailAccess" />
+      <Association Name="GroupAccess_Account" Member="Accounts" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="Account" />
     </Type>
   </Table>
   <Table Name="dbo.Position" Member="Positions">
@@ -151,13 +140,25 @@
       <Column Name="PostID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Column Name="SectionID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Association Name="Staff_Absent" Member="Absents" ThisKey="StaffID" OtherKey="StaffID" Type="Absent" />
-      <Association Name="Staff_Account" Member="Accounts" ThisKey="StaffID" OtherKey="StaffID" Type="Account" />
       <Association Name="Staff_Contract" Member="Contracts" ThisKey="StaffID" OtherKey="StaffID" Type="Contract" />
       <Association Name="Staff_DaysRemain" Member="DaysRemains" ThisKey="StaffID" OtherKey="StaffID" Type="DaysRemain" />
       <Association Name="Staff_Salary" Member="Salaries" ThisKey="StaffID" OtherKey="StaffID" Type="Salary" />
       <Association Name="Staff_SocialInsurance" Member="SocialInsurances" ThisKey="StaffID" OtherKey="StaffID" Type="SocialInsurance" />
+      <Association Name="Staff_Account" Member="Accounts" ThisKey="StaffID" OtherKey="StaffID" Type="Account" />
       <Association Name="Position_Staff" Member="Position" ThisKey="PostID" OtherKey="PostID" Type="Position" IsForeignKey="true" />
       <Association Name="Section_Staff" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="AccID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="Char(33)" CanBeNull="true" />
+      <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountStatusOnline" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_Account" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
+      <Association Name="GroupAccess_Account" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.Age_Range" Method="Age_Range">

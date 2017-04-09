@@ -44,6 +44,24 @@ namespace BUS
             return accountOnline;
         }
 
+        public bool EditAccountStatusOnline(string idStaff, bool statusOnline)
+        {
+            try
+            {
+                var aAccount = _hrm.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
+                //kiem tra aAccount co tontai
+                if (aAccount == null) return false;
+                aAccount.AccountStatusOnline = statusOnline;
+                //thay doi csdl trong SQL
+                _hrm.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         //Ham edit mot contract
         public bool EditPassword(int acId, string pass)
         {
