@@ -80,5 +80,35 @@ namespace BUS
                 return false;
             }
         }
+
+        public bool check1AccByAccNameAndIdStaff(string staffPhone, string staffEmail, string AccName)
+        {
+            try
+            {
+                Staff newStaff = _hrm.Staffs.SingleOrDefault(st => st.Phone == staffPhone & st.Email == staffEmail);
+                var numbAccByNameAccAndIDStaff = (from ac in _hrm.Accounts
+                                                  where ac.UserName == AccName & ac.StaffID == newStaff.StaffID
+                                                  select ac).Count();
+                return numbAccByNameAccAndIDStaff == 1;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Account GetAccByAccNameAndIdStaff(string staffPhone, string staffEmail, string AccName)
+        {
+            try
+            {
+                Staff newStaff = _hrm.Staffs.SingleOrDefault(st => st.Phone == staffPhone & st.Email == staffEmail);
+                Account newAccount = _hrm.Accounts.SingleOrDefault(ac => ac.UserName == AccName & ac.StaffID == newStaff.StaffID);
+                return newAccount;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

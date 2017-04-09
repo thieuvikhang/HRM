@@ -98,6 +98,7 @@ namespace HRM
             //khai bao cac bien can dùng
             string passwordInput = txtAgainPassword.Text;
             string passwordEncrypt = _newExtend.GetMd5(passwordInput);
+            passwordEncrypt = passwordEncrypt.ToLower();
             bool checkChangepass = false;
             string idStaff = _aSession["staffID"].ToString();
             int accountID = 0;
@@ -214,7 +215,7 @@ namespace HRM
         {
             string oldPassword = txtOldPassword.EditValue.ToString();
             string oldPasswordEncrypt = _newExtend.GetMd5(oldPassword);
-            //oldPasswordEncrypt = oldPasswordEncrypt.Substring(0, 26);
+            oldPasswordEncrypt = oldPasswordEncrypt.ToLower();
             string newPassword = txtNewpassword.EditValue.ToString();
             string againPassword = txtAgainPassword.EditValue.ToString();
             string idStaff = _aSession["staffID"].ToString();
