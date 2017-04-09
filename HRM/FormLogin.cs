@@ -182,10 +182,8 @@ namespace HRM
 
         private void txtAcc_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = (e.KeyChar == (char)Keys.Space);
-        }
-
-        
+            e.Handled = (e.KeyChar == (char)Keys.Space); 
+        } 
 
     }
 }
