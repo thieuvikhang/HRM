@@ -160,7 +160,7 @@ namespace HRM
             this.txtAcc.Size = new System.Drawing.Size(239, 24);
             this.txtAcc.TabIndex = 1;
             this.txtAcc.TextChanged += new System.EventHandler(this.txtAcc_TextChanged);
-            this.txtAcc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc_KeyPress);
+            this.txtAcc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc_KeyPress_1);
             // 
             // labelControl1
             // 

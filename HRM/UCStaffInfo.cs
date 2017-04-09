@@ -89,8 +89,8 @@ namespace HRM
             lblSection.Text = aSection.SectionName;
             //Load hinhAnh:
             kiemtraAnhNhanVien();
-            btnSaveImageStaffChange.Enabled = false;
-            btnCancelChangeImage.Enabled = false;
+            btnSaveImageStaffChange.Visible = false;
+            btnCancelChangeImage.Visible = false;
         }
 
         private void btnSaveNewPasswoed_Click(object sender, EventArgs e)
@@ -119,7 +119,6 @@ namespace HRM
             {
                 lblThongBao.Text = "Đổi mật khẩu thất bại.";
             }
-            lblPassEncrypt.Text = passwordEncrypt;
         }
 
         private void btnChangePassword_TextChanged(object sender, EventArgs e)
@@ -222,8 +221,7 @@ namespace HRM
             Account acc = new Account();
             acc = _newAccountBus.GetPass(idStaff);
             string passworddAccout = acc.Password;
-            passworddAccout = passworddAccout.Trim();
-            lblShowPassStaff.Text = passworddAccout;
+            passworddAccout = passworddAccout.Trim(); 
 
             if (String.Compare(oldPasswordEncrypt, passworddAccout) != 0)
             {
@@ -272,6 +270,7 @@ namespace HRM
                                where sp.StaffID == idStaff
                                select sp).SingleOrDefault();
                 picImageChange.Image = ByteArrayToImage(staff.Image.ToArray());
+                picImageChange.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             catch
             {
@@ -298,7 +297,7 @@ namespace HRM
         // Hàm mở HÌnh ảnh
         private void moHinhAnh()
         {
-            OpenFileDialog openfile = new OpenFileDialog() { Filter = "JPEG|*.jpg", ValidateNames = true, Multiselect = false };
+            OpenFileDialog openfile = new OpenFileDialog() { Filter = "JPEG|*.jpg;*.png", ValidateNames = true, Multiselect = false };
             try
             {
                 if (openfile.ShowDialog() == DialogResult.OK)
@@ -315,9 +314,10 @@ namespace HRM
                     {
                         picImageChange.SizeMode = PictureBoxSizeMode.Zoom;
                     }
-                    
-                    btnSaveImageStaffChange.Enabled = true;
-                    btnCancelChangeImage.Enabled = true;
+
+                    picImageChange.SizeMode = PictureBoxSizeMode.StretchImage;
+                    btnSaveImageStaffChange.Visible = true;
+                    btnCancelChangeImage.Visible = true;
                 }
             }
             // File chọn ko phải là file ảnh (jpg, ....)
@@ -364,8 +364,8 @@ namespace HRM
             try
             {
                 suaSanPham();
-                btnSaveImageStaffChange.Enabled = false;
-                btnCancelChangeImage.Enabled = false;
+                btnSaveImageStaffChange.Visible = false;
+                btnCancelChangeImage.Visible = false;
             }
             catch(Exception ex)
             {
@@ -376,8 +376,8 @@ namespace HRM
         private void btnCancelChangeImage_Click(object sender, EventArgs e)
         {
             kiemtraAnhNhanVien();
-            btnSaveImageStaffChange.Enabled = false;
-            btnCancelChangeImage.Enabled = false;
+            btnSaveImageStaffChange.Visible = false;
+            btnCancelChangeImage.Visible = false;
         }
 
         private void picImageChange_Click(object sender, EventArgs e)

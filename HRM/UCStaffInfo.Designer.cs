@@ -30,12 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcStaffInfo));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btnCancelChangeImage = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSaveImageStaffChange = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
-            this.lblPassEncrypt = new System.Windows.Forms.Label();
-            this.lblShowPassStaff = new System.Windows.Forms.Label();
             this.panChangePassword = new DevExpress.XtraEditors.PanelControl();
             this.txtAgainPassword = new DevExpress.XtraEditors.TextEdit();
             this.btnCheckError = new DevExpress.XtraEditors.SimpleButton();
@@ -52,11 +48,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblTrangThai = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnCancelChangeImage = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSaveImageStaffChange = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.picImageChange = new System.Windows.Forms.PictureBox();
             this.lblShowIDStaff = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -80,7 +79,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblStaffCard = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.picImageChange = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -108,41 +106,15 @@
             this.panelControl1.Size = new System.Drawing.Size(992, 241);
             this.panelControl1.TabIndex = 0;
             // 
-            // btnCancelChangeImage
-            // 
-            this.btnCancelChangeImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancelChangeImage.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelChangeImage.Appearance.Options.UseFont = true;
-            this.btnCancelChangeImage.Location = new System.Drawing.Point(130, 280);
-            this.btnCancelChangeImage.Name = "btnCancelChangeImage";
-            this.btnCancelChangeImage.Size = new System.Drawing.Size(133, 26);
-            this.btnCancelChangeImage.TabIndex = 3;
-            this.btnCancelChangeImage.Text = "Hủy";
-            this.btnCancelChangeImage.Click += new System.EventHandler(this.btnCancelChangeImage_Click);
-            // 
-            // btnSaveImageStaffChange
-            // 
-            this.btnSaveImageStaffChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveImageStaffChange.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveImageStaffChange.Appearance.Options.UseFont = true;
-            this.btnSaveImageStaffChange.Location = new System.Drawing.Point(5, 280);
-            this.btnSaveImageStaffChange.Name = "btnSaveImageStaffChange";
-            this.btnSaveImageStaffChange.Size = new System.Drawing.Size(119, 26);
-            this.btnSaveImageStaffChange.TabIndex = 3;
-            this.btnSaveImageStaffChange.Text = "Lưu";
-            this.btnSaveImageStaffChange.Click += new System.EventHandler(this.btnSaveImageStaffChange_Click);
-            // 
             // groupControl2
             // 
-            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl2.AppearanceCaption.FontSizeDelta = 1;
             this.groupControl2.AppearanceCaption.Image = global::HRM.Properties.Resources.Apps_preferences_desktop_user_password_icon;
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.AppearanceCaption.Options.UseImage = true;
             this.groupControl2.CaptionImage = global::HRM.Properties.Resources.Apps_preferences_desktop_user_password_icon;
             this.groupControl2.Controls.Add(this.btnChangePassword);
-            this.groupControl2.Controls.Add(this.lblPassEncrypt);
-            this.groupControl2.Controls.Add(this.lblShowPassStaff);
             this.groupControl2.Controls.Add(this.panChangePassword);
             this.groupControl2.Location = new System.Drawing.Point(5, 5);
             this.groupControl2.Name = "groupControl2";
@@ -161,24 +133,6 @@
             this.btnChangePassword.Text = "Đổi mật khẩu";
             this.btnChangePassword.TextChanged += new System.EventHandler(this.btnChangePassword_TextChanged);
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
-            // 
-            // lblPassEncrypt
-            // 
-            this.lblPassEncrypt.AutoSize = true;
-            this.lblPassEncrypt.Location = new System.Drawing.Point(5, 144);
-            this.lblPassEncrypt.Name = "lblPassEncrypt";
-            this.lblPassEncrypt.Size = new System.Drawing.Size(70, 13);
-            this.lblPassEncrypt.TabIndex = 0;
-            this.lblPassEncrypt.Text = "Mật khẩu mới";
-            // 
-            // lblShowPassStaff
-            // 
-            this.lblShowPassStaff.AutoSize = true;
-            this.lblShowPassStaff.Location = new System.Drawing.Point(5, 112);
-            this.lblShowPassStaff.Name = "lblShowPassStaff";
-            this.lblShowPassStaff.Size = new System.Drawing.Size(65, 13);
-            this.lblShowPassStaff.TabIndex = 0;
-            this.lblShowPassStaff.Text = "Mật khẩu cũ";
             // 
             // panChangePassword
             // 
@@ -347,6 +301,30 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Trạng thái:";
             // 
+            // btnCancelChangeImage
+            // 
+            this.btnCancelChangeImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelChangeImage.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelChangeImage.Appearance.Options.UseFont = true;
+            this.btnCancelChangeImage.Location = new System.Drawing.Point(130, 280);
+            this.btnCancelChangeImage.Name = "btnCancelChangeImage";
+            this.btnCancelChangeImage.Size = new System.Drawing.Size(133, 26);
+            this.btnCancelChangeImage.TabIndex = 3;
+            this.btnCancelChangeImage.Text = "Hủy";
+            this.btnCancelChangeImage.Click += new System.EventHandler(this.btnCancelChangeImage_Click);
+            // 
+            // btnSaveImageStaffChange
+            // 
+            this.btnSaveImageStaffChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSaveImageStaffChange.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveImageStaffChange.Appearance.Options.UseFont = true;
+            this.btnSaveImageStaffChange.Location = new System.Drawing.Point(5, 280);
+            this.btnSaveImageStaffChange.Name = "btnSaveImageStaffChange";
+            this.btnSaveImageStaffChange.Size = new System.Drawing.Size(119, 26);
+            this.btnSaveImageStaffChange.TabIndex = 3;
+            this.btnSaveImageStaffChange.Text = "Lưu";
+            this.btnSaveImageStaffChange.Click += new System.EventHandler(this.btnSaveImageStaffChange_Click);
+            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.groupControl1);
@@ -358,7 +336,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl1.AppearanceCaption.FontSizeDelta = 1;
             this.groupControl1.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl1.AppearanceCaption.Image")));
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
@@ -429,6 +407,20 @@
             this.label8.Size = new System.Drawing.Size(127, 16);
             this.label8.TabIndex = 0;
             this.label8.Text = "Nhân viên quản lý:";
+            // 
+            // picImageChange
+            // 
+            this.picImageChange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.picImageChange.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picImageChange.Location = new System.Drawing.Point(5, 42);
+            this.picImageChange.Name = "picImageChange";
+            this.picImageChange.Size = new System.Drawing.Size(258, 216);
+            this.picImageChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImageChange.TabIndex = 2;
+            this.picImageChange.TabStop = false;
+            this.picImageChange.Click += new System.EventHandler(this.picImageChange_Click);
+            this.picImageChange.MouseHover += new System.EventHandler(this.picImageChange_MouseHover);
             // 
             // lblShowIDStaff
             // 
@@ -602,13 +594,15 @@
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(266, 198);
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label13.Location = new System.Drawing.Point(5, 261);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(56, 16);
+            this.label13.Size = new System.Drawing.Size(258, 16);
             this.label13.TabIndex = 0;
-            this.label13.Text = "Địa chỉ:";
+            this.label13.Text = "Click vào hình để thay đổi ảnh đại diện.";
             // 
             // lblStaffPhone
             // 
@@ -660,20 +654,6 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Giới Tính:";
             // 
-            // picImageChange
-            // 
-            this.picImageChange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.picImageChange.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picImageChange.Location = new System.Drawing.Point(5, 42);
-            this.picImageChange.Name = "picImageChange";
-            this.picImageChange.Size = new System.Drawing.Size(258, 232);
-            this.picImageChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImageChange.TabIndex = 2;
-            this.picImageChange.TabStop = false;
-            this.picImageChange.Click += new System.EventHandler(this.picImageChange_Click);
-            this.picImageChange.MouseHover += new System.EventHandler(this.picImageChange_MouseHover);
-            // 
             // UcStaffInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -688,7 +668,6 @@
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
-            this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panChangePassword)).EndInit();
             this.panChangePassword.ResumeLayout(false);
             this.panChangePassword.PerformLayout();
@@ -751,8 +730,6 @@
         private System.Windows.Forms.Label lblNoteAdainPassword;
         private System.Windows.Forms.Label lblNoteOldPassword;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblShowPassStaff;
-        private System.Windows.Forms.Label lblPassEncrypt;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblManager;
         private System.Windows.Forms.Label label10;

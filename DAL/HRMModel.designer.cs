@@ -39,6 +39,9 @@ namespace DAL
     partial void InsertAccess(Access instance);
     partial void UpdateAccess(Access instance);
     partial void DeleteAccess(Access instance);
+    partial void InsertAccount(Account instance);
+    partial void UpdateAccount(Account instance);
+    partial void DeleteAccount(Account instance);
     partial void InsertCateAge(CateAge instance);
     partial void UpdateCateAge(CateAge instance);
     partial void DeleteCateAge(CateAge instance);
@@ -69,19 +72,10 @@ namespace DAL
     partial void InsertSocialInsurance(SocialInsurance instance);
     partial void UpdateSocialInsurance(SocialInsurance instance);
     partial void DeleteSocialInsurance(SocialInsurance instance);
-<<<<<<< HEAD
-    partial void InsertStaff(Staff instance);
-    partial void UpdateStaff(Staff instance);
-    partial void DeleteStaff(Staff instance);
-    partial void InsertAccount(Account instance);
-    partial void UpdateAccount(Account instance);
-    partial void DeleteAccount(Account instance);
-=======
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
     #endregion
 		
 		public HRMModelDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HRMConnectionString2, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HRMConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -131,6 +125,14 @@ namespace DAL
 			get
 			{
 				return this.GetTable<Access>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Account> Accounts
+		{
+			get
+			{
+				return this.GetTable<Account>();
 			}
 		}
 		
@@ -214,25 +216,6 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		public System.Data.Linq.Table<Staff> Staffs
-		{
-			get
-			{
-				return this.GetTable<Staff>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Account> Accounts
-		{
-			get
-			{
-				return this.GetTable<Account>();
-			}
-		}
-		
-=======
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Age_Range")]
 		public int Age_Range()
 		{
@@ -556,8 +539,6 @@ namespace DAL
 		
 		private EntityRef<Section> _Section;
 		
-		private EntitySet<DetailAccess> _DetailAccesses;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -598,9 +579,6 @@ namespace DAL
 		
 		public Staff()
 		{
-<<<<<<< HEAD
-			this._DetailAccesses = new EntitySet<DetailAccess>(new Action<DetailAccess>(this.attach_DetailAccesses), new Action<DetailAccess>(this.detach_DetailAccesses));
-=======
 			this._Absents = new EntitySet<Absent>(new Action<Absent>(this.attach_Absents), new Action<Absent>(this.detach_Absents));
 			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
@@ -609,7 +587,6 @@ namespace DAL
 			this._SocialInsurances = new EntitySet<SocialInsurance>(new Action<SocialInsurance>(this.attach_SocialInsurances), new Action<SocialInsurance>(this.detach_SocialInsurances));
 			this._Position = default(EntityRef<Position>);
 			this._Section = default(EntityRef<Section>);
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 			OnCreated();
 		}
 		
@@ -693,29 +670,8 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_DetailAccesses", ThisKey="AccessID", OtherKey="AccessID")]
-		public EntitySet<DetailAccess> DetailAccesses
-		{
-			get
-			{
-				return this._DetailAccesses;
-			}
-			set
-			{
-				this._DetailAccesses.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDay", DbType="DateTime")]
 		public System.Nullable<System.DateTime> BirthDay
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		{
 			get
 			{
@@ -753,67 +709,6 @@ namespace DAL
 				}
 			}
 		}
-<<<<<<< HEAD
-		
-		private void attach_DetailAccesses(DetailAccess entity)
-		{
-			this.SendPropertyChanging();
-			entity.Access = this;
-		}
-		
-		private void detach_DetailAccesses(DetailAccess entity)
-		{
-			this.SendPropertyChanging();
-			entity.Access = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CateAge")]
-	public partial class CateAge : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private System.Nullable<int> _mount;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnmountChanging(System.Nullable<int> value);
-    partial void OnmountChanged();
-    #endregion
-		
-		public CateAge()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-=======
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="VarChar(11)")]
 		public string Phone
@@ -951,29 +846,10 @@ namespace DAL
 					this._Email = value;
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 				}
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NChar(10)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysRemain", DbType="Int")]
 		public System.Nullable<int> DaysRemain
 		{
@@ -990,29 +866,10 @@ namespace DAL
 					this._DaysRemain = value;
 					this.SendPropertyChanged("DaysRemain");
 					this.OnDaysRemainChanged();
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 				}
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mount", DbType="Int")]
-		public System.Nullable<int> mount
-		{
-			get
-			{
-				return this._mount;
-			}
-			set
-			{
-				if ((this._mount != value))
-				{
-					this.OnmountChanging(value);
-					this.SendPropertyChanging();
-					this._mount = value;
-					this.SendPropertyChanged("mount");
-					this.OnmountChanged();
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostID", DbType="Char(6) NOT NULL", CanBeNull=false)]
 		public string PostID
 		{
@@ -1057,7 +914,6 @@ namespace DAL
 					this._SectionID = value;
 					this.SendPropertyChanged("SectionID");
 					this.OnSectionIDChanged();
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 				}
 			}
 		}
@@ -1087,19 +943,6 @@ namespace DAL
 				this._Accounts.Assign(value);
 			}
 		}
-<<<<<<< HEAD
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contract")]
-	public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _ContractID;
-		
-		private System.Nullable<System.DateTime> _Date;
-=======
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Contract", Storage="_Contracts", ThisKey="StaffID", OtherKey="StaffID")]
 		public EntitySet<Contract> Contracts
@@ -1240,7 +1083,6 @@ namespace DAL
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		
 		private void attach_Absents(Absent entity)
 		{
@@ -1493,6 +1335,8 @@ namespace DAL
 		
 		private string _StaffID;
 		
+		private bool _AccountStatusOnline;
+		
 		private EntityRef<Staff> _Staff;
 		
 		private EntityRef<GroupAccess> _GroupAccess;
@@ -1511,6 +1355,8 @@ namespace DAL
     partial void OnGroupAccessIDChanged();
     partial void OnStaffIDChanging(string value);
     partial void OnStaffIDChanged();
+    partial void OnAccountStatusOnlineChanging(bool value);
+    partial void OnAccountStatusOnlineChanged();
     #endregion
 		
 		public Account()
@@ -1628,6 +1474,26 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountStatusOnline", DbType="Bit NOT NULL")]
+		public bool AccountStatusOnline
+		{
+			get
+			{
+				return this._AccountStatusOnline;
+			}
+			set
+			{
+				if ((this._AccountStatusOnline != value))
+				{
+					this.OnAccountStatusOnlineChanging(value);
+					this.SendPropertyChanging();
+					this._AccountStatusOnline = value;
+					this.SendPropertyChanged("AccountStatusOnline");
+					this.OnAccountStatusOnlineChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
 		public Staff Staff
 		{
@@ -1727,13 +1593,7 @@ namespace DAL
 		
 		private string _name;
 		
-<<<<<<< HEAD
-		private EntityRef<Access> _Access;
-		
-		private EntityRef<GroupAccess> _GroupAccess;
-=======
 		private System.Nullable<int> _mount;
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1749,11 +1609,6 @@ namespace DAL
 		
 		public CateAge()
 		{
-<<<<<<< HEAD
-			this._Access = default(EntityRef<Access>);
-			this._GroupAccess = default(EntityRef<GroupAccess>);
-=======
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 			OnCreated();
 		}
 		
@@ -1768,15 +1623,7 @@ namespace DAL
 			{
 				if ((this._id != value))
 				{
-<<<<<<< HEAD
-					if (this._Access.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAccessIDChanging(value);
-=======
 					this.OnidChanging(value);
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 					this.SendPropertyChanging();
 					this._id = value;
 					this.SendPropertyChanged("id");
@@ -1805,47 +1652,8 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Access_DetailAccess", Storage="_Access", ThisKey="AccessID", OtherKey="AccessID", IsForeignKey=true)]
-		public Access Access
-		{
-			get
-			{
-				return this._Access.Entity;
-			}
-			set
-			{
-				Access previousValue = this._Access.Entity;
-				if (((previousValue != value) 
-							|| (this._Access.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Access.Entity = null;
-						previousValue.DetailAccesses.Remove(this);
-					}
-					this._Access.Entity = value;
-					if ((value != null))
-					{
-						value.DetailAccesses.Add(this);
-						this._AccessID = value.AccessID;
-					}
-					else
-					{
-						this._AccessID = default(int);
-					}
-					this.SendPropertyChanged("Access");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_DetailAccess", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
-		public GroupAccess GroupAccess
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mount", DbType="Int")]
 		public System.Nullable<int> mount
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		{
 			get
 			{
@@ -1897,9 +1705,6 @@ namespace DAL
 		
 		private string _Currency;
 		
-<<<<<<< HEAD
-		private EntitySet<DetailAccess> _DetailAccesses;
-=======
 		private System.Nullable<System.DateTime> _StartDate;
 		
 		private System.Nullable<System.DateTime> _EndDate;
@@ -1917,9 +1722,6 @@ namespace DAL
 		private int _ContractTypeID;
 		
 		private EntityRef<Staff> _Staff;
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
-		
-		private EntitySet<Account> _Accounts;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1951,12 +1753,7 @@ namespace DAL
 		
 		public Contract()
 		{
-<<<<<<< HEAD
-			this._DetailAccesses = new EntitySet<DetailAccess>(new Action<DetailAccess>(this.attach_DetailAccesses), new Action<DetailAccess>(this.detach_DetailAccesses));
-			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
-=======
 			this._Staff = default(EntityRef<Staff>);
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 			OnCreated();
 		}
 		
@@ -2020,31 +1817,6 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_DetailAccess", Storage="_DetailAccesses", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
-		public EntitySet<DetailAccess> DetailAccesses
-		{
-			get
-			{
-				return this._DetailAccesses;
-			}
-			set
-			{
-				this._DetailAccesses.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_Accounts", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
-		public EntitySet<Account> Accounts
-		{
-			get
-			{
-				return this._Accounts;
-			}
-			set
-			{
-				this._Accounts.Assign(value);
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
 		public System.Nullable<System.DateTime> StartDate
 		{
@@ -2082,7 +1854,6 @@ namespace DAL
 					this.SendPropertyChanged("EndDate");
 					this.OnEndDateChanged();
 				}
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 			}
 		}
 		
@@ -2106,24 +1877,8 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		private void attach_DetailAccesses(DetailAccess entity)
-		{
-			this.SendPropertyChanging();
-			entity.GroupAccess = this;
-		}
-		
-		private void detach_DetailAccesses(DetailAccess entity)
-		{
-			this.SendPropertyChanging();
-			entity.GroupAccess = null;
-		}
-		
-		private void attach_Accounts(Account entity)
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BasicPay", DbType="Decimal(20,2)")]
 		public System.Nullable<decimal> BasicPay
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		{
 			get
 			{
@@ -2142,12 +1897,8 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		private void detach_Accounts(Account entity)
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payment", DbType="NVarChar(20)")]
 		public string Payment
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		{
 			get
 			{
@@ -3369,27 +3120,13 @@ namespace DAL
 		
 		private string _SectionID;
 		
-<<<<<<< HEAD
-		private EntitySet<Absent> _Absents;
-		
-		private EntitySet<Contract> _Contracts;
-		
-		private EntitySet<DaysRemain> _DaysRemains;
-=======
 		private string _SectionName;
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		
 		private string _Description;
 		
 		private System.Nullable<int> _StandardWorkdays;
 		
-<<<<<<< HEAD
-		private EntitySet<Account> _Accounts;
-		
-		private EntityRef<Position> _Position;
-=======
 		private string _Phone;
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		
 		private EntitySet<Staff> _Staffs;
 		
@@ -3399,42 +3136,6 @@ namespace DAL
     partial void OnCreated();
     partial void OnSectionIDChanging(string value);
     partial void OnSectionIDChanged();
-<<<<<<< HEAD
-    #endregion
-		
-		public Staff()
-		{
-			this._Absents = new EntitySet<Absent>(new Action<Absent>(this.attach_Absents), new Action<Absent>(this.detach_Absents));
-			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
-			this._DaysRemains = new EntitySet<DaysRemain>(new Action<DaysRemain>(this.attach_DaysRemains), new Action<DaysRemain>(this.detach_DaysRemains));
-			this._Salaries = new EntitySet<Salary>(new Action<Salary>(this.attach_Salaries), new Action<Salary>(this.detach_Salaries));
-			this._SocialInsurances = new EntitySet<SocialInsurance>(new Action<SocialInsurance>(this.attach_SocialInsurances), new Action<SocialInsurance>(this.detach_SocialInsurances));
-			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
-			this._Position = default(EntityRef<Position>);
-			this._Section = default(EntityRef<Section>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string StaffID
-		{
-			get
-			{
-				return this._StaffID;
-			}
-			set
-			{
-				if ((this._StaffID != value))
-				{
-					this.OnStaffIDChanging(value);
-					this.SendPropertyChanging();
-					this._StaffID = value;
-					this.SendPropertyChanged("StaffID");
-					this.OnStaffIDChanged();
-				}
-			}
-		}
-=======
     partial void OnSectionNameChanging(string value);
     partial void OnSectionNameChanged();
     partial void OnDescriptionChanging(string value);
@@ -3444,7 +3145,6 @@ namespace DAL
     partial void OnPhoneChanging(string value);
     partial void OnPhoneChanged();
     #endregion
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		
 		public Section()
 		{
@@ -3682,39 +3382,8 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Absent", Storage="_Absents", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Absent> Absents
-		{
-			get
-			{
-				return this._Absents;
-			}
-			set
-			{
-				this._Absents.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Contract", Storage="_Contracts", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Contract> Contracts
-		{
-			get
-			{
-				return this._Contracts;
-			}
-			set
-			{
-				this._Contracts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_DaysRemain", Storage="_DaysRemains", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<DaysRemain> DaysRemains
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PayRate", DbType="Float")]
 		public System.Nullable<double> PayRate
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		{
 			get
 			{
@@ -3773,26 +3442,8 @@ namespace DAL
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Accounts", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Account> Accounts
-		{
-			get
-			{
-				return this._Accounts;
-			}
-			set
-			{
-				this._Accounts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Position_Staff", Storage="_Position", ThisKey="PostID", OtherKey="PostID", IsForeignKey=true)]
-		public Position Position
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false)]
 		public string StaffID
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
 		{
 			get
 			{
@@ -3845,345 +3496,6 @@ namespace DAL
 						this._StaffID = default(string);
 					}
 					this.SendPropertyChanged("Staff");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-<<<<<<< HEAD
-		
-		private void attach_Absents(Absent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Absents(Absent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_DaysRemains(DaysRemain entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_DaysRemains(DaysRemain entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_Salaries(Salary entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Salaries(Salary entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_SocialInsurances(SocialInsurance entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_SocialInsurances(SocialInsurance entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
-		private void attach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-=======
->>>>>>> 73004ca7a330349818a29e2198597c74b7947a49
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Account")]
-	public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AccID;
-		
-		private string _UserName;
-		
-		private string _Password;
-		
-		private int _GroupAccessID;
-		
-		private string _StaffID;
-		
-		private bool _AccountStatusOnline;
-		
-		private EntityRef<Staff> _Staff;
-		
-		private EntityRef<GroupAccess> _GroupAccess;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAccIDChanging(int value);
-    partial void OnAccIDChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnGroupAccessIDChanging(int value);
-    partial void OnGroupAccessIDChanged();
-    partial void OnStaffIDChanging(string value);
-    partial void OnStaffIDChanged();
-    partial void OnAccountStatusOnlineChanging(bool value);
-    partial void OnAccountStatusOnlineChanged();
-    #endregion
-		
-		public Account()
-		{
-			this._Staff = default(EntityRef<Staff>);
-			this._GroupAccess = default(EntityRef<GroupAccess>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AccID
-		{
-			get
-			{
-				return this._AccID;
-			}
-			set
-			{
-				if ((this._AccID != value))
-				{
-					this.OnAccIDChanging(value);
-					this.SendPropertyChanging();
-					this._AccID = value;
-					this.SendPropertyChanged("AccID");
-					this.OnAccIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="Char(20)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(33)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL")]
-		public int GroupAccessID
-		{
-			get
-			{
-				return this._GroupAccessID;
-			}
-			set
-			{
-				if ((this._GroupAccessID != value))
-				{
-					if (this._GroupAccess.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGroupAccessIDChanging(value);
-					this.SendPropertyChanging();
-					this._GroupAccessID = value;
-					this.SendPropertyChanged("GroupAccessID");
-					this.OnGroupAccessIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string StaffID
-		{
-			get
-			{
-				return this._StaffID;
-			}
-			set
-			{
-				if ((this._StaffID != value))
-				{
-					if (this._Staff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStaffIDChanging(value);
-					this.SendPropertyChanging();
-					this._StaffID = value;
-					this.SendPropertyChanged("StaffID");
-					this.OnStaffIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountStatusOnline", DbType="Bit NOT NULL")]
-		public bool AccountStatusOnline
-		{
-			get
-			{
-				return this._AccountStatusOnline;
-			}
-			set
-			{
-				if ((this._AccountStatusOnline != value))
-				{
-					this.OnAccountStatusOnlineChanging(value);
-					this.SendPropertyChanging();
-					this._AccountStatusOnline = value;
-					this.SendPropertyChanged("AccountStatusOnline");
-					this.OnAccountStatusOnlineChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
-		public Staff Staff
-		{
-			get
-			{
-				return this._Staff.Entity;
-			}
-			set
-			{
-				Staff previousValue = this._Staff.Entity;
-				if (((previousValue != value) 
-							|| (this._Staff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Staff.Entity = null;
-						previousValue.Accounts.Remove(this);
-					}
-					this._Staff.Entity = value;
-					if ((value != null))
-					{
-						value.Accounts.Add(this);
-						this._StaffID = value.StaffID;
-					}
-					else
-					{
-						this._StaffID = default(string);
-					}
-					this.SendPropertyChanged("Staff");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
-		public GroupAccess GroupAccess
-		{
-			get
-			{
-				return this._GroupAccess.Entity;
-			}
-			set
-			{
-				GroupAccess previousValue = this._GroupAccess.Entity;
-				if (((previousValue != value) 
-							|| (this._GroupAccess.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._GroupAccess.Entity = null;
-						previousValue.Accounts.Remove(this);
-					}
-					this._GroupAccess.Entity = value;
-					if ((value != null))
-					{
-						value.Accounts.Add(this);
-						this._GroupAccessID = value.GroupAccessID;
-					}
-					else
-					{
-						this._GroupAccessID = default(int);
-					}
-					this.SendPropertyChanged("GroupAccess");
 				}
 			}
 		}
