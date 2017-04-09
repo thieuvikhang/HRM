@@ -79,6 +79,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblStaffCard = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -118,7 +119,7 @@
             this.groupControl2.Controls.Add(this.panChangePassword);
             this.groupControl2.Location = new System.Drawing.Point(5, 5);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(646, 204);
+            this.groupControl2.Size = new System.Drawing.Size(679, 204);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Đổi mật khẩu";
             // 
@@ -128,7 +129,7 @@
             this.btnChangePassword.Appearance.Options.UseFont = true;
             this.btnChangePassword.Location = new System.Drawing.Point(2, 45);
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(141, 55);
+            this.btnChangePassword.Size = new System.Drawing.Size(170, 55);
             this.btnChangePassword.TabIndex = 0;
             this.btnChangePassword.Text = "Đổi mật khẩu";
             this.btnChangePassword.TextChanged += new System.EventHandler(this.btnChangePassword_TextChanged);
@@ -149,7 +150,7 @@
             this.panChangePassword.Controls.Add(this.lblNoteOldPassword);
             this.panChangePassword.Controls.Add(this.lblNoteNewPassword);
             this.panChangePassword.Controls.Add(this.label1);
-            this.panChangePassword.Location = new System.Drawing.Point(149, 45);
+            this.panChangePassword.Location = new System.Drawing.Point(178, 45);
             this.panChangePassword.Name = "panChangePassword";
             this.panChangePassword.Size = new System.Drawing.Size(492, 152);
             this.panChangePassword.TabIndex = 1;
@@ -354,6 +355,7 @@
             this.groupControl1.Controls.Add(this.label26);
             this.groupControl1.Controls.Add(this.lblStaffName);
             this.groupControl1.Controls.Add(this.label25);
+            this.groupControl1.Controls.Add(this.label7);
             this.groupControl1.Controls.Add(this.label17);
             this.groupControl1.Controls.Add(this.lblManager);
             this.groupControl1.Controls.Add(this.label24);
@@ -654,6 +656,16 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Giới Tính:";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(266, 198);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 16);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Điah chỉ:";
+            // 
             // UcStaffInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -736,5 +748,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSaveImageStaffChange;
         private DevExpress.XtraEditors.SimpleButton btnCancelChangeImage;
         private System.Windows.Forms.PictureBox picImageChange;
+        private System.Windows.Forms.Label label7;
     }
 }

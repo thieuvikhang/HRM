@@ -8,6 +8,8 @@ using DevExpress.XtraEditors;
 using DevExpress.Xpo;
 using System.Collections.Generic;
 using DevExpress.XtraEditors.Controls;
+using System.Net.Mail;
+using System.Text;
 
 namespace HRM
 {
@@ -46,7 +48,8 @@ namespace HRM
 
         private void labelForgot_Click(object sender, EventArgs e)
         {
-
+            FormForgotPassword frmForhotPassword = new FormForgotPassword();
+            frmForhotPassword.ShowDialog();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -59,6 +62,7 @@ namespace HRM
             var passwordInput = txtPass.Text;
             string passwordInputEncrypt = "";
             passwordInputEncrypt = newExtendBus.GetMd5(passwordInput.ToString());
+            passwordInputEncrypt = passwordInputEncrypt.ToLower();
             //passwordInputEncrypt = passwordInputEncrypt.Substring(0, 26);
             var checkLogin = _anAccountBus.CheckLogin(userNameInput, passwordInputEncrypt); 
             //kiểm tra đăng nhập;
@@ -180,5 +184,8 @@ namespace HRM
         {
             e.Handled = (e.KeyChar == (char)Keys.Space);
         }
+
+        
+
     }
 }
