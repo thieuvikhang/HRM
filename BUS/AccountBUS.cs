@@ -125,7 +125,7 @@ namespace BUS
                         t.a.UserName,
                         StaffName1 = t.a.StaffID == null ? null : t.a.Staff.StaffName,
                         GroupAccessName1 = t.ga.GroupAccessName,
-                        AccountStatusOnline = t.a.AccountStatusOnline.Value ? "Online" : "Offline"
+                        AccountStatusOnline = t.a.AccountStatusOnline ? "Online" : "Offline"
                     }).Distinct();
         }
 

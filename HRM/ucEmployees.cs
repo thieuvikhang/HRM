@@ -503,24 +503,19 @@ namespace HRM
             checkStatusOfAccountOnline = _staffBus.checkStatusOfAccountOnline(newStaff.StaffID); 
             if (checkStaffHasAcc)
             {
-                txtOnlineStatus.Visible = true;
-                lblTitleOnlineStatus.Text = "Trạng Thái Online:"; 
+                lblTitleOnlineStatus.Visible = true; 
                 if (checkStatusOfAccountOnline)
                 {
-                    txtOnlineStatus.BackColor = Color.Yellow;
-                    txtOnlineStatus.ForeColor = Color.Blue;
-                    txtOnlineStatus.Text = "Đang online";
+                    lblTitleOnlineStatus.Text = "Đang online";
                 }
                 else
                 {
-                    txtOnlineStatus.BackColor = Color.Yellow;
-                    txtOnlineStatus.ForeColor = Color.Red;
-                    txtOnlineStatus.Text = "Đã offline";
+                    lblTitleOnlineStatus.Text = "Đã offline";
                 }
             }
             else
-            { 
-                txtOnlineStatus.Visible = false;
+            {
+                lblTitleOnlineStatus.Visible = false;
                 lblTitleOnlineStatus.Text = "Nhân viên: " + newStaff.StaffName + " không có tài khoản.";
             }
         }

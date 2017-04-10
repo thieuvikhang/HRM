@@ -70,7 +70,6 @@ namespace HRM
             this.txtPhone = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtOnlineStatus = new DevExpress.XtraEditors.TextEdit();
             this.txtCardID = new DevExpress.XtraEditors.TextEdit();
             this.lblTitleOnlineStatus = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -112,7 +111,6 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.picImageStaff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOnlineStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
@@ -146,7 +144,6 @@ namespace HRM
             this.panelControl1.Controls.Add(this.txtPhone);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.labelControl7);
-            this.panelControl1.Controls.Add(this.txtOnlineStatus);
             this.panelControl1.Controls.Add(this.txtCardID);
             this.panelControl1.Controls.Add(this.lblTitleOnlineStatus);
             this.panelControl1.Controls.Add(this.labelControl5);
@@ -338,9 +335,6 @@ namespace HRM
             this.dateEnd.Size = new System.Drawing.Size(171, 20);
             this.dateEnd.TabIndex = 9;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
-            this.dateEnd.BeforePopup += new System.EventHandler(this.dateEnd_BeforePopup);
-            this.dateEnd.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateEnd_ButtonClick);
-            this.dateEnd.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateEnd_EditValueChanging);
             // 
             // dateStart
             // 
@@ -481,18 +475,6 @@ namespace HRM
             this.labelControl7.Text = "Điện thoại";
             this.labelControl7.Click += new System.EventHandler(this.labelControl7_Click);
             // 
-            // txtOnlineStatus
-            // 
-            this.txtOnlineStatus.Enabled = false;
-            this.txtOnlineStatus.Location = new System.Drawing.Point(699, 154);
-            this.txtOnlineStatus.Name = "txtOnlineStatus";
-            this.txtOnlineStatus.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOnlineStatus.Properties.Appearance.Options.UseFont = true;
-            this.txtOnlineStatus.Size = new System.Drawing.Size(144, 22);
-            this.txtOnlineStatus.TabIndex = 10;
-            this.txtOnlineStatus.TextChanged += new System.EventHandler(this.txtCardID_TextChanged);
-            this.txtOnlineStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardID_KeyPress);
-            // 
             // txtCardID
             // 
             this.dxErrorProvider.SetIconAlignment(this.txtCardID, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
@@ -505,10 +487,11 @@ namespace HRM
             // 
             // lblTitleOnlineStatus
             // 
-            this.lblTitleOnlineStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTitleOnlineStatus.Location = new System.Drawing.Point(589, 154);
+            this.lblTitleOnlineStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTitleOnlineStatus.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblTitleOnlineStatus.Location = new System.Drawing.Point(699, 154);
             this.lblTitleOnlineStatus.Name = "lblTitleOnlineStatus";
-            this.lblTitleOnlineStatus.Size = new System.Drawing.Size(104, 16);
+            this.lblTitleOnlineStatus.Size = new System.Drawing.Size(114, 16);
             this.lblTitleOnlineStatus.TabIndex = 11;
             this.lblTitleOnlineStatus.Text = "Trạng thái Online:";
             // 
@@ -741,7 +724,6 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.picImageStaff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOnlineStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
@@ -809,7 +791,6 @@ namespace HRM
         private DXErrorProvider dxErrorProvider;
         private TextEdit txtMail;
         private LookUpEdit lkupManID;
-        private TextEdit txtOnlineStatus;
         private LabelControl lblTitleOnlineStatus;
     }
 }

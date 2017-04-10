@@ -555,7 +555,7 @@ namespace HRM
             {   
                 if(_flag == 1)
                 {
-                    if(txtTrangThaiHDTruoc.Text == "Còn thời hạn")
+                    if(lblStatusLastContract.Text == "Còn thời hạn.")
                     {
                         XtraMessageBox.Show($@"Hợp đồng trước của nhân viên {cbbStaffID.Text} vẫn còn thời hạn. thông thể thêm mới hợp đồng.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                         btnSave.Enabled = false;
@@ -654,17 +654,13 @@ namespace HRM
                     dateEndOfLastContract.DateTime = DateTime.Parse(lastContract.EndDate.ToString());
                 } 
                 if(lastContract.Status == true)
-                {
-                    txtTrangThaiHDTruoc.BackColor = System.Drawing.Color.Yellow;
-                    txtTrangThaiHDTruoc.ForeColor = System.Drawing.Color.Black;
-                    txtTrangThaiHDTruoc.Text = "Còn thời hạn";
+                { 
+                    lblStatusLastContract.Text = "Còn thời hạn.";
                     lblThongBao.Text = "Hợp đồng trước của nhân viên: " + cbbStaffID.Text + " Còn thời hạn.";
                 }
                 else
-                {
-                    txtTrangThaiHDTruoc.BackColor = System.Drawing.Color.Blue;
-                    txtTrangThaiHDTruoc.ForeColor = System.Drawing.Color.Yellow;
-                    txtTrangThaiHDTruoc.Text = "Hết hạn hợp đồng";
+                { 
+                    lblStatusLastContract.Text = "Hết hạn hợp đồng.";
                     lblThongBao.Text = "Thêm hợp đồng cho nhân viên: " + cbbStaffID.Text + ".";
                 } 
             }
@@ -674,9 +670,8 @@ namespace HRM
                 txtMaHDTruoc.Text = "";
                 dateBuilOfLastContract.EditValue = null;
                 dateStartOfLastContract.EditValue = null;
-                dateEndOfLastContract.EditValue = null;
-                txtTrangThaiHDTruoc.BackColor = System.Drawing.Color.White;
-                txtTrangThaiHDTruoc.Text = "";
+                dateEndOfLastContract.EditValue = null; 
+                lblStatusLastContract.Text = "";
                 grbxLastContract.Enabled = false; 
             }
         }
