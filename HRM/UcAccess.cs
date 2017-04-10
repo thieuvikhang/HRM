@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using BUS;
 using DevExpress.Data;
@@ -14,13 +13,11 @@ namespace HRM
     public partial class UcAccess : XtraUserControl
     {
         #region Khai báo biến
-        private readonly AccessBus _accessBus = new AccessBus();
-        public int CoHieu, MaGroupAccess;
-        public readonly List<int> Rows = new List<int>();
-        public string TenNhomQuyen;
         public Session Session = new Session();
-        private int _i;
-
+        private readonly AccessBus _accessBus = new AccessBus();
+        private readonly List<int> _rows = new List<int>();
+        private int _coHieu, _maGroupAccess;
+        private string _tenNhomQuyen;
         #endregion
 
         #region Load Form
@@ -43,6 +40,7 @@ namespace HRM
                 gridView2.Columns[4].Visible = false;
             }
             gridAccessEdit.DataSource = null;
+            gridAccessView.DataSource = null;
             gridControl2.DataSource = _accessBus.GetAllGroupAccess();
             SetText(false);
             SetButton(true);
@@ -52,42 +50,42 @@ namespace HRM
         #region Grid View Danh sách quyền
         private void gridView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CoHieu == 0) return;
-            Rows.Clear();
+            if (_coHieu == 0) return;
+            _rows.Clear();
             for (var index = 0; index < gridViewEdit.GetSelectedRows().Length; index++)
             {
                 var i = gridViewEdit.GetSelectedRows()[index];
-                var accessId = (int) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
-                Rows.Add(accessId);
-                var accessName = (string) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "Form");
+                var accessId = (int)gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                _rows.Add(accessId);
+                var accessName = (string)gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "Form");
                 var rowHandle = gridViewView.LocateByValue("Form", accessName);
                 gridViewView.UnselectRow(rowHandle);
             }
             for (var index = 0; index < gridViewView.GetSelectedRows().Length; index++)
             {
                 var i = gridViewView.GetSelectedRows()[index];
-                var accessId = (int) gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
-                Rows.Add(accessId);
+                var accessId = (int)gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                _rows.Add(accessId);
             }
         }
         private void gridViewView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CoHieu == 0) return;
-            Rows.Clear();
+            if (_coHieu == 0) return;
+            _rows.Clear();
             for (var index = 0; index < gridViewView.GetSelectedRows().Length; index++)
             {
                 var i = gridViewView.GetSelectedRows()[index];
-                var accessId = (int) gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
-                Rows.Add(accessId);
-                var accessName = (string) gridViewView.GetRowCellValue(Convert.ToInt32(i), "Form");
+                var accessId = (int)gridViewView.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                _rows.Add(accessId);
+                var accessName = (string)gridViewView.GetRowCellValue(Convert.ToInt32(i), "Form");
                 var rowHandle = gridViewEdit.LocateByValue("Form", accessName);
                 gridViewEdit.UnselectRow(rowHandle);
             }
             for (var index = 0; index < gridViewEdit.GetSelectedRows().Length; index++)
             {
                 var i = gridViewEdit.GetSelectedRows()[index];
-                var accessId = (int) gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
-                Rows.Add(accessId);
+                var accessId = (int)gridViewEdit.GetRowCellValue(Convert.ToInt32(i), "AccessID");
+                _rows.Add(accessId);
             }
         }
 
@@ -99,8 +97,9 @@ namespace HRM
             Clear();
             txtTenNhom.Text = gridView2.GetFocusedRowCellDisplayText(GroupAccessName);
             txtMoTa.Text = gridView2.GetFocusedRowCellDisplayText(Description);
-            gridAccessEdit.DataSource = _accessBus.ListAccessesByGroupAccesses(int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID)), true);
-            gridAccessView.DataSource = _accessBus.ListAccessesByGroupAccesses(int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID)), false);
+            var groupAccessId = int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID));
+            gridAccessEdit.DataSource = _accessBus.ListAccessesByGroupAccesses(groupAccessId , true);
+            gridAccessView.DataSource = _accessBus.ListAccessesByGroupAccesses(groupAccessId, false);
             gridViewEdit.SelectAll();
             gridViewView.SelectAll();
         }
@@ -151,11 +150,11 @@ namespace HRM
         {
             txtTenNhom.Text = null;
             txtMoTa.Text = null;
-            Rows.Clear();
+            _rows.Clear();
             gridViewEdit.ClearSelection();
             gridViewView.ClearSelection();
-            MaGroupAccess = 0;
-            TenNhomQuyen = null;
+            _maGroupAccess = 0;
+            _tenNhomQuyen = null;
             lbThongBao.Text = null;
         }
         #endregion
@@ -163,11 +162,10 @@ namespace HRM
         #region Thêm, xóa, sửa
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            TenNhomQuyen = null;
-            CoHieu = 1;
+            _tenNhomQuyen = null;
+            _coHieu = 1;
             gridAccessEdit.DataSource = _accessBus.LoadAllAccess(true);
             gridAccessView.DataSource = _accessBus.LoadAllAccess(false);
-            Clear();
             Clear();
             SetButton(false);
             SetText(true);
@@ -175,14 +173,14 @@ namespace HRM
         private void btnEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             Clear();
-            CoHieu = 2;
-            MaGroupAccess = int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID));
-            TenNhomQuyen = gridView2.GetFocusedRowCellDisplayText(GroupAccessName);
+            _coHieu = 2;
+            _maGroupAccess = int.Parse(gridView2.GetFocusedRowCellDisplayText(GroupAccessID));
+            _tenNhomQuyen = gridView2.GetFocusedRowCellDisplayText(GroupAccessName);
             SetButton(false);
             SetText(true);
-            txtTenNhom.Text = gridView2.GetFocusedRowCellDisplayText(GroupAccessName);
+            txtTenNhom.Text = _tenNhomQuyen;
             txtMoTa.Text = gridView2.GetFocusedRowCellDisplayText(Description);
-            SetCheck(MaGroupAccess);
+            SetCheck(_maGroupAccess);
         }
         private void btnDelete_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
@@ -204,18 +202,18 @@ namespace HRM
         {
             var ten = txtTenNhom.Text;
             var mota = txtMoTa.Text;
-            if (CoHieu == 1 && !_accessBus.AddGroupAccess(ten, mota, Rows))
+            if (_coHieu == 1 && !_accessBus.AddGroupAccess(ten, mota, _rows))
                 XtraMessageBox.Show("Lỗi thêm!");
-            if (CoHieu == 2 && !_accessBus.UpdateGroupAccesses(MaGroupAccess, ten, mota, Rows))
+            if (_coHieu == 2 && !_accessBus.UpdateGroupAccesses(_maGroupAccess, ten, mota, _rows))
                 XtraMessageBox.Show("Lỗi sửa!");
             SetText(false);
             SetButton(true);
-            CoHieu = 0;
+            _coHieu = 0;
             UcAccess_Load(sender, e);
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            CoHieu = 0;
+            _coHieu = 0;
             Clear();
             SetText(false);
             SetButton(true);
@@ -237,12 +235,12 @@ namespace HRM
 
         private void txtTenNhom_TextChanged(object sender, EventArgs e)
         {
-            if (CoHieu == 0) return;
+            if (_coHieu == 0) return;
             btnSave.Enabled = false;
             if (txtTenNhom.Text.Length >= 4)
             {
                 var list = _accessBus.ListNameGroupAccesses();
-                var check = _accessBus.CheckNameGroupAccesses(TenNhomQuyen, txtTenNhom.Text, CoHieu, list);
+                var check = _accessBus.CheckNameGroupAccesses(_tenNhomQuyen, txtTenNhom.Text, _coHieu, list);
                 if (check)
                 {
                     lbThongBao.ForeColor = Color.Blue;

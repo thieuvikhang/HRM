@@ -32,6 +32,24 @@ namespace BUS
                 CountEdit = CountAccessEdit(ga.GroupAccessID)
             });
         }
+        public IQueryable GetAllGroupAccess1()
+        {
+            return _aHrm.GroupAccesses.Select(ga => new
+            {
+                ga.GroupAccessID,
+                ga.Description,
+                ga.GroupAccessName
+            });
+        }
+        public IQueryable GetGroupAccess(string tenNhomQuyen)
+        {
+            return _aHrm.GroupAccesses.Where(g => g.GroupAccessName == tenNhomQuyen).Select(ga => new
+            {
+                ga.GroupAccessID,
+                ga.Description,
+                ga.GroupAccessName
+            });
+        }
         /// <summary>
         /// Lấy danh sách quyền
         /// </summary>
@@ -52,7 +70,9 @@ namespace BUS
         {
             return _aHrm.Accesses.Where(ct => ct.Edit == key).Select(ct => new
             {
-                ct.AccessID, ct.Form, ct.DescriptionAccess
+                ct.AccessID,
+                ct.Form,
+                ct.DescriptionAccess
             }).Distinct();
         }
         /// <summary>
@@ -156,7 +176,7 @@ namespace BUS
             if (groupAccesses == null) return;
             foreach (var item in list)
             {
-                if(!CheckTorF(ma,item)) continue;
+                if (!CheckTorF(ma, item)) continue;
                 var detailAccess = new DetailAccess();
                 {
                     detailAccess.GroupAccessID = ma;
@@ -170,8 +190,7 @@ namespace BUS
         public bool CheckTorF(int ma, int quyen)
         {
             var list = _aHrm.DetailAccesses.SingleOrDefault(ab => ab.GroupAccessID == ma && ab.AccessID == quyen);
-            if (list == null) return true;
-            return false;
+            return list == null;
         }
         /// <summary>
         /// Kiểm tra nhóm quyền đã được sử dụng chưa
@@ -180,12 +199,12 @@ namespace BUS
         /// <returns>true đã được dùng</returns>
         public bool CheckGroupAccessesUsing(int gaId)
         {
-            var accesses = _aHrm.Accounts.SingleOrDefault(ab => ab.GroupAccessID == gaId);
-            return accesses != null;
+            var accesses = _aHrm.Accounts.Count(ab => ab.GroupAccessID == gaId);
+            return accesses != 0;
         }
         public List<int> ListAccesses(int ma, bool key)
         {
-            var list = _aHrm.DetailAccesses.SelectMany(da => _aHrm.Accesses, (da, ac) => new {da, ac})
+            var list = _aHrm.DetailAccesses.SelectMany(da => _aHrm.Accesses, (da, ac) => new { da, ac })
                 .Where(t => t.da.AccessID == t.ac.AccessID
                             && t.da.GroupAccessID == ma
                             && t.ac.Edit == key).Select(t => t.ac.AccessID).Distinct().ToList();
@@ -229,7 +248,7 @@ namespace BUS
         /// <returns>danh sách quyền</returns>
         public List<ListGroupAccess> ListGroupAcces(int groupAccesId)
         {
-            var listInPut = _aHrm.DetailAccesses.SelectMany(aHmDetailAccesses => _aHrm.Accesses, (aHmDetailAccesses, aHrmAccess) => new {aHmDetailAccesses, aHrmAccess})
+            var listInPut = _aHrm.DetailAccesses.SelectMany(aHmDetailAccesses => _aHrm.Accesses, (aHmDetailAccesses, aHrmAccess) => new { aHmDetailAccesses, aHrmAccess })
                 .Where(t => t.aHmDetailAccesses.GroupAccessID == groupAccesId && t.aHrmAccess.AccessID == t.aHmDetailAccesses.AccessID).Select(t => new
                 { t.aHrmAccess.Form, Edit = t.aHrmAccess.Edit == true ? 1 : 0 }).ToList();
             if (listInPut.Count == 0) return null;
@@ -238,9 +257,9 @@ namespace BUS
             foreach (var intPut in listInPut)
             {
                 if (intPut.Edit != 1)
-                    list0.Add(new ListGroupAccess {Form = intPut.Form, Edit = intPut.Edit});
+                    list0.Add(new ListGroupAccess { Form = intPut.Form, Edit = intPut.Edit });
                 else
-                    list1.Add(new ListGroupAccess {Form = intPut.Form, Edit = intPut.Edit});
+                    list1.Add(new ListGroupAccess { Form = intPut.Form, Edit = intPut.Edit });
             }
             if (list1.Count == 0) return list0;
             if (list0.Count == 0) return list1;

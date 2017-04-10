@@ -43,7 +43,7 @@ namespace HRM
         {
             InitializeComponent();
 
-            _barButtonItem.AddRange(new[] { barEmployees, barSection, barPostion, barContract, barSI, barAbsent, barSalary, barAccess });
+            _barButtonItem.AddRange(new[] { barEmployees, barSection, barPostion, barContract, barSI, barAbsent, barSalary, barAccess, barAccount });
             foreach (var bar in _barButtonItem)
             {
                 //Ẩn các item
@@ -130,7 +130,7 @@ namespace HRM
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab Nhân viên
-            AddTab("Quản lý tài khoản", new UcAccounts());
+            AddTab("Quản lý tài khoản", new UcAccounts { Session = SetSession("barAccount", _list) });
         }
         private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
         {   //Mở màn hình Loading
@@ -157,17 +157,12 @@ namespace HRM
             //Mở Tab BHXH
             AddTab("BHXH", new UcSocialInsurancecs { Session = SetSession("barSI", _list) });
         }
-        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
-            //Mở Tab loại hợp đồng
-            AddTab("Loại hợp đồng", new ucContractTypes());
-        }
+
         private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
             //Mở Tab chức vụ
-            AddTab("Chức vụ", new UcPostions { Session = SetSession("barPostions", _list) });
+            AddTab("Chức vụ", new UcPostions { Session = SetSession("barPostion", _list) });
         }
         private void barButtonItem10_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -175,12 +170,7 @@ namespace HRM
             //Mở Tab chức vụ
             AddTab("Nghỉ phép", new UcAbsent {Session = SetSession("barAbsent", _list)});
         }
-        private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            SplashScreenManager.ShowForm(typeof(WaitFormLoading));
-            //Mở Tab chức vụ
-            AddTab("Thống kê nhân viên", new UcDashEmployees());
-        }
+
         private void barButtonItem2_ItemClick_1(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitFormLoading));
@@ -205,16 +195,6 @@ namespace HRM
         {
             //show form login
             this.Close();
-        }
-
-        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //Application.Exit()
-        }
-
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           
         }
     }
 }

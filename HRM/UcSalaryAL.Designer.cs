@@ -90,7 +90,9 @@
             this.fieldSectionName1});
             this.pivotGridControl1.Location = new System.Drawing.Point(0, 0);
             this.pivotGridControl1.Name = "pivotGridControl1";
+            this.pivotGridControl1.OptionsCustomization.AllowDrag = false;
             this.pivotGridControl1.OptionsView.ShowColumnGrandTotalHeader = false;
+            this.pivotGridControl1.OptionsView.ShowDataHeaders = false;
             this.pivotGridControl1.OptionsView.ShowFilterHeaders = false;
             this.pivotGridControl1.Size = new System.Drawing.Size(690, 268);
             this.pivotGridControl1.TabIndex = 2;

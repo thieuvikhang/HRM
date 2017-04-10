@@ -368,7 +368,7 @@ namespace HRM
                 btnSaveImageStaffChange.Visible = false;
                 btnCancelChangeImage.Visible = false;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 XtraMessageBox.Show("Chưa có hình ảnh.");
             }
