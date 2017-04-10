@@ -72,6 +72,11 @@ namespace HRM
                 }
             }
             xtraTabControl1.Hide();
+
+            if(SessionFrmmain["staffID"].ToString() == "")
+            {
+                ribbonPageGroup6.Visible = false;
+            }
         }
         #endregion
 
@@ -195,8 +200,8 @@ namespace HRM
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string idStaff = SessionFrmmain["staffID"].ToString();
-            var turnOnStatusOnline = _accountBus.EditAccountStatusOnline(idStaff, false); 
+            int idAcc = Int32.Parse(SessionFrmmain["idAcc"].ToString());
+            var turnOnStatusOnline = _accountBus.EditAccountStatusOnline(idAcc, false); 
             foreach(Form frm in Application.OpenForms)
             {
                 if(frm is FormLogin)

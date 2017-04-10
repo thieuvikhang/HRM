@@ -58,7 +58,7 @@ namespace HRM
             this.dateEnd = new DevExpress.XtraEditors.DateEdit();
             this.dateStart = new DevExpress.XtraEditors.DateEdit();
             this.dateBirth = new DevExpress.XtraEditors.DateEdit();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picImageStaff = new System.Windows.Forms.PictureBox();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
@@ -71,6 +71,7 @@ namespace HRM
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.txtCardID = new DevExpress.XtraEditors.TextEdit();
+            this.lblTitleOnlineStatus = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
@@ -107,7 +108,7 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImageStaff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).BeginInit();
@@ -131,7 +132,7 @@ namespace HRM
             this.panelControl1.Controls.Add(this.dateEnd);
             this.panelControl1.Controls.Add(this.dateStart);
             this.panelControl1.Controls.Add(this.dateBirth);
-            this.panelControl1.Controls.Add(this.pictureBox1);
+            this.panelControl1.Controls.Add(this.picImageStaff);
             this.panelControl1.Controls.Add(this.labelControl14);
             this.panelControl1.Controls.Add(this.labelControl15);
             this.panelControl1.Controls.Add(this.labelControl13);
@@ -144,6 +145,7 @@ namespace HRM
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.labelControl7);
             this.panelControl1.Controls.Add(this.txtCardID);
+            this.panelControl1.Controls.Add(this.lblTitleOnlineStatus);
             this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.txtName);
@@ -182,7 +184,7 @@ namespace HRM
             this.groupControl2.Controls.Add(this.btnEdit);
             this.groupControl2.Controls.Add(this.btnAdd);
             this.groupControl2.Controls.Add(this.btnSave);
-            this.groupControl2.Location = new System.Drawing.Point(436, 155);
+            this.groupControl2.Location = new System.Drawing.Point(5, 154);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(458, 67);
             this.groupControl2.TabIndex = 52;
@@ -333,9 +335,6 @@ namespace HRM
             this.dateEnd.Size = new System.Drawing.Size(171, 20);
             this.dateEnd.TabIndex = 9;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
-            this.dateEnd.BeforePopup += new System.EventHandler(this.dateEnd_BeforePopup);
-            this.dateEnd.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateEnd_ButtonClick);
-            this.dateEnd.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateEnd_EditValueChanging);
             // 
             // dateStart
             // 
@@ -364,13 +363,16 @@ namespace HRM
             this.dateBirth.Click += new System.EventHandler(this.dateBirth_Click);
             this.dateBirth.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dateBirth_MouseClick);
             // 
-            // pictureBox1
+            // picImageStaff
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(900, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(155, 204);
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
+            this.picImageStaff.Image = global::HRM.Properties.Resources.thumb_14400082930User;
+            this.picImageStaff.InitialImage = global::HRM.Properties.Resources.admin;
+            this.picImageStaff.Location = new System.Drawing.Point(936, 5);
+            this.picImageStaff.Name = "picImageStaff";
+            this.picImageStaff.Size = new System.Drawing.Size(149, 204);
+            this.picImageStaff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImageStaff.TabIndex = 36;
+            this.picImageStaff.TabStop = false;
             // 
             // labelControl14
             // 
@@ -483,6 +485,16 @@ namespace HRM
             this.txtCardID.TextChanged += new System.EventHandler(this.txtCardID_TextChanged);
             this.txtCardID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardID_KeyPress);
             // 
+            // lblTitleOnlineStatus
+            // 
+            this.lblTitleOnlineStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTitleOnlineStatus.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblTitleOnlineStatus.Location = new System.Drawing.Point(699, 154);
+            this.lblTitleOnlineStatus.Name = "lblTitleOnlineStatus";
+            this.lblTitleOnlineStatus.Size = new System.Drawing.Size(114, 16);
+            this.lblTitleOnlineStatus.TabIndex = 11;
+            this.lblTitleOnlineStatus.Text = "Trạng thái Online:";
+            // 
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -574,7 +586,6 @@ namespace HRM
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView1_CustomColumnDisplayText);
             // 
             // gcStaffID
             // 
@@ -710,7 +721,7 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImageStaff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).EndInit();
@@ -738,7 +749,7 @@ namespace HRM
         private TextEdit txtPhone;
         private LabelControl labelControl3;
         private LabelControl labelControl7;
-        private PictureBox pictureBox1;
+        private PictureBox picImageStaff;
         private LabelControl labelControl14;
         private LabelControl labelControl15;
         private LabelControl labelControl13;
@@ -780,5 +791,6 @@ namespace HRM
         private DXErrorProvider dxErrorProvider;
         private TextEdit txtMail;
         private LookUpEdit lkupManID;
+        private LabelControl lblTitleOnlineStatus;
     }
 }

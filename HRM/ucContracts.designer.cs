@@ -69,19 +69,23 @@ namespace HRM
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.grbxThongTin = new System.Windows.Forms.GroupBox();
-            this.txtTrangThaiHDTruoc = new DevExpress.XtraEditors.TextEdit();
+            this.grbxLastContract = new System.Windows.Forms.GroupBox();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaHDTruoc = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.dateStartOfLastContract = new DevExpress.XtraEditors.DateEdit();
+            this.dateBuilOfLastContract = new DevExpress.XtraEditors.DateEdit();
+            this.dateEndOfLastContract = new DevExpress.XtraEditors.DateEdit();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.grbxThongTin = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblThongBao2 = new System.Windows.Forms.Label();
             this.lblThongBao1 = new System.Windows.Forms.Label();
             this.lblThongBao = new System.Windows.Forms.Label();
             this.lblThucHienCN = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.gcContract = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcoContractID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -91,11 +95,7 @@ namespace HRM
             this.gcoDateEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcoBasicPay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.dateStartOfLastContract = new DevExpress.XtraEditors.DateEdit();
-            this.dateEndOfLastContract = new DevExpress.XtraEditors.DateEdit();
-            this.dateBuilOfLastContract = new DevExpress.XtraEditors.DateEdit();
-            this.grbxLastContract = new System.Windows.Forms.GroupBox();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.lblStatusLastContract = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateSign.Properties.CalendarTimeProperties)).BeginInit();
@@ -109,19 +109,18 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.txtContractID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            this.grbxThongTin.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTrangThaiHDTruoc.Properties)).BeginInit();
+            this.grbxLastContract.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaHDTruoc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties)).BeginInit();
+            this.grbxThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties)).BeginInit();
-            this.grbxLastContract.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl2
@@ -460,6 +459,119 @@ namespace HRM
             this.panelControl1.TabIndex = 47;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // grbxLastContract
+            // 
+            this.grbxLastContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbxLastContract.Controls.Add(this.labelControl12);
+            this.grbxLastContract.Controls.Add(this.txtMaHDTruoc);
+            this.grbxLastContract.Controls.Add(this.labelControl13);
+            this.grbxLastContract.Controls.Add(this.lblStatusLastContract);
+            this.grbxLastContract.Controls.Add(this.labelControl14);
+            this.grbxLastContract.Controls.Add(this.dateStartOfLastContract);
+            this.grbxLastContract.Controls.Add(this.dateBuilOfLastContract);
+            this.grbxLastContract.Controls.Add(this.dateEndOfLastContract);
+            this.grbxLastContract.Controls.Add(this.labelControl16);
+            this.grbxLastContract.Controls.Add(this.labelControl15);
+            this.grbxLastContract.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbxLastContract.Location = new System.Drawing.Point(827, 5);
+            this.grbxLastContract.Name = "grbxLastContract";
+            this.grbxLastContract.Size = new System.Drawing.Size(344, 156);
+            this.grbxLastContract.TabIndex = 56;
+            this.grbxLastContract.TabStop = false;
+            this.grbxLastContract.Text = "Hợp đồng trước đó";
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl12.Location = new System.Drawing.Point(6, 25);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(79, 16);
+            this.labelControl12.TabIndex = 6;
+            this.labelControl12.Text = "Mã hợp đồng:";
+            // 
+            // txtMaHDTruoc
+            // 
+            this.txtMaHDTruoc.Enabled = false;
+            this.txtMaHDTruoc.Location = new System.Drawing.Point(152, 24);
+            this.txtMaHDTruoc.Name = "txtMaHDTruoc";
+            this.txtMaHDTruoc.Size = new System.Drawing.Size(163, 20);
+            this.txtMaHDTruoc.TabIndex = 8;
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl13.Location = new System.Drawing.Point(6, 50);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(79, 16);
+            this.labelControl13.TabIndex = 6;
+            this.labelControl13.Text = "Thời gian lập:";
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl14.Location = new System.Drawing.Point(6, 76);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(105, 16);
+            this.labelControl14.TabIndex = 6;
+            this.labelControl14.Text = "Thời gian bắt đầu:";
+            // 
+            // dateStartOfLastContract
+            // 
+            this.dateStartOfLastContract.EditValue = new System.DateTime(((long)(0)));
+            this.dateStartOfLastContract.Enabled = false;
+            this.dateStartOfLastContract.Location = new System.Drawing.Point(152, 75);
+            this.dateStartOfLastContract.Name = "dateStartOfLastContract";
+            this.dateStartOfLastContract.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStartOfLastContract.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStartOfLastContract.Size = new System.Drawing.Size(163, 20);
+            this.dateStartOfLastContract.TabIndex = 39;
+            // 
+            // dateBuilOfLastContract
+            // 
+            this.dateBuilOfLastContract.EditValue = new System.DateTime(((long)(0)));
+            this.dateBuilOfLastContract.Enabled = false;
+            this.dateBuilOfLastContract.Location = new System.Drawing.Point(152, 50);
+            this.dateBuilOfLastContract.Name = "dateBuilOfLastContract";
+            this.dateBuilOfLastContract.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateBuilOfLastContract.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateBuilOfLastContract.Size = new System.Drawing.Size(163, 20);
+            this.dateBuilOfLastContract.TabIndex = 39;
+            // 
+            // dateEndOfLastContract
+            // 
+            this.dateEndOfLastContract.EditValue = new System.DateTime(((long)(0)));
+            this.dateEndOfLastContract.Enabled = false;
+            this.dateEndOfLastContract.Location = new System.Drawing.Point(152, 101);
+            this.dateEndOfLastContract.Name = "dateEndOfLastContract";
+            this.dateEndOfLastContract.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEndOfLastContract.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEndOfLastContract.Size = new System.Drawing.Size(163, 20);
+            this.dateEndOfLastContract.TabIndex = 39;
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl16.Location = new System.Drawing.Point(6, 128);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(64, 16);
+            this.labelControl16.TabIndex = 6;
+            this.labelControl16.Text = "Trạng thái:";
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl15.Location = new System.Drawing.Point(6, 102);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(107, 16);
+            this.labelControl15.TabIndex = 6;
+            this.labelControl15.Text = "Thời gian kết thúc:";
+            // 
             // grbxThongTin
             // 
             this.grbxThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -493,70 +605,6 @@ namespace HRM
             this.grbxThongTin.TabIndex = 55;
             this.grbxThongTin.TabStop = false;
             this.grbxThongTin.Text = "Thông tin";
-            // 
-            // txtTrangThaiHDTruoc
-            // 
-            this.txtTrangThaiHDTruoc.EditValue = "";
-            this.txtTrangThaiHDTruoc.Enabled = false;
-            this.txtTrangThaiHDTruoc.Location = new System.Drawing.Point(152, 127);
-            this.txtTrangThaiHDTruoc.Name = "txtTrangThaiHDTruoc";
-            this.txtTrangThaiHDTruoc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTrangThaiHDTruoc.Properties.Appearance.Options.UseFont = true;
-            this.txtTrangThaiHDTruoc.Size = new System.Drawing.Size(163, 22);
-            this.txtTrangThaiHDTruoc.TabIndex = 8;
-            // 
-            // txtMaHDTruoc
-            // 
-            this.txtMaHDTruoc.Enabled = false;
-            this.txtMaHDTruoc.Location = new System.Drawing.Point(152, 24);
-            this.txtMaHDTruoc.Name = "txtMaHDTruoc";
-            this.txtMaHDTruoc.Size = new System.Drawing.Size(163, 20);
-            this.txtMaHDTruoc.TabIndex = 8;
-            // 
-            // labelControl16
-            // 
-            this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl16.Location = new System.Drawing.Point(6, 128);
-            this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(64, 16);
-            this.labelControl16.TabIndex = 6;
-            this.labelControl16.Text = "Trạng thái:";
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl15.Location = new System.Drawing.Point(6, 102);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(107, 16);
-            this.labelControl15.TabIndex = 6;
-            this.labelControl15.Text = "Thời gian kết thúc:";
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl14.Location = new System.Drawing.Point(6, 76);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(105, 16);
-            this.labelControl14.TabIndex = 6;
-            this.labelControl14.Text = "Thời gian bắt đầu:";
-            // 
-            // labelControl13
-            // 
-            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl13.Location = new System.Drawing.Point(6, 50);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(79, 16);
-            this.labelControl13.TabIndex = 6;
-            this.labelControl13.Text = "Thời gian lập:";
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl12.Location = new System.Drawing.Point(6, 25);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(79, 16);
-            this.labelControl12.TabIndex = 6;
-            this.labelControl12.Text = "Mã hợp đồng:";
             // 
             // label1
             // 
@@ -617,6 +665,16 @@ namespace HRM
             this.lblThucHienCN.Size = new System.Drawing.Size(24, 16);
             this.lblThucHienCN.TabIndex = 24;
             this.lblThucHienCN.Text = "      ";
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl17.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.labelControl17.Location = new System.Drawing.Point(5, 237);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(71, 16);
+            this.labelControl17.TabIndex = 6;
+            this.labelControl17.Text = "Trạng thái:";
             // 
             // gcContract
             // 
@@ -701,75 +759,16 @@ namespace HRM
             // 
             this.dxErrorProvider1.ContainerControl = this;
             // 
-            // dateStartOfLastContract
+            // lblStatusLastContract
             // 
-            this.dateStartOfLastContract.EditValue = new System.DateTime(((long)(0)));
-            this.dateStartOfLastContract.Enabled = false;
-            this.dateStartOfLastContract.Location = new System.Drawing.Point(152, 75);
-            this.dateStartOfLastContract.Name = "dateStartOfLastContract";
-            this.dateStartOfLastContract.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStartOfLastContract.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStartOfLastContract.Size = new System.Drawing.Size(163, 20);
-            this.dateStartOfLastContract.TabIndex = 39;
-            // 
-            // dateEndOfLastContract
-            // 
-            this.dateEndOfLastContract.EditValue = new System.DateTime(((long)(0)));
-            this.dateEndOfLastContract.Enabled = false;
-            this.dateEndOfLastContract.Location = new System.Drawing.Point(152, 101);
-            this.dateEndOfLastContract.Name = "dateEndOfLastContract";
-            this.dateEndOfLastContract.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEndOfLastContract.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEndOfLastContract.Size = new System.Drawing.Size(163, 20);
-            this.dateEndOfLastContract.TabIndex = 39;
-            // 
-            // dateBuilOfLastContract
-            // 
-            this.dateBuilOfLastContract.EditValue = new System.DateTime(((long)(0)));
-            this.dateBuilOfLastContract.Enabled = false;
-            this.dateBuilOfLastContract.Location = new System.Drawing.Point(152, 50);
-            this.dateBuilOfLastContract.Name = "dateBuilOfLastContract";
-            this.dateBuilOfLastContract.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateBuilOfLastContract.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateBuilOfLastContract.Size = new System.Drawing.Size(163, 20);
-            this.dateBuilOfLastContract.TabIndex = 39;
-            // 
-            // grbxLastContract
-            // 
-            this.grbxLastContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbxLastContract.Controls.Add(this.labelControl12);
-            this.grbxLastContract.Controls.Add(this.txtTrangThaiHDTruoc);
-            this.grbxLastContract.Controls.Add(this.txtMaHDTruoc);
-            this.grbxLastContract.Controls.Add(this.labelControl13);
-            this.grbxLastContract.Controls.Add(this.labelControl14);
-            this.grbxLastContract.Controls.Add(this.dateStartOfLastContract);
-            this.grbxLastContract.Controls.Add(this.dateBuilOfLastContract);
-            this.grbxLastContract.Controls.Add(this.dateEndOfLastContract);
-            this.grbxLastContract.Controls.Add(this.labelControl16);
-            this.grbxLastContract.Controls.Add(this.labelControl15);
-            this.grbxLastContract.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbxLastContract.Location = new System.Drawing.Point(827, 5);
-            this.grbxLastContract.Name = "grbxLastContract";
-            this.grbxLastContract.Size = new System.Drawing.Size(344, 156);
-            this.grbxLastContract.TabIndex = 56;
-            this.grbxLastContract.TabStop = false;
-            this.grbxLastContract.Text = "Hợp đồng trước đó";
-            // 
-            // labelControl17
-            // 
-            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl17.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.labelControl17.Location = new System.Drawing.Point(5, 237);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(71, 16);
-            this.labelControl17.TabIndex = 6;
-            this.labelControl17.Text = "Trạng thái:";
+            this.lblStatusLastContract.AutoSize = true;
+            this.lblStatusLastContract.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatusLastContract.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblStatusLastContract.Location = new System.Drawing.Point(148, 128);
+            this.lblStatusLastContract.Name = "lblStatusLastContract";
+            this.lblStatusLastContract.Size = new System.Drawing.Size(97, 19);
+            this.lblStatusLastContract.TabIndex = 54;
+            this.lblStatusLastContract.Text = "THÔNG BÁO:";
             // 
             // UcContract
             // 
@@ -794,21 +793,20 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            this.grbxLastContract.ResumeLayout(false);
+            this.grbxLastContract.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaHDTruoc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties)).EndInit();
             this.grbxThongTin.ResumeLayout(false);
             this.grbxThongTin.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTrangThaiHDTruoc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaHDTruoc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStartOfLastContract.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEndOfLastContract.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateBuilOfLastContract.Properties)).EndInit();
-            this.grbxLastContract.ResumeLayout(false);
-            this.grbxLastContract.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -859,7 +857,6 @@ namespace HRM
         private LabelControl lblThucHienCN;
         private GridColumn gridCoName;
         private GridColumn gcoBasicPay;
-        private TextEdit txtTrangThaiHDTruoc;
         private TextEdit txtMaHDTruoc;
         private LabelControl labelControl16;
         private LabelControl labelControl15;
@@ -871,5 +868,6 @@ namespace HRM
         private DateEdit dateStartOfLastContract;
         private GroupBox grbxLastContract;
         private LabelControl labelControl17;
+        private Label lblStatusLastContract;
     }
 }

@@ -163,9 +163,10 @@ namespace HRM
             btnSave.Enabled = false;
             if (txtMatKhau.Text.Length >= 4)
             {
+                txtNhapLaiMatKhau_TextChanged(sender,e);
                 txtThongBaoMK.ForeColor = Color.Blue;
                 txtThongBaoMK.Text = @"Chấp Nhận";
-                if (txtMatKhau.Text.Equals(txtNhapLaiMatKhau.Text))
+/*                if (txtMatKhau.Text.Equals(txtNhapLaiMatKhau.Text))
                 {
                     txtThongBaoNLMK.ForeColor = Color.Blue;
                     txtThongBaoNLMK.Text = @"Chấp Nhận";
@@ -175,7 +176,7 @@ namespace HRM
                 {
                     txtThongBaoNLMK.ForeColor = Color.Red;
                     txtThongBaoNLMK.Text = @"Mật Khẩu Nhập Lại Không Đúng";
-                }
+                }*/
             }
             else
             {
@@ -199,7 +200,6 @@ namespace HRM
                 txtThongBaoNLMK.ForeColor = Color.Red;
                 txtThongBaoNLMK.Text = @"Mật Khẩu Nhập Lại Không Đúng";
             }
-
         }
 
         private void txtTaiKhoang_TextChanged(object sender, EventArgs e)
@@ -214,6 +214,7 @@ namespace HRM
                 var check = _accountBus.CheckUserName(txtTaiKhoang.Text, list);
                 if (check)
                 {
+                    txtMatKhau_TextChanged(sender, e);
                     txtThongBao.ForeColor = Color.Blue;
                     txtThongBao.Text = @"Chấp Nhận";
                     txtMatKhau.Enabled = true;

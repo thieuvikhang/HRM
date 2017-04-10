@@ -328,5 +328,20 @@ namespace BUS
             }
         }
 
+        public bool checkIDStaffinAccount(string idStaff)
+        {
+            var countAccount = (from ac in _aHrm.Accounts
+                                where ac.StaffID == idStaff
+                                select ac).Count();
+            return countAccount != 0;
+        } 
+
+        public bool checkStatusOfAccountOnline(string idStaff)
+        {
+            var countAccountOnline = (from ac in _aHrm.Accounts
+                                where ac.StaffID == idStaff && ac.AccountStatusOnline == true
+                                select ac).Count();
+            return countAccountOnline != 0;
+        }
     }
 }
