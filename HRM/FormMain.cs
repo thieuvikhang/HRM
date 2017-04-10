@@ -20,8 +20,9 @@ namespace HRM
         public Session SessionFrmmain = new Session();
         private readonly Session _sessionUc = new Session();
         private readonly AccessBus _accessBus = new AccessBus();
+        private readonly AccountBus _accountBus = new AccountBus();
         private readonly List<BarButtonItem> _barButtonItem = new List<BarButtonItem>();
-        private List<AccessBus.ListGroupAccess> _list;
+        private List<AccessBus.ListGroupAccess> _list; 
         #endregion
 
         #region Demo
@@ -193,7 +194,15 @@ namespace HRM
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //show form login
+            string idStaff = SessionFrmmain["staffID"].ToString();
+            var turnOnStatusOnline = _accountBus.EditAccountStatusOnline(idStaff, false); 
+            foreach(Form frm in Application.OpenForms)
+            {
+                if(frm is FormLogin)
+                {
+                    frm.Show();
+                }
+            }
             this.Close();
         }
     }
