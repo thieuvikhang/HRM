@@ -204,7 +204,7 @@ namespace BUS
         {
             try
             {
-                var acc = _hrm.Accounts.Select(st => st).SingleOrDefault(st => st.AccID == maTk && st.AccountStatusOnline.Value == false);
+                var acc = _hrm.Accounts.Select(st => st).SingleOrDefault(st => st.AccID == maTk && st.AccountStatusOnline == false);
                 if (acc == null) return false;
                 _hrm.Accounts.DeleteOnSubmit(acc);
                 _hrm.SubmitChanges();
