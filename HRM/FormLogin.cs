@@ -55,43 +55,55 @@ namespace HRM
         private void btnLogin_Click(object sender, EventArgs e)
         {
             //khai báo 1 số biến sẽ dùng
-
+            string passwordInputEncrypt = "";
+            string staffID = ""; 
+            string staffName = "";
+            string userNameInput = "";
+            string passwordInput = "";
+            bool checkLogin = false;
+            bool turnOnStatusOnline = false;
+            string groupAccessName = "";
+            string groupAccessId = "";
+            int acID = 0;
+            _aSession["staffName"] = "";
+            _aSession["staffID"] = "";
 
             //gán các giá trị text input vào biến
-            var userNameInput = txtAcc.Text;
-            var passwordInput = txtPass.Text;
-            string passwordInputEncrypt = "";
+            userNameInput = txtAcc.Text;
+            passwordInput = txtPass.Text;
+             
             passwordInputEncrypt = newExtendBus.GetMd5(passwordInput.ToString());
             passwordInputEncrypt = passwordInputEncrypt.ToLower();
-            //passwordInputEncrypt = passwordInputEncrypt.Substring(0, 26);
-            var checkLogin = _anAccountBus.CheckLogin(userNameInput, passwordInputEncrypt); 
+
+            checkLogin = _anAccountBus.CheckLogin(userNameInput, passwordInputEncrypt); 
             //kiểm tra đăng nhập;
             if (checkLogin)
-            {
-                //Đănh nhập thành công
-
+            { 
                 //gọi các đối tượng anAccount, aStaff, aGroupAccess
-                _anAccount = _anAccountBus.GetInfoAccount(userNameInput, passwordInputEncrypt);
-                _aStaff = _anAccountBus.GetInfoStaff(_anAccount.StaffID);
+                _anAccount = _anAccountBus.GetInfoAccount(userNameInput, passwordInputEncrypt); 
                 _aGroupAccess = _anAccountBus.GetInfoGroupAccess(_anAccount.GroupAccessID);
-                 
-                //Lấy tên của các bảng từ đối tượng trên
-                var groupAccessName = _aGroupAccess.GroupAccessName;
-                var groupAccessId = _aGroupAccess.GroupAccessID.ToString();
-                var staffName = _aStaff.StaffName;
-                var staffID = _aStaff.StaffID;
-                var turnOnStatusOnline = _anAccountBus.EditAccountStatusOnline(staffID, true);
-                // Bật trạng thái online của Account
-                if (turnOnStatusOnline)
+                if(_anAccount.StaffID != null)
                 {
-                    //Gán những thông tin cần thiết vào từng tên biến Session(aSession)
-                    _aSession["userName"] = userNameInput;
+                    _aStaff = _anAccountBus.GetInfoStaff(_anAccount.StaffID);
+                    staffName = _aStaff.StaffName;
+                    staffID = _aStaff.StaffID;
                     _aSession["staffName"] = staffName;
                     _aSession["staffID"] = staffID;
-                    
-                    _aSession["groupAccessName"] = groupAccessName;
-                    _aSession["sessionGroupAccessId"] = groupAccessId;
-                    
+                }
+                acID = _anAccount.AccID;
+                groupAccessName = _aGroupAccess.GroupAccessName;
+                groupAccessId = _aGroupAccess.GroupAccessID.ToString();
+
+                _aSession["idAcc"] = _anAccount.AccID;
+                _aSession["userName"] = userNameInput; 
+                _aSession["groupAccessName"] = groupAccessName;
+                _aSession["sessionGroupAccessId"] = groupAccessId;
+
+                turnOnStatusOnline = _anAccountBus.EditAccountStatusOnline(acID, true); 
+                if (turnOnStatusOnline)
+                {  
+                    txtAcc.Text = "";
+                    txtPass.Text = "";
                     this.Hide();
                     FormMain frmain = new FormMain() { SessionFrmmain = _aSession };
                     frmain.ShowDialog();

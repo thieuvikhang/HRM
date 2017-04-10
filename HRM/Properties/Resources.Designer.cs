@@ -103,6 +103,16 @@ namespace HRM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Gessica {
+            get {
+                object obj = ResourceManager.GetObject("Gessica", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap manager_icon_54657 {
             get {
                 object obj = ResourceManager.GetObject("manager-icon-54657", resourceCulture);
@@ -126,6 +136,16 @@ namespace HRM.Properties {
         internal static System.Drawing.Bitmap reset_32x32 {
             get {
                 object obj = ResourceManager.GetObject("reset_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thumb_14400082930User {
+            get {
+                object obj = ResourceManager.GetObject("thumb_14400082930User", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

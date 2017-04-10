@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Drawing;
 using System.Windows.Forms;
 using BUS;
 using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
+using System.IO; 
+
 
 namespace HRM
 {
@@ -182,7 +185,7 @@ namespace HRM
             txtMail.Properties.MaxLength = 20;
             txtAddress.Properties.MaxLength = 100;
             txtMail.SelectionStart = txtMail.Text.Length;
-            dateBirth.Properties.MaxValue = DateTime.Today;
+            dateBirth.Properties.MaxValue = DateTime.Today; 
         }
 
         public void AddStaff()
@@ -252,6 +255,7 @@ namespace HRM
             txtStaffID.Text = idInsert;
             gcEmployees.Enabled = false;
             CheckPosition();
+            picImageStaff.Image = HRM.Properties.Resources.thumb_14400082930User;
             dxErrorProvider.ClearErrors();
         }
 
@@ -291,6 +295,7 @@ namespace HRM
                         SetBtn(true);
                         gcEmployees.Enabled = true;
                         LoadComboboxManId();
+                        _checkAdd = 0;
                     }
                 }
                 if (_checkAdd == 2)
@@ -344,18 +349,81 @@ namespace HRM
                 rbNu.Checked = true;
             }
 
-            cbbSection.Text = gridView1.GetFocusedRowCellDisplayText(gcSection);
+            cbbSection.Text = gridView1.GetFocusedRowCellDisplayText(gcSection); 
+
+
+            kiemtraAnhNhanVien();
 
         }
+
+        // Hàm kiểm tra ảnh Nhan Vien đã có chưa.
+        public void kiemtraAnhNhanVien()
+        {
+            try
+            {
+                string idStaff = "";
+                idStaff = txtStaffID.Text;
+                var staff = (from sp in _aHrm.Staffs
+                             where sp.StaffID == idStaff
+                             select sp).SingleOrDefault();
+                if(staff.Image != null)
+                {
+                    picImageStaff.Image = ByteArrayToImage(staff.Image.ToArray());
+                    picImageStaff.SizeMode = PictureBoxSizeMode.StretchImage;
+                } 
+                else
+                { 
+                    picImageStaff.Image = HRM.Properties.Resources.thumb_14400082930User; 
+                }
+            }
+            catch
+            {
+                //lblThongBao.Text = "Nhân viên vẫn chưa có hình ảnh. bạn hãy thêm ảnh cho nhân viên này.";
+            }
+        }
+
+        //Hàm để chuyển byte[] => image
+        private Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image image = Image.FromStream(ms);
+            return image;
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
             {
-                var dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (dialog == DialogResult.Yes)
+                bool checkStaffHasAcc = false;
+                bool checkStatusOfAccountOnline = false;
+                
+                checkStaffHasAcc = _staffBus.checkIDStaffinAccount(txtStaffID.Text);
+                checkStatusOfAccountOnline = _staffBus.checkStatusOfAccountOnline(txtStaffID.Text);
+                //kiểm tra nhân viên này có tài khoản không
+                if (checkStaffHasAcc)
                 {
-                    _staffBus.DeleteAStaff(txtStaffID.Text);
+                    //kiểm tra tài khoản của nhân viên này có đang online không
+                    if(checkStatusOfAccountOnline)
+                    {
+                        XtraMessageBox.Show($"Nhân viên: {txtName.Text} đang online. Không thể xóa.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        var dialog = XtraMessageBox.Show($"Nhân viên: {txtName.Text} đã offline. Bạn có muốn xóa không ", "XÓA NHÂN VIÊN", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dialog == DialogResult.Yes)
+                        {
+                            _staffBus.DeleteAStaff(txtStaffID.Text);
+                        }
+                    }
                 }
+                else
+                {
+                    var dialog = XtraMessageBox.Show($"Bạn muốn xóa nhân viên {txtName.Text} này", "Xóa nhân viên", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialog == DialogResult.Yes)
+                    {
+                        _staffBus.DeleteAStaff(txtStaffID.Text);
+                    }
+                } 
             }
             catch
             {
@@ -363,11 +431,7 @@ namespace HRM
             }
             gcEmployees.DataSource = _staffBus.LoadStaff();
         }
-
-        private void gridView1_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
-        {
-
-        }
+         
 
         private void txtCardID_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -387,11 +451,18 @@ namespace HRM
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            _checkAdd = 2;
-            SetTxt(true);
-            SetBtn(false);          
-            gcEmployees.Enabled = false;
-            CheckPosition();
+            if(txtStaffID.Text != "")
+            {
+                _checkAdd = 2;
+                SetTxt(true);
+                SetBtn(false);
+                gcEmployees.Enabled = false;
+                CheckPosition();
+            }
+            else
+            {
+                XtraMessageBox.Show("Chua chọn nhân viên nào để sửa", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void groupControl2_Paint(object sender, PaintEventArgs e)
@@ -423,6 +494,34 @@ namespace HRM
             else
             {
                 dxErrorProvider.SetError(txtStaffID, null);
+            }
+
+            bool checkStaffHasAcc = false;
+            bool checkStatusOfAccountOnline = false;
+            Staff newStaff = _staffBus.LoadStaffByIDStaff(txtStaffID.Text);
+            checkStaffHasAcc = _staffBus.checkIDStaffinAccount(newStaff.StaffID);
+            checkStatusOfAccountOnline = _staffBus.checkStatusOfAccountOnline(newStaff.StaffID); 
+            if (checkStaffHasAcc)
+            {
+                txtOnlineStatus.Visible = true;
+                lblTitleOnlineStatus.Text = "Trạng Thái Online:"; 
+                if (checkStatusOfAccountOnline)
+                {
+                    txtOnlineStatus.BackColor = Color.Yellow;
+                    txtOnlineStatus.ForeColor = Color.Blue;
+                    txtOnlineStatus.Text = "Đang online";
+                }
+                else
+                {
+                    txtOnlineStatus.BackColor = Color.Yellow;
+                    txtOnlineStatus.ForeColor = Color.Red;
+                    txtOnlineStatus.Text = "Đã offline";
+                }
+            }
+            else
+            { 
+                txtOnlineStatus.Visible = false;
+                lblTitleOnlineStatus.Text = "Nhân viên: " + newStaff.StaffName + " không có tài khoản.";
             }
         }
 
@@ -495,6 +594,7 @@ namespace HRM
         {
             CheckPosition();
         }
+         
     }
 }
 

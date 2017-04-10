@@ -46,11 +46,11 @@ namespace BUS
             return accountOnline;
         }
 
-        public bool EditAccountStatusOnline(string idStaff, bool statusOnline)
+        public bool EditAccountStatusOnline(int idAcc, bool statusOnline)
         {
             try
             {
-                var aAccount = _hrm.Accounts.SingleOrDefault(ac => ac.StaffID == idStaff);
+                var aAccount = _hrm.Accounts.SingleOrDefault(ac => ac.AccID == idAcc);
                 //kiem tra aAccount co tontai
                 if (aAccount == null) return false;
                 aAccount.AccountStatusOnline = statusOnline;

@@ -39,9 +39,6 @@ namespace DAL
     partial void InsertAccess(Access instance);
     partial void UpdateAccess(Access instance);
     partial void DeleteAccess(Access instance);
-    partial void InsertAccount(Account instance);
-    partial void UpdateAccount(Account instance);
-    partial void DeleteAccount(Account instance);
     partial void InsertCateAge(CateAge instance);
     partial void UpdateCateAge(CateAge instance);
     partial void DeleteCateAge(CateAge instance);
@@ -72,6 +69,9 @@ namespace DAL
     partial void InsertSocialInsurance(SocialInsurance instance);
     partial void UpdateSocialInsurance(SocialInsurance instance);
     partial void DeleteSocialInsurance(SocialInsurance instance);
+    partial void InsertAccount(Account instance);
+    partial void UpdateAccount(Account instance);
+    partial void DeleteAccount(Account instance);
     #endregion
 		
 		public HRMModelDataContext() : 
@@ -125,14 +125,6 @@ namespace DAL
 			get
 			{
 				return this.GetTable<Access>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Account> Accounts
-		{
-			get
-			{
-				return this.GetTable<Account>();
 			}
 		}
 		
@@ -213,6 +205,14 @@ namespace DAL
 			get
 			{
 				return this.GetTable<SocialInsurance>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Account> Accounts
+		{
+			get
+			{
+				return this.GetTable<Account>();
 			}
 		}
 		
@@ -525,8 +525,6 @@ namespace DAL
 		
 		private EntitySet<Absent> _Absents;
 		
-		private EntitySet<Account> _Accounts;
-		
 		private EntitySet<Contract> _Contracts;
 		
 		private EntitySet<DaysRemain> _DaysRemains;
@@ -534,6 +532,8 @@ namespace DAL
 		private EntitySet<Salary> _Salaries;
 		
 		private EntitySet<SocialInsurance> _SocialInsurances;
+		
+		private EntitySet<Account> _Accounts;
 		
 		private EntityRef<Position> _Position;
 		
@@ -580,11 +580,11 @@ namespace DAL
 		public Staff()
 		{
 			this._Absents = new EntitySet<Absent>(new Action<Absent>(this.attach_Absents), new Action<Absent>(this.detach_Absents));
-			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
 			this._DaysRemains = new EntitySet<DaysRemain>(new Action<DaysRemain>(this.attach_DaysRemains), new Action<DaysRemain>(this.detach_DaysRemains));
 			this._Salaries = new EntitySet<Salary>(new Action<Salary>(this.attach_Salaries), new Action<Salary>(this.detach_Salaries));
 			this._SocialInsurances = new EntitySet<SocialInsurance>(new Action<SocialInsurance>(this.attach_SocialInsurances), new Action<SocialInsurance>(this.detach_SocialInsurances));
+			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._Position = default(EntityRef<Position>);
 			this._Section = default(EntityRef<Section>);
 			OnCreated();
@@ -931,19 +931,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Accounts", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Account> Accounts
-		{
-			get
-			{
-				return this._Accounts;
-			}
-			set
-			{
-				this._Accounts.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Contract", Storage="_Contracts", ThisKey="StaffID", OtherKey="StaffID")]
 		public EntitySet<Contract> Contracts
 		{
@@ -993,6 +980,19 @@ namespace DAL
 			set
 			{
 				this._SocialInsurances.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Accounts", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<Account> Accounts
+		{
+			get
+			{
+				return this._Accounts;
+			}
+			set
+			{
+				this._Accounts.Assign(value);
 			}
 		}
 		
@@ -1096,18 +1096,6 @@ namespace DAL
 			entity.Staff = null;
 		}
 		
-		private void attach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
 		private void attach_Contracts(Contract entity)
 		{
 			this.SendPropertyChanging();
@@ -1151,6 +1139,18 @@ namespace DAL
 		}
 		
 		private void detach_SocialInsurances(SocialInsurance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_Accounts(Account entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Accounts(Account entity)
 		{
 			this.SendPropertyChanging();
 			entity.Staff = null;
@@ -1316,270 +1316,6 @@ namespace DAL
 		{
 			this.SendPropertyChanging();
 			entity.Access = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Account")]
-	public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AccID;
-		
-		private string _UserName;
-		
-		private string _Password;
-		
-		private int _GroupAccessID;
-		
-		private string _StaffID;
-		
-		private bool _AccountStatusOnline;
-		
-		private EntityRef<Staff> _Staff;
-		
-		private EntityRef<GroupAccess> _GroupAccess;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAccIDChanging(int value);
-    partial void OnAccIDChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnGroupAccessIDChanging(int value);
-    partial void OnGroupAccessIDChanged();
-    partial void OnStaffIDChanging(string value);
-    partial void OnStaffIDChanged();
-    partial void OnAccountStatusOnlineChanging(bool value);
-    partial void OnAccountStatusOnlineChanged();
-    #endregion
-		
-		public Account()
-		{
-			this._Staff = default(EntityRef<Staff>);
-			this._GroupAccess = default(EntityRef<GroupAccess>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AccID
-		{
-			get
-			{
-				return this._AccID;
-			}
-			set
-			{
-				if ((this._AccID != value))
-				{
-					this.OnAccIDChanging(value);
-					this.SendPropertyChanging();
-					this._AccID = value;
-					this.SendPropertyChanged("AccID");
-					this.OnAccIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="Char(20)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(33)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL")]
-		public int GroupAccessID
-		{
-			get
-			{
-				return this._GroupAccessID;
-			}
-			set
-			{
-				if ((this._GroupAccessID != value))
-				{
-					if (this._GroupAccess.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGroupAccessIDChanging(value);
-					this.SendPropertyChanging();
-					this._GroupAccessID = value;
-					this.SendPropertyChanged("GroupAccessID");
-					this.OnGroupAccessIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string StaffID
-		{
-			get
-			{
-				return this._StaffID;
-			}
-			set
-			{
-				if ((this._StaffID != value))
-				{
-					if (this._Staff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStaffIDChanging(value);
-					this.SendPropertyChanging();
-					this._StaffID = value;
-					this.SendPropertyChanged("StaffID");
-					this.OnStaffIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountStatusOnline", DbType="Bit NOT NULL")]
-		public bool AccountStatusOnline
-		{
-			get
-			{
-				return this._AccountStatusOnline;
-			}
-			set
-			{
-				if ((this._AccountStatusOnline != value))
-				{
-					this.OnAccountStatusOnlineChanging(value);
-					this.SendPropertyChanging();
-					this._AccountStatusOnline = value;
-					this.SendPropertyChanged("AccountStatusOnline");
-					this.OnAccountStatusOnlineChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
-		public Staff Staff
-		{
-			get
-			{
-				return this._Staff.Entity;
-			}
-			set
-			{
-				Staff previousValue = this._Staff.Entity;
-				if (((previousValue != value) 
-							|| (this._Staff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Staff.Entity = null;
-						previousValue.Accounts.Remove(this);
-					}
-					this._Staff.Entity = value;
-					if ((value != null))
-					{
-						value.Accounts.Add(this);
-						this._StaffID = value.StaffID;
-					}
-					else
-					{
-						this._StaffID = default(string);
-					}
-					this.SendPropertyChanged("Staff");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
-		public GroupAccess GroupAccess
-		{
-			get
-			{
-				return this._GroupAccess.Entity;
-			}
-			set
-			{
-				GroupAccess previousValue = this._GroupAccess.Entity;
-				if (((previousValue != value) 
-							|| (this._GroupAccess.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._GroupAccess.Entity = null;
-						previousValue.Accounts.Remove(this);
-					}
-					this._GroupAccess.Entity = value;
-					if ((value != null))
-					{
-						value.Accounts.Add(this);
-						this._GroupAccessID = value.GroupAccessID;
-					}
-					else
-					{
-						this._GroupAccessID = default(int);
-					}
-					this.SendPropertyChanged("GroupAccess");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -2415,9 +2151,9 @@ namespace DAL
 		
 		private string _Description;
 		
-		private EntitySet<Account> _Accounts;
-		
 		private EntitySet<DetailAccess> _DetailAccesses;
+		
+		private EntitySet<Account> _Accounts;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2433,8 +2169,8 @@ namespace DAL
 		
 		public GroupAccess()
 		{
-			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._DetailAccesses = new EntitySet<DetailAccess>(new Action<DetailAccess>(this.attach_DetailAccesses), new Action<DetailAccess>(this.detach_DetailAccesses));
+			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			OnCreated();
 		}
 		
@@ -2498,19 +2234,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_Accounts", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
-		public EntitySet<Account> Accounts
-		{
-			get
-			{
-				return this._Accounts;
-			}
-			set
-			{
-				this._Accounts.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_DetailAccess", Storage="_DetailAccesses", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
 		public EntitySet<DetailAccess> DetailAccesses
 		{
@@ -2521,6 +2244,19 @@ namespace DAL
 			set
 			{
 				this._DetailAccesses.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_Accounts", ThisKey="GroupAccessID", OtherKey="GroupAccessID")]
+		public EntitySet<Account> Accounts
+		{
+			get
+			{
+				return this._Accounts;
+			}
+			set
+			{
+				this._Accounts.Assign(value);
 			}
 		}
 		
@@ -2544,18 +2280,6 @@ namespace DAL
 			}
 		}
 		
-		private void attach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.GroupAccess = this;
-		}
-		
-		private void detach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.GroupAccess = null;
-		}
-		
 		private void attach_DetailAccesses(DetailAccess entity)
 		{
 			this.SendPropertyChanging();
@@ -2563,6 +2287,18 @@ namespace DAL
 		}
 		
 		private void detach_DetailAccesses(DetailAccess entity)
+		{
+			this.SendPropertyChanging();
+			entity.GroupAccess = null;
+		}
+		
+		private void attach_Accounts(Account entity)
+		{
+			this.SendPropertyChanging();
+			entity.GroupAccess = this;
+		}
+		
+		private void detach_Accounts(Account entity)
 		{
 			this.SendPropertyChanging();
 			entity.GroupAccess = null;
@@ -3496,6 +3232,270 @@ namespace DAL
 						this._StaffID = default(string);
 					}
 					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Account")]
+	public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _AccID;
+		
+		private string _UserName;
+		
+		private string _Password;
+		
+		private int _GroupAccessID;
+		
+		private string _StaffID;
+		
+		private bool _AccountStatusOnline;
+		
+		private EntityRef<Staff> _Staff;
+		
+		private EntityRef<GroupAccess> _GroupAccess;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAccIDChanging(int value);
+    partial void OnAccIDChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnGroupAccessIDChanging(int value);
+    partial void OnGroupAccessIDChanged();
+    partial void OnStaffIDChanging(string value);
+    partial void OnStaffIDChanged();
+    partial void OnAccountStatusOnlineChanging(bool value);
+    partial void OnAccountStatusOnlineChanged();
+    #endregion
+		
+		public Account()
+		{
+			this._Staff = default(EntityRef<Staff>);
+			this._GroupAccess = default(EntityRef<GroupAccess>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AccID
+		{
+			get
+			{
+				return this._AccID;
+			}
+			set
+			{
+				if ((this._AccID != value))
+				{
+					this.OnAccIDChanging(value);
+					this.SendPropertyChanging();
+					this._AccID = value;
+					this.SendPropertyChanged("AccID");
+					this.OnAccIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="Char(20)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="Char(33)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupAccessID", DbType="Int NOT NULL")]
+		public int GroupAccessID
+		{
+			get
+			{
+				return this._GroupAccessID;
+			}
+			set
+			{
+				if ((this._GroupAccessID != value))
+				{
+					if (this._GroupAccess.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGroupAccessIDChanging(value);
+					this.SendPropertyChanging();
+					this._GroupAccessID = value;
+					this.SendPropertyChanged("GroupAccessID");
+					this.OnGroupAccessIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(6)")]
+		public string StaffID
+		{
+			get
+			{
+				return this._StaffID;
+			}
+			set
+			{
+				if ((this._StaffID != value))
+				{
+					if (this._Staff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStaffIDChanging(value);
+					this.SendPropertyChanging();
+					this._StaffID = value;
+					this.SendPropertyChanged("StaffID");
+					this.OnStaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountStatusOnline", DbType="Bit NOT NULL")]
+		public bool AccountStatusOnline
+		{
+			get
+			{
+				return this._AccountStatusOnline;
+			}
+			set
+			{
+				if ((this._AccountStatusOnline != value))
+				{
+					this.OnAccountStatusOnlineChanging(value);
+					this.SendPropertyChanging();
+					this._AccountStatusOnline = value;
+					this.SendPropertyChanged("AccountStatusOnline");
+					this.OnAccountStatusOnlineChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
+		public Staff Staff
+		{
+			get
+			{
+				return this._Staff.Entity;
+			}
+			set
+			{
+				Staff previousValue = this._Staff.Entity;
+				if (((previousValue != value) 
+							|| (this._Staff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Staff.Entity = null;
+						previousValue.Accounts.Remove(this);
+					}
+					this._Staff.Entity = value;
+					if ((value != null))
+					{
+						value.Accounts.Add(this);
+						this._StaffID = value.StaffID;
+					}
+					else
+					{
+						this._StaffID = default(string);
+					}
+					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GroupAccess_Account", Storage="_GroupAccess", ThisKey="GroupAccessID", OtherKey="GroupAccessID", IsForeignKey=true)]
+		public GroupAccess GroupAccess
+		{
+			get
+			{
+				return this._GroupAccess.Entity;
+			}
+			set
+			{
+				GroupAccess previousValue = this._GroupAccess.Entity;
+				if (((previousValue != value) 
+							|| (this._GroupAccess.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GroupAccess.Entity = null;
+						previousValue.Accounts.Remove(this);
+					}
+					this._GroupAccess.Entity = value;
+					if ((value != null))
+					{
+						value.Accounts.Add(this);
+						this._GroupAccessID = value.GroupAccessID;
+					}
+					else
+					{
+						this._GroupAccessID = default(int);
+					}
+					this.SendPropertyChanged("GroupAccess");
 				}
 			}
 		}

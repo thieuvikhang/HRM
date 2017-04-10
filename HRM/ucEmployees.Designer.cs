@@ -40,6 +40,7 @@ namespace HRM
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcEmployees));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lkupManID = new DevExpress.XtraEditors.LookUpEdit();
             this.txtMail = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -57,7 +58,7 @@ namespace HRM
             this.dateEnd = new DevExpress.XtraEditors.DateEdit();
             this.dateStart = new DevExpress.XtraEditors.DateEdit();
             this.dateBirth = new DevExpress.XtraEditors.DateEdit();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picImageStaff = new System.Windows.Forms.PictureBox();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
@@ -69,7 +70,9 @@ namespace HRM
             this.txtPhone = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.txtOnlineStatus = new DevExpress.XtraEditors.TextEdit();
             this.txtCardID = new DevExpress.XtraEditors.TextEdit();
+            this.lblTitleOnlineStatus = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
@@ -93,9 +96,9 @@ namespace HRM
             this.gcEndDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcManagerID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.lkupManID = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -106,16 +109,16 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImageStaff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOnlineStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -131,7 +134,7 @@ namespace HRM
             this.panelControl1.Controls.Add(this.dateEnd);
             this.panelControl1.Controls.Add(this.dateStart);
             this.panelControl1.Controls.Add(this.dateBirth);
-            this.panelControl1.Controls.Add(this.pictureBox1);
+            this.panelControl1.Controls.Add(this.picImageStaff);
             this.panelControl1.Controls.Add(this.labelControl14);
             this.panelControl1.Controls.Add(this.labelControl15);
             this.panelControl1.Controls.Add(this.labelControl13);
@@ -143,7 +146,9 @@ namespace HRM
             this.panelControl1.Controls.Add(this.txtPhone);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.labelControl7);
+            this.panelControl1.Controls.Add(this.txtOnlineStatus);
             this.panelControl1.Controls.Add(this.txtCardID);
+            this.panelControl1.Controls.Add(this.lblTitleOnlineStatus);
             this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.txtName);
@@ -155,7 +160,16 @@ namespace HRM
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1090, 250);
             this.panelControl1.TabIndex = 0;
-            
+            // 
+            // lkupManID
+            // 
+            this.lkupManID.EditValue = "Chọn Nhân viên quản lý";
+            this.lkupManID.Location = new System.Drawing.Point(699, 128);
+            this.lkupManID.Name = "lkupManID";
+            this.lkupManID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupManID.Size = new System.Drawing.Size(144, 20);
+            this.lkupManID.TabIndex = 53;
             // 
             // txtMail
             // 
@@ -173,7 +187,7 @@ namespace HRM
             this.groupControl2.Controls.Add(this.btnEdit);
             this.groupControl2.Controls.Add(this.btnAdd);
             this.groupControl2.Controls.Add(this.btnSave);
-            this.groupControl2.Location = new System.Drawing.Point(436, 155);
+            this.groupControl2.Location = new System.Drawing.Point(5, 154);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(458, 67);
             this.groupControl2.TabIndex = 52;
@@ -352,13 +366,16 @@ namespace HRM
             this.dateBirth.Click += new System.EventHandler(this.dateBirth_Click);
             this.dateBirth.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dateBirth_MouseClick);
             // 
-            // pictureBox1
+            // picImageStaff
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(900, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(155, 204);
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
+            this.picImageStaff.Image = global::HRM.Properties.Resources.thumb_14400082930User;
+            this.picImageStaff.InitialImage = global::HRM.Properties.Resources.admin;
+            this.picImageStaff.Location = new System.Drawing.Point(936, 5);
+            this.picImageStaff.Name = "picImageStaff";
+            this.picImageStaff.Size = new System.Drawing.Size(149, 204);
+            this.picImageStaff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImageStaff.TabIndex = 36;
+            this.picImageStaff.TabStop = false;
             // 
             // labelControl14
             // 
@@ -429,7 +446,6 @@ namespace HRM
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(171, 20);
             this.txtAddress.TabIndex = 5;
-           
             // 
             // txtPhone
             // 
@@ -462,6 +478,18 @@ namespace HRM
             this.labelControl7.Text = "Điện thoại";
             this.labelControl7.Click += new System.EventHandler(this.labelControl7_Click);
             // 
+            // txtOnlineStatus
+            // 
+            this.txtOnlineStatus.Enabled = false;
+            this.txtOnlineStatus.Location = new System.Drawing.Point(699, 154);
+            this.txtOnlineStatus.Name = "txtOnlineStatus";
+            this.txtOnlineStatus.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOnlineStatus.Properties.Appearance.Options.UseFont = true;
+            this.txtOnlineStatus.Size = new System.Drawing.Size(144, 22);
+            this.txtOnlineStatus.TabIndex = 10;
+            this.txtOnlineStatus.TextChanged += new System.EventHandler(this.txtCardID_TextChanged);
+            this.txtOnlineStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardID_KeyPress);
+            // 
             // txtCardID
             // 
             this.dxErrorProvider.SetIconAlignment(this.txtCardID, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
@@ -471,6 +499,15 @@ namespace HRM
             this.txtCardID.TabIndex = 10;
             this.txtCardID.TextChanged += new System.EventHandler(this.txtCardID_TextChanged);
             this.txtCardID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardID_KeyPress);
+            // 
+            // lblTitleOnlineStatus
+            // 
+            this.lblTitleOnlineStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTitleOnlineStatus.Location = new System.Drawing.Point(589, 154);
+            this.lblTitleOnlineStatus.Name = "lblTitleOnlineStatus";
+            this.lblTitleOnlineStatus.Size = new System.Drawing.Size(104, 16);
+            this.lblTitleOnlineStatus.TabIndex = 11;
+            this.lblTitleOnlineStatus.Text = "Trạng thái Online:";
             // 
             // labelControl5
             // 
@@ -563,7 +600,6 @@ namespace HRM
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView1_CustomColumnDisplayText);
             // 
             // gcStaffID
             // 
@@ -675,16 +711,6 @@ namespace HRM
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
-            // lkupManID
-            // 
-            this.lkupManID.EditValue = "Chọn Nhân viên quản lý";
-            this.lkupManID.Location = new System.Drawing.Point(699, 128);
-            this.lkupManID.Name = "lkupManID";
-            this.lkupManID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkupManID.Size = new System.Drawing.Size(144, 20);
-            this.lkupManID.TabIndex = 53;
-            // 
             // UcEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -697,6 +723,7 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -708,16 +735,16 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImageStaff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOnlineStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCardID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -737,7 +764,7 @@ namespace HRM
         private TextEdit txtPhone;
         private LabelControl labelControl3;
         private LabelControl labelControl7;
-        private PictureBox pictureBox1;
+        private PictureBox picImageStaff;
         private LabelControl labelControl14;
         private LabelControl labelControl15;
         private LabelControl labelControl13;
@@ -779,5 +806,7 @@ namespace HRM
         private DXErrorProvider dxErrorProvider;
         private TextEdit txtMail;
         private LookUpEdit lkupManID;
+        private TextEdit txtOnlineStatus;
+        private LabelControl lblTitleOnlineStatus;
     }
 }
