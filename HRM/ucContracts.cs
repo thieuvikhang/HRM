@@ -641,7 +641,14 @@ namespace HRM
                 txtMaHDTruoc.Text = lastContract.ContractID; 
                 dateBuilOfLastContract.DateTime = DateTime.Parse(lastContract.Date.ToString()); 
                 dateStartOfLastContract.DateTime = DateTime.Parse(lastContract.StartDate.ToString());
-                dateEndOfLastContract.DateTime = DateTime.Parse(lastContract.EndDate.ToString());
+                if(lastContract.EndDate == null)
+                {
+                    dateEndOfLastContract.EditValue = null;
+                }
+                else
+                {
+                    dateEndOfLastContract.DateTime = DateTime.Parse(lastContract.EndDate.ToString());
+                } 
                 if(lastContract.Status == true)
                 {
                     txtTrangThaiHDTruoc.BackColor = System.Drawing.Color.Yellow;
