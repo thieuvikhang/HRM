@@ -7,6 +7,7 @@ using BUS;
 using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using System.Data;
 
 namespace HRM
 {
@@ -536,44 +537,7 @@ namespace HRM
         private void btnKiemTraLoi_Click(object sender, EventArgs e)
         {
             dxErrorProvider1.SetError(txtBasicPay, txtBasicPay.Text == "" ? "Lương cơ bản hiện vẫn còn trống" : null);
-            lblThongBao1.Text = _conTractBus.CheckIdInputInTable(cbbStaffID.SelectedValue.ToString()) ? @"Nhân viên chưa hết hạn hợp đồng" : "";
-            //Kiem tra date sign = null(chua co gia tri)
-            //if (yearOfDateSign == yearStartOfTheWord) {
-            //    btnSave.Enabled = false;
-            //}
-            //else {
-            //    dxErrorProvider1.SetError(dateSign, null);
-
-            //    //check value of date start  == null 
-            //    if (yearOfDateStart == yearStartOfTheWord)
-            //    {
-                    
-            //        dateEnd.EditValue = null;
-            //    }
-            //    else
-            //    {
-            //        //When value of date start != null
-            //        //check value of date end = null
-            //        if(yearOfDateEnd == yearStartOfTheWord)
-            //        {
-            //            lblThongBao2.Text = @"[Dữ liệu trống] Chưa có ngày kết thúc.";
-            //        }
-            //        else
-            //        {
-            //            //When value of date start != nul and date end != null
-            //            //Check validate 3 date 
-            //            if (CheckTwoDate(_dStart, _dEnd) == false)
-            //            { 
-            //                lblThongBao2.Text = @"[Cảnh báo] Ngày kết thúc nhỏ hơn ngày bắt đầu.";
-            //            }
-            //            else
-            //            {
-            //                dxErrorProvider1.SetError(dateEnd, null);
-            //                lblThongBao2.Text = "";
-            //            }
-            //        }
-            //    }
-            //}
+            //lblThongBao1.Text = _conTractBus.CheckIdInputInTable(cbbStaffID.SelectedValue.ToString()) ? @"Nhân viên chưa hết hạn hợp đồng" : ""; 
             if(dxErrorProvider1.HasErrors)
             {
                 btnSave.Enabled = false;
@@ -584,39 +548,27 @@ namespace HRM
                 btnSave.Enabled = false;
             }
             else
-            {             
-                lblThongBao.Text = @"Đã hết lỗi, hãy nhấn vào nút lưu để hoàn tất thủ tục";
-                btnSave.Enabled = true;
-            }
-        }
-
-
-        /*
-         * 
-                // Kiểm tra tính hợp lệ của 3 ô
-                if (CheckValidDate(dSign, dStart, dEnd) == true) {
-                // Thông tin hợp lệ
-            }
-            else {
-                //lỗi giữa các ô  Ngày tháng
-            }
-         * 
-         //Kiểm tra ngày bắt đầu null
-                if(dStart == null) {
-                    //date start = null => gan datenull = 1
-                    dateNull = 1;
-                }
-                else {
-                    if (dateEnd == null) {
-                        //date start != null vs date end = null => gan datenull = 2
-                        dateNull = 2;
-                    }
-                    else {
-                        //date start != null vs date end != null => gan datenull = 2
-                        dateNull = 0;
+            {   
+                if(_flag == 1)
+                {
+                    if(txtTrangThaiHDTruoc.Text == "Còn thời hạn")
+                    {
+                        XtraMessageBox.Show($@"Hợp đồng trước của nhân viên {cbbStaffID.Text} vẫn còn thời hạn. thông thể thêm mới hợp đồng.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                        btnSave.Enabled = false;
+                    } 
+                    else
+                    {
+                        XtraMessageBox.Show("Đã hết lỗi, hãy nhấn vào nút lưu để hoàn tất thủ tục.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnSave.Enabled = true;
                     }
                 }
-             */
+                else
+                {
+                    lblThongBao.Text = @"Đã hết lỗi, hãy nhấn vào nút lưu để hoàn tất thủ tục";
+                    btnSave.Enabled = true;
+                } 
+            }
+        } 
 
         private void cbbStaffID_Leave(object sender, EventArgs e)
         {
@@ -650,6 +602,8 @@ namespace HRM
 
         private void dateStart_TextChanged(object sender, EventArgs e)
         {
+            dateStart.Properties.MinValue = dateSign.DateTime;
+
             int x = int.Parse(cbbContractTypeID.SelectedValue.ToString());
             if (x != 0)
             {
@@ -671,6 +625,48 @@ namespace HRM
             else
             {
                 dateEnd.EditValue = null;
+            }
+        }
+
+        private void cbbStaffID_SelectedValueChanged(object sender, EventArgs e)
+        { 
+            string idStaff = "";
+            idStaff = cbbStaffID.SelectedValue.ToString();
+            bool finfcontractByIdStaff = false;
+            finfcontractByIdStaff = _conTractBus.FindContractByIDStaff(idStaff);
+            if (finfcontractByIdStaff)
+            {
+                grbxLastContract.Enabled = true;
+                Contract lastContract = _conTractBus.LoadLastDateContract(idStaff);
+                txtMaHDTruoc.Text = lastContract.ContractID; 
+                dateBuilOfLastContract.DateTime = DateTime.Parse(lastContract.Date.ToString()); 
+                dateStartOfLastContract.DateTime = DateTime.Parse(lastContract.StartDate.ToString());
+                dateEndOfLastContract.DateTime = DateTime.Parse(lastContract.EndDate.ToString());
+                if(lastContract.Status == true)
+                {
+                    txtTrangThaiHDTruoc.BackColor = System.Drawing.Color.Yellow;
+                    txtTrangThaiHDTruoc.ForeColor = System.Drawing.Color.Black;
+                    txtTrangThaiHDTruoc.Text = "Còn thời hạn";
+                    lblThongBao.Text = "Hợp đồng trước của nhân viên: " + cbbStaffID.Text + " Còn thời hạn.";
+                }
+                else
+                {
+                    txtTrangThaiHDTruoc.BackColor = System.Drawing.Color.Blue;
+                    txtTrangThaiHDTruoc.ForeColor = System.Drawing.Color.Yellow;
+                    txtTrangThaiHDTruoc.Text = "Hết hạn hợp đồng";
+                    lblThongBao.Text = "Thêm hợp đồng cho nhân viên: " + cbbStaffID.Text + ".";
+                } 
+            }
+            else
+            {
+                lblThongBao.Text = "Nhân viên: " + cbbStaffID.Text + " vẫn chưa có hợp đồng.";
+                txtMaHDTruoc.Text = "";
+                dateBuilOfLastContract.EditValue = null;
+                dateStartOfLastContract.EditValue = null;
+                dateEndOfLastContract.EditValue = null;
+                txtTrangThaiHDTruoc.BackColor = System.Drawing.Color.White;
+                txtTrangThaiHDTruoc.Text = "";
+                grbxLastContract.Enabled = false; 
             }
         }
     }
