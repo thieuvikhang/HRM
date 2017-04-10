@@ -45,6 +45,7 @@ namespace BUS
                                select ct).Count();
             return numberOfRecords != 0;
         }
+
         //Kiem tra thoi han hop dong
         public bool CheckIdInputInTable(string idInput)
         {
@@ -141,6 +142,20 @@ namespace BUS
             var ct = _aHrm.Contracts.SingleOrDefault(c => c.ContractID == id);
             return ct;
         }
-         
+        
+
+        public bool FindContractByIDStaff(string idStaff)
+        {
+            var numberOfRecords = (from ct in _aHrm.Contracts
+                                   where ct.StaffID == idStaff
+                                   select ct).Count();
+            return numberOfRecords != 0;
+        }
+
+        public Contract LoadLastDateContract(string idstaff)
+        {
+            var ct = _aHrm.Contracts.OrderByDescending(hd => hd.EndDate).Where(ct2 => ct2.StaffID == idstaff).FirstOrDefault();
+            return ct;
+        }
     }
 }

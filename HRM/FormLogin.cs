@@ -84,7 +84,6 @@ namespace HRM
                 // Bật trạng thái online của Account
                 if (turnOnStatusOnline)
                 {
-                    XtraMessageBox.Show("Trạng thái online đã được bật.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Gán những thông tin cần thiết vào từng tên biến Session(aSession)
                     _aSession["userName"] = userNameInput;
                     _aSession["staffName"] = staffName;
@@ -96,11 +95,7 @@ namespace HRM
                     this.Hide();
                     FormMain frmain = new FormMain() { SessionFrmmain = _aSession };
                     frmain.ShowDialog();
-                }
-                else
-                {
-                    XtraMessageBox.Show("Trạng thái online ko bật được.", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                } 
             }
             else
             {
@@ -126,6 +121,10 @@ namespace HRM
         private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = (e.KeyChar == (char)Keys.Space); 
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+            }
         }
 
         private void txtAcc_KeyPress(object sender, KeyPressEventArgs e)
