@@ -8,6 +8,8 @@ using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using System.Data;
+using DevExpress.XtraBars;
+using DevExpress.XtraBars.Ribbon;
 
 namespace HRM
 {
@@ -20,7 +22,7 @@ namespace HRM
         {
             InitializeComponent();
         }
-
+        
         readonly ContractBus _conTractBus = new ContractBus();
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         //Ham set các button 
@@ -206,12 +208,13 @@ namespace HRM
             cbbStatus.SelectedValue = ctByid.Status;
         }
 
-
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            
             btnCancel.Enabled = true;
             btnSave.Enabled = false;
-            btnAdd.Enabled = false;
+            this.btnAdd.Enabled = false;
             btnDelete.Enabled = false;
             btnEdit.Enabled = false;
    
@@ -234,6 +237,7 @@ namespace HRM
             lblThongBao.Text = @"Bạn nên ""kiểm tra"" trước khi click vào nút ""lưu"".";
             lblThongBao1.Text = "";
             lblThongBao1.Text = "";
+            
             lblThucHienCN.Text = @"đang thực hiện thêm.";
         }
 

@@ -338,6 +338,9 @@ namespace HRM
             this.dateEnd.Size = new System.Drawing.Size(171, 20);
             this.dateEnd.TabIndex = 9;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
+            this.dateEnd.BeforePopup += new System.EventHandler(this.dateEnd_BeforePopup);
+            this.dateEnd.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateEnd_ButtonClick);
+            this.dateEnd.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateEnd_EditValueChanging);
             // 
             // dateStart
             // 

@@ -125,20 +125,52 @@ namespace BUS
                         t.a.UserName,
                         StaffName1 = t.a.StaffID == null ? null : t.a.Staff.StaffName,
                         GroupAccessName1 = t.ga.GroupAccessName,
-                        AccountStatusOnline = t.a.AccountStatusOnline == true ? "Online" : "Offline"
-                    });
+                        AccountStatusOnline = t.a.AccountStatusOnline.Value ? "Online" : "Offline"
+                    }).Distinct();
         }
-        public IQueryable GetAllStaff()
+
+        public class LStaff
         {
-            return
-                _hrm.Staffs.SelectMany(st => _hrm.Sections, (st, se) => new { st, se })
-                    .Where(t => t.st.SectionID == t.se.SectionID)
+            public string StaffID { get; set; }
+            public string StaffName { get; set; }
+            public string SectionName { get; set; }
+        }
+
+        private IQueryable<string> ListStaffHadAccount
+        {
+            get
+            {
+                var list = _hrm.Accounts.Where(a => a.StaffID != null).Select(a => a.StaffID).Distinct();
+                return list;
+            }
+        }
+
+        public List<LStaff> GetAllStaff()
+        {
+            var outPut = new List<LStaff>();
+            foreach (var item in _hrm.Staffs.SelectMany(sa => _hrm.Sections, (sa, se) => new { sa, se})
+                    .Where(t => t.sa.SectionID == t.se.SectionID)
                     .Select(t => new
                     {
-                        t.st.StaffID,
-                        t.st.StaffName,
+                        t.sa.StaffID,
+                        t.sa.StaffName,
                         t.se.SectionName
-                    });
+                    }))
+            {
+                outPut.Add(new LStaff { StaffID = item.StaffID, StaffName = item.StaffName, SectionName = item.SectionName });
+            }
+            foreach (var index in ListStaffHadAccount)
+            {
+                for (var i = 0; i < outPut.Count; i++)
+                {
+                    var item = outPut[i];
+                    if (item.StaffID == index)
+                    {
+                        outPut.RemoveAt(i);
+                    }
+                }
+            }
+            return outPut;
         }
         public IQueryable GetStaffByAccountId(int accId)
         {
@@ -163,7 +195,7 @@ namespace BUS
             {
                 var acc = new Account();
                 {
-                    acc.UserName = user;
+                    acc.UserName = user.Trim();
                     acc.Password = _extendBus.GetMd5(pass).ToLower();
                     acc.GroupAccessID = nhomQuyen;
                     acc.StaffID = maNv;
@@ -216,12 +248,12 @@ namespace BUS
         }
         public List<string> ListUserName()
         {
-            var check = _hrm.Accounts.Select(ga => ga.UserName).Distinct().ToList();
+            var check = _hrm.Accounts.Select(ga => ga.UserName.Trim()).Distinct().ToList();
             return check;
         }
         public bool CheckUserName(string text, List<string> list)
         {
-            return list.All(item => !text.Equals(item));
+            return list.All(item => !text.Trim().Equals(item));
         }
         #endregion
     }

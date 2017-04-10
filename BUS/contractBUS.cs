@@ -133,7 +133,7 @@ namespace BUS
         //Lấy Lương cơ bản trong bảng hợp đồng dựa vào Mã nhân viên
         public decimal GetBasicPayByStaffId(string staffId, DateTime date)
         {
-            var basicPay = (from cc in _aHrm.Contracts where cc.StaffID == staffId && DateTime.Compare(cc.StartDate.Value, date) != -1 && DateTime.Compare(date, cc.EndDate.Value) != 1 select cc.BasicPay).FirstOrDefault();
+            var basicPay = (from cc in _aHrm.Contracts where cc.StaffID == staffId && DateTime.Compare(cc.StartDate.Value.Date, date) != 1 && DateTime.Compare(date, cc.EndDate.Value.Date) != 1 select cc.BasicPay).FirstOrDefault();
             return basicPay == null ? 0 : Convert.ToDecimal(basicPay);
         }
 
@@ -154,7 +154,7 @@ namespace BUS
 
         public Contract LoadLastDateContract(string idstaff)
         {
-            var ct = _aHrm.Contracts.OrderByDescending(hd => hd.EndDate).Where(ct2 => ct2.StaffID == idstaff).FirstOrDefault();
+            var ct = _aHrm.Contracts.OrderByDescending(hd => hd.EndDate).FirstOrDefault(ct2 => ct2.StaffID == idstaff);
             return ct;
         }
     }
