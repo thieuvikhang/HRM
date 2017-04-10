@@ -40,10 +40,11 @@ namespace HRM
         #endregion
 
         #region From Main Load
+        public UcContract uccontract = new UcContract();
         public FormMain()
         {
             InitializeComponent();
-
+            
             _barButtonItem.AddRange(new[] { barEmployees, barSection, barPostion, barContract, barSI, barAbsent, barSalary, barAccess, barAccount });
             foreach (var bar in _barButtonItem)
             {

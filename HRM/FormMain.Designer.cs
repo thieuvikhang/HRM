@@ -62,9 +62,15 @@ namespace HRM
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
@@ -90,16 +96,19 @@ namespace HRM
             this.barButtonItem3,
             this.skinRibbonGalleryBarItem1,
             this.ribbonGalleryBarItem1,
-            this.barAccount});
+            this.barAccount,
+            this.barHeaderItem1,
+            this.barStaticItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 21;
+            this.ribbonControl1.MaxItemId = 23;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPage3});
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(762, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(1356, 143);
+            this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             // 
             // barButtonItem1
@@ -292,15 +301,34 @@ namespace HRM
             this.ribbonPageGroup7.ItemLinks.Add(this.barButtonItem3);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             // 
+            // ribbonStatusBar1
+            // 
+            this.ribbonStatusBar1.ItemLinks.Add(this.barHeaderItem1);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 698);
+            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
+            this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1356, 31);
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.pictureEdit1);
+            this.panelControl1.Controls.Add(this.xtraTabControl1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 143);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1356, 555);
+            this.panelControl1.TabIndex = 23;
+            // 
             // xtraTabControl1
             // 
             this.xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.HeaderButtons = DevExpress.XtraTab.TabButtons.Close;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 143);
+            this.xtraTabControl1.Location = new System.Drawing.Point(2, 2);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(762, 317);
-            this.xtraTabControl1.TabIndex = 18;
+            this.xtraTabControl1.Size = new System.Drawing.Size(1352, 551);
+            this.xtraTabControl1.TabIndex = 19;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl1_ControlAdded);
             // 
@@ -308,32 +336,48 @@ namespace HRM
             // 
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
-            this.pictureEdit1.Location = new System.Drawing.Point(0, 143);
+            this.pictureEdit1.Location = new System.Drawing.Point(2, 2);
             this.pictureEdit1.MenuManager = this.ribbonControl1;
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Properties.ZoomAccelerationFactor = 1D;
-            this.pictureEdit1.Size = new System.Drawing.Size(762, 317);
-            this.pictureEdit1.TabIndex = 20;
+            this.pictureEdit1.Size = new System.Drawing.Size(1352, 551);
+            this.pictureEdit1.TabIndex = 21;
+            // 
+            // barHeaderItem1
+            // 
+            this.barHeaderItem1.Caption = "barHeaderItem1";
+            this.barHeaderItem1.Id = 21;
+            this.barHeaderItem1.Name = "barHeaderItem1";
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "barStaticItem1";
+            this.barStaticItem1.Id = 22;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // FormMain
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 460);
-            this.Controls.Add(this.pictureEdit1);
-            this.Controls.Add(this.xtraTabControl1);
+            this.ClientSize = new System.Drawing.Size(1356, 729);
+            this.Controls.Add(this.panelControl1);
+            this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Ribbon = this.ribbonControl1;
+            this.StatusBar = this.ribbonStatusBar1;
             this.Text = "Phần mềm quản lý nhân sự";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
@@ -356,7 +400,6 @@ namespace HRM
         private BarButtonItem barSalary;
         private RibbonPageGroup ribbonPageGroup3;
         private RibbonPageGroup ribbonPageGroup4;
-        private XtraTabControl xtraTabControl1;
         private BarButtonItem barAccess;
         private RibbonPage ribbonPage3;
         private BarButtonItem barPostion;
@@ -371,7 +414,12 @@ namespace HRM
         private RibbonPageGroup ribbonPageGroup8;
         private RibbonGalleryBarItem ribbonGalleryBarItem1;
         private BarButtonItem barAccount;
+        private RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private XtraTabControl xtraTabControl1;
+        public BarHeaderItem barHeaderItem1;
+        public BarStaticItem barStaticItem1;
     }
 }
 

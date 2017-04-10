@@ -40,6 +40,7 @@ namespace HRM
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcEmployees));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lkupManID = new DevExpress.XtraEditors.LookUpEdit();
             this.txtMail = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -93,9 +94,9 @@ namespace HRM
             this.gcEndDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcManagerID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.lkupManID = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -115,7 +116,6 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -155,7 +155,16 @@ namespace HRM
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1090, 250);
             this.panelControl1.TabIndex = 0;
-            
+            // 
+            // lkupManID
+            // 
+            this.lkupManID.EditValue = "Chọn Nhân viên quản lý";
+            this.lkupManID.Location = new System.Drawing.Point(699, 128);
+            this.lkupManID.Name = "lkupManID";
+            this.lkupManID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupManID.Size = new System.Drawing.Size(144, 20);
+            this.lkupManID.TabIndex = 53;
             // 
             // txtMail
             // 
@@ -324,6 +333,9 @@ namespace HRM
             this.dateEnd.Size = new System.Drawing.Size(171, 20);
             this.dateEnd.TabIndex = 9;
             this.dateEnd.DateTimeChanged += new System.EventHandler(this.dateEnd_DateTimeChanged);
+            this.dateEnd.BeforePopup += new System.EventHandler(this.dateEnd_BeforePopup);
+            this.dateEnd.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateEnd_ButtonClick);
+            this.dateEnd.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateEnd_EditValueChanging);
             // 
             // dateStart
             // 
@@ -429,7 +441,6 @@ namespace HRM
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(171, 20);
             this.txtAddress.TabIndex = 5;
-           
             // 
             // txtPhone
             // 
@@ -675,16 +686,6 @@ namespace HRM
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
-            // lkupManID
-            // 
-            this.lkupManID.EditValue = "Chọn Nhân viên quản lý";
-            this.lkupManID.Location = new System.Drawing.Point(699, 128);
-            this.lkupManID.Name = "lkupManID";
-            this.lkupManID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkupManID.Size = new System.Drawing.Size(144, 20);
-            this.lkupManID.TabIndex = 53;
-            // 
             // UcEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -697,6 +698,7 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -717,7 +719,6 @@ namespace HRM
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupManID.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

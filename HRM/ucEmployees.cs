@@ -461,11 +461,13 @@ namespace HRM
 
         private void dateStart_DateTimeChanged(object sender, EventArgs e)
         {
-            dateEnd.Properties.MinValue = dateStart.DateTime;           
+            dateEnd.Properties.MinValue = dateStart.DateTime;
+            dateEnd.EditValue = "";
         }
 
         private void dateEnd_DateTimeChanged(object sender, EventArgs e)
         {
+            
             dateStart.Properties.MaxValue = dateEnd.DateTime;
         }
 
@@ -494,6 +496,21 @@ namespace HRM
         private void cbbSection_SelectedIndexChanged(object sender, EventArgs e)
         {
             CheckPosition();
+        }
+
+        private void dateEnd_BeforePopup(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dateEnd_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            
+        }
+
+        private void dateEnd_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            
         }
     }
 }
