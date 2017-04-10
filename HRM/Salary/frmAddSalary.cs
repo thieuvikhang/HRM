@@ -16,13 +16,13 @@ namespace HRM.Salary
         #region Khai báo biến
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
         private readonly SalaryBus _salaryBus = new SalaryBus();
-        public readonly StaffBus StaffBus = new StaffBus();
-        public readonly SectionBus SectionBus = new SectionBus();
-        public readonly ContractBus ContractBus = new ContractBus();
-        public readonly AbsentBus AbsentBus = new AbsentBus();
-        public readonly RuleBus RuleBus = new RuleBus();
-        public readonly ExtendBus ExtendBus = new ExtendBus();
-        private string _maNhanVien, _maPhongBan, _chiTietPhuCap;
+        private readonly StaffBus _staffBus = new StaffBus();
+        private readonly SectionBus _sectionBus = new SectionBus();
+        private readonly ContractBus _contractBus = new ContractBus();
+        private readonly AbsentBus _absentBus = new AbsentBus();
+        private readonly RuleBus _ruleBus = new RuleBus();
+        private readonly ExtendBus _extendBus = new ExtendBus();
+        private string _maNhanVien, _maChonPhongBan, _chiTietPhuCap;
         private int _absentNoSalary, _ngayCongQuyDinh, _monthOld, _yearOld, _year, _month;
         private decimal _basicSalary, _bhxh, _luongCoBan, _phuCap, _luongThucLanh;
         #endregion
@@ -57,7 +57,7 @@ namespace HRM.Salary
                     if (_salaryBus.SaveSalary(_maNhanVien, _basicSalary, _month + "/" + _year,
                         _ngayCongQuyDinh - _absentNoSalary, _phuCap, _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
-                        frmAddSalary_Load(sender, e);
+                        gcAddSalary.DataSource = _salaryBus.LoadStaffNonSalary(_maChonPhongBan, _month, _year);
                         ClearTextAddSalary();
                         
                     }
@@ -75,7 +75,7 @@ namespace HRM.Salary
                     if (_salaryBus.SaveSalary(_maNhanVien, _basicSalary, _month + "/" + _year,
                         _ngayCongQuyDinh - _absentNoSalary, _phuCap, _chiTietPhuCap, _ngayCongQuyDinh, _luongThucLanh))
                     {
-                        frmAddSalary_Load(sender, e);
+                        gcAddSalary.DataSource = _salaryBus.LoadStaffNonSalary(_maChonPhongBan, _month, _year);
                         ClearTextAddSalary();
                         Close();
                     }
@@ -125,11 +125,12 @@ namespace HRM.Salary
         public void LoadComboboxChonThang()
         {
             var monthAs = new ArrayList { new { dt = "Tháng " + _monthOld + "/" + _yearOld, month = _yearOld + "-" + _monthOld } };
-            //Load chọn tháng định dạng MM/yyyy
-            monthAs.AddRange(_aHrm.Salaries.Where(p => p.SalaryMonth.Value.Month != _monthOld && p.SalaryMonth.Value.Year != _yearOld)
-                .GroupBy(p => new { month = p.SalaryMonth.Value.Month, year = p.SalaryMonth.Value.Year })
-                .Select(d => new { dt = $"Tháng {d.Key.month}/{d.Key.year}", month = $"{d.Key.year}-{d.Key.month}" })
-                .Distinct().ToList().OrderByDescending(g => g.month).ToArray());
+            var list = _aHrm.Salaries.Select(d => new {d.SalaryMonth.Value.Month, d.SalaryMonth.Value.Year}).Distinct();
+            foreach (var item in list)
+            {
+                if (item.Month != _monthOld || item.Year != _yearOld)
+                    monthAs.Add(new {dt = $"Tháng {item.Month}/{item.Year}", month = $"{item.Year}-{item.Month}"});
+            }
             cbbChonThang.DataSource = monthAs;
             cbbChonThang.DisplayMember = "dt";
             cbbChonThang.ValueMember = "month";
@@ -174,8 +175,8 @@ namespace HRM.Salary
         #region Load GirdView theo sự kiện chọn phòng ban, tháng
         private void LoadGirdView()
         {
-            var maChonPhongBan = cbbChonPB.SelectedValue.ToString();/*Mã số chọn phòng ban*/
-            gcAddSalary.DataSource = _salaryBus.LoadStaffNonSalary(maChonPhongBan, _month, _year);
+            _maChonPhongBan = cbbChonPB.SelectedValue.ToString();/*Mã số chọn phòng ban*/
+            gcAddSalary.DataSource = _salaryBus.LoadStaffNonSalary(_maChonPhongBan, _month, _year);
             ClearTextAddSalary();
         }
         private void cbbChonPB_TextChanged(object sender, EventArgs e)
@@ -219,25 +220,25 @@ namespace HRM.Salary
         {
             if (gcAddSalary.DataSource == null) return;
             if (gcStaffId != null) _maNhanVien = gridView1.GetFocusedRowCellDisplayText(gcStaffId);
-            _maPhongBan = StaffBus.GetSectionIdByStaffId(_maNhanVien);
-            _absentNoSalary = AbsentBus.GetAbsentDays(_month, _year, _maNhanVien);
-            _basicSalary = ContractBus.GetBasicPayByStaffId(_maNhanVien, new DateTime(_year, _month, 1));
-            _bhxh = _salaryBus.SiPrice(RuleBus.GetBhxh(), _basicSalary);
-            _ngayCongQuyDinh = SectionBus.GetStandardWorkdaysBySectionId(_maPhongBan);
+            var maPhongBan = _staffBus.GetSectionIdByStaffId(_maNhanVien);
+            _absentNoSalary = _absentBus.GetAbsentDays(_month, _year, _maNhanVien);
+            _basicSalary = _contractBus.GetBasicPayByStaffId(_maNhanVien, new DateTime(_year, _month, 1));
+            _bhxh = _salaryBus.SiPrice(_ruleBus.GetBhxh(), _basicSalary);
+            _ngayCongQuyDinh = _sectionBus.GetStandardWorkdaysBySectionId(maPhongBan);
             _luongCoBan = _salaryBus.BasicSalary(_basicSalary, _ngayCongQuyDinh, _absentNoSalary);
             _chiTietPhuCap = txtGhiChu.Text;
             _phuCap = GetPhuCap();
             _luongThucLanh = _salaryBus.RealPay(_luongCoBan, _phuCap, _bhxh);
             //Gán giá trị vào Text
             if (_maNhanVien != null) txtChonNV.Text = _maNhanVien;
-            if (_maPhongBan != null) txtPhongBan.Text = SectionBus.GetSectionName(_maPhongBan);
+            if (maPhongBan != null) txtPhongBan.Text = _sectionBus.GetSectionName(maPhongBan);
             txtNgayCongQuyDinh.Text = _ngayCongQuyDinh.ToString();
-            txtLuongHD.Text = ExtendBus.FormatMoney(_basicSalary);
+            txtLuongHD.Text = _extendBus.FormatMoney(_basicSalary);
             txtSoNgayCong.Text = (Parse(txtNgayCongQuyDinh.Text) - _absentNoSalary).ToString();
             txtSoNgayNghi.Text = _absentNoSalary.ToString();
-            txtLuongCoBan.Text = ExtendBus.FormatMoney(_luongCoBan);
-            txtBHXH.Text = ExtendBus.FormatMoney(_bhxh);
-            txtLuongThucLanh.Text = ExtendBus.FormatMoney(_luongThucLanh);
+            txtLuongCoBan.Text = _extendBus.FormatMoney(_luongCoBan);
+            txtBHXH.Text = _extendBus.FormatMoney(_bhxh);
+            txtLuongThucLanh.Text = _extendBus.FormatMoney(_luongThucLanh);
         }
 
         private decimal GetPhuCap() => txtPhuCap.Text.Length == 0 ? 0 : decimal.Parse(txtPhuCap.Text);

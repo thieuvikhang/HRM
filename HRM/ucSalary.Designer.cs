@@ -47,12 +47,13 @@ namespace HRM
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gcSalary = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.StaffID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.AllowanceDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -164,12 +165,13 @@ namespace HRM
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
+            this.StaffID,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn6,
             this.gridColumn4,
             this.gridColumn5,
+            this.AllowanceDescription,
             this.gridColumn7});
             this.gridView1.GridControl = this.gcSalary;
             this.gridView1.Name = "gridView1";
@@ -177,17 +179,17 @@ namespace HRM
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             // 
-            // gridColumn1
+            // StaffID
             // 
-            this.gridColumn1.Caption = "Mã nhân viên";
-            this.gridColumn1.FieldName = "StaffID";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.StaffID.Caption = "Mã Nhân Viên";
+            this.StaffID.FieldName = "StaffID";
+            this.StaffID.Name = "StaffID";
+            this.StaffID.Visible = true;
+            this.StaffID.VisibleIndex = 0;
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Tên nhân viên";
+            this.gridColumn2.Caption = "Tên Nhân Viên";
             this.gridColumn2.FieldName = "Name";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -195,7 +197,7 @@ namespace HRM
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Tháng lương";
+            this.gridColumn3.Caption = "Tháng Lương";
             this.gridColumn3.FieldName = "SalaryMonth";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -203,7 +205,7 @@ namespace HRM
             // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "Số ngày làm việc";
+            this.gridColumn6.Caption = "Số Ngày Làm Việc";
             this.gridColumn6.FieldName = "Workdays";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
@@ -211,7 +213,7 @@ namespace HRM
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "Lương cơ bản";
+            this.gridColumn4.Caption = "Lương Cơ Bản";
             this.gridColumn4.FieldName = "BasicPay";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
@@ -220,19 +222,27 @@ namespace HRM
             // 
             // gridColumn5
             // 
-            this.gridColumn5.Caption = "Phụ cấp";
+            this.gridColumn5.Caption = "Phụ Cấp";
             this.gridColumn5.FieldName = "Allowance";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
             // 
+            // AllowanceDescription
+            // 
+            this.AllowanceDescription.Caption = "Chi Tiết Phụ Cấp";
+            this.AllowanceDescription.FieldName = "AllowanceDescription";
+            this.AllowanceDescription.Name = "AllowanceDescription";
+            this.AllowanceDescription.Visible = true;
+            this.AllowanceDescription.VisibleIndex = 6;
+            // 
             // gridColumn7
             // 
-            this.gridColumn7.Caption = "Lương thực lãnh";
+            this.gridColumn7.Caption = "Lương Thực Lãnh";
             this.gridColumn7.FieldName = "RealPay";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.VisibleIndex = 7;
             // 
             // UcSalary
             // 
@@ -263,7 +273,7 @@ namespace HRM
         private LabelControl labelControl1;
         private ComboBox cbbMonthYear;
         private ComboBox cbbStaffID;
-        private GridColumn gridColumn1;
+        private GridColumn StaffID;
         private GridColumn gridColumn2;
         private GridColumn gridColumn3;
         private GridColumn gridColumn4;
@@ -271,5 +281,6 @@ namespace HRM
         private GridColumn gridColumn6;
         private GridColumn gridColumn7;
         private SimpleButton btThemLuong;
+        private GridColumn AllowanceDescription;
     }
 }

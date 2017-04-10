@@ -52,10 +52,11 @@ namespace BUS
                 {
                     staffID = t.sta.StaffID,
                     name = t.sta.StaffName,
-                    basicPay = t.sala.BasicPay,
-                    allowance = t.sala.Allowance,
+                    basicPay = t.sala.BasicPay == 0 ? 0 : t.sala.BasicPay,
+                    allowance = t.sala.Allowance == 0 ? 0 : t.sala.Allowance,
                     workdays = t.sala.Workdays,
-                    realPay = t.sala.RealPay,
+                    allowanceDescription = t.sala.AllowanceDescription,
+                    realPay = t.sala.RealPay == 0 ? 0 : t.sala.RealPay,
                     month = t.sala.SalaryMonth.Value.Month,
                     year = t.sala.SalaryMonth.Value.Year
                 }, t => t.sala)
@@ -63,11 +64,12 @@ namespace BUS
                 {
                     StaffID = d.Key.staffID,
                     Name = d.Key.name,
-                    SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                    BasicPay = ExtendBus.FormatMoney(d.Key.basicPay.Value),
-                    Allowance = ExtendBus.FormatMoney(d.Key.allowance.Value),
-                    Workdays = d.Key.workdays,
-                    RealPay = ExtendBus.FormatMoney(d.Key.realPay.Value)
+                    SalaryMonth = $"Tháng {d.Key.month} - {d.Key.year}",
+                    BasicPay = $"{ExtendBus.FormatMoney(d.Key.basicPay.Value)} ₫",
+                    Allowance = $"{ExtendBus.FormatMoney(d.Key.allowance.Value)} ₫",
+                    AllowanceDescription = d.Key.allowanceDescription,
+                    Workdays = $"{d.Key.workdays.ToString()} ngày",
+                    RealPay = $"{ExtendBus.FormatMoney(d.Key.realPay.Value)} ₫"
                 });
 
         public IQueryable LoadStaffNonSalary(string maPb, int month, int year)

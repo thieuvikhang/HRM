@@ -9,7 +9,10 @@ namespace BUS
         /// </summary>
         /// <param name="money">số tiền</param>
         /// <returns>chuổi đã được Format</returns>
-        public string FormatMoney(decimal money) => money.ToString("#,###");
+        public string FormatMoney(decimal money)
+        {
+            return money == 0 ? "0" : money.ToString("#,###");
+        }
 
         /// <summary>
         /// Mã hóa mật khẩu theo MD5

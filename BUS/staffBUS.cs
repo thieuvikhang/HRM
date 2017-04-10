@@ -1,13 +1,14 @@
-﻿using DAL;
-using System;
+﻿using System;
 using System.Data.Linq;
 using System.Linq;
+using DAL;
 
 namespace BUS
 {
     public class StaffBus
     {
         private readonly HRMModelDataContext _aHrm = new HRMModelDataContext();
+        public readonly ExtendBus ExtendBus = new ExtendBus();
         public IQueryable LoadStaff()
         {
             var loadStaff = from st in _aHrm.Staffs
@@ -28,16 +29,15 @@ namespace BUS
                     st.EndDate,
                     st.ManagerID,
                     st.Email,
-                    //st.DaysRemain,
                     post.PostName,
                     sec.SectionName
                 };
             return loadStaff;
         }
 
-        public Staff LoadStaffByIDStaff(string IDStaff)
+        public Staff LoadStaffByIdStaff(string idStaff)
         {
-            Staff loadStaff = _aHrm.Staffs.SingleOrDefault(st => st.StaffID == IDStaff);
+            var loadStaff = _aHrm.Staffs.SingleOrDefault(st => st.StaffID == idStaff);
             return loadStaff;
         }
 
@@ -51,161 +51,151 @@ namespace BUS
         //Load lương theo nhân viên và tháng
         public IQueryable LoadSalaryByStaffId(string staffId, int month, int year)
         {
-            var salary = from sta in _aHrm.Staffs
-                         from sala in _aHrm.Salaries
-                         where sta.StaffID == sala.StaffID
-                            && sta.StaffID == staffId
-                            && sala.SalaryMonth.Value.Month == month
-                            && sala.SalaryMonth.Value.Year == year
-                         group sala by new
-                         {
-                             staffID = sta.StaffID,
-                             name = sta.StaffName,
-                             basicPay = sala.BasicPay,
-                             allowance = sala.Allowance,
-                             workdays = sala.Workdays,
-                             realPay = sala.RealPay,
-                             month = sala.SalaryMonth.Value.Month,
-                             year = sala.SalaryMonth.Value.Year
-                         } into d
-                         select new
-                         {
-                             StaffID = d.Key.staffID,
-                             Name = d.Key.name,
-                             //định dạng MM/yyyy
-                             SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                             BasicPay = d.Key.basicPay,
-                             Allowance = d.Key.allowance,
-                             Workdays = d.Key.workdays,
-                             RealPay = d.Key.realPay,
-                         };
+            var salary = _aHrm.Staffs.SelectMany(sta => _aHrm.Salaries, (sta, sala) => new {sta, sala})
+                .Where(t => t.sta.StaffID == t.sala.StaffID
+                             && t.sta.StaffID == staffId
+                             && t.sala.SalaryMonth.Value.Month == month
+                             && t.sala.SalaryMonth.Value.Year == year).GroupBy(t => new
+                {
+                                 staffID = t.sta.StaffID,
+                                 name = t.sta.StaffName,
+                                 basicPay = t.sala.BasicPay == 0 ? 0 : t.sala.BasicPay,
+                                 allowance = t.sala.Allowance == 0 ? 0 : t.sala.Allowance,
+                                 workdays = t.sala.Workdays,
+                                 allowanceDescription = t.sala.AllowanceDescription,
+                                 realPay = t.sala.RealPay == 0 ? 0 : t.sala.RealPay,
+                                 month = t.sala.SalaryMonth.Value.Month,
+                                 year = t.sala.SalaryMonth.Value.Year
+                             }, t => t.sala).Select(d => new
+                {
+                                 StaffID = d.Key.staffID,
+                                 Name = d.Key.name,
+                                 SalaryMonth = $"Tháng {d.Key.month} - {d.Key.year}",
+                                 BasicPay = $"{ExtendBus.FormatMoney(d.Key.basicPay.Value)} ₫",
+                                 Allowance = $"{ExtendBus.FormatMoney(d.Key.allowance.Value)} ₫",
+                                 AllowanceDescription = d.Key.allowanceDescription,
+                                 Workdays = $"{d.Key.workdays.ToString()} ngày",
+                                 RealPay = $"{ExtendBus.FormatMoney(d.Key.realPay.Value)} ₫"
+                             });
             return salary;
         }
         //Load lương tất cả tháng của 1 nhân viên
         public IQueryable LoadSalaryByStaffIdNonMonthYear(string staffId)
         {
-            var salary = from sta in _aHrm.Staffs
-                         from sala in _aHrm.Salaries
-                         where sta.StaffID == sala.StaffID
-                            && sta.StaffID == staffId
-                         group sala by new
-                         {
-                             staffID = sta.StaffID,
-                             name = sta.StaffName,
-                             basicPay = sala.BasicPay,
-                             allowance = sala.Allowance,
-                             workdays = sala.Workdays,
-                             realPay = sala.RealPay,
-                             month = sala.SalaryMonth.Value.Month,
-                             year = sala.SalaryMonth.Value.Year
-                         } into d
-                         select new
-                         {
-                             StaffID = d.Key.staffID,
-                             Name = d.Key.name,
-                             //định dạng MM/yyyy
-                             SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                             BasicPay = d.Key.basicPay,
-                             Allowance = d.Key.allowance,
-                             Workdays = d.Key.workdays,
-                             RealPay = d.Key.realPay,
-                         };
+            var salary = _aHrm.Staffs.SelectMany(sta => _aHrm.Salaries, (sta, sala) => new {sta, sala})
+                .Where(t => t.sta.StaffID == t.sala.StaffID
+                             && t.sta.StaffID == staffId).GroupBy(t => new
+                {
+                                 staffID = t.sta.StaffID,
+                                 name = t.sta.StaffName,
+                                 basicPay = t.sala.BasicPay == 0 ? 0 : t.sala.BasicPay,
+                                 allowance = t.sala.Allowance == 0 ? 0 : t.sala.Allowance,
+                                 workdays = t.sala.Workdays,
+                                 allowanceDescription = t.sala.AllowanceDescription,
+                                 realPay = t.sala.RealPay == 0 ? 0 : t.sala.RealPay,
+                                 month = t.sala.SalaryMonth.Value.Month,
+                                 year = t.sala.SalaryMonth.Value.Year
+                             }, t => t.sala).Select(d => new
+                {
+                                 StaffID = d.Key.staffID,
+                                 Name = d.Key.name,
+                                 SalaryMonth = $"Tháng {d.Key.month} - {d.Key.year}",
+                                 BasicPay = $"{ExtendBus.FormatMoney(d.Key.basicPay.Value)} ₫",
+                                 Allowance = $"{ExtendBus.FormatMoney(d.Key.allowance.Value)} ₫",
+                                 AllowanceDescription = d.Key.allowanceDescription,
+                                 Workdays = $"{d.Key.workdays.ToString()} ngày",
+                                 RealPay = $"{ExtendBus.FormatMoney(d.Key.realPay.Value)} ₫"
+                             });
             return salary;
         }
         //Load lương của tất cả nhân viên theo tháng và năm
         public IQueryable LoadSalaryByMonthYear(int month, int year)
         {
-            var salary = from sta in _aHrm.Staffs
-                         from sala in _aHrm.Salaries
-                         where sta.StaffID == sala.StaffID
-                            && sala.SalaryMonth.Value.Month == month
-                            && sala.SalaryMonth.Value.Year == year
-                         group sala by new
-                         {
-                             staffID = sta.StaffID,
-                             name = sta.StaffName,
-                             basicPay = sala.BasicPay,
-                             allowance = sala.Allowance,
-                             workdays = sala.Workdays,
-                             realPay = sala.RealPay,
-                             month = sala.SalaryMonth.Value.Month,
-                             year = sala.SalaryMonth.Value.Year
-                         } into d
-                         select new
-                         {
-                             StaffID = d.Key.staffID,
-                             Name = d.Key.name,
-                             //định dạng MM/yyyy
-                             SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                             BasicPay = d.Key.basicPay,
-                             Allowance = d.Key.allowance,
-                             Workdays = d.Key.workdays,
-                             RealPay = d.Key.realPay,
-                         };
+            var salary = _aHrm.Staffs.SelectMany(sta => _aHrm.Salaries, (sta, sala) => new {sta, sala})
+                .Where(t => t.sta.StaffID == t.sala.StaffID
+                             && t.sala.SalaryMonth.Value.Month == month
+                             && t.sala.SalaryMonth.Value.Year == year).GroupBy(t => new
+                {
+                                 staffID = t.sta.StaffID,
+                                 name = t.sta.StaffName,
+                                 basicPay = t.sala.BasicPay == 0 ? 0 : t.sala.BasicPay,
+                                 allowance = t.sala.Allowance == 0 ? 0 : t.sala.Allowance,
+                                 workdays = t.sala.Workdays,
+                                 allowanceDescription = t.sala.AllowanceDescription,
+                                 realPay = t.sala.RealPay == 0 ? 0 : t.sala.RealPay,
+                                 month = t.sala.SalaryMonth.Value.Month,
+                                 year = t.sala.SalaryMonth.Value.Year
+                             }, t => t.sala).Select(d => new
+                {
+                                 StaffID = d.Key.staffID,
+                                 Name = d.Key.name,
+                                 SalaryMonth = $"Tháng {d.Key.month} - {d.Key.year}",
+                                 BasicPay = $"{ExtendBus.FormatMoney(d.Key.basicPay.Value)} ₫",
+                                 Allowance = $"{ExtendBus.FormatMoney(d.Key.allowance.Value)} ₫",
+                                 AllowanceDescription = d.Key.allowanceDescription,
+                                 Workdays = $"{d.Key.workdays.ToString()} ngày",
+                                 RealPay = $"{ExtendBus.FormatMoney(d.Key.realPay.Value)} ₫"
+                             });
             return salary;
         }
         //Load lương của tất cả nhân vien trong 1 phòng ban và tương ứng tháng, năm
         public IQueryable LoadSalaryBySectionId(string sectionId, int month, int year)
         {
-            var salary = from sta in _aHrm.Staffs
-                         from sala in _aHrm.Salaries
-                         where sta.StaffID == sala.StaffID
-                            && sta.SectionID == sectionId
-                            && sala.SalaryMonth.Value.Month == month
-                            && sala.SalaryMonth.Value.Year == year
-                         group sala by new
-                         {
-                             staffID = sta.StaffID,
-                             name = sta.StaffName,
-                             basicPay = sala.BasicPay,
-                             allowance = sala.Allowance,
-                             workdays = sala.Workdays,
-                             realPay = sala.RealPay,
-                             month = sala.SalaryMonth.Value.Month,
-                             year = sala.SalaryMonth.Value.Year
-                         } into d
-                         select new
-                         {
-                             StaffID = d.Key.staffID,
-                             Name = d.Key.name,
-                             //định dạng MM/yyyy
-                             SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                             BasicPay = d.Key.basicPay,
-                             Allowance = d.Key.allowance,
-                             Workdays = d.Key.workdays,
-                             RealPay = d.Key.realPay,
-                         };
+            var salary = _aHrm.Staffs.SelectMany(sta => _aHrm.Salaries, (sta, sala) => new {sta, sala})
+                .Where(t => t.sta.StaffID == t.sala.StaffID
+                             && t.sta.SectionID == sectionId
+                             && t.sala.SalaryMonth.Value.Month == month
+                             && t.sala.SalaryMonth.Value.Year == year).GroupBy(t => new
+                {
+                                 staffID = t.sta.StaffID,
+                                 name = t.sta.StaffName,
+                                 basicPay = t.sala.BasicPay == 0 ? 0 : t.sala.BasicPay,
+                                 allowance = t.sala.Allowance == 0 ? 0 : t.sala.Allowance,
+                                 workdays = t.sala.Workdays,
+                                 allowanceDescription = t.sala.AllowanceDescription,
+                                 realPay = t.sala.RealPay == 0 ? 0 : t.sala.RealPay,
+                                 month = t.sala.SalaryMonth.Value.Month,
+                                 year = t.sala.SalaryMonth.Value.Year
+                             }, t => t.sala).Select(d => new
+                {
+                                 StaffID = d.Key.staffID,
+                                 Name = d.Key.name,
+                                 SalaryMonth = $"Tháng {d.Key.month} - {d.Key.year}",
+                                 BasicPay = $"{ExtendBus.FormatMoney(d.Key.basicPay.Value)} ₫",
+                                 Allowance = $"{ExtendBus.FormatMoney(d.Key.allowance.Value)} ₫",
+                                 AllowanceDescription = d.Key.allowanceDescription,
+                                 Workdays = $"{d.Key.workdays.ToString()} ngày",
+                                 RealPay = $"{ExtendBus.FormatMoney(d.Key.realPay.Value)} ₫"
+                             });
             return salary;
         }
         //Load lương của tất cả nhân vien trong 1 phòng ban và tương ứng tháng, năm
         public IQueryable LoadSalaryByAllSection(string sectionId)
         {
-            var salary = from sta in _aHrm.Staffs
-                         from sala in _aHrm.Salaries
-                         where sta.StaffID == sala.StaffID
-                            && sta.SectionID == sectionId
-                         group sala by new
-                         {
-                             staffID = sta.StaffID,
-                             name = sta.StaffName,
-                             basicPay = sala.BasicPay,
-                             allowance = sala.Allowance,
-                             workdays = sala.Workdays,
-                             realPay = sala.RealPay,
-                             month = sala.SalaryMonth.Value.Month,
-                             year = sala.SalaryMonth.Value.Year
-                         } into d
-                         select new
-                         {
-                             StaffID = d.Key.staffID,
-                             Name = d.Key.name,
-                             //định dạng MM/yyyy
-                             SalaryMonth = $"{d.Key.month}/{d.Key.year}",
-                             BasicPay = d.Key.basicPay,
-                             Allowance = d.Key.allowance,
-                             Workdays = d.Key.workdays,
-                             RealPay = d.Key.realPay,
-                         };
+            var salary = _aHrm.Staffs.SelectMany(sta => _aHrm.Salaries, (sta, sala) => new {sta, sala})
+                .Where(t => t.sta.StaffID == t.sala.StaffID
+                             && t.sta.SectionID == sectionId).GroupBy(t => new
+                {
+                                 staffID = t.sta.StaffID,
+                                 name = t.sta.StaffName,
+                                 basicPay = t.sala.BasicPay == 0 ? 0 : t.sala.BasicPay,
+                                 allowance = t.sala.Allowance == 0 ? 0 : t.sala.Allowance,
+                                 workdays = t.sala.Workdays,
+                                 allowanceDescription = t.sala.AllowanceDescription,
+                                 realPay = t.sala.RealPay == 0 ? 0 : t.sala.RealPay,
+                                 month = t.sala.SalaryMonth.Value.Month,
+                                 year = t.sala.SalaryMonth.Value.Year
+                             }, t => t.sala).Select(d => new
+                {
+                    StaffID = d.Key.staffID,
+                    Name = d.Key.name,
+                    SalaryMonth = $"Tháng {d.Key.month} - {d.Key.year}",
+                    BasicPay = $"{ExtendBus.FormatMoney(d.Key.basicPay.Value)} ₫",
+                    Allowance = $"{ExtendBus.FormatMoney(d.Key.allowance.Value)} ₫",
+                    AllowanceDescription = d.Key.allowanceDescription,
+                    Workdays = $"{d.Key.workdays.ToString()} ngày",
+                    RealPay = $"{ExtendBus.FormatMoney(d.Key.realPay.Value)} ₫"
+                });
             return salary;
         }
         //kiem tra trung id

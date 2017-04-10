@@ -63,8 +63,8 @@ namespace HRM
             panChangePassword.Enabled = false;
 
             string genderStaff = "";
-            Staff astaff = newStaffBus.LoadStaffByIDStaff(idStaff);
-            Staff astaffManager = newStaffBus.LoadStaffByIDStaff(astaff.ManagerID);
+            Staff astaff = newStaffBus.LoadStaffByIdStaff(idStaff);
+            Staff astaffManager = newStaffBus.LoadStaffByIdStaff(astaff.ManagerID);
             Position aPosition = _hrm.Positions.SingleOrDefault(pst => pst.PostID == astaff.PostID);
             Section aSection = _hrm.Sections.SingleOrDefault(st => st.SectionID == astaff.SectionID);
 
