@@ -13,8 +13,7 @@ namespace HRM
         public Session Session = new Session();
         private readonly AccessBus _accessBus = new AccessBus();
         private readonly AccountBus _accountBus = new AccountBus();
-        public int CoHieu;
-        private int _maNhomQuyen, _maTaiKhoan;
+        private int _maNhomQuyen, _maTaiKhoan, _coHieu;
         private string _maNhanVien;
         #endregion
 
@@ -87,7 +86,7 @@ namespace HRM
         #region Thêm, xóa, sửa
         private void btEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            CoHieu = 2;
+            _coHieu = 2;
             Clear();
             SetButton(false);
             SetText(true);
@@ -115,7 +114,7 @@ namespace HRM
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CoHieu = 1;
+            _coHieu = 1;
             Clear();
             gcNhomQuyen.DataSource = _accessBus.GetAllGroupAccess1();
             gcNhanVien.DataSource = _accountBus.GetAllStaff();
@@ -132,24 +131,24 @@ namespace HRM
                 XtraMessageBox.Show("Vui Lòng Chọn Một Nhóm Quyền!");
                 return;
             }
-            if (CoHieu == 1 && !_accountBus.AddAccountNew(txtTaiKhoang.Text, txtMatKhau.Text, _maNhomQuyen, _maNhanVien))
+            if (_coHieu == 1 && !_accountBus.AddAccountNew(txtTaiKhoang.Text, txtMatKhau.Text, _maNhomQuyen, _maNhanVien))
             {
                 XtraMessageBox.Show("Lỗi thêm!");
             }
-            if (CoHieu == 2 && !_accountBus.UpdateAccount(_maTaiKhoan, _maNhomQuyen, _maNhanVien))
+            if (_coHieu == 2 && !_accountBus.UpdateAccount(_maTaiKhoan, _maNhomQuyen, _maNhanVien))
             {
                 XtraMessageBox.Show("Lỗi sửa!");
             }
             Clear();
             SetText(false);
             SetButton(true);
-            CoHieu = 0;
+            _coHieu = 0;
             UcAccounts_Load(sender, e);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            CoHieu = 0;
+            _coHieu = 0;
             Clear();
             SetText(false);
             SetButton(true);
@@ -160,7 +159,7 @@ namespace HRM
         #region Validate
         private void txtMatKhau_TextChanged(object sender, EventArgs e)
         {
-            if (CoHieu != 1 || txtMatKhau.Text.Length == 0) return;
+            if (_coHieu != 1 || txtMatKhau.Text.Length == 0) return;
             btnSave.Enabled = false;
             if (txtMatKhau.Text.Length >= 4)
             {
@@ -187,7 +186,7 @@ namespace HRM
 
         private void txtNhapLaiMatKhau_TextChanged(object sender, EventArgs e)
         {
-            if (CoHieu != 1 || txtNhapLaiMatKhau.Text.Length == 0) return;
+            if (_coHieu != 1 || txtNhapLaiMatKhau.Text.Length == 0) return;
             btnSave.Enabled = false;
             if (txtMatKhau.Text.Equals(txtNhapLaiMatKhau.Text))
             {
@@ -205,7 +204,7 @@ namespace HRM
 
         private void txtTaiKhoang_TextChanged(object sender, EventArgs e)
         {
-            if (CoHieu != 1) return;
+            if (_coHieu != 1) return;
             btnSave.Enabled = false;
             txtMatKhau.Enabled = false;
             txtNhapLaiMatKhau.Enabled = false;
@@ -241,7 +240,7 @@ namespace HRM
 
         private void txtMatKhau_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
-            if (e.NewValue?.ToString().Length > 100 || e.NewValue?.ToString() == "  ")
+            if (e.NewValue?.ToString().Length > 20 || e.NewValue?.ToString() == "  ")
                 e.Cancel = true;
         }
 
