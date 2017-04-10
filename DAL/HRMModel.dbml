@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HRM" Class="HRMModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-PK221FL\SQLEXPRESS;Initial Catalog=HRM;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HRMConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Absent" Member="Absents">
     <Type Name="Absent">
       <Column Name="AbsentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -52,10 +52,10 @@
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
       <Column Name="AccID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="Char(33)" CanBeNull="true" />
       <Column Name="GroupAccessID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StaffID" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(6)" CanBeNull="true" />
       <Column Name="AccountStatusOnline" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Staff_Account" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
       <Association Name="GroupAccess_Account" Member="GroupAccess" ThisKey="GroupAccessID" OtherKey="GroupAccessID" Type="GroupAccess" IsForeignKey="true" />
