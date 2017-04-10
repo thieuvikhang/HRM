@@ -227,7 +227,7 @@ namespace HRM.Salary
             _luongCoBan = _salaryBus.BasicSalary(_basicSalary, _ngayCongQuyDinh, _absentNoSalary);
             _chiTietPhuCap = txtGhiChu.Text;
             _phuCap = GetPhuCap();
-            _luongThucLanh = _salaryBus.RealPay(_basicSalary, _phuCap, _bhxh);
+            _luongThucLanh = _salaryBus.RealPay(_luongCoBan, _phuCap, _bhxh);
             //Gán giá trị vào Text
             if (_maNhanVien != null) txtChonNV.Text = _maNhanVien;
             if (_maPhongBan != null) txtPhongBan.Text = SectionBus.GetSectionName(_maPhongBan);
