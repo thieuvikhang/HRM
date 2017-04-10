@@ -643,7 +643,14 @@ namespace HRM
                 Contract lastContract = _conTractBus.LoadLastDateContract(idStaff);
                 txtMaHDTruoc.Text = lastContract.ContractID; 
                 dateBuilOfLastContract.DateTime = DateTime.Parse(lastContract.Date.ToString()); 
-                dateStartOfLastContract.DateTime = DateTime.Parse(lastContract.StartDate.ToString());
+                if(lastContract.StartDate != null)
+                {
+                    dateStartOfLastContract.DateTime = DateTime.Parse(lastContract.StartDate.ToString());
+                }
+                else
+                {
+                    dateStartOfLastContract.EditValue = null;
+                }
                 if(lastContract.EndDate == null)
                 {
                     dateEndOfLastContract.EditValue = null;

@@ -496,28 +496,28 @@ namespace HRM
                 dxErrorProvider.SetError(txtStaffID, null);
             }
 
-            bool checkStaffHasAcc = false;
-            bool checkStatusOfAccountOnline = false;
-            Staff newStaff = _staffBus.LoadStaffByIDStaff(txtStaffID.Text);
-            checkStaffHasAcc = _staffBus.checkIDStaffinAccount(newStaff.StaffID);
-            checkStatusOfAccountOnline = _staffBus.checkStatusOfAccountOnline(newStaff.StaffID); 
-            if (checkStaffHasAcc)
-            {
-                lblTitleOnlineStatus.Visible = true; 
-                if (checkStatusOfAccountOnline)
-                {
-                    lblTitleOnlineStatus.Text = "Đang online";
-                }
-                else
-                {
-                    lblTitleOnlineStatus.Text = "Đã offline";
-                }
-            }
-            else
-            {
-                lblTitleOnlineStatus.Visible = false;
-                lblTitleOnlineStatus.Text = "Nhân viên: " + newStaff.StaffName + " không có tài khoản.";
-            }
+            //bool checkStaffHasAcc = false;
+            //bool checkStatusOfAccountOnline = false;
+            //Staff newStaff = _staffBus.LoadStaffByIDStaff(txtStaffID.Text);
+            //checkStaffHasAcc = _staffBus.checkIDStaffinAccount(newStaff.StaffID);
+            //checkStatusOfAccountOnline = _staffBus.checkStatusOfAccountOnline(newStaff.StaffID); 
+            //if (checkStaffHasAcc)
+            //{
+            //    lblTitleOnlineStatus.Visible = true; 
+            //    if (checkStatusOfAccountOnline)
+            //    {
+            //        lblTitleOnlineStatus.Text = "Đang online";
+            //    }
+            //    else
+            //    {
+            //        lblTitleOnlineStatus.Text = "Đã offline";
+            //    }
+            //}
+            //else
+            //{
+            //    lblTitleOnlineStatus.Visible = false;
+            //    lblTitleOnlineStatus.Text = "Nhân viên: " + newStaff.StaffName + " không có tài khoản.";
+            //}
         }
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
@@ -555,7 +555,8 @@ namespace HRM
 
         private void dateStart_DateTimeChanged(object sender, EventArgs e)
         {
-            dateEnd.Properties.MinValue = dateStart.DateTime;           
+            dateEnd.Properties.MinValue = dateStart.DateTime;
+            dateEnd.EditValue = "";         
         }
 
         private void dateEnd_DateTimeChanged(object sender, EventArgs e)

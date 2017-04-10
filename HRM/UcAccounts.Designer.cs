@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcAccounts));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.gcNhanVien = new DevExpress.XtraGrid.GridControl();
@@ -337,6 +337,7 @@
             this.txtTaiKhoang.TabIndex = 0;
             this.txtTaiKhoang.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtTaiKhoang_EditValueChanging);
             this.txtTaiKhoang.TextChanged += new System.EventHandler(this.txtTaiKhoang_TextChanged);
+            this.txtTaiKhoang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTaiKhoang_KeyPress);
             // 
             // labelControl1
             // 
@@ -352,10 +353,12 @@
             this.txtNhapLaiMatKhau.EditValue = "**********";
             this.txtNhapLaiMatKhau.Location = new System.Drawing.Point(173, 147);
             this.txtNhapLaiMatKhau.Name = "txtNhapLaiMatKhau";
+            this.txtNhapLaiMatKhau.Properties.PasswordChar = '*';
             this.txtNhapLaiMatKhau.Size = new System.Drawing.Size(252, 20);
             this.txtNhapLaiMatKhau.TabIndex = 2;
             this.txtNhapLaiMatKhau.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtNhapLaiMatKhau_EditValueChanging);
             this.txtNhapLaiMatKhau.TextChanged += new System.EventHandler(this.txtNhapLaiMatKhau_TextChanged);
+            this.txtNhapLaiMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNhapLaiMatKhau_KeyPress);
             // 
             // labelControl2
             // 
@@ -369,12 +372,14 @@
             // txtMatKhau
             // 
             this.txtMatKhau.EditValue = "**********";
-            this.txtMatKhau.Location = new System.Drawing.Point(173, 98);
+            this.txtMatKhau.Location = new System.Drawing.Point(173, 101);
             this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.Properties.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(252, 20);
             this.txtMatKhau.TabIndex = 1;
             this.txtMatKhau.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtMatKhau_EditValueChanging);
             this.txtMatKhau.TextChanged += new System.EventHandler(this.txtMatKhau_TextChanged);
+            this.txtMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatKhau_KeyPress);
             // 
             // labelControl3
             // 
@@ -474,7 +479,7 @@
             // 
             this.btEdit.AutoHeight = false;
             this.btEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.BottomCenter, ((System.Drawing.Image)(resources.GetObject("btEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.BottomCenter, ((System.Drawing.Image)(resources.GetObject("btEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
             this.btEdit.Name = "btEdit";
             this.btEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btEdit_ButtonClick);
@@ -492,7 +497,7 @@
             // 
             this.btDelete.AutoHeight = false;
             this.btDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.BottomCenter, ((System.Drawing.Image)(resources.GetObject("btDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.BottomCenter, ((System.Drawing.Image)(resources.GetObject("btDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
             this.btDelete.Name = "btDelete";
             this.btDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btDelete_ButtonClick);

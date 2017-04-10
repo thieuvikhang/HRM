@@ -59,6 +59,7 @@ namespace HRM.Salary
                     {
                         frmAddSalary_Load(sender, e);
                         ClearTextAddSalary();
+                        
                     }
                     else
                     {
@@ -140,6 +141,7 @@ namespace HRM.Salary
             if (e.NewValue?.ToString().Length > 50 || e.NewValue?.ToString() == "  ")
                 e.Cancel = true;
         }
+
 
         #endregion
 

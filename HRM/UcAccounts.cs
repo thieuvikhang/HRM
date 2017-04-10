@@ -13,7 +13,7 @@ namespace HRM
         public Session Session = new Session();
         private readonly AccessBus _accessBus = new AccessBus();
         private readonly AccountBus _accountBus = new AccountBus();
-        private int _maNhomQuyen, _maTaiKhoan, _coHieu;
+        private int _maNhomQuyen = -1, _maTaiKhoan, _coHieu;
         private string _maNhanVien;
         #endregion
 
@@ -71,7 +71,7 @@ namespace HRM
             txtThongBaoMK.Text = null;
             txtThongBaoNLMK.Text = null;
             _maNhanVien = null;
-            _maNhomQuyen = 0;
+            _maNhomQuyen =-1;
         }
         private void SetCheck(int ma)
         {
@@ -126,7 +126,7 @@ namespace HRM
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (_maNhomQuyen == 0)
+            if (_maNhomQuyen == -1)
             {
                 XtraMessageBox.Show("Vui Lòng Chọn Một Nhóm Quyền!");
                 return;
@@ -289,6 +289,22 @@ namespace HRM
                 _maNhanVien = accessId;
             }
         }
+
+        private void txtTaiKhoang_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtMatKhau_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtNhapLaiMatKhau_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
         private void gvTaiKhoan_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
         {
             if (e.Column.FieldName != "Delete") return;

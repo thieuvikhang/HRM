@@ -62,6 +62,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.lblStaffName = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.lblManager = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -79,7 +80,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblStaffCard = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -109,7 +109,7 @@
             // 
             // groupControl2
             // 
-            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 19.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl2.AppearanceCaption.FontSizeDelta = 1;
             this.groupControl2.AppearanceCaption.Image = global::HRM.Properties.Resources.Apps_preferences_desktop_user_password_icon;
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
@@ -159,9 +159,11 @@
             // 
             this.txtAgainPassword.Location = new System.Drawing.Point(164, 64);
             this.txtAgainPassword.Name = "txtAgainPassword";
+            this.txtAgainPassword.Properties.PasswordChar = '*';
             this.txtAgainPassword.Size = new System.Drawing.Size(189, 20);
             this.txtAgainPassword.TabIndex = 3;
             this.txtAgainPassword.TextChanged += new System.EventHandler(this.txtAgainPassword_TextChanged);
+            this.txtAgainPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAgainPassword_KeyPress);
             // 
             // btnCheckError
             // 
@@ -189,17 +191,21 @@
             // 
             this.txtNewpassword.Location = new System.Drawing.Point(164, 38);
             this.txtNewpassword.Name = "txtNewpassword";
+            this.txtNewpassword.Properties.PasswordChar = '*';
             this.txtNewpassword.Size = new System.Drawing.Size(189, 20);
             this.txtNewpassword.TabIndex = 2;
             this.txtNewpassword.TextChanged += new System.EventHandler(this.txtNewpassword_TextChanged);
+            this.txtNewpassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNewpassword_KeyPress);
             // 
             // txtOldPassword
             // 
             this.txtOldPassword.Location = new System.Drawing.Point(164, 12);
             this.txtOldPassword.Name = "txtOldPassword";
+            this.txtOldPassword.Properties.PasswordChar = '*';
             this.txtOldPassword.Size = new System.Drawing.Size(189, 20);
             this.txtOldPassword.TabIndex = 1;
             this.txtOldPassword.TextChanged += new System.EventHandler(this.txtOldPassword_TextChanged);
+            this.txtOldPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOldPassword_KeyPress);
             // 
             // label3
             // 
@@ -337,7 +343,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 19.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl1.AppearanceCaption.FontSizeDelta = 1;
             this.groupControl1.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl1.AppearanceCaption.Image")));
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
@@ -483,6 +489,16 @@
             this.label25.Size = new System.Drawing.Size(120, 16);
             this.label25.TabIndex = 0;
             this.label25.Text = "Trình độ học vấn:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(266, 198);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 16);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Điah chỉ:";
             // 
             // label17
             // 
@@ -655,16 +671,6 @@
             this.label9.Size = new System.Drawing.Size(65, 16);
             this.label9.TabIndex = 0;
             this.label9.Text = "Giới Tính:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(266, 198);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 16);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Điah chỉ:";
             // 
             // UcStaffInfo
             // 

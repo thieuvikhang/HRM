@@ -10,6 +10,7 @@ using DevExpress.XtraTab.ViewInfo;
 using DevExpress.Skins;
 using System.Drawing;
 using BUS;
+using System.Threading;
 
 namespace HRM
 {
@@ -56,7 +57,7 @@ namespace HRM
             elem.Image.SetImage((Image)null, Color.Empty);
             elem.Size.MinSize = new Size(44, 42);
         }
-        
+
 
         private void FormMain_Load(object sender, EventArgs e)
         {

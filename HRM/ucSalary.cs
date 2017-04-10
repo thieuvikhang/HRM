@@ -46,7 +46,7 @@ namespace HRM
         }
         #endregion
 
-        private void ucSalary_Load(object sender, EventArgs e)
+        public void ucSalary_Load(object sender, EventArgs e)
         {
             var access = Parse(Session["Access"].ToString());
             if (access != 1)
@@ -59,7 +59,7 @@ namespace HRM
         }
 
         //Hàm Load GirdView khi thay đổi Combobox chọn nhân viên hoặc chọn Tháng
-        private void LoadGridView()
+        public void LoadGridView()
         {
             var maChonNhanVien = cbbStaffID.SelectedValue.ToString();/*Mã số chọn nhân viên*/
             var maChonThangNam = cbbMonthYear.SelectedValue.ToString();/*Mã số chọn tháng lương*/
