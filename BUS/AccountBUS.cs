@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using DAL;
 
 namespace BUS
 {
@@ -116,22 +116,17 @@ namespace BUS
         #region Quản Lý Tai Khoản
         public IQueryable GetAllAccount()
         {
-            return from a in _hrm.Accounts
-                   from ga in _hrm.GroupAccesses
-                   where a.GroupAccessID == ga.GroupAccessID
-                   select new
-                   {
-                       a.AccID,
-                       a.UserName,
-                       StaffName1 = a.StaffID == null ? null : a.Staff.StaffName,
-                       GroupAccessName1 = ga.GroupAccessName,
-                       AccountStatusOnline = a.AccountStatusOnline == true ? "Online" : "Offline"
-                   };
-        }
-
-        public string GetStaffNameByStaffId(string maNv)
-        {
-            return maNv == null ? null : _hrm.Staffs.Where(s => s.StaffID == maNv).Select(a => a.StaffName).ToString();
+            return
+                _hrm.Accounts.SelectMany(a => _hrm.GroupAccesses, (a, ga) => new {a, ga})
+                    .Where(t => t.a.GroupAccessID == t.ga.GroupAccessID)
+                    .Select(t => new
+                    {
+                        t.a.AccID,
+                        t.a.UserName,
+                        StaffName1 = t.a.StaffID == null ? null : t.a.Staff.StaffName,
+                        GroupAccessName1 = t.ga.GroupAccessName,
+                        AccountStatusOnline = t.a.AccountStatusOnline == true ? "Online" : "Offline"
+                    });
         }
         public IQueryable GetAllStaff()
         {
@@ -147,16 +142,19 @@ namespace BUS
         }
         public IQueryable GetStaffByAccountId(int accId)
         {
-            return from st in _hrm.Staffs
-                   from se in _hrm.Sections
-                   from ac in _hrm.Accounts
-                   where st.SectionID == se.SectionID && ac.StaffID == st.StaffID && ac.AccID == accId
-                   select new
-                   {
-                       st.StaffID,
-                       st.StaffName,
-                       se.SectionName
-                   };
+            return
+                _hrm.Staffs.SelectMany(st => _hrm.Sections, (st, se) => new {st, se})
+                    .SelectMany(t => _hrm.Accounts, (t, ac) => new {t, ac})
+                    .Where(
+                        t =>
+                            t.t.st.SectionID == t.t.se.SectionID && t.ac.StaffID == t.t.st.StaffID &&
+                            t.ac.AccID == accId)
+                    .Select(t => new
+                    {
+                        t.t.st.StaffID,
+                        t.t.st.StaffName,
+                        t.t.se.SectionName
+                    });
         }
         public bool AddAccountNew(string user, string pass, int nhomQuyen, string maNv)
         {
@@ -166,7 +164,7 @@ namespace BUS
                 var acc = new Account();
                 {
                     acc.UserName = user;
-                    acc.Password = _extendBus.GetMd5(pass);
+                    acc.Password = _extendBus.GetMd5(pass).ToLower();
                     acc.GroupAccessID = nhomQuyen;
                     acc.StaffID = maNv;
                     acc.AccountStatusOnline = false;
